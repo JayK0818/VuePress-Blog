@@ -1,0 +1,53 @@
+<template>
+  <div class='box' ref='box'>
+    <div class="inner"></div>
+  </div>
+  <a-button type='primary' size='small' @click.stop='getHeight("clientHeight")'>Element.clientHeight</a-button>
+  <a-button type='primary' size='small' @click.stop='getHeight("offsetHeight")'>Element.offsetHeight</a-button>
+  <a-button type='primary' size='small' @click.stop='getHeight("scrollHeight")'>Element.scrollHeight</a-button>
+</template>
+
+<script lang='ts'>
+import { defineComponent, ref } from 'vue'
+import { Button, message } from 'ant-design-vue'
+import 'ant-design-vue/es/message/style/css';
+
+export default defineComponent({
+  name: 'box-size',
+  components: {
+    [Button.name]: Button
+  },
+  setup () {
+    const box = ref<HTMLElement | null>(null)
+
+    const getHeight = (type):void => {
+      if(!box.value) return
+      const height = box.value[type];
+      message.success(`${type} - ${height}`, 2)
+    }
+    return {
+      box, getHeight
+    }
+  }
+})
+</script>
+<style lang="scss" scoped>
+.box{
+  width:100px;
+  height:100px;
+  padding:10px;
+  margin:5px;
+  border:5px;
+  overflow:auto;
+  box-sizing:border-box;
+}
+.inner{
+  background-color:#98c379;
+  width:400px;
+  height:400px;
+}
+button{
+  margin-top:10px;
+  margin-right:5px;
+}
+</style>

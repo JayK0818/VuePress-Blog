@@ -1,0 +1,71 @@
+{
+  "hash": "5fa1ea40",
+  "browserHash": "5c029f48",
+  "optimized": {
+    "@vue/devtools-api": {
+      "src": "../../../../node_modules/_@vue_devtools-api@6.1.4@@vue/devtools-api/lib/esm/index.js",
+      "file": "@vue_devtools-api.js",
+      "fileHash": "e36563d4",
+      "needsInterop": false
+    },
+    "@vuepress/shared": {
+      "src": "../../../../node_modules/_@vuepress_shared@2.0.0-beta.45@@vuepress/shared/dist/index.js",
+      "file": "@vuepress_shared.js",
+      "fileHash": "0e8c164a",
+      "needsInterop": false
+    },
+    "@vueuse/core": {
+      "src": "../../../../node_modules/_@vueuse_core@8.4.2@@vueuse/core/index.mjs",
+      "file": "@vueuse_core.js",
+      "fileHash": "19018112",
+      "needsInterop": false
+    },
+    "vue": {
+      "src": "../../../../node_modules/_vue@3.2.33@vue/dist/vue.runtime.esm-bundler.js",
+      "file": "vue.js",
+      "fileHash": "5849f1bb",
+      "needsInterop": false
+    },
+    "vue-router": {
+      "src": "../../../../node_modules/_vue-router@4.0.15@vue-router/dist/vue-router.esm-bundler.js",
+      "file": "vue-router.js",
+      "fileHash": "67e76b41",
+      "needsInterop": false
+    },
+    "pinia": {
+      "src": "../../../../node_modules/_pinia@2.0.14@pinia/dist/pinia.esm-browser.js",
+      "file": "pinia.js",
+      "fileHash": "88fa62df",
+      "needsInterop": false
+    },
+    "ant-design-vue": {
+      "src": "../../../../node_modules/_ant-design-vue@3.2.3@ant-design-vue/es/index.js",
+      "file": "ant-design-vue.js",
+      "fileHash": "15a0248b",
+      "needsInterop": false
+    },
+    "mitt": {
+      "src": "../../../../node_modules/_mitt@3.0.0@mitt/dist/mitt.mjs",
+      "file": "mitt.js",
+      "fileHash": "a9007b5b",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-L2FZQUEU": {
+      "file": "chunk-L2FZQUEU.js"
+    },
+    "chunk-O52LPTKN": {
+      "file": "chunk-O52LPTKN.js"
+    },
+    "chunk-Z2ZVKP3Z": {
+      "file": "chunk-Z2ZVKP3Z.js"
+    },
+    "chunk-UBNUQVVW": {
+      "file": "chunk-UBNUQVVW.js"
+    },
+    "chunk-GKUGKL7A": {
+      "file": "chunk-GKUGKL7A.js"
+    }
+  }
+}

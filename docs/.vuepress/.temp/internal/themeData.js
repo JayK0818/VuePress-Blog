@@ -2,9 +2,7 @@ export const themeData = {
   "lastUpdated": true,
   "lastUpdatedText": "上次更新",
   "contributors": false,
-  "smoothScroll": false,
-  "darkMode": true,
-  "logo": null,
+  "sidebarDepth": 2,
   "navbar": [
     {
       "text": "首页",
@@ -12,7 +10,7 @@ export const themeData = {
     },
     {
       "text": "JavaScript",
-      "link": "/javascript/"
+      "link": "/javascript/bom"
     },
     {
       "text": "Node",
@@ -27,7 +25,11 @@ export const themeData = {
       "link": "/react/create-react-app/"
     }
   ],
+  "smoothScroll": false,
+  "darkMode": true,
+  "logo": null,
   "sidebar": {
+    "collapsable": false,
     "/react/": [
       {
         "title": "React",
@@ -42,6 +44,7 @@ export const themeData = {
     "/javascript/": [
       {
         "title": "JavaScript",
+        "collapsable": false,
         "children": [
           "/javascript/bom",
           "/javascript/event",
@@ -64,6 +67,14 @@ export const themeData = {
           "/javascript/javascript-route",
           "/javascript/algorithm",
           "/javascript/sort"
+        ]
+      },
+      {
+        "title": "TypeScript",
+        "collapsable": false,
+        "children": [
+          "/javascript/typescript/types",
+          "/javascript/typescript/function"
         ]
       }
     ],
@@ -89,6 +100,7 @@ export const themeData = {
       }
     ]
   },
+  "topBanner": false,
   "locales": {
     "/": {
       "selectLanguageName": "English"
@@ -97,7 +109,6 @@ export const themeData = {
   "repo": null,
   "selectLanguageText": "Languages",
   "selectLanguageAriaLabel": "Select language",
-  "sidebarDepth": 2,
   "editLink": true,
   "editLinkText": "Edit this page",
   "contributorsText": "Contributors",

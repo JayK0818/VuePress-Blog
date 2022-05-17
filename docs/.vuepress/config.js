@@ -2,6 +2,7 @@ const { registerComponentsPlugin } = require('@vuepress/plugin-register-componen
 const { defaultTheme } = require('vuepress')
 const { AntDesignVueResolver } = require('unplugin-vue-components/resolvers')
 const { shikiPlugin } = require('@vuepress/plugin-shiki')
+const { viteBundler } = require('@vuepress/bundler-vite')
 const path = require('path')
 
 function resolve(dirname,directory,filename){
@@ -40,6 +41,7 @@ const side = {
   javascript: [
     {
       title: 'JavaScript',
+      collapsable: false,
       children: [
         '/javascript/bom',
         '/javascript/event',
@@ -62,6 +64,14 @@ const side = {
         '/javascript/javascript-route',
         '/javascript/algorithm',
         '/javascript/sort'
+      ]
+    },
+    {
+      title: 'TypeScript',
+      collapsable: false,
+      children: [
+        '/javascript/typescript/types',
+        '/javascript/typescript/function'
       ]
     }
   ],
@@ -114,15 +124,13 @@ module.exports = {
     lastUpdated:true,
     lastUpdatedText:'上次更新',
     contributors: false,
-    smoothScroll: false,
-    darkMode:true,
-    logo:null,
+    sidebarDepth: 2,
     navbar:[
       {
         text:'首页',
         link:'/'
       },
-      {text:'JavaScript',link:'/javascript/'},
+      {text:'JavaScript',link:'/javascript/bom'},
       {text:'Node',link:'/node/'},
       {text:'Vue',link:'/vue/data-transfer/'},
       {text:'React',link:'/react/create-react-app/'},
@@ -134,13 +142,15 @@ module.exports = {
     darkMode:true,
     logo:null,
     sidebar:{
+      collapsable: false,
       '/react/': side.react,
       '/javascript/': side.javascript,
       '/node/': side.node,
       '/vue/': side.vue
-    }
+    },
+    topBanner: false
   }),
-  bundlerConfig: {
+  bundler: viteBundler({
     viteOptions: {
       plugins: [
         require('unplugin-vue-components/vite')({
@@ -148,5 +158,5 @@ module.exports = {
         })
       ]
     }
-  }
+  })
 }

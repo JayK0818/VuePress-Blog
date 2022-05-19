@@ -2,10 +2,8 @@ import { Vuepress } from '@vuepress/client'
 
 const routeItems = [
   ["v-8daa1a0e","/",{"title":""},["/index.html","/README.md"]],
-  ["v-14918cba","/react/concept.html",{"title":"概念"},["/react/concept","/react/concept.md"]],
-  ["v-d762745a","/react/context.html",{"title":"Context"},["/react/context","/react/context.md"]],
-  ["v-0a4aa4a4","/react/create-react-app.html",{"title":"create-react-app"},["/react/create-react-app","/react/create-react-app.md"]],
-  ["v-8c683810","/react/react-performance-optimization.html",{"title":"React性能优化"},["/react/react-performance-optimization","/react/react-performance-optimization.md"]],
+  ["v-15051314","/node/",{"title":"常用的Node包"},["/node/index.html","/node/README.md"]],
+  ["v-1be64244","/node/node_module.html",{"title":"常用npm包"},["/node/node_module","/node/node_module.md"]],
   ["v-e02a086e","/javascript/",{"title":"ECMAScript"},["/javascript/index.html","/javascript/README.md"]],
   ["v-da61cde0","/javascript/ajax.html",{"title":"Ajax"},["/javascript/ajax","/javascript/ajax.md"]],
   ["v-443dbc5a","/javascript/algorithm.html",{"title":"算法"},["/javascript/algorithm","/javascript/algorithm.md"]],
@@ -29,8 +27,10 @@ const routeItems = [
   ["v-f909575c","/javascript/sort.html",{"title":"排序"},["/javascript/sort","/javascript/sort.md"]],
   ["v-62ca9b52","/javascript/this.html",{"title":"This"},["/javascript/this","/javascript/this.md"]],
   ["v-ae963382","/javascript/value-copy.html",{"title":"深拷贝与浅拷贝"},["/javascript/value-copy","/javascript/value-copy.md"]],
-  ["v-15051314","/node/",{"title":"常用的Node包"},["/node/index.html","/node/README.md"]],
-  ["v-1be64244","/node/node_module.html",{"title":"常用npm包"},["/node/node_module","/node/node_module.md"]],
+  ["v-14918cba","/react/concept.html",{"title":"概念"},["/react/concept","/react/concept.md"]],
+  ["v-d762745a","/react/context.html",{"title":"Context"},["/react/context","/react/context.md"]],
+  ["v-0a4aa4a4","/react/create-react-app.html",{"title":"create-react-app"},["/react/create-react-app","/react/create-react-app.md"]],
+  ["v-8c683810","/react/react-performance-optimization.html",{"title":"React性能优化"},["/react/react-performance-optimization","/react/react-performance-optimization.md"]],
   ["v-2f769766","/vue/data-transfer.html",{"title":"组件通信"},["/vue/data-transfer","/vue/data-transfer.md"]],
   ["v-3c367b94","/vue/entry-and-version.html",{"title":"Vue构建版本和打包入口"},["/vue/entry-and-version","/vue/entry-and-version.md"]],
   ["v-ec241072","/vue/global-api.html",{"title":"GlobalApi"},["/vue/global-api","/vue/global-api.md"]],
@@ -38,6 +38,7 @@ const routeItems = [
   ["v-731d388a","/vue/vue-instance.html",{"title":"Vue Instance"},["/vue/vue-instance","/vue/vue-instance.md"]],
   ["v-5dd96c6e","/vue/webpack.html",{"title":"Webpack"},["/vue/webpack","/vue/webpack.md"]],
   ["v-8f92ae80","/javascript/typescript/function.html",{"title":"Function"},["/javascript/typescript/function","/javascript/typescript/function.md"]],
+  ["v-76e22579","/javascript/typescript/object.html",{"title":"Object Type"},["/javascript/typescript/object","/javascript/typescript/object.md"]],
   ["v-055867a1","/javascript/typescript/types.html",{"title":"Types"},["/javascript/typescript/types","/javascript/typescript/types.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
 ]

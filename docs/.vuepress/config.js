@@ -71,7 +71,8 @@ const side = {
       collapsable: false,
       children: [
         '/javascript/typescript/types',
-        '/javascript/typescript/function'
+        '/javascript/typescript/function',
+        '/javascript/typescript/object'
       ]
     }
   ],

@@ -1,15 +1,15 @@
 export const data = {
-  "key": "v-055867a1",
-  "path": "/javascript/typescript/types.html",
-  "title": "Types",
+  "key": "v-76e22579",
+  "path": "/javascript/typescript/object.html",
+  "title": "Object Type",
   "lang": "zh-CN",
   "frontmatter": {},
   "excerpt": "",
   "headers": [],
   "git": {
-    "updatedTime": 1652797654000
+    "updatedTime": null
   },
-  "filePathRelative": "javascript/typescript/types.md"
+  "filePathRelative": "javascript/typescript/object.md"
 }
 
 if (import.meta.webpackHot) {

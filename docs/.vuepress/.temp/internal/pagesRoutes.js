@@ -38,6 +38,7 @@ const routeItems = [
   ["v-731d388a","/vue/vue-instance.html",{"title":"Vue Instance"},["/vue/vue-instance","/vue/vue-instance.md"]],
   ["v-5dd96c6e","/vue/webpack.html",{"title":"Webpack"},["/vue/webpack","/vue/webpack.md"]],
   ["v-8f92ae80","/javascript/typescript/function.html",{"title":"Function"},["/javascript/typescript/function","/javascript/typescript/function.md"]],
+  ["v-4edab29a","/javascript/typescript/narrowing.html",{"title":"Narrowing"},["/javascript/typescript/narrowing","/javascript/typescript/narrowing.md"]],
   ["v-76e22579","/javascript/typescript/object.html",{"title":"Object Type"},["/javascript/typescript/object","/javascript/typescript/object.md"]],
   ["v-055867a1","/javascript/typescript/types.html",{"title":"Types"},["/javascript/typescript/types","/javascript/typescript/types.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],

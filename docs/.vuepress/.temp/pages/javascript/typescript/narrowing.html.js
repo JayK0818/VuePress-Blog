@@ -1,15 +1,15 @@
 export const data = {
-  "key": "v-76e22579",
-  "path": "/javascript/typescript/object.html",
-  "title": "Object Type",
+  "key": "v-4edab29a",
+  "path": "/javascript/typescript/narrowing.html",
+  "title": "Narrowing",
   "lang": "zh-CN",
   "frontmatter": {},
   "excerpt": "",
   "headers": [],
   "git": {
-    "updatedTime": 1652970905000
+    "updatedTime": null
   },
-  "filePathRelative": "javascript/typescript/object.md"
+  "filePathRelative": "javascript/typescript/narrowing.md"
 }
 
 if (import.meta.webpackHot) {

@@ -75,6 +75,8 @@ export const pagesComponents = {
   "v-5dd96c6e": defineAsyncComponent(() => import(/* webpackChunkName: "v-5dd96c6e" */"/Users/jinkang/Desktop/vuepress-start/docs/.vuepress/.temp/pages/vue/webpack.html.vue")),
   // path: /javascript/typescript/function.html
   "v-8f92ae80": defineAsyncComponent(() => import(/* webpackChunkName: "v-8f92ae80" */"/Users/jinkang/Desktop/vuepress-start/docs/.vuepress/.temp/pages/javascript/typescript/function.html.vue")),
+  // path: /javascript/typescript/narrowing.html
+  "v-4edab29a": defineAsyncComponent(() => import(/* webpackChunkName: "v-4edab29a" */"/Users/jinkang/Desktop/vuepress-start/docs/.vuepress/.temp/pages/javascript/typescript/narrowing.html.vue")),
   // path: /javascript/typescript/object.html
   "v-76e22579": defineAsyncComponent(() => import(/* webpackChunkName: "v-76e22579" */"/Users/jinkang/Desktop/vuepress-start/docs/.vuepress/.temp/pages/javascript/typescript/object.html.vue")),
   // path: /javascript/typescript/types.html

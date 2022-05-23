@@ -2,10 +2,24 @@
 
   1. string number boolean
 ```ts
-const message:string = 'hello world'
-const height: number = 30
-const pi: number = 3.14
-const flag: boolean = true
+// -------------------------- 原始类型 --------------------
+// 布尔值
+const isDone:boolean = false;
+
+// 数字
+const decLiteral:number = 6
+const hexLiteral:number = 0xf00d
+const binaryLiteral:number = 0b1010
+const octalLiteral:number = 0o744
+
+// 字符串
+const player:string = 'bob'
+console.log(player) // bob
+
+// --- 模版字符串 ----
+const singer:string = `${player}`;
+const age:number = 37
+const sentence:string = `${player} is ${age} years old`;
 ```
   2. array
 ```ts

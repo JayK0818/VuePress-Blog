@@ -16,7 +16,20 @@ export const data = {
       "level": 2,
       "title": "管理资源",
       "slug": "管理资源",
-      "children": []
+      "children": [
+        {
+          "level": 3,
+          "title": "style-loader/css-loader",
+          "slug": "style-loader-css-loader",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "资源模块",
+          "slug": "资源模块",
+          "children": []
+        }
+      ]
     },
     {
       "level": 2,
@@ -114,6 +127,18 @@ export const data = {
           "level": 3,
           "title": "mini-css-extract-plugin",
           "slug": "mini-css-extract-plugin",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "EnvironmentPlugin",
+          "slug": "environmentplugin",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "IgnorePlugin",
+          "slug": "ignoreplugin",
           "children": []
         }
       ]

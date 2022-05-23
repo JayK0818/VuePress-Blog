@@ -73,7 +73,8 @@ const side = {
         '/javascript/typescript/types',
         '/javascript/typescript/function',
         '/javascript/typescript/object',
-        '/javascript/typescript/narrowing'
+        '/javascript/typescript/narrowing',
+        '/javascript/typescript/type-manipulation'
       ]
     }
   ],

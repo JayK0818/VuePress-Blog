@@ -1,15 +1,15 @@
 export const data = {
-  "key": "v-4edab29a",
-  "path": "/javascript/typescript/narrowing.html",
-  "title": "Narrowing",
+  "key": "v-464c74ac",
+  "path": "/javascript/typescript/type-manipulation.html",
+  "title": "Type Manipulation",
   "lang": "zh-CN",
   "frontmatter": {},
   "excerpt": "",
   "headers": [],
   "git": {
-    "updatedTime": 1653057810000
+    "updatedTime": null
   },
-  "filePathRelative": "javascript/typescript/narrowing.md"
+  "filePathRelative": "javascript/typescript/type-manipulation.md"
 }
 
 if (import.meta.webpackHot) {

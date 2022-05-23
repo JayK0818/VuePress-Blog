@@ -9,7 +9,7 @@
 <span class="line"><span style="color: #F8F8F2">  }</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="管理资源" tabindex="-1"><a class="header-anchor" href="#管理资源" aria-hidden="true">#</a> 管理资源</h2>
-<p>style-loader/css-loader</p>
+<h3 id="style-loader-css-loader" tabindex="-1"><a class="header-anchor" href="#style-loader-css-loader" aria-hidden="true">#</a> style-loader/css-loader</h3>
 <p>模块loader可以链式调用。链中的每个loader都将对资源进行转换。链会逆序执行。第一个loader将其结果传递给
 下一个loader,依此类推。</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// style-loader  Inject CSS into the DOM</span></span>
@@ -42,7 +42,65 @@
 <span class="line"><span style="color: #F8F8F2">    ]</span></span>
 <span class="line"><span style="color: #F8F8F2">  }</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="代码分离" tabindex="-1"><a class="header-anchor" href="#代码分离" aria-hidden="true">#</a> 代码分离</h2>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="资源模块" tabindex="-1"><a class="header-anchor" href="#资源模块" aria-hidden="true">#</a> 资源模块</h3>
+<p>资源模块(asset module)是一种模块类型, 它允许使用资源文件(字体,图标等), 而无需配置额外的loader.</p>
+<ol>
+<li>asset/resource:  发送一个单独的文件并导出URL.</li>
+<li>asset/inline:    导出一个资源的data URI</li>
+<li>asset/source:    导出资源的源代码</li>
+<li>asset:           在导出一个data URI 和 发送一个单独的文件之间自动选择。小于8kb的文件,将会视为inline模块类型。</li>
+</ol>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #88846F">// ...</span></span>
+<span class="line"><span style="color: #F8F8F2">  module: {</span></span>
+<span class="line"><span style="color: #F8F8F2">    rules: [</span></span>
+<span class="line"><span style="color: #F8F8F2">      {</span></span>
+<span class="line"><span style="color: #F8F8F2">        test:</span><span style="color: #E6DB74"> /</span><span style="color: #AE81FF">\.</span><span style="color: #E6DB74">(png</span><span style="color: #F92672">|</span><span style="color: #E6DB74">webp</span><span style="color: #F92672">|</span><span style="color: #E6DB74">jpg</span><span style="color: #F92672">|</span><span style="color: #E6DB74">jpeg)</span><span style="color: #F92672">$</span><span style="color: #E6DB74">/</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">        type: </span><span style="color: #E6DB74">&#39;asset/source&#39;</span><span style="color: #F8F8F2">  </span><span style="color: #88846F">// &#39;asset/resource&#39; &#39;asset/inline&#39; &#39;asset&#39;</span></span>
+<span class="line"><span style="color: #F8F8F2">      }</span></span>
+<span class="line"><span style="color: #F8F8F2">    ]</span></span>
+<span class="line"><span style="color: #F8F8F2">  }</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>下面是分别按照 inline / resource / source的方式配置 打包后的结果。</p>
+<ol>
+<li>asset/inline</li>
+</ol>
+<p><img src="@source/vue/images/asset-inline.png" alt="asset/inline"></p>
+<ol start="2">
+<li>asset/resource</li>
+</ol>
+<p><img src="@source/vue/images/asset-resource.png" alt="asset/resource"></p>
+<ol start="3">
+<li>asset/source</li>
+</ol>
+<p><img src="@source/vue/images/asset-source.png" alt="asset/source"></p>
+<p>默认情况下, asset/resource 模块以[hash][ext][query] 文件名发送到输出目录,可以在webpack配置中设置output.assetMoudleFilename来修改模板字符串</p>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  output: {</span></span>
+<span class="line"><span style="color: #F8F8F2">    filename: </span><span style="color: #E6DB74">&#39;bundle.js&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">    path: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;dist&#39;</span><span style="color: #F8F8F2">),</span></span>
+<span class="line"><span style="color: #F8F8F2">    assetModuleFilename: </span><span style="color: #E6DB74">&#39;images/[hash][ext][query]&#39;</span></span>
+<span class="line"><span style="color: #F8F8F2">  }</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>webpack按照 type:'asset' 打包资源文件时,自动地在 resource 和 inline之间进行选择: 小于8kb的文件,将会视为inline模块类型,
+否则会被视为resource模块类型。
+可以通过 选项 parser.dataUrlCondition.maxSize 配置。</p>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  module: {</span></span>
+<span class="line"><span style="color: #F8F8F2">    rules: [</span></span>
+<span class="line"><span style="color: #F8F8F2">      {</span></span>
+<span class="line"><span style="color: #F8F8F2">        test:</span><span style="color: #E6DB74"> /</span><span style="color: #AE81FF">\.</span><span style="color: #E6DB74">png</span><span style="color: #F92672">$</span><span style="color: #E6DB74">/</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">        type: </span><span style="color: #E6DB74">&#39;asset&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">        parser: {</span></span>
+<span class="line"><span style="color: #F8F8F2">          dataUrlCondition: {</span></span>
+<span class="line"><span style="color: #F8F8F2">            maxSize: </span><span style="color: #AE81FF">10</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">*</span><span style="color: #F8F8F2"> </span><span style="color: #AE81FF">1024</span><span style="color: #F8F8F2">  </span><span style="color: #88846F">// 1024kb</span></span>
+<span class="line"><span style="color: #F8F8F2">          }</span></span>
+<span class="line"><span style="color: #F8F8F2">        }</span></span>
+<span class="line"><span style="color: #F8F8F2">      }</span></span>
+<span class="line"><span style="color: #F8F8F2">    ]</span></span>
+<span class="line"><span style="color: #F8F8F2">  }</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="代码分离" tabindex="-1"><a class="header-anchor" href="#代码分离" aria-hidden="true">#</a> 代码分离</h2>
 <p>代码分离是把代码分离到不同的bundle中, 然后可以按需加载或并行加载这些文件。代码分离可以获取更小的bundle.</p>
 <p>常用的代码分离方法有三种:</p>
 <ol>
@@ -448,7 +506,7 @@ to @import ed resources and CSS modules imports</p>
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><img src="@source/vue/images/css-loader-modules-hash.png" alt="css-loader-modules-hash"></p>
 <h2 id="plugins" tabindex="-1"><a class="header-anchor" href="#plugins" aria-hidden="true">#</a> Plugins</h2>
 <h3 id="html-webpack-plugin" tabindex="-1"><a class="header-anchor" href="#html-webpack-plugin" aria-hidden="true">#</a> html-webpack-plugin</h3>
-<p>This is a webpack plugin thatsimplifies creation of HTML files to serve your webpack bundles.
+<p>This is a webpack plugin that simplifies creation of HTML files to serve your webpack bundles.
 This is especially useful for webpack bundles that includes a hash in the filename which changes every compilation.</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> HtmlWebpackPlugin </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">require</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#39;html-webpack-plugin&#39;</span><span style="color: #F8F8F2">)</span></span>
 <span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
@@ -461,18 +519,20 @@ This is especially useful for webpack bundles that includes a hash in the filena
 <span class="line"><span style="color: #F8F8F2">      template: path.</span><span style="color: #A6E22E">join</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;src/template.html&#39;</span><span style="color: #F8F8F2">),</span></span>
 <span class="line"><span style="color: #F8F8F2">      inject: </span><span style="color: #E6DB74">&#39;body&#39;</span><span style="color: #F8F8F2">, </span><span style="color: #88846F">// true | head | body | false</span></span>
 <span class="line"><span style="color: #F8F8F2">      </span><span style="color: #88846F">/*</span></span>
-<span class="line"><span style="color: #88846F">        inject all assets into the given template or templateContent.</span></span>
-<span class="line"><span style="color: #88846F">        body: all javascript resources will be placed at the bottom of the body element</span></span>
-<span class="line"><span style="color: #88846F">        head: will place the scripts in the head element</span></span>
-<span class="line"><span style="color: #88846F">        true: will add it to the head/body depending on the scriptLoading option.</span></span>
-<span class="line"><span style="color: #88846F">        false: will disable automatic injections</span></span>
+<span class="line"><span style="color: #88846F">      inject all assets into the given template or templateContent.</span></span>
+<span class="line"><span style="color: #88846F">      body: all javascript resources will be placed at the bottom of the body element</span></span>
+<span class="line"><span style="color: #88846F">      head: will place the scripts in the head element</span></span>
+<span class="line"><span style="color: #88846F">      true: will add it to the head/body depending on the scriptLoading option.</span></span>
+<span class="line"><span style="color: #88846F">      false: will disable automatic injections</span></span>
 <span class="line"><span style="color: #88846F">      */</span></span>
-<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #88846F">// publicPath: &#39;/assets/&#39;,  // index.html 引用的资源路径 used for script and link tags</span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #88846F">// publicPath: &#39;/assets/&#39;,  </span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #88846F">// index.html 引用的资源路径 used for script and link tags</span></span>
 <span class="line"><span style="color: #F8F8F2">      scriptLoading: </span><span style="color: #E6DB74">&#39;blocking&#39;</span><span style="color: #F8F8F2">,   </span><span style="color: #88846F">// blocking defer module</span></span>
 <span class="line"><span style="color: #F8F8F2">      favicon: path.</span><span style="color: #A6E22E">join</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;src/icon.svg&#39;</span><span style="color: #F8F8F2">),  </span><span style="color: #88846F">// icon图标</span></span>
 <span class="line"><span style="color: #F8F8F2">      minify: </span><span style="color: #AE81FF">false</span><span style="color: #F8F8F2">,  </span><span style="color: #88846F">// true if mode is &#39;production&#39; otherwise false</span></span>
 <span class="line"><span style="color: #F8F8F2">      hash: </span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">, </span><span style="color: #88846F">// 引入的 js css文件名后带hash值  </span></span>
-<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #88846F">// if true then append a unique webpack compilation hash to all included scripts and css files</span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #88846F">// if true then append a unique webpack compilation hash to all </span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #88846F">// included scripts and css files</span></span>
 <span class="line"><span style="color: #F8F8F2">      cache: </span><span style="color: #AE81FF">false</span><span style="color: #F8F8F2">,</span></span>
 <span class="line"><span style="color: #F8F8F2">      chunks: [</span><span style="color: #E6DB74">&#39;app&#39;</span><span style="color: #F8F8F2">], </span><span style="color: #88846F">// Allows you to add only some chunks</span></span>
 <span class="line"><span style="color: #F8F8F2">      meta: {     </span><span style="color: #88846F">// allows to inject meta tags</span></span>
@@ -485,7 +545,7 @@ This is especially useful for webpack bundles that includes a hash in the filena
 <span class="line"><span style="color: #F8F8F2">    })</span></span>
 <span class="line"><span style="color: #F8F8F2">  ]</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><img src="@source/vue/images/html-webpack-plugin.png" alt="html-webpack-plugin"></p>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><img src="@source/vue/images/html-webpack-plugin.png" alt="html-webpack-plugin"></p>
 <h3 id="mini-css-extract-plugin" tabindex="-1"><a class="header-anchor" href="#mini-css-extract-plugin" aria-hidden="true">#</a> mini-css-extract-plugin</h3>
 <p>This plugin extract CSS into separate files. It creates a CSS file per JS file which contains CSS.
 It supports On-Demand-Loading of CSS and SourceMaps;</p>
@@ -572,7 +632,31 @@ It supports On-Demand-Loading of CSS and SourceMaps;</p>
 <span class="line"><span style="color: #F8F8F2">    }</span></span>
 <span class="line"><span style="color: #F8F8F2">  }</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="开发环境和生产环境" tabindex="-1"><a class="header-anchor" href="#开发环境和生产环境" aria-hidden="true">#</a> 开发环境和生产环境</h2>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="environmentplugin" tabindex="-1"><a class="header-anchor" href="#environmentplugin" aria-hidden="true">#</a> EnvironmentPlugin</h3>
+<p>The EnvironmentPlugin is shorthand for using the DefinePlugin on process.env keys.</p>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  plugins: [</span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> webpack.</span><span style="color: #A6E22E">EnvironmentPlugin</span><span style="color: #F8F8F2">({</span></span>
+<span class="line"><span style="color: #F8F8F2">      NODE_ENV: </span><span style="color: #E6DB74">&#39;development&#39;</span><span style="color: #F8F8F2">,  </span><span style="color: #88846F">// using development</span></span>
+<span class="line"><span style="color: #F8F8F2">      DEBUG: </span><span style="color: #AE81FF">true</span></span>
+<span class="line"><span style="color: #F8F8F2">    })</span></span>
+<span class="line"><span style="color: #F8F8F2">  ]</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #88846F">// not specifying the environment variable raises an &#39;EnvironmentPlugin.${key}&#39;, </span></span>
+<span class="line"><span style="color: #88846F">// environment variable is undefined error.</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="ignoreplugin" tabindex="-1"><a class="header-anchor" href="#ignoreplugin" aria-hidden="true">#</a> IgnorePlugin</h3>
+<p>IgnorePlugin prevents the generation of modules for import or require calls matching the regular expressions
+or filter functions.</p>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #F92672">new</span><span style="color: #F8F8F2"> webpack.</span><span style="color: #A6E22E">IgnorePlugin</span><span style="color: #F8F8F2">({</span></span>
+<span class="line"><span style="color: #F8F8F2">  resourceRegExp,</span></span>
+<span class="line"><span style="color: #F8F8F2">  contextRegExp</span></span>
+<span class="line"><span style="color: #F8F8F2">})</span></span>
+<span class="line"><span style="color: #88846F">/*</span></span>
+<span class="line"><span style="color: #88846F">resourceRegExp 是针对发在发生导入的源代码中传递给require或者import的字符串进行匹配,</span></span>
+<span class="line"><span style="color: #88846F">contextRegExp 参数用来选择指定的目录。</span></span>
+<span class="line"><span style="color: #88846F">*/</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="开发环境和生产环境" tabindex="-1"><a class="header-anchor" href="#开发环境和生产环境" aria-hidden="true">#</a> 开发环境和生产环境</h2>
 <p>开发环境和生产环境下的构建目标不同, 可以将某些在production和development环境下的通用配置提取出来,
 然后分别为不同环境下写彼此独立的webpack配置. 使用webpack-merge工具 将不同环境下的配置合并。</p>
 <p>以下配置是针对上述知识点做的一个demo</p>

@@ -1445,6 +1445,12 @@ message_2.body.user.firstName;
 const firstName = message_2?.body?.user?.firstName  // undefined
 ```
   左侧的对象是否为null或undefined.如果是的话 就不再往下运算 而是返回undefined
+  可选链式运算符有三种语法形式: 可选的静态属性访问, 可选的计算属性访问, 可选的函数调用。
+```js
+obj?.prop
+obj?.[exp]
+fn?.()
+```
 
 ### 判断Null
 

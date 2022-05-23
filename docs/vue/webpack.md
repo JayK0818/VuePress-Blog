@@ -14,7 +14,7 @@ module.exports = {
 ```
 ## 管理资源
 
-  style-loader/css-loader
+### style-loader/css-loader
 
   模块loader可以链式调用。链中的每个loader都将对资源进行转换。链会逆序执行。第一个loader将其结果传递给
   下一个loader,依此类推。
@@ -46,6 +46,70 @@ module.exports = {
       {
         test: /\.css$/,
         use:['style-loader', 'css-loader']
+      }
+    ]
+  }
+}
+```
+### 资源模块
+  资源模块(asset module)是一种模块类型, 它允许使用资源文件(字体,图标等), 而无需配置额外的loader.
+
+1. asset/resource:  发送一个单独的文件并导出URL.
+2. asset/inline:    导出一个资源的data URI
+3. asset/source:    导出资源的源代码
+4. asset:           在导出一个data URI 和 发送一个单独的文件之间自动选择。小于8kb的文件,将会视为inline模块类型。
+```js
+module.exports = {
+// ...
+  module: {
+    rules: [
+      {
+        test: /\.(png|webp|jpg|jpeg)$/,
+        type: 'asset/source'  // 'asset/resource' 'asset/inline' 'asset'
+      }
+    ]
+  }
+}
+```
+  下面是分别按照 inline / resource / source的方式配置 打包后的结果。
+
+1. asset/inline
+
+![asset/inline](./images/asset-inline.png)
+
+2. asset/resource
+
+![asset/resource](./images/asset-resource.png)
+
+3. asset/source
+
+![asset/source](./images/asset-source.png)
+
+  默认情况下, asset/resource 模块以[hash][ext][query] 文件名发送到输出目录,可以在webpack配置中设置output.assetMoudleFilename来修改模板字符串
+```js
+module.exports = {
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    assetModuleFilename: 'images/[hash][ext][query]'
+  }
+}
+```
+  webpack按照 type:'asset' 打包资源文件时,自动地在 resource 和 inline之间进行选择: 小于8kb的文件,将会视为inline模块类型,
+  否则会被视为resource模块类型。
+  可以通过 选项 parser.dataUrlCondition.maxSize 配置。
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.png$/,
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 10 * 1024  // 1024kb
+          }
+        }
       }
     ]
   }
@@ -528,7 +592,7 @@ module.exports = {
 
 ### html-webpack-plugin
 
-  This is a webpack plugin thatsimplifies creation of HTML files to serve your webpack bundles.
+  This is a webpack plugin that simplifies creation of HTML files to serve your webpack bundles.
   This is especially useful for webpack bundles that includes a hash in the filename which changes every compilation.
 
 ```js
@@ -543,18 +607,20 @@ module.exports = {
       template: path.join(__dirname, 'src/template.html'),
       inject: 'body', // true | head | body | false
       /*
-        inject all assets into the given template or templateContent.
-        body: all javascript resources will be placed at the bottom of the body element
-        head: will place the scripts in the head element
-        true: will add it to the head/body depending on the scriptLoading option.
-        false: will disable automatic injections
+      inject all assets into the given template or templateContent.
+      body: all javascript resources will be placed at the bottom of the body element
+      head: will place the scripts in the head element
+      true: will add it to the head/body depending on the scriptLoading option.
+      false: will disable automatic injections
       */
-      // publicPath: '/assets/',  // index.html 引用的资源路径 used for script and link tags
+      // publicPath: '/assets/',  
+      // index.html 引用的资源路径 used for script and link tags
       scriptLoading: 'blocking',   // blocking defer module
       favicon: path.join(__dirname, 'src/icon.svg'),  // icon图标
       minify: false,  // true if mode is 'production' otherwise false
       hash: true, // 引入的 js css文件名后带hash值  
-      // if true then append a unique webpack compilation hash to all included scripts and css files
+      // if true then append a unique webpack compilation hash to all 
+      // included scripts and css files
       cache: false,
       chunks: ['app'], // Allows you to add only some chunks
       meta: {     // allows to inject meta tags
@@ -669,6 +735,36 @@ module.exports = {
     }
   }
 }
+```
+### EnvironmentPlugin
+
+  The EnvironmentPlugin is shorthand for using the DefinePlugin on process.env keys.
+```js
+module.exports = {
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: 'development',  // using development
+      DEBUG: true
+    })
+  ]
+}
+
+// not specifying the environment variable raises an 'EnvironmentPlugin.${key}', 
+// environment variable is undefined error.
+```
+### IgnorePlugin
+
+  IgnorePlugin prevents the generation of modules for import or require calls matching the regular expressions
+  or filter functions.
+```js
+new webpack.IgnorePlugin({
+  resourceRegExp,
+  contextRegExp
+})
+/*
+resourceRegExp 是针对发在发生导入的源代码中传递给require或者import的字符串进行匹配,
+contextRegExp 参数用来选择指定的目录。
+*/
 ```
 
 ## 开发环境和生产环境

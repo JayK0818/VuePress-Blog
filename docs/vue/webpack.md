@@ -425,7 +425,7 @@ singletonStyleTag: Automatically injects styles into the DOM using one <style>
 
   The css-loader interprets @import and url() and will resolve them.
 
-### url: Boolean / Object
+#### url: Boolean / Object
 
   Enable/disable url() resolving
 

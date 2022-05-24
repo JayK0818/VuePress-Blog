@@ -2,51 +2,20 @@ button, input{
   border-radius:0!important;
 }
 p{
-  padding-top:5px;
-  color:rgba(0,0,0,.85);
-  font-size: 16px!important;
-}
-ul, ol{
-  list-style:none;
-  padding: 0;
-  margin: 0;
+  margin-top: 1em!important;
+  margin-bottom: 1em!important;
+  font-size: 16px;
+  line-height: 1.7;
 }
 :root{
-  --c-brand:#bfbfbf;
-  --c-text:rgba(0,0,0,.85);
-  --c-text-accent: #1890ff;
-  --c-tip: #1890ff;
-  --code-bg-color: #2d2d2d;
   --sidebar-width: 18rem;
   --content-width: 900px;
-  --navbar-padding-h: 1.8rem;
-  --code-hl-bg-color: rgba(0, 0, 0, 0.65);
-  --code-ln-wrapper-width: 3.2rem;
-  --c-text-quote: rgba(0,0,0,.65);
 }
 
-#nprogress {
-  --nprogress-color: #1890ff;
-}
-.back-to-top {
-  --back-to-top-color-hover: #1890ff;
-}
-html.dark{
-  --c-brand:#7d7d7d;
-  --c-bg: #101014;
-  --c-tip: #1890ff;
-  --c-text-quote: rgb(255,255,255,.9);
-  --code-bg-color: #18181c;
-  --c-text: rgba(255, 255, 255, .82);
-}
 .vue-home{
   .theme-default-content{
     padding: 0;
     margin: 0;
   }
 }
-.page{
-  li{
-    font-size:16px;
-  }
-}
+

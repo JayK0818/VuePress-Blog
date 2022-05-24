@@ -356,7 +356,7 @@ hash值都将更改。</p>
 set the sourceMap option to true for the previous loader</p>
 <h3 id="css-loader" tabindex="-1"><a class="header-anchor" href="#css-loader" aria-hidden="true">#</a> CSS-loader</h3>
 <p>The css-loader interprets @import and url() and will resolve them.</p>
-<h3 id="url-boolean-object" tabindex="-1"><a class="header-anchor" href="#url-boolean-object" aria-hidden="true">#</a> url: Boolean / Object</h3>
+<h4 id="url-boolean-object" tabindex="-1"><a class="header-anchor" href="#url-boolean-object" aria-hidden="true">#</a> url: Boolean / Object</h4>
 <p>Enable/disable url() resolving</p>
 <h4 id="import-boolean-object" tabindex="-1"><a class="header-anchor" href="#import-boolean-object" aria-hidden="true">#</a> import:  Boolean / Object</h4>
 <p>allows to enables/disables @import at-rules handing.</p>

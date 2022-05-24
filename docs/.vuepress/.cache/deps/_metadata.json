@@ -1,65 +1,71 @@
 {
-  "hash": "6c09e561",
-  "browserHash": "a227768d",
+  "hash": "22d8e5a5",
+  "browserHash": "1a9b8aa1",
   "optimized": {
     "@vue/devtools-api": {
       "src": "../../../../node_modules/_@vue_devtools-api@6.1.4@@vue/devtools-api/lib/esm/index.js",
       "file": "@vue_devtools-api.js",
-      "fileHash": "aedcc5ef",
+      "fileHash": "480cdf86",
       "needsInterop": false
     },
     "@vuepress/shared": {
       "src": "../../../../node_modules/_@vuepress_shared@2.0.0-beta.45@@vuepress/shared/dist/index.js",
       "file": "@vuepress_shared.js",
-      "fileHash": "2e3fdd84",
+      "fileHash": "6951d5ab",
       "needsInterop": false
     },
     "@vueuse/core": {
       "src": "../../../../node_modules/_@vueuse_core@8.5.0@@vueuse/core/index.mjs",
       "file": "@vueuse_core.js",
-      "fileHash": "4b430cf4",
+      "fileHash": "e9dbeea7",
       "needsInterop": false
     },
     "vue": {
       "src": "../../../../node_modules/_vue@3.2.36@vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "d618e3e5",
+      "fileHash": "480279da",
       "needsInterop": false
     },
     "vue-router": {
       "src": "../../../../node_modules/_vue-router@4.0.15@vue-router/dist/vue-router.esm-bundler.js",
       "file": "vue-router.js",
-      "fileHash": "9684ab6a",
+      "fileHash": "a8059edc",
       "needsInterop": false
     },
     "pinia": {
       "src": "../../../../node_modules/_pinia@2.0.14@pinia/dist/pinia.esm-browser.js",
       "file": "pinia.js",
-      "fileHash": "593cf78a",
+      "fileHash": "a40e7bdc",
       "needsInterop": false
     },
     "ant-design-vue/es": {
       "src": "../../../../node_modules/_ant-design-vue@3.2.4@ant-design-vue/es/index.js",
       "file": "ant-design-vue_es.js",
-      "fileHash": "ffa1ea78",
+      "fileHash": "6812a909",
       "needsInterop": false
     },
     "ant-design-vue/es/button/style/css": {
       "src": "../../../../node_modules/_ant-design-vue@3.2.4@ant-design-vue/es/button/style/css.js",
       "file": "ant-design-vue_es_button_style_css.js",
-      "fileHash": "356e810e",
+      "fileHash": "04f0b557",
       "needsInterop": false
     },
     "ant-design-vue": {
       "src": "../../../../node_modules/_ant-design-vue@3.2.4@ant-design-vue/es/index.js",
       "file": "ant-design-vue.js",
-      "fileHash": "7910299a",
+      "fileHash": "fed885c5",
+      "needsInterop": false
+    },
+    "ant-design-vue/es/checkbox/style/css": {
+      "src": "../../../../node_modules/_ant-design-vue@3.2.4@ant-design-vue/es/checkbox/style/css.js",
+      "file": "ant-design-vue_es_checkbox_style_css.js",
+      "fileHash": "48e916b1",
       "needsInterop": false
     },
     "mitt": {
       "src": "../../../../node_modules/_mitt@3.0.0@mitt/dist/mitt.mjs",
       "file": "mitt.js",
-      "fileHash": "e5e92927",
+      "fileHash": "c0b907fb",
       "needsInterop": false
     }
   },

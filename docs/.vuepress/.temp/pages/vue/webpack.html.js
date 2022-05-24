@@ -103,12 +103,6 @@ export const data = {
           "title": "CSS-loader",
           "slug": "css-loader",
           "children": []
-        },
-        {
-          "level": 3,
-          "title": "url: Boolean / Object",
-          "slug": "url-boolean-object",
-          "children": []
         }
       ]
     },
@@ -169,7 +163,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1653315781000
+    "updatedTime": 1653386736000
   },
   "filePathRelative": "vue/webpack.md"
 }

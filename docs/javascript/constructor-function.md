@@ -292,6 +292,24 @@ const c2 = new Child('irving', 20)
 c1.say()  c1.run()  // kyrie
 c2.say()  c2.run()  // irving
 ```
+  上面的组合继承也会有一个小问题,就是父构造函数执行了两次，可以借助一个中间构造函数再次优化
+```js
+function Bridge(){}
+Bridge.prototype = Parent.prototype
+Child.prototype = new Bridge()
+Child.prototype.constructor = Child
+
+
+// 将上面的步骤简单封装一下
+function createBridge(parentConstructor, childConstructor) {
+  function Middle(){
+    this.constructor = childConstructor
+  }
+  Middle.prototype = parentConstructor.prototype
+  return new Middle()
+}
+Child.prototype = createBridge(Parent, Child)
+```
 ## instanceof
 
   instanceof 运算符用于检测构造函数的prototype 属性是否出现在某个实例对象的原型上。

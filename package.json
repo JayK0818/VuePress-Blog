@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "docs:dev": "vuepress dev docs",
+    "docs:dev": "vuepress dev docs --port 8090",
     "docs:build": "vuepress build docs"
   },
   "keywords": [],
@@ -16,11 +16,12 @@
     "@vuepress/plugin-shiki": "^2.0.0-beta.45"
   },
   "dependencies": {
-    "ant-design-vue": "^3.2.3",
+    "ant-design-vue": "^3.2.4",
     "axios": "^0.27.2",
     "mitt": "^3.0.0",
     "pinia": "^2.0.14",
     "unplugin-vue-components": "^0.19.5",
-    "vuepress-plugin-clipboard": "^1.0.8"
+    "vuepress": "^2.0.0-beta.45",
+    "vuepress-plugin-clipboard": "^2.1.0"
   }
 }

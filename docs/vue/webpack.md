@@ -648,12 +648,22 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   plugins: [new MiniCssExtractPlugin({
     filename: '[name].[contenthash:8].css',  //文件名  default: [name].css
-    chunkFilename: '', // determines the name of non-entry chunks files
+    chunkFilename: '[name].[contenthash:4].css', // determines the name of non-entry chunks files
     attributes: { 
 //if defined, mini-css-extract-plugin will attach given attributes 
 //with their values on <link> element.It only applied to dynamically loaded css chunks
-      id: 'hello'
-    }
+      id: 'hello',
+      'data-target': 'hello'
+    },
+    insert: 'head',// string / function
+    /*
+    inserts the link tag at the given position for non-initial css chunks.
+    */ 
+    linkType: 'text/css',  // boolean (false disables the link type attribute)
+    /*
+    This option allows loading asynchronous chunks with a custom link type.
+    */
+    ignoreOrder: true // Enable to remove warnings about conflicting order
   })],
   module: {
     rules: [
@@ -683,6 +693,32 @@ function print(message) {
   下图是在点击按钮时 异步加载print.js文件 以及 在print.js中引入的css。
   
 ![extract-plugin](./images/lazy-load.png)
+
+![mini-css](./images/mini-css.png)
+
+**Loader 选项**
+
+  publicPath: Specifies a custom public path for the external resources like images, files,
+  Works like output.publicPath
+```js
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: '/assets/'
+          }
+        }]
+      }
+    ]
+  },
+  plugins:[new MiniCssExtractPlugin()]
+}
+```
 
 #### Minimizing For Production
 
@@ -736,6 +772,33 @@ module.exports = {
   }
 }
 ```
+### CssMinimizerWebpackPlugin
+
+  这个插件使用cssnano优化和压缩css.
+```js
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /.s?css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+    ],
+  },
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(){
+        test:/\.css(\?.*)?$/i
+      },
+    ],
+  },
+  plugins: [new MiniCssExtractPlugin()]
+};
+```
+
 ### EnvironmentPlugin
 
   The EnvironmentPlugin is shorthand for using the DefinePlugin on process.env keys.
@@ -765,6 +828,53 @@ new webpack.IgnorePlugin({
 resourceRegExp 是针对发在发生导入的源代码中传递给require或者import的字符串进行匹配,
 contextRegExp 参数用来选择指定的目录。
 */
+```
+### LimitChunkCountPlugin
+
+  While writing your code, you may have already added many code split points to load stuff on demand.After compiling you might
+  notice that some chunks are too small - creating larget HTTP overhead.
+  LimitChunkCountPlugin can post-process your chunks by merging them.
+```js
+// index.js
+import(/*webpackChunkName: 'print1'*/ './typescript/print.ts').then(({print}) => {
+  print('hello world1')
+})
+import(/*webpackChunkName: 'print2'*/ './typescript/print2.js').then(({print}) => {
+  print('hello world2')
+})
+// ....
+import(/*webpackChunkName: 'print10'*/ './typescript/print10.js').then(({print}) => {
+  print('hello world10')
+})
+// 在入口文件 点击按钮时 异步加载10个 js文件
+
+
+// webpack.config.js
+const webpack = require('webpack');
+module.exports = {
+  // ...
+  plugins: [
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 5,
+    }),
+  ]
+};
+```
+  在没有配置 new webpack.optimize.LimigChunkCountPlugin时 network面板是这样的
+
+![chunk-count](./images/chunk-count-1.png)
+
+  而在配置了限制生成chunk数量时, 点击按钮加载的js文件是下面这样的, 加上主入口chunk, 一共5个
+
+![chunk-count](./images/chunk-count-2.png)
+
+### MinChunkSizePlugin
+
+  Keep chunk size above the specified limit by merging chunks that are smaller than the minChunkSize.
+```js
+new webpack.optimize.MinChunkSizePlugin({
+  minChunkSize: 10000, // Minimum number of characters
+});
 ```
 
 ## 开发环境和生产环境

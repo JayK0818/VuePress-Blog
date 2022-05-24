@@ -31,8 +31,8 @@ import {
   unref,
   watch,
   watchEffect
-} from "./chunk-Z2ZVKP3Z.js";
-import "./chunk-UBNUQVVW.js";
+} from "./chunk-7KOLF4PR.js";
+import "./chunk-V2IO76IM.js";
 import {
   init_define_EXTERNAL_LINK_ICON_LOCALES,
   init_define_MZ_ZOOM_OPTIONS
@@ -42,11 +42,11 @@ import {
 init_define_EXTERNAL_LINK_ICON_LOCALES();
 init_define_MZ_ZOOM_OPTIONS();
 
-// node_modules/_@vueuse_core@8.4.2@@vueuse/core/index.mjs
+// node_modules/_@vueuse_core@8.5.0@@vueuse/core/index.mjs
 init_define_EXTERNAL_LINK_ICON_LOCALES();
 init_define_MZ_ZOOM_OPTIONS();
 
-// node_modules/_@vueuse_shared@8.4.2@@vueuse/shared/index.mjs
+// node_modules/_@vueuse_shared@8.5.0@@vueuse/shared/index.mjs
 init_define_EXTERNAL_LINK_ICON_LOCALES();
 init_define_MZ_ZOOM_OPTIONS();
 var __defProp$8 = Object.defineProperty;
@@ -348,6 +348,7 @@ function refAutoReset(defaultValue, afterMs = 1e4) {
     };
   });
 }
+var _a;
 var isClient = typeof window !== "undefined";
 var isDef = (val) => typeof val !== "undefined";
 var assert = (condition, ...infos) => {
@@ -371,6 +372,7 @@ var rand = (min, max) => {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+var isIOS = isClient && ((_a = window == null ? void 0 : window.navigator) == null ? void 0 : _a.userAgent) && /iP(ad|hone|od)/.test(window.navigator.userAgent);
 function createFilterWrapper(filter, fn) {
   function wrapper(...args) {
     filter(() => fn.apply(this, args), { fn, thisArg: this, args });
@@ -415,7 +417,7 @@ function debounceFilter(ms, options = {}) {
 function throttleFilter(ms, trailing = true, leading = true) {
   let lastExec = 0;
   let timer;
-  let preventLeading = !leading;
+  let isLeading = true;
   const clear = () => {
     if (timer) {
       clearTimeout(timer);
@@ -430,24 +432,20 @@ function throttleFilter(ms, trailing = true, leading = true) {
       lastExec = Date.now();
       return invoke2();
     }
-    if (elapsed > duration) {
+    if (elapsed > duration && (leading || !isLeading)) {
       lastExec = Date.now();
-      if (preventLeading)
-        preventLeading = false;
-      else
-        invoke2();
-    }
-    if (trailing) {
+      invoke2();
+    } else if (trailing) {
       timer = setTimeout(() => {
         lastExec = Date.now();
-        if (!leading)
-          preventLeading = true;
+        isLeading = true;
         clear();
         invoke2();
       }, duration);
     }
     if (!leading && !timer)
-      timer = setTimeout(() => preventLeading = true, duration);
+      timer = setTimeout(() => isLeading = true, duration);
+    isLeading = false;
   };
   return filter;
 }
@@ -511,7 +509,7 @@ function increaseWithUnit(target, delta) {
 function objectPick(obj, keys2, omitUndefined = false) {
   return keys2.reduce((n, k) => {
     if (k in obj) {
-      if (!omitUndefined || !obj[k] === void 0)
+      if (!omitUndefined || obj[k] !== void 0)
         n[k] = obj[k];
     }
     return n;
@@ -576,14 +574,14 @@ function refWithControl(initial, options = {}) {
     return source;
   }
   function set3(value, triggering = true) {
-    var _a2, _b2;
+    var _a2, _b;
     if (value === source)
       return;
     const old = source;
     if (((_a2 = options.onBeforeChange) == null ? void 0 : _a2.call(options, value, old)) === false)
       return;
     source = value;
-    (_b2 = options.onChanged) == null ? void 0 : _b2.call(options, value, old);
+    (_b = options.onChanged) == null ? void 0 : _b.call(options, value, old);
     if (triggering)
       trigger();
   }
@@ -678,7 +676,9 @@ function toRefs2(objectRef) {
           copy[key] = v;
           objectRef.value = copy;
         } else {
-          objectRef.value = __spreadProps$4(__spreadValues$6({}, objectRef.value), { [key]: v });
+          const newObject = __spreadProps$4(__spreadValues$6({}, objectRef.value), { [key]: v });
+          Object.setPrototypeOf(newObject, objectRef.value);
+          objectRef.value = newObject;
         }
       }
     }));
@@ -1114,12 +1114,14 @@ var __objRest$3 = (source, exclude) => {
 };
 function watchDebounced(source, cb, options = {}) {
   const _a2 = options, {
-    debounce = 0
+    debounce = 0,
+    maxWait = void 0
   } = _a2, watchOptions = __objRest$3(_a2, [
-    "debounce"
+    "debounce",
+    "maxWait"
   ]);
   return watchWithFilter(source, cb, __spreadProps$3(__spreadValues$3({}, watchOptions), {
-    eventFilter: debounceFilter(debounce)
+    eventFilter: debounceFilter(debounce, { maxWait })
   }));
 }
 var __defProp$2 = Object.defineProperty;
@@ -1306,7 +1308,7 @@ function whenever(source, cb, options) {
   }, options);
 }
 
-// node_modules/_@vueuse_core@8.4.2@@vueuse/core/index.mjs
+// node_modules/_@vueuse_core@8.5.0@@vueuse/core/index.mjs
 function computedAsync(evaluationCallback, initialState, optionsOrRef) {
   let options;
   if (isRef(optionsOrRef)) {
@@ -1568,9 +1570,9 @@ function templateRef(key, initialValue = null) {
     _trigger = trigger;
     return {
       get() {
-        var _a2, _b2;
+        var _a2, _b;
         track();
-        return (_b2 = (_a2 = instance == null ? void 0 : instance.proxy) == null ? void 0 : _a2.$refs[key]) != null ? _b2 : initialValue;
+        return (_b = (_a2 = instance == null ? void 0 : instance.proxy) == null ? void 0 : _a2.$refs[key]) != null ? _b : initialValue;
       },
       set() {
       }
@@ -1785,10 +1787,11 @@ function useBattery({ navigator = defaultNavigator } = {}) {
 }
 function useMediaQuery(query, options = {}) {
   const { window: window2 = defaultWindow } = options;
+  const isSupported = Boolean(window2 && "matchMedia" in window2);
   let mediaQuery;
   const matches = ref(false);
   const update = () => {
-    if (!window2)
+    if (!isSupported)
       return;
     if (!mediaQuery)
       mediaQuery = window2.matchMedia(query);
@@ -2745,12 +2748,12 @@ function useDevicesList(options = {}) {
   };
 }
 function useDisplayMedia(options = {}) {
-  var _a2, _b2;
+  var _a2, _b;
   const enabled = ref((_a2 = options.enabled) != null ? _a2 : false);
   const video = options.video;
   const audio = options.audio;
   const { navigator = defaultNavigator } = options;
-  const isSupported = Boolean((_b2 = navigator == null ? void 0 : navigator.mediaDevices) == null ? void 0 : _b2.getDisplayMedia);
+  const isSupported = Boolean((_b = navigator == null ? void 0 : navigator.mediaDevices) == null ? void 0 : _b.getDisplayMedia);
   const constraint = { audio, video };
   const stream = shallowRef();
   async function _start() {
@@ -2817,9 +2820,9 @@ var __spreadValues$b = (a, b) => {
 };
 var __spreadProps$42 = (a, b) => __defProps$42(a, __getOwnPropDescs$42(b));
 function useDraggable(target, options = {}) {
-  var _a2, _b2;
+  var _a2, _b;
   const draggingElement = (_a2 = options.draggingElement) != null ? _a2 : defaultWindow;
-  const position = ref((_b2 = options.initialValue) != null ? _b2 : { x: 0, y: 0 });
+  const position = ref((_b = options.initialValue) != null ? _b : { x: 0, y: 0 });
   const pressedDelta = ref();
   const filterEvent = (e) => {
     if (options.pointerTypes)
@@ -3228,7 +3231,7 @@ var payloadMapping = {
   formData: "multipart/form-data"
 };
 function isFetchOptions(obj) {
-  return containsProp(obj, "immediate", "refetch", "initialData", "timeout", "beforeFetch", "afterFetch", "onFetchError");
+  return containsProp(obj, "immediate", "refetch", "initialData", "timeout", "beforeFetch", "afterFetch", "onFetchError", "fetch");
 }
 function headersToObject(headers) {
   if (headers instanceof Headers)
@@ -3420,7 +3423,11 @@ function useFetch(url, ...args) {
         }
         if (!payloadType && unref(payload) && Object.getPrototypeOf(unref(payload)) === Object.prototype)
           config.payloadType = "json";
-        return shell;
+        return __spreadProps$32(__spreadValues$9({}, shell), {
+          then(onFulfilled, onRejected) {
+            return waitUntilFinished().then(onFulfilled, onRejected);
+          }
+        });
       }
       return void 0;
     };
@@ -3483,20 +3490,20 @@ function useFileSystemAccess(options = {}) {
   const data = ref();
   const file = ref();
   const fileName = computed(() => {
-    var _a2, _b2;
-    return (_b2 = (_a2 = file.value) == null ? void 0 : _a2.name) != null ? _b2 : "";
+    var _a2, _b;
+    return (_b = (_a2 = file.value) == null ? void 0 : _a2.name) != null ? _b : "";
   });
   const fileMIME = computed(() => {
-    var _a2, _b2;
-    return (_b2 = (_a2 = file.value) == null ? void 0 : _a2.type) != null ? _b2 : "";
+    var _a2, _b;
+    return (_b = (_a2 = file.value) == null ? void 0 : _a2.type) != null ? _b : "";
   });
   const fileSize = computed(() => {
-    var _a2, _b2;
-    return (_b2 = (_a2 = file.value) == null ? void 0 : _a2.size) != null ? _b2 : 0;
+    var _a2, _b;
+    return (_b = (_a2 = file.value) == null ? void 0 : _a2.size) != null ? _b : 0;
   });
   const fileLastModified = computed(() => {
-    var _a2, _b2;
-    return (_b2 = (_a2 = file.value) == null ? void 0 : _a2.lastModified) != null ? _b2 : 0;
+    var _a2, _b;
+    return (_b = (_a2 = file.value) == null ? void 0 : _a2.lastModified) != null ? _b : 0;
   });
   async function open(_options = {}) {
     if (!isSupported)
@@ -3542,11 +3549,11 @@ function useFileSystemAccess(options = {}) {
     file.value = await ((_a2 = fileHandle.value) == null ? void 0 : _a2.getFile());
   }
   async function updateData() {
-    var _a2, _b2;
+    var _a2, _b;
     if (unref(dataType) === "Text")
       data.value = await ((_a2 = file.value) == null ? void 0 : _a2.text());
     if (unref(dataType) === "ArrayBuffer")
-      data.value = await ((_b2 = file.value) == null ? void 0 : _b2.arrayBuffer());
+      data.value = await ((_b = file.value) == null ? void 0 : _b.arrayBuffer());
     if (unref(dataType) === "Blob")
       data.value = file.value;
   }
@@ -3572,14 +3579,14 @@ function useFocus(target, options = {}) {
   const targetElement = computed(() => unrefElement(target));
   const focused = computed({
     get() {
-      return activeElement.value === targetElement.value;
+      return isDef(activeElement.value) && isDef(targetElement.value) && activeElement.value === targetElement.value;
     },
     set(value) {
-      var _a2, _b2;
+      var _a2, _b;
       if (!value && focused.value)
         (_a2 = targetElement.value) == null ? void 0 : _a2.blur();
       if (value && !focused.value)
-        (_b2 = targetElement.value) == null ? void 0 : _b2.focus();
+        (_b = targetElement.value) == null ? void 0 : _b.focus();
     }
   });
   watch(targetElement, () => {
@@ -4094,9 +4101,9 @@ function useMagicKeys(options = {}) {
     }
   }
   function updateRefs(e, value) {
-    var _a2, _b2;
+    var _a2, _b;
     const key = (_a2 = e.key) == null ? void 0 : _a2.toLowerCase();
-    const code = (_b2 = e.code) == null ? void 0 : _b2.toLowerCase();
+    const code = (_b = e.code) == null ? void 0 : _b.toLowerCase();
     const values = [code, key].filter(Boolean);
     if (code) {
       if (value)
@@ -5038,11 +5045,11 @@ function usePointerSwipe(target, options = {}) {
   };
   const stops = [
     useEventListener(target, "pointerdown", (e) => {
-      var _a2, _b2;
+      var _a2, _b;
       if (!filterEvent(e))
         return;
       isPointerDown.value = true;
-      (_b2 = (_a2 = targetRef.value) == null ? void 0 : _a2.style) == null ? void 0 : _b2.setProperty("touch-action", "none");
+      (_b = (_a2 = targetRef.value) == null ? void 0 : _a2.style) == null ? void 0 : _b.setProperty("touch-action", "none");
       const eventTarget = e.target;
       eventTarget == null ? void 0 : eventTarget.setPointerCapture(e.pointerId);
       const { clientX: x, clientY: y } = e;
@@ -5063,14 +5070,14 @@ function usePointerSwipe(target, options = {}) {
         onSwipe == null ? void 0 : onSwipe(e);
     }),
     useEventListener(target, "pointerup", (e) => {
-      var _a2, _b2;
+      var _a2, _b;
       if (!filterEvent(e))
         return;
       if (isSwiping.value)
         onSwipeEnd == null ? void 0 : onSwipeEnd(e, direction.value);
       isPointerDown.value = false;
       isSwiping.value = false;
-      (_b2 = (_a2 = targetRef.value) == null ? void 0 : _a2.style) == null ? void 0 : _b2.setProperty("touch-action", "initial");
+      (_b = (_a2 = targetRef.value) == null ? void 0 : _a2.style) == null ? void 0 : _b.setProperty("touch-action", "initial");
     })
   ];
   const stop = () => stops.forEach((s) => s());
@@ -5253,8 +5260,6 @@ function useScriptTag(src, onLoaded = noop, options = {}) {
     tryOnUnmounted(unload);
   return { scriptTag, load, unload };
 }
-var _a;
-var _b;
 function preventDefault(rawEvent) {
   const e = rawEvent || window.event;
   if (e.touches.length > 1)
@@ -5263,7 +5268,6 @@ function preventDefault(rawEvent) {
     e.preventDefault();
   return false;
 }
-var isIOS = isClient && (window == null ? void 0 : window.navigator) && ((_a = window == null ? void 0 : window.navigator) == null ? void 0 : _a.platform) && /iP(ad|hone|od)/.test((_b = window == null ? void 0 : window.navigator) == null ? void 0 : _b.platform);
 function useScrollLock(element, initialState = false) {
   const isLocked = ref(initialState);
   let stopTouchMoveListener = null;
@@ -5421,7 +5425,7 @@ function useSpeechRecognition(options = {}) {
   };
 }
 function useSpeechSynthesis(text, options = {}) {
-  var _a2, _b2;
+  var _a2, _b;
   const {
     pitch = 1,
     rate = 1,
@@ -5434,7 +5438,7 @@ function useSpeechSynthesis(text, options = {}) {
   const status = ref("init");
   const voiceInfo = {
     lang: ((_a2 = options.voice) == null ? void 0 : _a2.lang) || "default",
-    name: ((_b2 = options.voice) == null ? void 0 : _b2.name) || ""
+    name: ((_b = options.voice) == null ? void 0 : _b.name) || ""
   };
   const spokenText = ref(text || "");
   const lang = ref(options.lang || "en-US");
@@ -5649,8 +5653,8 @@ function useTextSelection(options = {}) {
   } = options;
   const selection = ref(null);
   const text = computed(() => {
-    var _a2, _b2;
-    return (_b2 = (_a2 = selection.value) == null ? void 0 : _a2.toString()) != null ? _b2 : "";
+    var _a2, _b;
+    return (_b = (_a2 = selection.value) == null ? void 0 : _a2.toString()) != null ? _b : "";
   });
   const ranges = computed(() => selection.value ? getRangesFromSelection(selection.value) : []);
   const rects = computed(() => ranges.value.map((range) => range.getBoundingClientRect()));
@@ -5854,7 +5858,7 @@ function useTimestamp(options = {}) {
   }
 }
 function useTitle(newTitle = null, options = {}) {
-  var _a2, _b2;
+  var _a2, _b;
   const {
     document: document2 = defaultDocument,
     observe = false,
@@ -5866,7 +5870,7 @@ function useTitle(newTitle = null, options = {}) {
       document2.title = titleTemplate.replace("%s", t);
   }, { immediate: true });
   if (observe && document2) {
-    useMutationObserver((_b2 = document2.head) == null ? void 0 : _b2.querySelector("title"), () => {
+    useMutationObserver((_b = document2.head) == null ? void 0 : _b.querySelector("title"), () => {
       if (document2 && document2.title !== title.value)
         title.value = titleTemplate.replace("%s", document2.title);
     }, { childList: true });
@@ -5959,8 +5963,8 @@ function useTransition(source, options = {}) {
     pause();
     currentDuration = unref(duration);
     diffVector = outputVector.value.map((n, i) => {
-      var _a2, _b2;
-      return ((_a2 = sourceVector.value[i]) != null ? _a2 : 0) - ((_b2 = outputVector.value[i]) != null ? _b2 : 0);
+      var _a2, _b;
+      return ((_a2 = sourceVector.value[i]) != null ? _a2 : 0) - ((_b = outputVector.value[i]) != null ? _b : 0);
     });
     startVector = outputVector.value.slice(0);
     startAt = Date.now();
@@ -5993,7 +5997,7 @@ function useUrlSearchParams(mode = "history", options = {}) {
   } = options;
   if (!window2)
     return reactive(initialValue);
-  const state = reactive(initialValue);
+  const state = reactive({});
   function getRawParams() {
     if (mode === "history") {
       return window2.location.search || "";
@@ -6057,13 +6061,17 @@ function useUrlSearchParams(mode = "history", options = {}) {
   useEventListener(window2, "popstate", onChanged, false);
   if (mode !== "history")
     useEventListener(window2, "hashchange", onChanged, false);
-  updateState(read());
+  const initial = read();
+  if (initial.keys().next().value)
+    updateState(initial);
+  else
+    Object.assign(state, initialValue);
   return state;
 }
 function useUserMedia(options = {}) {
-  var _a2, _b2, _c;
+  var _a2, _b, _c;
   const enabled = ref((_a2 = options.enabled) != null ? _a2 : false);
-  const autoSwitch = ref((_b2 = options.autoSwitch) != null ? _b2 : true);
+  const autoSwitch = ref((_b = options.autoSwitch) != null ? _b : true);
   const videoDeviceId = ref(options.videoDeviceId);
   const audioDeviceId = ref(options.audioDeviceId);
   const { navigator = defaultNavigator } = options;
@@ -6129,7 +6137,7 @@ function useUserMedia(options = {}) {
   };
 }
 function useVModel(props, key, emit, options = {}) {
-  var _a2, _b2, _c, _d;
+  var _a2, _b, _c;
   const {
     passive = false,
     eventName,
@@ -6141,7 +6149,7 @@ function useVModel(props, key, emit, options = {}) {
   let event = eventName;
   if (!key) {
     if (isVue2) {
-      const modelOptions = (_c = (_b2 = vm == null ? void 0 : vm.proxy) == null ? void 0 : _b2.$options) == null ? void 0 : _c.model;
+      const modelOptions = (_c = (_b = vm == null ? void 0 : vm.proxy) == null ? void 0 : _b.$options) == null ? void 0 : _c.model;
       key = (modelOptions == null ? void 0 : modelOptions.value) || "value";
       if (!eventName)
         event = (modelOptions == null ? void 0 : modelOptions.event) || "input";
@@ -6150,8 +6158,9 @@ function useVModel(props, key, emit, options = {}) {
     }
   }
   event = eventName || event || `update:${key}`;
+  const getValue2 = () => isDef(props[key]) ? props[key] : defaultValue;
   if (passive) {
-    const proxy = ref((_d = props[key]) != null ? _d : defaultValue);
+    const proxy = ref(getValue2());
     watch(() => props[key], (v) => proxy.value = v);
     watch(proxy, (v) => {
       if (v !== props[key] || deep)
@@ -6163,7 +6172,7 @@ function useVModel(props, key, emit, options = {}) {
   } else {
     return computed({
       get() {
-        return isDef(props[key]) ? props[key] : defaultValue;
+        return getValue2();
       },
       set(value) {
         _emit(event, value);
@@ -6747,6 +6756,7 @@ export {
   isDef,
   isDefined,
   isFunction,
+  isIOS,
   isNumber,
   isObject,
   isString,

@@ -131,6 +131,12 @@ export const data = {
         },
         {
           "level": 3,
+          "title": "CssMinimizerWebpackPlugin",
+          "slug": "cssminimizerwebpackplugin",
+          "children": []
+        },
+        {
+          "level": 3,
           "title": "EnvironmentPlugin",
           "slug": "environmentplugin",
           "children": []
@@ -139,6 +145,18 @@ export const data = {
           "level": 3,
           "title": "IgnorePlugin",
           "slug": "ignoreplugin",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "LimitChunkCountPlugin",
+          "slug": "limitchunkcountplugin",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "MinChunkSizePlugin",
+          "slug": "minchunksizeplugin",
           "children": []
         }
       ]
@@ -151,7 +169,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1652629709000
+    "updatedTime": 1653315781000
   },
   "filePathRelative": "vue/webpack.md"
 }

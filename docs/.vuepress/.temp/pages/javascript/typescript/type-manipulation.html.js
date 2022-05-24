@@ -7,7 +7,7 @@ export const data = {
   "excerpt": "",
   "headers": [],
   "git": {
-    "updatedTime": null
+    "updatedTime": 1653315781000
   },
   "filePathRelative": "javascript/typescript/type-manipulation.md"
 }

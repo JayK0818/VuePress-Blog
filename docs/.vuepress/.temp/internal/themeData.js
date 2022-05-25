@@ -3,7 +3,6 @@ export const themeData = {
   "lastUpdatedText": "上次更新",
   "contributors": false,
   "sidebarDepth": 2,
-  "darkMode": true,
   "navbar": [
     {
       "text": "首页",
@@ -27,6 +26,7 @@ export const themeData = {
     }
   ],
   "smoothScroll": false,
+  "darkMode": true,
   "logo": null,
   "sidebar": {
     "collapsable": false,

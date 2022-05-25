@@ -663,7 +663,7 @@ Works like output.publicPath</p>
 <span class="line"><span style="color: #F8F8F2">    }</span></span>
 <span class="line"><span style="color: #F8F8F2">  }</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="cssminimizerwebpackplugin" tabindex="-1"><a class="header-anchor" href="#cssminimizerwebpackplugin" aria-hidden="true">#</a> CssMinimizerWebpackPlugin</h3>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="css-minimizer-webpack-plugin" tabindex="-1"><a class="header-anchor" href="#css-minimizer-webpack-plugin" aria-hidden="true">#</a> css-minimizer-webpack-plugin</h3>
 <p>这个插件使用cssnano优化和压缩css.</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> MiniCssExtractPlugin </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">require</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&quot;mini-css-extract-plugin&quot;</span><span style="color: #F8F8F2">);</span></span>
 <span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> CssMinimizerPlugin </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">require</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&quot;css-minimizer-webpack-plugin&quot;</span><span style="color: #F8F8F2">);</span></span>
@@ -678,15 +678,105 @@ Works like output.publicPath</p>
 <span class="line"><span style="color: #F8F8F2">    ],</span></span>
 <span class="line"><span style="color: #F8F8F2">  },</span></span>
 <span class="line"><span style="color: #F8F8F2">  optimization: {</span></span>
+<span class="line"><span style="color: #88846F">/*This will enable CSS optimization only in production mode</span></span>
+<span class="line"><span style="color: #88846F">  If you want to run it also in development set the optimization.minimize </span></span>
+<span class="line"><span style="color: #88846F">  option to true</span></span>
+<span class="line"><span style="color: #88846F">*/</span></span>
 <span class="line"><span style="color: #F8F8F2">    minimizer: [</span></span>
-<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">CssMinimizerPlugin</span><span style="color: #F8F8F2">(){</span></span>
-<span class="line"><span style="color: #F8F8F2">        test:</span><span style="color: #E6DB74">/</span><span style="color: #AE81FF">\.</span><span style="color: #E6DB74">css(</span><span style="color: #AE81FF">\?.</span><span style="color: #F92672">*</span><span style="color: #E6DB74">)</span><span style="color: #F92672">?$</span><span style="color: #E6DB74">/</span><span style="color: #F92672">i</span></span>
-<span class="line"><span style="color: #F8F8F2">      },</span></span>
-<span class="line"><span style="color: #F8F8F2">    ],</span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">CssMinimizerPlugin</span><span style="color: #F8F8F2">({</span></span>
+<span class="line"><span style="color: #F8F8F2">        test:</span><span style="color: #E6DB74">/</span><span style="color: #AE81FF">\.</span><span style="color: #E6DB74">css(</span><span style="color: #AE81FF">\?.</span><span style="color: #F92672">*</span><span style="color: #E6DB74">)</span><span style="color: #F92672">?$</span><span style="color: #E6DB74">/</span><span style="color: #F92672">i</span><span style="color: #F8F8F2">,  </span><span style="color: #88846F">// test to match files against</span></span>
+<span class="line"><span style="color: #F8F8F2">        include:</span><span style="color: #AE81FF">undefined</span><span style="color: #F8F8F2">, </span><span style="color: #88846F">// files to include</span></span>
+<span class="line"><span style="color: #F8F8F2">        exclude:</span><span style="color: #AE81FF">undefined</span><span style="color: #F8F8F2">,  </span><span style="color: #88846F">// files to exclude</span></span>
+<span class="line"><span style="color: #F8F8F2">        parallel: </span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">  </span><span style="color: #88846F">//  enable/disable multi-process parallel running.</span></span>
+<span class="line"><span style="color: #F8F8F2">      })</span></span>
+<span class="line"><span style="color: #F8F8F2">    ]</span></span>
 <span class="line"><span style="color: #F8F8F2">  },</span></span>
 <span class="line"><span style="color: #F8F8F2">  plugins: [</span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">MiniCssExtractPlugin</span><span style="color: #F8F8F2">()]</span></span>
 <span class="line"><span style="color: #F8F8F2">};</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="environmentplugin" tabindex="-1"><a class="header-anchor" href="#environmentplugin" aria-hidden="true">#</a> EnvironmentPlugin</h3>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="copy-webpack-plugin" tabindex="-1"><a class="header-anchor" href="#copy-webpack-plugin" aria-hidden="true">#</a> copy-webpack-plugin</h3>
+<p>Copies individual files or entire directories, which already exist, to the build directory.</p>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// webpack.config.js</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> CopyPlugin </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">require</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#39;copy-webpack-plugin&#39;</span><span style="color: #F8F8F2">)</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  plugins: [</span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">CopyPlugin</span><span style="color: #F8F8F2">({</span></span>
+<span class="line"><span style="color: #F8F8F2">      patterns: [</span></span>
+<span class="line"><span style="color: #F8F8F2">        {</span></span>
+<span class="line"><span style="color: #F8F8F2">          from: </span><span style="color: #E6DB74">&#39;files&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">          to: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;dist/files&#39;</span><span style="color: #F8F8F2">),</span></span>
+<span class="line"><span style="color: #F8F8F2">          context: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;src&#39;</span><span style="color: #F8F8F2">)</span></span>
+<span class="line"><span style="color: #F8F8F2">        }</span></span>
+<span class="line"><span style="color: #F8F8F2">      ]</span></span>
+<span class="line"><span style="color: #F8F8F2">    })</span></span>
+<span class="line"><span style="color: #F8F8F2">  ]</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><img src="@source/vue/images/copy-plugin.png" alt="copy-plugin"></p>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">//...</span></span>
+<span class="line"><span style="color: #F8F8F2">{</span></span>
+<span class="line"><span style="color: #F8F8F2">  patterns: [</span></span>
+<span class="line"><span style="color: #F8F8F2">    {</span></span>
+<span class="line"><span style="color: #F8F8F2">      from: </span><span style="color: #E6DB74">&#39;files/poem.txt&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">      to: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;dist/files/poem.txt&#39;</span><span style="color: #F8F8F2">),</span></span>
+<span class="line"><span style="color: #F8F8F2">      context: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;src&#39;</span><span style="color: #F8F8F2">),</span></span>
+<span class="line"><span style="color: #F8F8F2">      priority: </span><span style="color: #AE81FF">10</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">      force: </span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">    },{</span></span>
+<span class="line"><span style="color: #F8F8F2">      from: </span><span style="color: #E6DB74">&#39;files/hello.txt&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">      to: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;dist/files/poem.txt&#39;</span><span style="color: #F8F8F2">),</span></span>
+<span class="line"><span style="color: #F8F8F2">      context: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;src&#39;</span><span style="color: #F8F8F2">),</span></span>
+<span class="line"><span style="color: #F8F8F2">      priority: </span><span style="color: #AE81FF">20</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">      force: </span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">    }</span></span>
+<span class="line"><span style="color: #F8F8F2">  ]</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol>
+<li>proirity</li>
+</ol>
+<p>Allows to specify the priority of copying files with the same destination name,Files for the
+patterns with higher priority will be copie later.</p>
+<p><img src="@source/vue/images/copy-priority.png" alt="copy-priority"></p>
+<ol start="2">
+<li>transform</li>
+</ol>
+<p>Allows to modify the file contents</p>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// webpack.config.js</span></span>
+<span class="line"><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">CopyPlugin</span><span style="color: #F8F8F2">({</span></span>
+<span class="line"><span style="color: #F8F8F2">  patterns: [</span></span>
+<span class="line"><span style="color: #F8F8F2">    {</span></span>
+<span class="line"><span style="color: #F8F8F2">      from: </span><span style="color: #E6DB74">&#39;files&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">      to: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;dist/files&#39;</span><span style="color: #F8F8F2">),</span></span>
+<span class="line"><span style="color: #F8F8F2">      context: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;src&#39;</span><span style="color: #F8F8F2">),</span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #A6E22E">transform</span><span style="color: #F8F8F2">(</span><span style="color: #FD971F; font-style: italic">context</span><span style="color: #F8F8F2">) {</span></span>
+<span class="line"><span style="color: #F8F8F2">        </span><span style="color: #F92672">return</span><span style="color: #F8F8F2"> context.</span><span style="color: #A6E22E">toString</span><span style="color: #F8F8F2">() </span><span style="color: #F92672">+</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#39;12345&#39;</span></span>
+<span class="line"><span style="color: #F8F8F2">      }</span></span>
+<span class="line"><span style="color: #F8F8F2">    }</span></span>
+<span class="line"><span style="color: #F8F8F2">  ]</span></span>
+<span class="line"><span style="color: #F8F8F2">})</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><img src="@source/vue/images/copy-transform.png" alt="copy-transform"></p>
+<ol start="3">
+<li>concurrency</li>
+</ol>
+<p>limits the number of simultaneous requests to fs</p>
+<h3 id="terser-webpack-plugin" tabindex="-1"><a class="header-anchor" href="#terser-webpack-plugin" aria-hidden="true">#</a> terser-webpack-plugin</h3>
+<p>如果使用webpack v5或者更高版本, 同时希望自定义配置, 那么仍需安装此插件。</p>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// webpack.config.js</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  optimization: {</span></span>
+<span class="line"><span style="color: #F8F8F2">    minimize: </span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">    minimizer: [</span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">TerserPlugin</span><span style="color: #F8F8F2">({</span></span>
+<span class="line"><span style="color: #F8F8F2">      test:</span><span style="color: #E6DB74"> /</span><span style="color: #AE81FF">\.</span><span style="color: #E6DB74">js(</span><span style="color: #AE81FF">\?.</span><span style="color: #F92672">*</span><span style="color: #E6DB74">)</span><span style="color: #F92672">?$</span><span style="color: #E6DB74">/</span><span style="color: #F92672">i</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">      include: </span><span style="color: #AE81FF">undefined</span><span style="color: #F8F8F2">,  </span><span style="color: #88846F">// 匹配参与压缩的文件</span></span>
+<span class="line"><span style="color: #F8F8F2">      exclude: </span><span style="color: #AE81FF">undefined</span><span style="color: #F8F8F2">, </span><span style="color: #88846F">// [/node_modules/] 排除</span></span>
+<span class="line"><span style="color: #F8F8F2">      extractComments: </span><span style="color: #AE81FF">false</span><span style="color: #F8F8F2">, </span><span style="color: #88846F">// 是否将注释玻璃到单独的文件中. *.LICENSE.txt</span></span>
+<span class="line"><span style="color: #F8F8F2">      terserOptions: {</span></span>
+<span class="line"><span style="color: #F8F8F2">        format: {</span></span>
+<span class="line"><span style="color: #F8F8F2">          comments: </span><span style="color: #AE81FF">false</span><span style="color: #F8F8F2"> </span><span style="color: #88846F">// 删除所有注释</span></span>
+<span class="line"><span style="color: #F8F8F2">        }</span></span>
+<span class="line"><span style="color: #F8F8F2">      }</span></span>
+<span class="line"><span style="color: #F8F8F2">    })],</span></span>
+<span class="line"><span style="color: #F8F8F2">  }</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="environmentplugin" tabindex="-1"><a class="header-anchor" href="#environmentplugin" aria-hidden="true">#</a> EnvironmentPlugin</h3>
 <p>The EnvironmentPlugin is shorthand for using the DefinePlugin on process.env keys.</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
 <span class="line"><span style="color: #F8F8F2">  plugins: [</span></span>

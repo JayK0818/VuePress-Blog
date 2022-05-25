@@ -125,8 +125,20 @@ export const data = {
         },
         {
           "level": 3,
-          "title": "CssMinimizerWebpackPlugin",
-          "slug": "cssminimizerwebpackplugin",
+          "title": "css-minimizer-webpack-plugin",
+          "slug": "css-minimizer-webpack-plugin",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "copy-webpack-plugin",
+          "slug": "copy-webpack-plugin",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "terser-webpack-plugin",
+          "slug": "terser-webpack-plugin",
           "children": []
         },
         {
@@ -163,7 +175,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1653386736000
+    "updatedTime": 1653401812000
   },
   "filePathRelative": "vue/webpack.md"
 }

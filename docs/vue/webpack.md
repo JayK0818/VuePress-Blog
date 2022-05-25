@@ -772,7 +772,7 @@ module.exports = {
   }
 }
 ```
-### CssMinimizerWebpackPlugin
+### css-minimizer-webpack-plugin
 
   这个插件使用cssnano优化和压缩css.
 ```js
@@ -789,14 +789,116 @@ module.exports = {
     ],
   },
   optimization: {
+/*This will enable CSS optimization only in production mode
+  If you want to run it also in development set the optimization.minimize 
+  option to true
+*/
     minimizer: [
-      new CssMinimizerPlugin(){
-        test:/\.css(\?.*)?$/i
-      },
-    ],
+      new CssMinimizerPlugin({
+        test:/\.css(\?.*)?$/i,  // test to match files against
+        include:undefined, // files to include
+        exclude:undefined,  // files to exclude
+        parallel: true  //  enable/disable multi-process parallel running.
+      })
+    ]
   },
   plugins: [new MiniCssExtractPlugin()]
 };
+```
+### copy-webpack-plugin
+
+  Copies individual files or entire directories, which already exist, to the build directory.
+```js
+// webpack.config.js
+const CopyPlugin = require('copy-webpack-plugin')
+module.exports = {
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'files',
+          to: path.resolve(__dirname, 'dist/files'),
+          context: path.resolve(__dirname, 'src')
+        }
+      ]
+    })
+  ]
+}
+```
+![copy-plugin](./images/copy-plugin.png)
+
+```js
+//...
+{
+  patterns: [
+    {
+      from: 'files/poem.txt',
+      to: path.resolve(__dirname, 'dist/files/poem.txt'),
+      context: path.resolve(__dirname, 'src'),
+      priority: 10,
+      force: true,
+    },{
+      from: 'files/hello.txt',
+      to: path.resolve(__dirname, 'dist/files/poem.txt'),
+      context: path.resolve(__dirname, 'src'),
+      priority: 20,
+      force: true,
+    }
+  ]
+}
+```
+1. proirity
+
+  Allows to specify the priority of copying files with the same destination name,Files for the
+  patterns with higher priority will be copie later.
+
+![copy-priority](./images/copy-priority.png)
+
+2. transform
+
+  Allows to modify the file contents
+```js
+// webpack.config.js
+new CopyPlugin({
+  patterns: [
+    {
+      from: 'files',
+      to: path.resolve(__dirname, 'dist/files'),
+      context: path.resolve(__dirname, 'src'),
+      transform(context) {
+        return context.toString() + '12345'
+      }
+    }
+  ]
+})
+```
+![copy-transform](./images/copy-transform.png)
+
+3. concurrency
+
+  limits the number of simultaneous requests to fs
+
+### terser-webpack-plugin
+
+  如果使用webpack v5或者更高版本, 同时希望自定义配置, 那么仍需安装此插件。
+```js
+// webpack.config.js
+module.exports = {
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin({
+      test: /\.js(\?.*)?$/i,
+      include: undefined,  // 匹配参与压缩的文件
+      exclude: undefined, // [/node_modules/] 排除
+      extractComments: false, // 是否将注释玻璃到单独的文件中. *.LICENSE.txt
+      terserOptions: {
+        format: {
+          comments: false // 删除所有注释
+        }
+      }
+    })],
+  }
+}
 ```
 
 ### EnvironmentPlugin

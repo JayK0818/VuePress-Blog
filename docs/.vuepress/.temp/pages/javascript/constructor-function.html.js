@@ -64,7 +64,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1652629709000
+    "updatedTime": 1653401812000
   },
   "filePathRelative": "javascript/constructor-function.md"
 }

@@ -284,7 +284,71 @@ hash值都将更改。</p>
 </li>
 </ol>
 <h2 id="loader" tabindex="-1"><a class="header-anchor" href="#loader" aria-hidden="true">#</a> Loader</h2>
-<h3 id="style-loader" tabindex="-1"><a class="header-anchor" href="#style-loader" aria-hidden="true">#</a> Style-loader</h3>
+<h3 id="babel-loader" tabindex="-1"><a class="header-anchor" href="#babel-loader" aria-hidden="true">#</a> babel-loader</h3>
+<p>此loader 允许你使用 Babel 和 webpack 转译JavaScript文件。</p>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// install</span></span>
+<span class="line"><span style="color: #F8F8F2">npm install </span><span style="color: #F92672">-</span><span style="color: #F8F8F2">D babel</span><span style="color: #F92672">-</span><span style="color: #F8F8F2">loader @babel</span><span style="color: #F92672">/</span><span style="color: #F8F8F2">core @babel</span><span style="color: #F92672">/</span><span style="color: #F8F8F2">preset</span><span style="color: #F92672">-</span><span style="color: #F8F8F2">env</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #88846F">// webpack.config.js</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  module: {</span></span>
+<span class="line"><span style="color: #F8F8F2">    rules: [</span></span>
+<span class="line"><span style="color: #F8F8F2">      {</span></span>
+<span class="line"><span style="color: #F8F8F2">        test:</span><span style="color: #E6DB74"> /</span><span style="color: #AE81FF">\.</span><span style="color: #E6DB74">m</span><span style="color: #F92672">?</span><span style="color: #E6DB74">js</span><span style="color: #F92672">$</span><span style="color: #E6DB74">/</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">        exclude:</span><span style="color: #E6DB74"> /(node_modules)/</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">        use: {</span></span>
+<span class="line"><span style="color: #F8F8F2">          loader: </span><span style="color: #E6DB74">&#39;babel-loader&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">          options: {</span></span>
+<span class="line"><span style="color: #F8F8F2">            presets: [</span><span style="color: #E6DB74">&#39;@babel/preset-env&#39;</span><span style="color: #F8F8F2">]</span></span>
+<span class="line"><span style="color: #F8F8F2">          }</span></span>
+<span class="line"><span style="color: #F8F8F2">        }</span></span>
+<span class="line"><span style="color: #F8F8F2">      }</span></span>
+<span class="line"><span style="color: #F8F8F2">    ]</span></span>
+<span class="line"><span style="color: #F8F8F2">  }</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// math.js</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">square</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> (</span><span style="color: #FD971F; font-style: italic">x</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF; font-style: italic">=&gt;</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #F92672">return</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">Math</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF">pow</span><span style="color: #F8F8F2">(x, </span><span style="color: #AE81FF">2</span><span style="color: #F8F8F2">)</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">cube</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> (</span><span style="color: #FD971F; font-style: italic">x</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF; font-style: italic">=&gt;</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #F92672">return</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">Math</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF">pow</span><span style="color: #F8F8F2">(x, </span><span style="color: #AE81FF">3</span><span style="color: #F8F8F2">)</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">class</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E; text-decoration: underline">Player</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #66D9EF; font-style: italic">constructor</span><span style="color: #F8F8F2">(</span><span style="color: #FD971F; font-style: italic">name</span><span style="color: #F8F8F2">) {</span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FD971F">this</span><span style="color: #F8F8F2">.name </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> name;</span></span>
+<span class="line"><span style="color: #F8F8F2">  }</span></span>
+<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #A6E22E">add</span><span style="color: #F8F8F2">(</span><span style="color: #FD971F; font-style: italic">x</span><span style="color: #F8F8F2">) {</span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #F92672">return</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">cube</span><span style="color: #F8F8F2">(x)</span></span>
+<span class="line"><span style="color: #F8F8F2">  }</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #F92672">export</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  square,</span></span>
+<span class="line"><span style="color: #F8F8F2">  cube,</span></span>
+<span class="line"><span style="color: #F8F8F2">  Player</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #88846F">// 上面三个方法经过babel转译后，变成了下面的代码</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">var</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">square</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF; font-style: italic">function</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">square</span><span style="color: #F8F8F2">(</span><span style="color: #FD971F; font-style: italic">x</span><span style="color: #F8F8F2">) {</span></span>
+<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #F92672">return</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">Math</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF">pow</span><span style="color: #F8F8F2">(x, </span><span style="color: #AE81FF">2</span><span style="color: #F8F8F2">);</span></span>
+<span class="line"><span style="color: #F8F8F2">};</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">var</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">cube</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF; font-style: italic">function</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">cube</span><span style="color: #F8F8F2">(</span><span style="color: #FD971F; font-style: italic">x</span><span style="color: #F8F8F2">) {</span></span>
+<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #F92672">return</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">Math</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF">pow</span><span style="color: #F8F8F2">(x, </span><span style="color: #AE81FF">3</span><span style="color: #F8F8F2">);</span></span>
+<span class="line"><span style="color: #F8F8F2">};</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">var</span><span style="color: #F8F8F2"> Player </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #88846F">/*#__PURE__*/</span><span style="color: #66D9EF; font-style: italic">function</span><span style="color: #F8F8F2"> () {</span></span>
+<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #66D9EF; font-style: italic">function</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">Player</span><span style="color: #F8F8F2">(</span><span style="color: #FD971F; font-style: italic">name</span><span style="color: #F8F8F2">) {</span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #A6E22E">_classCallCheck</span><span style="color: #F8F8F2">(</span><span style="color: #FD971F">this</span><span style="color: #F8F8F2">, Player);</span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #FD971F">this</span><span style="color: #F8F8F2">.name </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> name;</span></span>
+<span class="line"><span style="color: #F8F8F2">  }</span></span>
+<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #A6E22E">_createClass</span><span style="color: #F8F8F2">(Player, [{</span></span>
+<span class="line"><span style="color: #F8F8F2">    key: </span><span style="color: #E6DB74">&quot;add&quot;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #A6E22E">value</span><span style="color: #F8F8F2">: </span><span style="color: #66D9EF; font-style: italic">function</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">add</span><span style="color: #F8F8F2">(</span><span style="color: #FD971F; font-style: italic">x</span><span style="color: #F8F8F2">) {</span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #F92672">return</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">cube</span><span style="color: #F8F8F2">(x);</span></span>
+<span class="line"><span style="color: #F8F8F2">    }</span></span>
+<span class="line"><span style="color: #F8F8F2">  }]);</span></span>
+<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #F92672">return</span><span style="color: #F8F8F2"> Player;</span></span>
+<span class="line"><span style="color: #F8F8F2">}();</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="style-loader" tabindex="-1"><a class="header-anchor" href="#style-loader" aria-hidden="true">#</a> style-loader</h3>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// injectType: allows to setup how styles will be injected into the DOM</span></span>
 <span class="line"><span style="color: #88846F">/*</span></span>
 <span class="line"><span style="color: #88846F">default: styleTag</span></span>
@@ -354,7 +418,7 @@ hash值都将更改。</p>
 </ul>
 <p>The loader automatically inject source maps when previous loader emit them. Therefore,to generate source maps,
 set the sourceMap option to true for the previous loader</p>
-<h3 id="css-loader" tabindex="-1"><a class="header-anchor" href="#css-loader" aria-hidden="true">#</a> CSS-loader</h3>
+<h3 id="css-loader" tabindex="-1"><a class="header-anchor" href="#css-loader" aria-hidden="true">#</a> css-loader</h3>
 <p>The css-loader interprets @import and url() and will resolve them.</p>
 <h4 id="url-boolean-object" tabindex="-1"><a class="header-anchor" href="#url-boolean-object" aria-hidden="true">#</a> url: Boolean / Object</h4>
 <p>Enable/disable url() resolving</p>
@@ -504,7 +568,35 @@ to @import ed resources and CSS modules imports</p>
 <span class="line"><span style="color: #F8F8F2">  }</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><img src="@source/vue/images/css-loader-modules-hash.png" alt="css-loader-modules-hash"></p>
-<h2 id="plugins" tabindex="-1"><a class="header-anchor" href="#plugins" aria-hidden="true">#</a> Plugins</h2>
+<h3 id="sass-loader" tabindex="-1"><a class="header-anchor" href="#sass-loader" aria-hidden="true">#</a> sass-loader</h3>
+<p>加载sass/scss文件并编译为css.</p>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// install</span></span>
+<span class="line"><span style="color: #F8F8F2">npm install sass</span><span style="color: #F92672">-</span><span style="color: #F8F8F2">loader sass </span><span style="color: #F92672">--</span><span style="color: #F8F8F2">save</span><span style="color: #F92672">-</span><span style="color: #F8F8F2">dev</span></span>
+<span class="line"></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  module: {</span></span>
+<span class="line"><span style="color: #F8F8F2">    rules: [</span></span>
+<span class="line"><span style="color: #F8F8F2">      {</span></span>
+<span class="line"><span style="color: #F8F8F2">        test:</span><span style="color: #E6DB74"> /</span><span style="color: #AE81FF">\.</span><span style="color: #E6DB74">(scss</span><span style="color: #F92672">|</span><span style="color: #E6DB74">css)</span><span style="color: #F92672">$</span><span style="color: #E6DB74">/</span><span style="color: #F92672">i</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">        use: [</span></span>
+<span class="line"><span style="color: #F8F8F2">          </span><span style="color: #E6DB74">&#39;style-loader&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">          </span><span style="color: #E6DB74">&#39;css-loader&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">          </span><span style="color: #88846F">// 将 Sass 编译成 CSS</span></span>
+<span class="line"><span style="color: #F8F8F2">          {</span></span>
+<span class="line"><span style="color: #F8F8F2">            loader: </span><span style="color: #E6DB74">&#39;sass-loader&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">            options: {</span></span>
+<span class="line"><span style="color: #F8F8F2">              sourceMap: </span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">, </span><span style="color: #88846F">// enable/disable source map</span></span>
+<span class="line"><span style="color: #F8F8F2">              sassOptions: {</span></span>
+<span class="line"><span style="color: #F8F8F2">                indentWidth: </span><span style="color: #AE81FF">4</span><span style="color: #F8F8F2">  </span><span style="color: #88846F">// 空格数量</span></span>
+<span class="line"><span style="color: #F8F8F2">              }</span></span>
+<span class="line"><span style="color: #F8F8F2">            }</span></span>
+<span class="line"><span style="color: #F8F8F2">          }</span></span>
+<span class="line"><span style="color: #F8F8F2">        ]</span></span>
+<span class="line"><span style="color: #F8F8F2">      }</span></span>
+<span class="line"><span style="color: #F8F8F2">    ]</span></span>
+<span class="line"><span style="color: #F8F8F2">  }</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="plugins" tabindex="-1"><a class="header-anchor" href="#plugins" aria-hidden="true">#</a> Plugins</h2>
 <h3 id="html-webpack-plugin" tabindex="-1"><a class="header-anchor" href="#html-webpack-plugin" aria-hidden="true">#</a> html-webpack-plugin</h3>
 <p>This is a webpack plugin that simplifies creation of HTML files to serve your webpack bundles.
 This is especially useful for webpack bundles that includes a hash in the filename which changes every compilation.</p>

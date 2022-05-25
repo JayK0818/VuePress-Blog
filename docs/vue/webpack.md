@@ -345,7 +345,77 @@ module.exports = {
 
 ## Loader
 
-### Style-loader
+### babel-loader
+
+  此loader 允许你使用 Babel 和 webpack 转译JavaScript文件。
+```js
+// install
+npm install -D babel-loader @babel/core @babel/preset-env
+
+// webpack.config.js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      }
+    ]
+  }
+}
+```
+```js
+// math.js
+const square = (x) => {
+  return Math.pow(x, 2)
+}
+const cube = (x) => {
+  return Math.pow(x, 3)
+}
+class Player {
+  constructor(name) {
+    this.name = name;
+  }
+  add(x) {
+    return cube(x)
+  }
+}
+
+export {
+  square,
+  cube,
+  Player
+}
+
+// 上面三个方法经过babel转译后，变成了下面的代码
+var square = function square(x) {
+  return Math.pow(x, 2);
+};
+var cube = function cube(x) {
+  return Math.pow(x, 3);
+};
+var Player = /*#__PURE__*/function () {
+  function Player(name) {
+    _classCallCheck(this, Player);
+    this.name = name;
+  }
+  _createClass(Player, [{
+    key: "add",
+    value: function add(x) {
+      return cube(x);
+    }
+  }]);
+  return Player;
+}();
+```
+
+### style-loader
 
 ```js
 // injectType: allows to setup how styles will be injected into the DOM
@@ -421,7 +491,7 @@ singletonStyleTag: Automatically injects styles into the DOM using one <style>
   The loader automatically inject source maps when previous loader emit them. Therefore,to generate source maps,
   set the sourceMap option to true for the previous loader
 
-### CSS-loader
+### css-loader
 
   The css-loader interprets @import and url() and will resolve them.
 
@@ -588,6 +658,38 @@ module.exports = {
 ```
 ![css-loader-modules-hash](./images/css-loader-modules-hash.png)
   
+### sass-loader
+
+  加载sass/scss文件并编译为css.
+```js
+// install
+npm install sass-loader sass --save-dev
+
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(scss|css)$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          // 将 Sass 编译成 CSS
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true, // enable/disable source map
+              sassOptions: {
+                indentWidth: 4  // 空格数量
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
 ## Plugins
 
 ### html-webpack-plugin

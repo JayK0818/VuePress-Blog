@@ -94,14 +94,26 @@ export const data = {
       "children": [
         {
           "level": 3,
-          "title": "Style-loader",
+          "title": "babel-loader",
+          "slug": "babel-loader",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "style-loader",
           "slug": "style-loader",
           "children": []
         },
         {
           "level": 3,
-          "title": "CSS-loader",
+          "title": "css-loader",
           "slug": "css-loader",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "sass-loader",
+          "slug": "sass-loader",
           "children": []
         }
       ]
@@ -175,7 +187,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1653401812000
+    "updatedTime": 1653461936000
   },
   "filePathRelative": "vue/webpack.md"
 }

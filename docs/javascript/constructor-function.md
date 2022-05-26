@@ -309,6 +309,50 @@ function createBridge(parentConstructor, childConstructor) {
   return new Middle()
 }
 Child.prototype = createBridge(Parent, Child)
+
+
+//  或者利用Object.setPrototypeOf(object, prototype)
+Object.setPrototypeOf(Child.prototype, Parent.prototype)
+```
+
+### 静态属性和方法
+
+```js
+// 定义在构造函数上的静态属性和方法
+function Father(name, age) {
+  this.name = name;
+  this.age = age;
+}
+Father.fullName = 'hello'
+Father.say = function() {
+  return 'hello'
+}
+for(const key in Father) {
+  if(Object.prototype.hasOwnProperty.call(Father, key)) {
+    console.log('people-key', key)  // fullName, say
+    Child[key] = Father[key]
+  }
+}
+// for...in 会遍历出 原型链上的属, 所以使用hasOwnProperty() 做一个判断
+
+
+// 使用 Object.keys()
+Object.keys(Father).forEach(prop => {
+  Child[prop] = Father[prop]
+})
+
+// 使用Object.setPrototypeOf
+Object.setPrototypeOf(Child, Father)
+// 相当于 Child.__proto__ === Father
+
+
+// ts打包后的静态属性继承的部分代码
+const extendStatics = 
+  Object.setPrototypeOf || ({ __proto__: [] } instanceof Array && 
+  function (d, b) { d.__proto__ = b; }) ||
+  function (d, b) { 
+    for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p] 
+  }
 ```
 ## instanceof
 
@@ -342,9 +386,9 @@ console.log(new String(123) instanceof Object)  // true
 console.log(new Number(123) instanceof Number)  // true
 console.log(new Boolean(false) instanceof Boolean)  // true
 ```
-### 实现一个instanceof
 
 ```js
+//  实现一个instanceof
 function checkInstance(instance, constructor) {
   if(typeof instance == null) return false
   // 判断是不是普通类型值

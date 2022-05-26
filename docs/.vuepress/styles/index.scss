@@ -7,6 +7,12 @@ p{
   font-size: 16px;
   line-height: 1.7;
 }
+p.sidebar-heading{
+  margin-top:0!important;
+  margin-bottom:0 !important;
+  padding: 0!important;
+  font-size:0;
+}
 :root{
   --sidebar-width: 18rem;
   --content-width: 900px;

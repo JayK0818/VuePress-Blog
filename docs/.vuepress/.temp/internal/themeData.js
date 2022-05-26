@@ -1,4 +1,5 @@
 export const themeData = {
+  "smoothScroll": false,
   "lastUpdated": true,
   "lastUpdatedText": "上次更新",
   "contributors": false,
@@ -25,7 +26,6 @@ export const themeData = {
       "link": "/react/create-react-app/"
     }
   ],
-  "smoothScroll": false,
   "darkMode": true,
   "logo": null,
   "sidebar": {

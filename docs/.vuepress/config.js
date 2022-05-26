@@ -124,7 +124,8 @@ module.exports = {
     })
   ],
   theme: defaultTheme({
-    lastUpdated:true,
+    smoothScroll: false,
+    lastUpdated: true,
     lastUpdatedText:'上次更新',
     contributors: false,
     sidebarDepth: 2,
@@ -141,7 +142,6 @@ module.exports = {
     lastUpdated:true,
     lastUpdatedText:'上次更新',
     contributors: false,
-    smoothScroll: false,
     darkMode:true,
     logo:null,
     sidebar:{

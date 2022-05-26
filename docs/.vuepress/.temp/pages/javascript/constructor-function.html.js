@@ -46,6 +46,12 @@ export const data = {
           "title": "组合继承",
           "slug": "组合继承",
           "children": []
+        },
+        {
+          "level": 3,
+          "title": "静态属性和方法",
+          "slug": "静态属性和方法",
+          "children": []
         }
       ]
     },
@@ -53,14 +59,7 @@ export const data = {
       "level": 2,
       "title": "instanceof",
       "slug": "instanceof",
-      "children": [
-        {
-          "level": 3,
-          "title": "实现一个instanceof",
-          "slug": "实现一个instanceof",
-          "children": []
-        }
-      ]
+      "children": []
     }
   ],
   "git": {

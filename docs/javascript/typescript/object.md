@@ -188,8 +188,6 @@ const readonlyStringArray: ReadonlyArray<string> = ['1' , '2', '3']
 // readonlyStringArray[0] = '2'  // error
 // readonlyStringArray.push('4')  // error
 
-
-
 // --------- Tuple Types ----------
 /*
 A tuple type is another sort of Array type that knows exactly how many elements it contains,
@@ -211,4 +209,8 @@ type StringNumberBooleans = [string, number, ...boolean []]
 // 扩展运算符必须在最末尾
 const stringNumberBooleanArray: StringNumberBooleans = ['1', 2, false, true, false]
 
+
+const readonly_singers = ['jay', 'mayday'] as const
+// readonly_singers[0] = 'wang'  // 报错 readonly
+// 不用添加数组元素的类型
 ```

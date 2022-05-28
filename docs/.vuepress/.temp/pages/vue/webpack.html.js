@@ -161,12 +161,6 @@ export const data = {
         },
         {
           "level": 3,
-          "title": "IgnorePlugin",
-          "slug": "ignoreplugin",
-          "children": []
-        },
-        {
-          "level": 3,
           "title": "LimitChunkCountPlugin",
           "slug": "limitchunkcountplugin",
           "children": []

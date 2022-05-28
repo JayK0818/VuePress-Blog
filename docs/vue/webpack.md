@@ -949,10 +949,10 @@ module.exports = {
   ]
 }
 ```
-1. proirity
+1. priority
 
   Allows to specify the priority of copying files with the same destination name,Files for the
-  patterns with higher priority will be copie later.
+  patterns with higher priority will be copied later.
 
 ![copy-priority](./images/copy-priority.png)
 
@@ -1018,20 +1018,6 @@ module.exports = {
 
 // not specifying the environment variable raises an 'EnvironmentPlugin.${key}', 
 // environment variable is undefined error.
-```
-### IgnorePlugin
-
-  IgnorePlugin prevents the generation of modules for import or require calls matching the regular expressions
-  or filter functions.
-```js
-new webpack.IgnorePlugin({
-  resourceRegExp,
-  contextRegExp
-})
-/*
-resourceRegExp 是针对发在发生导入的源代码中传递给require或者import的字符串进行匹配,
-contextRegExp 参数用来选择指定的目录。
-*/
 ```
 ### LimitChunkCountPlugin
 

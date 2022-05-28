@@ -1,6 +1,10 @@
 button, input{
   border-radius:0!important;
 }
+ol,ul{
+  padding: 0;
+  list-style:none;
+}
 p{
   margin-top: 1em!important;
   margin-bottom: 1em!important;

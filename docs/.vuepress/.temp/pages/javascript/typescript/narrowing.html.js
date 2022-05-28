@@ -7,7 +7,7 @@ export const data = {
   "excerpt": "",
   "headers": [],
   "git": {
-    "updatedTime": 1653057810000
+    "updatedTime": 1653742337000
   },
   "filePathRelative": "javascript/typescript/narrowing.md"
 }

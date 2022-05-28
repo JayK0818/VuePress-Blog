@@ -822,10 +822,10 @@ Works like output.publicPath</p>
 <span class="line"><span style="color: #F8F8F2">  ]</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol>
-<li>proirity</li>
+<li>priority</li>
 </ol>
 <p>Allows to specify the priority of copying files with the same destination name,Files for the
-patterns with higher priority will be copie later.</p>
+patterns with higher priority will be copied later.</p>
 <p><img src="@source/vue/images/copy-priority.png" alt="copy-priority"></p>
 <ol start="2">
 <li>transform</li>
@@ -881,18 +881,7 @@ patterns with higher priority will be copie later.</p>
 <span class="line"></span>
 <span class="line"><span style="color: #88846F">// not specifying the environment variable raises an &#39;EnvironmentPlugin.${key}&#39;, </span></span>
 <span class="line"><span style="color: #88846F">// environment variable is undefined error.</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="ignoreplugin" tabindex="-1"><a class="header-anchor" href="#ignoreplugin" aria-hidden="true">#</a> IgnorePlugin</h3>
-<p>IgnorePlugin prevents the generation of modules for import or require calls matching the regular expressions
-or filter functions.</p>
-<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #F92672">new</span><span style="color: #F8F8F2"> webpack.</span><span style="color: #A6E22E">IgnorePlugin</span><span style="color: #F8F8F2">({</span></span>
-<span class="line"><span style="color: #F8F8F2">  resourceRegExp,</span></span>
-<span class="line"><span style="color: #F8F8F2">  contextRegExp</span></span>
-<span class="line"><span style="color: #F8F8F2">})</span></span>
-<span class="line"><span style="color: #88846F">/*</span></span>
-<span class="line"><span style="color: #88846F">resourceRegExp 是针对发在发生导入的源代码中传递给require或者import的字符串进行匹配,</span></span>
-<span class="line"><span style="color: #88846F">contextRegExp 参数用来选择指定的目录。</span></span>
-<span class="line"><span style="color: #88846F">*/</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="limitchunkcountplugin" tabindex="-1"><a class="header-anchor" href="#limitchunkcountplugin" aria-hidden="true">#</a> LimitChunkCountPlugin</h3>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="limitchunkcountplugin" tabindex="-1"><a class="header-anchor" href="#limitchunkcountplugin" aria-hidden="true">#</a> LimitChunkCountPlugin</h3>
 <p>While writing your code, you may have already added many code split points to load stuff on demand.After compiling you might
 notice that some chunks are too small - creating larget HTTP overhead.
 LimitChunkCountPlugin can post-process your chunks by merging them.</p>

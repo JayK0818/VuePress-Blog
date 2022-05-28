@@ -115,11 +115,44 @@ function getShapeArea(shape: AreaShape): number {
 
 /*
 When narrowing, you can reduce the options of a union to a point where you have 
-removed all possibilities and have nothing left. In those cases, TypeScript will use a never
-type to represent a state which should not exist.
+removed all possibilities and have nothing left. In those cases, TypeScript 
+will use a never type to represent a state which should not exist.
 */
 /*
 The never type is assignable to every type; however, no type is assignable to never
 (except never itself)
 */
+```
+```ts
+// ------- 自定义守卫 --------
+function is_string(str: any) : str is string {
+  return typeof str === 'string'
+}
+
+function is_function(fn: any): fn is Function {
+  return typeof fn === 'function'
+}
+
+interface SingerProps {
+  firstName: string
+  lastName: string
+  age: number,
+  sing?: () => void
+}
+const singer: SingerProps = {
+  firstName: 'jay',
+  lastName: 'chou',
+  age: 30
+}
+type SingerKeyType = keyof SingerProps
+Object.keys(singer).forEach((key) => {
+  const value = singer[key as SingerKeyType]
+  if(is_string(value)) {
+    //...
+  }else if(is_function(value)) {
+    value()
+  } else {
+    // ... number
+  }
+})
 ```

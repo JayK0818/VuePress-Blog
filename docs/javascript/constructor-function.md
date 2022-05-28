@@ -346,13 +346,27 @@ Object.setPrototypeOf(Child, Father)
 // 相当于 Child.__proto__ === Father
 
 
-// ts打包后的静态属性继承的部分代码
-const extendStatics = 
-  Object.setPrototypeOf || ({ __proto__: [] } instanceof Array && 
-  function (d, b) { d.__proto__ = b; }) ||
-  function (d, b) { 
-    for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p] 
-  }
+// ts编译后的静态属性继承的部分代码
+var __extends = (this && this.__extends) || (function () {
+  var extendStatics = function (d, b) {
+    // 继承静态属性和方法
+    extendStatics = Object.setPrototypeOf ||
+    ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+    function (d, b) { 
+      for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]
+    }
+    return extendStatics(d, b);
+  };
+  return function (d, b) {
+    if (typeof b !== "function" && b !== null)
+    throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+    extendStatics(d, b);
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    // d.prototype.__proto__ === __.prototype
+    // d.prototype.__proto__.constructor = d
+  };
+})();
 ```
 ## instanceof
 

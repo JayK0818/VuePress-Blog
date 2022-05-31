@@ -118,8 +118,8 @@ interface ReadonlyStringArray {
 ```ts
 /*
 Is is pretty common to have types that might be more specific versions of other types.
-The extends keyword on an interface allows us to effectively copy members from other named types,
-and add whatever members we want.
+The extends keyword on an interface allows us to effectively copy members from other 
+named types, and add whatever members we want.
 */
 interface BasicAddress {
   name?: string
@@ -144,8 +144,8 @@ interface ColorfulCircle extends Colorful, Circle {
 // -------------- Intersection Types ------------
 type TypeColorfulCircle = Colorful & Circle
 /*
-Here, we have intersected Colorful and Circle to produce a new type that has all the members of
-Colorful and Circle
+Here, we have intersected Colorful and Circle to produce a new type that has all the 
+members of Colorful and Circle
 */
 ```
 5. Generic Object Types

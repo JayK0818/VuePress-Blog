@@ -112,8 +112,8 @@
 </ol>
 <div class="language-typescript ext-ts line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">/*</span></span>
 <span class="line"><span style="color: #88846F">Is is pretty common to have types that might be more specific versions of other types.</span></span>
-<span class="line"><span style="color: #88846F">The extends keyword on an interface allows us to effectively copy members from other named types,</span></span>
-<span class="line"><span style="color: #88846F">and add whatever members we want.</span></span>
+<span class="line"><span style="color: #88846F">The extends keyword on an interface allows us to effectively copy members from other </span></span>
+<span class="line"><span style="color: #88846F">named types, and add whatever members we want.</span></span>
 <span class="line"><span style="color: #88846F">*/</span></span>
 <span class="line"><span style="color: #66D9EF; font-style: italic">interface</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E; text-decoration: underline">BasicAddress</span><span style="color: #F8F8F2"> {</span></span>
 <span class="line"><span style="color: #F8F8F2">  name</span><span style="color: #F92672">?:</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF; font-style: italic">string</span></span>
@@ -138,8 +138,8 @@
 <span class="line"><span style="color: #88846F">// -------------- Intersection Types ------------</span></span>
 <span class="line"><span style="color: #66D9EF; font-style: italic">type</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E; text-decoration: underline">TypeColorfulCircle</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E; text-decoration: underline">Colorful</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">&amp;</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E; text-decoration: underline">Circle</span></span>
 <span class="line"><span style="color: #88846F">/*</span></span>
-<span class="line"><span style="color: #88846F">Here, we have intersected Colorful and Circle to produce a new type that has all the members of</span></span>
-<span class="line"><span style="color: #88846F">Colorful and Circle</span></span>
+<span class="line"><span style="color: #88846F">Here, we have intersected Colorful and Circle to produce a new type that has all the </span></span>
+<span class="line"><span style="color: #88846F">members of Colorful and Circle</span></span>
 <span class="line"><span style="color: #88846F">*/</span></span>
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="5">
 <li>Generic Object Types</li>

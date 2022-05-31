@@ -57,6 +57,22 @@ function loggingLength<T extends {length: number}>(arg: T): number {
 }
 console.log(loggingLength([1, 2, 3, 4, 5, 6]))  // 6
 console.log(loggingLength('hello world!'))      // 12
+
+// -------- extends keyof --------
+class ObjectRefImplement<T extends object, K extends keyof T> {
+  private _object: T
+  private _key: K
+  constructor(object: T, key: K) {
+    this._object = object
+    this._key = key
+  }
+  getValue() {
+    return this._object[this._key]
+  }
+  setValue(value: T[K]) {
+    this._object[this._key] = value
+  }
+}
 ```
 ```ts
 // ------------ Using Type Parameters in Generic Constraints ------------

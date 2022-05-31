@@ -26,6 +26,12 @@ export const data = {
     },
     {
       "level": 2,
+      "title": "Element.offsetParent",
+      "slug": "element-offsetparent",
+      "children": []
+    },
+    {
+      "level": 2,
       "title": "Element.offsetWidth",
       "slug": "element-offsetwidth",
       "children": []

@@ -77,7 +77,8 @@ export const themeData = {
           "/javascript/typescript/function",
           "/javascript/typescript/object",
           "/javascript/typescript/narrowing",
-          "/javascript/typescript/type-manipulation"
+          "/javascript/typescript/type-manipulation",
+          "/javascript/typescript/class"
         ]
       }
     ],

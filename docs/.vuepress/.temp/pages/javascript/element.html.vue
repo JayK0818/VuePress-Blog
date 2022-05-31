@@ -29,6 +29,15 @@
 </div>
 <p>Element.clientWidth是一个只读属性。</p>
 <p>如果包含滚动条, clientHeight可以通过CSS height + CSS padding - 水平滚动条的高度来计算。</p>
+<h2 id="element-offsetparent" tabindex="-1"><a class="header-anchor" href="#element-offsetparent" aria-hidden="true">#</a> Element.offsetParent</h2>
+<p>该属性是一个只读属性,返回一个指向最近的(closest,指包含层级上的最近)包含该元素的定位元素。如果没有定位的元素,则
+offsetParent为最近的table table cell 或根元素。当元素的display设置为none,offsetParent返回Null。</p>
+<div class="custom-container tip"><p class="custom-container-title">TIP</p>
+<ol>
+<li>在weibkit中,如果元素为隐藏的 或者该元素的style.position被设置为fixed,则该属性返回null</li>
+<li>在IE9中,如果该元素的style.position被设置为fixed,则该属性返回Null,(display:none)无影响。</li>
+</ol>
+</div>
 <h2 id="element-offsetwidth" tabindex="-1"><a class="header-anchor" href="#element-offsetwidth" aria-hidden="true">#</a> Element.offsetWidth</h2>
 <p>HTMLElement.offsetWidth是一个只读属性,返回一个元素的布局宽度。 offsetWidth是测量包含元素的边框(border)
 水平线上的内边距(padding) 垂直方向滚动条(scrollbar)(如果存在的话),以及CSS设置的宽度(width)的值。</p>

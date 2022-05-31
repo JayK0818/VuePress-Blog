@@ -41,6 +41,16 @@
 
   如果包含滚动条, clientHeight可以通过CSS height + CSS padding - 水平滚动条的高度来计算。
 
+## Element.offsetParent
+
+该属性是一个只读属性,返回一个指向最近的(closest,指包含层级上的最近)包含该元素的定位元素。如果没有定位的元素,则
+offsetParent为最近的table table cell 或根元素。当元素的display设置为none,offsetParent返回Null。
+  
+:::tip	
+1. 在weibkit中,如果元素为隐藏的 或者该元素的style.position被设置为fixed,则该属性返回null
+2. 在IE9中,如果该元素的style.position被设置为fixed,则该属性返回Null,(display:none)无影响。
+:::
+
 ## Element.offsetWidth
 
   HTMLElement.offsetWidth是一个只读属性,返回一个元素的布局宽度。 offsetWidth是测量包含元素的边框(border)

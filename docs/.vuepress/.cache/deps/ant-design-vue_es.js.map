@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["dep:ant-design-vue_es"],
-  "sourcesContent": ["import d from \"../../../../node_modules/_ant-design-vue@3.2.5@ant-design-vue/es/index.js\";export default d;\nexport * from \"../../../../node_modules/_ant-design-vue@3.2.5@ant-design-vue/es/index.js\""],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAA0F,IAAO,4BAAQ;",
-  "names": []
-}

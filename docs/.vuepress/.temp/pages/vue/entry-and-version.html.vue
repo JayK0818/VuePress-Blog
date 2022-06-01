@@ -1,4 +1,4 @@
-<template><div><h1 id="vue构建版本和打包入口" tabindex="-1"><a class="header-anchor" href="#vue构建版本和打包入口" aria-hidden="true">#</a> Vue构建版本和打包入口</h1>
+<template><h1 id="vue构建版本和打包入口" tabindex="-1"><a class="header-anchor" href="#vue构建版本和打包入口" aria-hidden="true">#</a> Vue构建版本和打包入口</h1>
 <h2 id="vue不同构建版本" tabindex="-1"><a class="header-anchor" href="#vue不同构建版本" aria-hidden="true">#</a> Vue不同构建版本</h2>
 <p>将vue.js源码clone到本地执行 npm run build 打包时, 会生成不同构建版本到vue.js文件,比如vue.common.dev.js,
 vue.esm.js 和 vue.runtime.js。 在vue.js官网上介绍了不同构建版本的区别</p>
@@ -188,4 +188,4 @@ vue.esm.js 和 vue.runtime.js。 在vue.js官网上介绍了不同构建版本�
 <span class="line"><span style="color: #88846F">// 没有编译器的版本</span></span>
 <span class="line"><span style="color: #F92672">import</span><span style="color: #F8F8F2"> Vue </span><span style="color: #F92672">from</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#39;./runtime/index&#39;</span></span>
 <span class="line"><span style="color: #F92672">export</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">default</span><span style="color: #F8F8F2"> Vue</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></template>

@@ -1,4 +1,4 @@
-<template><div><h1 id="vue-instance" tabindex="-1"><a class="header-anchor" href="#vue-instance" aria-hidden="true">#</a> Vue Instance</h1>
+<template><h1 id="vue-instance" tabindex="-1"><a class="header-anchor" href="#vue-instance" aria-hidden="true">#</a> Vue Instance</h1>
 <h2 id="vue构造函数" tabindex="-1"><a class="header-anchor" href="#vue构造函数" aria-hidden="true">#</a> Vue构造函数</h2>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">//  /src/core/instance/index.js</span></span>
 <span class="line"><span style="color: #88846F">// Vue定义构造函数的地方.</span></span>
@@ -164,4 +164,4 @@
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><img src="@source/vue/images/$options.jpeg" alt="$options"></p>
 <p><a href="https://cn.vuejs.org/v2/api/#vm-options" target="_blank" rel="noopener noreferrer">Vue-$options-api文档<ExternalLinkIcon/></a></p>
 <p><a href="https://blog.csdn.net/nicexibeidage/article/details/82112055" target="_blank" rel="noopener noreferrer">instance-proxy参考<ExternalLinkIcon/></a></p>
-</div></template>
+</template>

@@ -5,7 +5,74 @@ export const data = {
   "lang": "zh-CN",
   "frontmatter": {},
   "excerpt": "",
-  "headers": [],
+  "headers": [
+    {
+      "level": 2,
+      "title": "string/number/boolean",
+      "slug": "string-number-boolean",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Array",
+      "slug": "array",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "any",
+      "slug": "any",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Function",
+      "slug": "function",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Union Types",
+      "slug": "union-types",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Type Aliases",
+      "slug": "type-aliases",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Type Assertions",
+      "slug": "type-assertions",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Literal Types",
+      "slug": "literal-types",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Literal interface",
+      "slug": "literal-interface",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Symbol",
+      "slug": "symbol",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Enums",
+      "slug": "enums",
+      "children": []
+    }
+  ],
   "git": {
     "updatedTime": 1653315781000
   },

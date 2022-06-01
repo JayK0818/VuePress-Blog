@@ -1,4 +1,4 @@
-<template><div><h1 id="object" tabindex="-1"><a class="header-anchor" href="#object" aria-hidden="true">#</a> Object</h1>
+<template><h1 id="object" tabindex="-1"><a class="header-anchor" href="#object" aria-hidden="true">#</a> Object</h1>
 <h2 id="对象初始化" tabindex="-1"><a class="header-anchor" href="#对象初始化" aria-hidden="true">#</a> 对象初始化</h2>
 <p>可以通过new Object() / Object.create()方法，或者使用字面量标记 初始化对象。</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> player </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
@@ -37,4 +37,4 @@
 此外,冻结一个对象后该对象的原型也不能修改。 freeze()返回和传入的参数相同的对象。</p>
 <p><a href="'https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible'">Object.isExtensible</a></p>
 <p><a href="'https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze'">Object.freeze()</a></p>
-</div></template>
+</template>

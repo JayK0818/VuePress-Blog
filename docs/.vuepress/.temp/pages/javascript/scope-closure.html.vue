@@ -1,4 +1,4 @@
-<template><div><h1 id="作用域和闭包" tabindex="-1"><a class="header-anchor" href="#作用域和闭包" aria-hidden="true">#</a> 作用域和闭包</h1>
+<template><h1 id="作用域和闭包" tabindex="-1"><a class="header-anchor" href="#作用域和闭包" aria-hidden="true">#</a> 作用域和闭包</h1>
 <ul>
 <li>引擎：  负责整个JavaScript程序的编译以及执行过程</li>
 <li>编译器: 负责语法分析及代码生成</li>
@@ -223,4 +223,4 @@
 <p>在定时器, 事件监听器, Ajax请求或者任何其他的异步(或者同步)任务中, 只要使用了回调函数, 实际上就是在使用
 闭包</p>
 </div>
-</div></template>
+</template>

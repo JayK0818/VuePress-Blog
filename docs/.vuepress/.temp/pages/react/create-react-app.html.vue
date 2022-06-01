@@ -1,4 +1,4 @@
-<template><div><h1 id="create-react-app" tabindex="-1"><a class="header-anchor" href="#create-react-app" aria-hidden="true">#</a> create-react-app</h1>
+<template><h1 id="create-react-app" tabindex="-1"><a class="header-anchor" href="#create-react-app" aria-hidden="true">#</a> create-react-app</h1>
 <ol>
 <li>在使用 npx create-react-app 脚手架创建项目时一直提示超时安装不了。
 报错信息为: An unexpected error occurred: &quot;https://registry.yarnpkg.com/react</li>
@@ -147,4 +147,4 @@ Access to XMLHttpRequest at 'http://192.168.31.206:5000/api/player' from origin 
 <span class="line"><span style="color: #F8F8F2">   </span><span style="color: #E6DB74">&#39;^api/old-path&#39;</span><span style="color: #F8F8F2">: </span><span style="color: #E6DB74">&#39;/api/new-path&#39;</span><span style="color: #F8F8F2"> </span><span style="color: #88846F">// rewrite path</span></span>
 <span class="line"><span style="color: #F8F8F2"> }</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></template>

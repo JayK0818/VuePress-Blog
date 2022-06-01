@@ -2,6 +2,9 @@ import { Vuepress } from '@vuepress/client'
 
 const routeItems = [
   ["v-8daa1a0e","/",{"title":""},["/index.html","/README.md"]],
+  ["v-15051314","/node/",{"title":"常用的Node包"},["/node/index.html","/node/README.md"]],
+  ["v-1be64244","/node/node_module.html",{"title":"常用npm包"},["/node/node_module","/node/node_module.md"]],
+  ["v-e02a086e","/javascript/",{"title":"ECMAScript"},["/javascript/index.html","/javascript/README.md"]],
   ["v-da61cde0","/javascript/ajax.html",{"title":"Ajax"},["/javascript/ajax","/javascript/ajax.md"]],
   ["v-443dbc5a","/javascript/algorithm.html",{"title":"算法"},["/javascript/algorithm","/javascript/algorithm.md"]],
   ["v-0d89043c","/javascript/bom.html",{"title":"BOM"},["/javascript/bom","/javascript/bom.md"]],
@@ -20,13 +23,10 @@ const routeItems = [
   ["v-c0158b24","/javascript/node.html",{"title":"Node"},["/javascript/node","/javascript/node.md"]],
   ["v-229cc991","/javascript/object.html",{"title":"Object"},["/javascript/object","/javascript/object.md"]],
   ["v-f8ded232","/javascript/promise.html",{"title":"Promise"},["/javascript/promise","/javascript/promise.md"]],
-  ["v-e02a086e","/javascript/",{"title":"ECMAScript"},["/javascript/index.html","/javascript/README.md"]],
   ["v-614fade0","/javascript/scope-closure.html",{"title":"作用域和闭包"},["/javascript/scope-closure","/javascript/scope-closure.md"]],
   ["v-f909575c","/javascript/sort.html",{"title":"排序"},["/javascript/sort","/javascript/sort.md"]],
   ["v-62ca9b52","/javascript/this.html",{"title":"This"},["/javascript/this","/javascript/this.md"]],
   ["v-ae963382","/javascript/value-copy.html",{"title":"深拷贝与浅拷贝"},["/javascript/value-copy","/javascript/value-copy.md"]],
-  ["v-1be64244","/node/node_module.html",{"title":"常用npm包"},["/node/node_module","/node/node_module.md"]],
-  ["v-15051314","/node/",{"title":"常用的Node包"},["/node/index.html","/node/README.md"]],
   ["v-14918cba","/react/concept.html",{"title":"概念"},["/react/concept","/react/concept.md"]],
   ["v-d762745a","/react/context.html",{"title":"Context"},["/react/context","/react/context.md"]],
   ["v-0a4aa4a4","/react/create-react-app.html",{"title":"create-react-app"},["/react/create-react-app","/react/create-react-app.md"]],
@@ -43,6 +43,7 @@ const routeItems = [
   ["v-76e22579","/javascript/typescript/object.html",{"title":"Object Type"},["/javascript/typescript/object","/javascript/typescript/object.md"]],
   ["v-464c74ac","/javascript/typescript/type-manipulation.html",{"title":"Type Manipulation"},["/javascript/typescript/type-manipulation","/javascript/typescript/type-manipulation.md"]],
   ["v-055867a1","/javascript/typescript/types.html",{"title":"Types"},["/javascript/typescript/types","/javascript/typescript/types.md"]],
+  ["v-6a957ffd","/javascript/typescript/utility-type.html",{"title":"Utility Types"},["/javascript/typescript/utility-type","/javascript/typescript/utility-type.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
 ]
 

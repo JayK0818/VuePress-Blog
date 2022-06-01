@@ -3,7 +3,7 @@ import {
   isVue2,
   isVue3,
   set
-} from "./chunk-UCTSIBZQ.js";
+} from "./chunk-YWFNH7F2.js";
 import {
   computed,
   customRef,
@@ -31,24 +31,11 @@ import {
   unref,
   watch,
   watchEffect
-} from "./chunk-RIQ4F2C5.js";
-import "./chunk-6XDEX5A4.js";
-import {
-  init_define_EXTERNAL_LINK_ICON_LOCALES,
-  init_define_MZ_ZOOM_OPTIONS
-} from "./chunk-GKUGKL7A.js";
+} from "./chunk-DDSCKR5Y.js";
+import "./chunk-YTP2Z32T.js";
+import "./chunk-AALNWKDH.js";
 
-// dep:@vueuse_core
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-init_define_MZ_ZOOM_OPTIONS();
-
-// node_modules/_@vueuse_core@8.6.0@@vueuse/core/index.mjs
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-init_define_MZ_ZOOM_OPTIONS();
-
-// node_modules/_@vueuse_shared@8.6.0@@vueuse/shared/index.mjs
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-init_define_MZ_ZOOM_OPTIONS();
+// node_modules/_@vueuse_shared@8.5.0@@vueuse/shared/index.mjs
 var __defProp$8 = Object.defineProperty;
 var __defProps$5 = Object.defineProperties;
 var __getOwnPropDescs$5 = Object.getOwnPropertyDescriptors;
@@ -879,7 +866,7 @@ function useIntervalFn(cb, interval = 1e3, options = {}) {
     clean();
   }
   function resume() {
-    if (unref(interval) <= 0)
+    if (interval <= 0)
       return;
     isActive.value = true;
     if (immediateCallback)
@@ -1308,7 +1295,7 @@ function whenever(source, cb, options) {
   }, options);
 }
 
-// node_modules/_@vueuse_core@8.6.0@@vueuse/core/index.mjs
+// node_modules/_@vueuse_core@8.5.0@@vueuse/core/index.mjs
 function computedAsync(evaluationCallback, initialState, optionsOrRef) {
   let options;
   if (isRef(optionsOrRef)) {
@@ -2272,17 +2259,15 @@ function useConfirmDialog(revealed = ref(false)) {
     onCancel: cancelHook.on
   };
 }
-function useCssVar(prop, target, { window: window2 = defaultWindow, initialValue = "" } = {}) {
-  const variable = ref(initialValue);
+function useCssVar(prop, target, { window: window2 = defaultWindow } = {}) {
+  const variable = ref("");
   const elRef = computed(() => {
     var _a2;
     return unrefElement(target) || ((_a2 = window2 == null ? void 0 : window2.document) == null ? void 0 : _a2.documentElement);
   });
   watch([elRef, () => unref(prop)], ([el, prop2]) => {
-    if (el && window2) {
-      const value = window2.getComputedStyle(el).getPropertyValue(prop2);
-      variable.value = value || initialValue;
-    }
+    if (el && window2)
+      variable.value = window2.getComputedStyle(el).getPropertyValue(prop2);
   }, { immediate: true });
   watch(variable, (val) => {
     var _a2;
@@ -2886,41 +2871,6 @@ function useDraggable(target, options = {}) {
     isDragging: computed(() => !!pressedDelta.value),
     style: computed(() => `left:${position.value.x}px;top:${position.value.y}px;`)
   });
-}
-function useDropZone(target, onDrop) {
-  const isOverDropZone = ref(false);
-  let counter = 0;
-  if (isClient) {
-    useEventListener(target, "dragenter", (event) => {
-      event.preventDefault();
-      counter += 1;
-      isOverDropZone.value = true;
-    });
-    useEventListener(target, "dragover", (event) => {
-      event.preventDefault();
-    });
-    useEventListener(target, "dragleave", (event) => {
-      event.preventDefault();
-      counter -= 1;
-      if (counter === 0)
-        isOverDropZone.value = false;
-    });
-    useEventListener(target, "drop", (event) => {
-      var _a2, _b;
-      event.preventDefault();
-      counter = 0;
-      isOverDropZone.value = false;
-      const files = Array.from((_b = (_a2 = event.dataTransfer) == null ? void 0 : _a2.files) != null ? _b : []);
-      if (files.length === 0) {
-        onDrop(null);
-        return;
-      }
-      onDrop(files);
-    });
-  }
-  return {
-    isOverDropZone
-  };
 }
 var __getOwnPropSymbols$c = Object.getOwnPropertySymbols;
 var __hasOwnProp$c = Object.prototype.hasOwnProperty;
@@ -4035,31 +3985,15 @@ var __spreadValues$72 = (a, b) => {
 };
 var __spreadProps$22 = (a, b) => __defProps$22(a, __getOwnPropDescs$22(b));
 function useInfiniteScroll(element, onLoadMore, options = {}) {
-  var _a2, _b;
-  const direction = (_a2 = options.direction) != null ? _a2 : "bottom";
+  var _a2;
   const state = reactive(useScroll(element, __spreadProps$22(__spreadValues$72({}, options), {
     offset: __spreadValues$72({
-      [direction]: (_b = options.distance) != null ? _b : 0
+      bottom: (_a2 = options.distance) != null ? _a2 : 0
     }, options.offset)
   })));
-  watch(() => state.arrivedState[direction], async (v) => {
-    var _a22, _b2;
-    if (v) {
-      const elem = unref(element);
-      const previous = {
-        height: (_a22 = elem == null ? void 0 : elem.scrollHeight) != null ? _a22 : 0,
-        width: (_b2 = elem == null ? void 0 : elem.scrollWidth) != null ? _b2 : 0
-      };
-      await onLoadMore(state);
-      if (options.preserveScrollPosition && elem) {
-        nextTick(() => {
-          elem.scrollTo({
-            top: elem.scrollHeight - previous.height,
-            left: elem.scrollWidth - previous.width
-          });
-        });
-      }
-    }
+  watch(() => state.arrivedState.bottom, (v) => {
+    if (v)
+      onLoadMore(state);
   });
 }
 function useIntersectionObserver(target, callback, options = {}) {
@@ -4574,7 +4508,7 @@ function useMouseInElement(target, options = {}) {
   const elementPositionY = ref(0);
   const elementHeight = ref(0);
   const elementWidth = ref(0);
-  const isOutside = ref(true);
+  const isOutside = ref(false);
   let stop = () => {
   };
   if (window2) {
@@ -4594,7 +4528,7 @@ function useMouseInElement(target, options = {}) {
       elementWidth.value = width;
       const elX = x.value - elementPositionX.value;
       const elY = y.value - elementPositionY.value;
-      isOutside.value = width === 0 || height === 0 || elX < 0 || elY < 0 || elX > width || elY > height;
+      isOutside.value = elX < 0 || elY < 0 || elX > elementWidth.value || elY > elementHeight.value;
       if (handleOutside || !isOutside.value) {
         elementX.value = elX;
         elementY.value = elY;
@@ -4959,14 +4893,14 @@ function usePointer(options = {}) {
     isInside
   });
 }
-var SwipeDirection;
-(function(SwipeDirection2) {
+var SwipeDirection = ((SwipeDirection2) => {
   SwipeDirection2["UP"] = "UP";
   SwipeDirection2["RIGHT"] = "RIGHT";
   SwipeDirection2["DOWN"] = "DOWN";
   SwipeDirection2["LEFT"] = "LEFT";
   SwipeDirection2["NONE"] = "NONE";
-})(SwipeDirection || (SwipeDirection = {}));
+  return SwipeDirection2;
+})(SwipeDirection || {});
 function useSwipe(target, options = {}) {
   const {
     threshold = 50,
@@ -4985,11 +4919,11 @@ function useSwipe(target, options = {}) {
   const isSwiping = ref(false);
   const direction = computed(() => {
     if (!isThresholdExceeded.value)
-      return SwipeDirection.NONE;
+      return "NONE";
     if (abs(diffX.value) > abs(diffY.value)) {
-      return diffX.value > 0 ? SwipeDirection.LEFT : SwipeDirection.RIGHT;
+      return diffX.value > 0 ? "LEFT" : "RIGHT";
     } else {
-      return diffY.value > 0 ? SwipeDirection.UP : SwipeDirection.DOWN;
+      return diffY.value > 0 ? "UP" : "DOWN";
     }
   });
   const getTouchEventCoords = (e) => [e.touches[0].clientX, e.touches[0].clientY];
@@ -6210,7 +6144,7 @@ function useVModel(props, key, emit, options = {}) {
       key = "modelValue";
     }
   }
-  event = eventName || event || `update:${key.toString()}`;
+  event = eventName || event || `update:${key}`;
   const getValue2 = () => isDef(props[key]) ? props[key] : defaultValue;
   if (passive) {
     const proxy = ref(getValue2());
@@ -6893,7 +6827,6 @@ export {
   useDisplayMedia,
   useDocumentVisibility,
   useDraggable,
-  useDropZone,
   useElementBounding,
   useElementByPoint,
   useElementHover,

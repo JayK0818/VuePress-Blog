@@ -1,4 +1,4 @@
-<template><div><h1 id="fetch" tabindex="-1"><a class="header-anchor" href="#fetch" aria-hidden="true">#</a> Fetch</h1>
+<template><h1 id="fetch" tabindex="-1"><a class="header-anchor" href="#fetch" aria-hidden="true">#</a> Fetch</h1>
 <p>Fetch API提供了一个JavaScript接口,用于访问或者操作HTTP管道的一些具体部分,例如请求和响应。</p>
 <p>fetch和ajax主要有以下不同:</p>
 <ul>
@@ -132,4 +132,4 @@ AbortController.abort() 用来中止一个尚未完成的网络请求。</p>
 <span class="line"><span style="color: #88846F">// 取消请求</span></span>
 <span class="line"><span style="color: #F8F8F2">controller.</span><span style="color: #A6E22E">abort</span><span style="color: #F8F8F2">()</span></span>
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController/signal" target="_blank" rel="noopener noreferrer">AbortController.signal<ExternalLinkIcon/></a></p>
-</div></template>
+</template>

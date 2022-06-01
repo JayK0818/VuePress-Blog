@@ -1,4 +1,4 @@
-<template><div><h1 id="事件" tabindex="-1"><a class="header-anchor" href="#事件" aria-hidden="true">#</a> 事件</h1>
+<template><h1 id="事件" tabindex="-1"><a class="header-anchor" href="#事件" aria-hidden="true">#</a> 事件</h1>
 <ol>
 <li>事件类型(event type)</li>
 <li>事件目标(event target)</li>
@@ -115,4 +115,4 @@ unload()事件处理程序可以用于保存用户的状态,但是它不能用�
 <p>event.currentTarget总是指向事件绑定的元素。</p>
 <h3 id="event-stoppropagation" tabindex="-1"><a class="header-anchor" href="#event-stoppropagation" aria-hidden="true">#</a> Event.stopPropagation</h3>
 <p>阻止捕获和冒泡阶段中当前事件的进一步传播, 但是它不能阻止任何默认行为的发生,例如对连接的点击仍会被处理。</p>
-</div></template>
+</template>

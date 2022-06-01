@@ -1,4 +1,4 @@
-<template><div><h1 id="globalapi" tabindex="-1"><a class="header-anchor" href="#globalapi" aria-hidden="true">#</a> GlobalApi</h1>
+<template><h1 id="globalapi" tabindex="-1"><a class="header-anchor" href="#globalapi" aria-hidden="true">#</a> GlobalApi</h1>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// src/core/global-api/index.js</span></span>
 <span class="line"><span style="color: #88846F">// 设置Vue的一些全局API和全局配置config操作</span></span>
 <span class="line"><span style="color: #F92672">export</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF; font-style: italic">function</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">initGlobalAPI</span><span style="color: #F8F8F2"> (</span><span style="color: #FD971F; font-style: italic">Vue</span><span style="color: #F92672">:</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E; text-decoration: underline">GlobalAPI</span><span style="color: #F8F8F2">) {</span></span>
@@ -233,4 +233,4 @@
 <span class="line"><span style="color: #F8F8F2">  el:</span><span style="color: #E6DB74">&#39;#dialog&#39;</span><span style="color: #F8F8F2">,</span></span>
 <span class="line"><span style="color: #F8F8F2">})</span></span>
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>以上两种方式创建的组件使用方式一样,效果相同。</p>
-</div></template>
+</template>

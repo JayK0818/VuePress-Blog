@@ -51,7 +51,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1652629709000
+    "updatedTime": 1654003068000
   },
   "filePathRelative": "javascript/element.md"
 }

@@ -1,7 +1,7 @@
 {
   "version": 3,
-  "sources": ["dep:ant-design-vue_es_button_style_css", "../../../../node_modules/_ant-design-vue@3.2.4@ant-design-vue/es/button/style/css.js"],
-  "sourcesContent": ["\nexport * from \"../../../../node_modules/_ant-design-vue@3.2.4@ant-design-vue/es/button/style/css.js\"", "import '../../style/default.css';\nimport './index.css';"],
+  "sources": ["dep:ant-design-vue_es_button_style_css", "../../../../node_modules/_ant-design-vue@3.2.5@ant-design-vue/es/button/style/css.js"],
+  "sourcesContent": ["\nexport * from \"../../../../node_modules/_ant-design-vue@3.2.5@ant-design-vue/es/button/style/css.js\"", "import '../../style/default.css';\nimport './index.css';"],
   "mappings": ";;;;;;AAAA;AAAA;;;ACAA;AAAA;AAAA;AACA;",
   "names": []
 }

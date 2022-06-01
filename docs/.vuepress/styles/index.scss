@@ -2,8 +2,13 @@ button, input{
   border-radius:0!important;
 }
 ol,ul{
+  font-size: 16px;
   padding: 0;
   list-style:none;
+  li{
+    line-height: 1.7;
+    color: rgba(0,0,0,.85);
+  }
 }
 p{
   margin-top: 1em!important;
@@ -16,6 +21,9 @@ p.sidebar-heading{
   margin-bottom:0 !important;
   padding: 0!important;
   font-size:0;
+}
+ul.sidebar-items{
+  padding-top:0!important;
 }
 :root{
   --sidebar-width: 18rem;

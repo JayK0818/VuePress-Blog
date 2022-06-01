@@ -1,4 +1,4 @@
-<template><h1 id="pinia" tabindex="-1"><a class="header-anchor" href="#pinia" aria-hidden="true">#</a> Pinia</h1>
+<template><div><h1 id="pinia" tabindex="-1"><a class="header-anchor" href="#pinia" aria-hidden="true">#</a> Pinia</h1>
 <p>Pinia is a store library for Vue, it allows you to share a state across components/pages.
 it works for both Vue 2 and Vue 3 and does not require you to use composition API.</p>
 <p>Comparison with Vuex</p>
@@ -321,4 +321,4 @@ defineStore().</p>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="pinia-todos-demo" tabindex="-1"><a class="header-anchor" href="#pinia-todos-demo" aria-hidden="true">#</a> Pinia Todos Demo</h2>
 <Pinia-Todo/>
-</template>
+</div></template>

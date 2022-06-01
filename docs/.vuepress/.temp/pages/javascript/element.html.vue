@@ -1,4 +1,4 @@
-<template><h1 id="element" tabindex="-1"><a class="header-anchor" href="#element" aria-hidden="true">#</a> Element</h1>
+<template><div><h1 id="element" tabindex="-1"><a class="header-anchor" href="#element" aria-hidden="true">#</a> Element</h1>
 <h2 id="element-attributes" tabindex="-1"><a class="header-anchor" href="#element-attributes" aria-hidden="true">#</a> Element.attributes</h2>
 <p>Element.attributes 属性返回该元素所有属性节点的一个实时集合.该集合是一个NamedNodeMap对象。</p>
 <div class="language-html ext-html line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #F8F8F2">&lt;</span><span style="color: #F92672">div</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">class</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">&#39;name&#39;</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">id</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">&#39;hello&#39;</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">data-id</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">&#39;123&#39;</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">style</span><span style="color: #F8F8F2">=</span><span style="color: #E6DB74">&#39;color:red;&#39;</span><span style="color: #F8F8F2">&gt;&lt;/</span><span style="color: #F92672">div</span><span style="color: #F8F8F2">&gt;</span></span>
@@ -76,4 +76,4 @@ offsetParent为最近的table table cell 或根元素。当元素的display设�
 <p>在使用显示比例缩放的系统上, scrollTop可能会提供一个小数。</p>
 </div>
 <JavaScript-ScrollBottom/>
-</template>
+</div></template>

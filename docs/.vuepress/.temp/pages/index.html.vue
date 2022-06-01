@@ -1,2 +1,2 @@
-<template><Vue-Home/>
-</template>
+<template><div><Vue-Home/>
+</div></template>

@@ -1,4 +1,4 @@
-<template><h1 id="概念" tabindex="-1"><a class="header-anchor" href="#概念" aria-hidden="true">#</a> 概念</h1>
+<template><div><h1 id="概念" tabindex="-1"><a class="header-anchor" href="#概念" aria-hidden="true">#</a> 概念</h1>
 <h2 id="redux" tabindex="-1"><a class="header-anchor" href="#redux" aria-hidden="true">#</a> Redux</h2>
 <p>Redux is a library for managing global application state</p>
 <h3 id="immutability" tabindex="-1"><a class="header-anchor" href="#immutability" aria-hidden="true">#</a> Immutability</h3>
@@ -90,4 +90,4 @@ something like clicking on a button</p>
 <span class="line"><span style="color: #F8F8F2">  )</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>Any time an action has been dispatched and the Redux store has been updated, useSelector will re-run our selector function.</p>
-</template>
+</div></template>

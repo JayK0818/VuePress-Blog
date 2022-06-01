@@ -1,4 +1,4 @@
-<template><h1 id="types" tabindex="-1"><a class="header-anchor" href="#types" aria-hidden="true">#</a> Types</h1>
+<template><div><h1 id="types" tabindex="-1"><a class="header-anchor" href="#types" aria-hidden="true">#</a> Types</h1>
 <ol>
 <li>string number boolean</li>
 </ol>
@@ -245,4 +245,4 @@
 </ol>
 <div class="language-typescript ext-ts line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> symbol</span><span style="color: #F92672">:</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E; text-decoration: underline">Symbol</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF; font-style: italic">Symbol</span><span style="color: #F8F8F2">.</span><span style="color: #A6E22E">for</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#39;hello&#39;</span><span style="color: #F8F8F2">)</span></span>
 <span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> symbol</span><span style="color: #F92672">:</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E; text-decoration: underline">Symbol</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF; font-style: italic">Symbol</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#39;world&#39;</span><span style="color: #F8F8F2">)</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div></template>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div></div></template>

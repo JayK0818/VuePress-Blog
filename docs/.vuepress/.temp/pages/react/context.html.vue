@@ -1,4 +1,4 @@
-<template><h1 id="context" tabindex="-1"><a class="header-anchor" href="#context" aria-hidden="true">#</a> Context</h1>
+<template><div><h1 id="context" tabindex="-1"><a class="header-anchor" href="#context" aria-hidden="true">#</a> Context</h1>
 <p>Context提供了一个无需为每层组件手动添加props,就能在组件树间进行数据传递的方法,以下案例 来自react官网的整理.
 为了方便，只嵌套了一层子组件的方式实现。</p>
 <div class="custom-container tip"><p class="custom-container-title">TIP</p>
@@ -118,4 +118,4 @@
 <p>当provider的父组件重新渲染时,可能会在consumers组件中触发意外的渲染。比如当传递给Provider的value值为一个对象时。
 为避免这种情况,可以将value状态值提升到父节点state里。</p>
 </div>
-</template>
+</div></template>

@@ -1,4 +1,4 @@
-<template><h1 id="promise" tabindex="-1"><a class="header-anchor" href="#promise" aria-hidden="true">#</a> Promise</h1>
+<template><div><h1 id="promise" tabindex="-1"><a class="header-anchor" href="#promise" aria-hidden="true">#</a> Promise</h1>
 <p>Promise对象是一个构造函数,用来生成Promise实例。用于表示一个异步操作的最终完成(或失败)及其结果值。</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// 基本用法</span></span>
 <span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> promise </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">new</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF; font-style: italic">Promise</span><span style="color: #F8F8F2">((</span><span style="color: #FD971F; font-style: italic">resolve</span><span style="color: #F8F8F2">,</span><span style="color: #FD971F; font-style: italic">reject</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF; font-style: italic">=&gt;</span><span style="color: #F8F8F2"> {</span></span>
@@ -314,4 +314,4 @@ Promise.resolve()方法允许调用时不带参数,直接返回一个resolved状
 <span class="line"><span style="color: #F8F8F2">    </span><span style="color: #66D9EF">setTimeout</span><span style="color: #F8F8F2">(() </span><span style="color: #66D9EF; font-style: italic">=&gt;</span><span style="color: #F8F8F2"> {</span><span style="color: #F92672">throw</span><span style="color: #F8F8F2"> reason}, </span><span style="color: #AE81FF">0</span><span style="color: #F8F8F2">)</span></span>
 <span class="line"><span style="color: #F8F8F2">  })</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></template>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>

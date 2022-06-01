@@ -1,4 +1,4 @@
-<template><h1 id="json" tabindex="-1"><a class="header-anchor" href="#json" aria-hidden="true">#</a> JSON</h1>
+<template><div><h1 id="json" tabindex="-1"><a class="header-anchor" href="#json" aria-hidden="true">#</a> JSON</h1>
 <p>JSON对象包含两个方法: JSON.stringify() 和 JSON.parse(). 除了这两个方法,JSON对象本身并没有其他作用,也不能被调用
 或者作为构造函数调用。</p>
 <h2 id="json-stringify" tabindex="-1"><a class="header-anchor" href="#json-stringify" aria-hidden="true">#</a> JSON.stringify()</h2>
@@ -139,4 +139,4 @@
 <span class="line"><span style="color: #66D9EF">JSON</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF">parse</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#39;null&#39;</span><span style="color: #F8F8F2">);            </span><span style="color: #88846F">// null</span></span>
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON#javascript_object_notation" target="_blank" rel="noopener noreferrer">MDN-JavaScript Object Notation<ExternalLinkIcon/></a></p>
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify" target="_blank" rel="noopener noreferrer">MDN-JSON.stringify()<ExternalLinkIcon/></a></p>
-</template>
+</div></template>

@@ -1,4 +1,4 @@
-<template><h1 id="ecmascript新特性" tabindex="-1"><a class="header-anchor" href="#ecmascript新特性" aria-hidden="true">#</a> ECMAScript新特性</h1>
+<template><div><h1 id="ecmascript新特性" tabindex="-1"><a class="header-anchor" href="#ecmascript新特性" aria-hidden="true">#</a> ECMAScript新特性</h1>
 <h2 id="es2015" tabindex="-1"><a class="header-anchor" href="#es2015" aria-hidden="true">#</a> ES2015</h2>
 <h3 id="for-of循环和iterator" tabindex="-1"><a class="header-anchor" href="#for-of循环和iterator" aria-hidden="true">#</a> for...of循环和iterator</h3>
 <p>遍历器(Iterator)提供了一个统一的,简便的访问接口,为各种不同的数据结构提供了统一的访问机制。任何数据只要部署了
@@ -1295,4 +1295,4 @@ own property. If the property is inherited, or does not exist, the method return
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn" target="_blank" rel="noopener noreferrer">MDN-hasOwn<ExternalLinkIcon/></a></p>
 <p><a href="https://es6.ruanyifeng.com/#README" target="_blank" rel="noopener noreferrer">ES6入门教程<ExternalLinkIcon/></a></p>
 <p><a href="https://github.com/tc39/proposals/blob/HEAD/finished-proposals.md" target="_blank" rel="noopener noreferrer">ECMAScript-TC39<ExternalLinkIcon/></a></p>
-</template>
+</div></template>

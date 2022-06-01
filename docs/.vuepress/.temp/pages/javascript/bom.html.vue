@@ -1,4 +1,4 @@
-<template><h1 id="bom" tabindex="-1"><a class="header-anchor" href="#bom" aria-hidden="true">#</a> BOM</h1>
+<template><div><h1 id="bom" tabindex="-1"><a class="header-anchor" href="#bom" aria-hidden="true">#</a> BOM</h1>
 <p>浏览器对象模型(Browser Object Model)。</p>
 <h2 id="window对象" tabindex="-1"><a class="header-anchor" href="#window对象" aria-hidden="true">#</a> window对象</h2>
 <p>所有浏览器都支持window对象。它表示浏览器窗口。</p>
@@ -76,4 +76,4 @@ Location对象的href属性是一个字符串,包含URL的完整文本。Locatio
 <p>setTimeout()和setInterval()共用一个编号池, 技术上,clearTimeout()和clearInterval()可以互换, 但是为了避免混淆,
 不要混用取消定时函数。</p>
 </div>
-</template>
+</div></template>

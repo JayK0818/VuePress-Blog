@@ -1,4 +1,4 @@
-<template><h1 id="常用的node包" tabindex="-1"><a class="header-anchor" href="#常用的node包" aria-hidden="true">#</a> 常用的Node包</h1>
+<template><div><h1 id="常用的node包" tabindex="-1"><a class="header-anchor" href="#常用的node包" aria-hidden="true">#</a> 常用的Node包</h1>
 <h2 id="nodemon" tabindex="-1"><a class="header-anchor" href="#nodemon" aria-hidden="true">#</a> nodemon</h2>
 <p>nodemon is a tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected</p>
 <p><a href="https://www.npmjs.com/package/nodemon" target="_blank" rel="noopener noreferrer">nodemon<ExternalLinkIcon/></a></p>
@@ -31,4 +31,4 @@
 <p>表单验证（https://www.npmjs.com/package/vuelidate）</p>
 <h2 id="veevalidate" tabindex="-1"><a class="header-anchor" href="#veevalidate" aria-hidden="true">#</a> VeeValidate</h2>
 <p>form validation for vue.js (https://vee-validate.logaretm.com/v4/)</p>
-</template>
+</div></template>

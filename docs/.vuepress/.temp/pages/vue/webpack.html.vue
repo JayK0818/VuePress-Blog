@@ -1,14 +1,28 @@
-<template><h1 id="webpack" tabindex="-1"><a class="header-anchor" href="#webpack" aria-hidden="true">#</a> Webpack</h1>
+<template><div><h1 id="webpack" tabindex="-1"><a class="header-anchor" href="#webpack" aria-hidden="true">#</a> Webpack</h1>
 <h2 id="开始" tabindex="-1"><a class="header-anchor" href="#开始" aria-hidden="true">#</a> 开始</h2>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
 <span class="line"><span style="color: #F8F8F2">  mode:</span><span style="color: #E6DB74">&#39;development&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">  context: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;app&#39;</span><span style="color: #F8F8F2">) </span><span style="color: #88846F">// 基础目录,(绝对路径)</span></span>
 <span class="line"><span style="color: #F8F8F2">  entry: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;src/index.js&#39;</span><span style="color: #F8F8F2">), </span><span style="color: #88846F">// 入口</span></span>
 <span class="line"><span style="color: #F8F8F2">  output: { </span><span style="color: #88846F">// 出口</span></span>
 <span class="line"><span style="color: #F8F8F2">    path: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;src/dist&#39;</span><span style="color: #F8F8F2">),</span></span>
-<span class="line"><span style="color: #F8F8F2">    filename: </span><span style="color: #E6DB74">&#39;bundle.js&#39;</span></span>
+<span class="line"><span style="color: #F8F8F2">    filename: </span><span style="color: #E6DB74">&#39;bundle.js&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #88846F">/*</span></span>
+<span class="line"><span style="color: #88846F">    fullhash: compilation完整的hash值</span></span>
+<span class="line"><span style="color: #88846F">    id: 此chunk的id</span></span>
+<span class="line"><span style="color: #88846F">    name: 此chunk的名称</span></span>
+<span class="line"><span style="color: #88846F">    chunkhash: 此chunk的hash, 包含该chunk的所有元素</span></span>
+<span class="line"><span style="color: #88846F">    contenthash: 只包含该内容类型的元素</span></span>
+<span class="line"><span style="color: #88846F">    chunkFilename: 非初始 chunk文件的名称, 这些文件名需要在运行时根据chunk发送的请求去生成。</span></span>
+<span class="line"><span style="color: #88846F">    */</span></span>
+<span class="line"><span style="color: #F8F8F2">    chunkLoading: </span><span style="color: #E6DB74">&#39;jsonp&#39;</span><span style="color: #F8F8F2">, </span><span style="color: #88846F">// 加载chunk的方法(jsonp(web) import(ESM))</span></span>
+<span class="line"><span style="color: #F8F8F2">    clean: </span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">, </span><span style="color: #88846F">// 在生成文件之前清空output目录</span></span>
+<span class="line"><span style="color: #F8F8F2">    publicPath: </span><span style="color: #E6DB74">&#39;&#39;</span><span style="color: #F8F8F2">  </span><span style="color: #88846F">// 按需加载或加载外部资源 每个url的前缀</span></span>
 <span class="line"><span style="color: #F8F8F2">  }</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="管理资源" tabindex="-1"><a class="header-anchor" href="#管理资源" aria-hidden="true">#</a> 管理资源</h2>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>output.filename 的文件 hash长度 可以使用 hash:16 contenthash:16等指定, 或者通过指定 output.hashDigestLength
+在全局配置长度。</p>
+<h2 id="管理资源" tabindex="-1"><a class="header-anchor" href="#管理资源" aria-hidden="true">#</a> 管理资源</h2>
 <h3 id="style-loader-css-loader" tabindex="-1"><a class="header-anchor" href="#style-loader-css-loader" aria-hidden="true">#</a> style-loader/css-loader</h3>
 <p>模块loader可以链式调用。链中的每个loader都将对资源进行转换。链会逆序执行。第一个loader将其结果传递给
 下一个loader,依此类推。</p>
@@ -1024,4 +1038,4 @@ LimitChunkCountPlugin can post-process your chunks by merging them.</p>
 <span class="line"><span style="color: #F8F8F2">    </span><span style="color: #E6DB74">&quot;build&quot;</span><span style="color: #F8F8F2">: </span><span style="color: #E6DB74">&quot;webpack --config webpack.production.js&quot;</span></span>
 <span class="line"><span style="color: #F8F8F2">  }</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></template>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>

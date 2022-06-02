@@ -5,13 +5,28 @@
 ```js
 module.exports = {
   mode:'development',
+  context: path.resolve(__dirname, 'app') // 基础目录,(绝对路径)
   entry: path.resolve(__dirname, 'src/index.js'), // 入口
   output: { // 出口
     path: path.resolve(__dirname, 'src/dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    /*
+    fullhash: compilation完整的hash值
+    id: 此chunk的id
+    name: 此chunk的名称
+    chunkhash: 此chunk的hash, 包含该chunk的所有元素
+    contenthash: 只包含该内容类型的元素
+    chunkFilename: 非初始 chunk文件的名称, 这些文件名需要在运行时根据chunk发送的请求去生成。
+    */
+    chunkLoading: 'jsonp', // 加载chunk的方法(jsonp(web) import(ESM))
+    clean: true, // 在生成文件之前清空output目录
+    publicPath: ''  // 按需加载或加载外部资源 每个url的前缀
   }
 }
 ```
+  output.filename 的文件 hash长度 可以使用 hash:16 contenthash:16等指定, 或者通过指定 output.hashDigestLength
+  在全局配置长度。
+
 ## 管理资源
 
 ### style-loader/css-loader

@@ -2,10 +2,10 @@ import {
   del,
   isVue2,
   set
-} from "./chunk-YWFNH7F2.js";
+} from "./chunk-UCTSIBZQ.js";
 import {
   setupDevtoolsPlugin
-} from "./chunk-IVIQLIAW.js";
+} from "./chunk-32SXXUVQ.js";
 import {
   computed,
   effectScope,
@@ -23,13 +23,21 @@ import {
   toRefs,
   unref,
   watch
-} from "./chunk-DDSCKR5Y.js";
-import "./chunk-YTP2Z32T.js";
+} from "./chunk-RIQ4F2C5.js";
+import "./chunk-6XDEX5A4.js";
 import {
-  __spreadValues
-} from "./chunk-AALNWKDH.js";
+  __spreadValues,
+  init_define_EXTERNAL_LINK_ICON_LOCALES,
+  init_define_MZ_ZOOM_OPTIONS
+} from "./chunk-GKUGKL7A.js";
+
+// dep:pinia
+init_define_EXTERNAL_LINK_ICON_LOCALES();
+init_define_MZ_ZOOM_OPTIONS();
 
 // node_modules/_pinia@2.0.14@pinia/dist/pinia.esm-browser.js
+init_define_EXTERNAL_LINK_ICON_LOCALES();
+init_define_MZ_ZOOM_OPTIONS();
 var activePinia;
 var setActivePinia = (pinia) => activePinia = pinia;
 var getActivePinia = () => getCurrentInstance() && inject(piniaSymbol) || activePinia;

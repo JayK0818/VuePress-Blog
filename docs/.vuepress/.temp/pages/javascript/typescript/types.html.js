@@ -74,7 +74,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1653315781000
+    "updatedTime": 1654089596000
   },
   "filePathRelative": "javascript/typescript/types.md"
 }

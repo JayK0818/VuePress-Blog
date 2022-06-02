@@ -1,4 +1,4 @@
-<template><h1 id="前端路由" tabindex="-1"><a class="header-anchor" href="#前端路由" aria-hidden="true">#</a> 前端路由</h1>
+<template><div><h1 id="前端路由" tabindex="-1"><a class="header-anchor" href="#前端路由" aria-hidden="true">#</a> 前端路由</h1>
 <h2 id="history" tabindex="-1"><a class="header-anchor" href="#history" aria-hidden="true">#</a> history</h2>
 <p>window.history对象包含浏览器的历史</p>
 <p>window.history.back()</p>
@@ -37,4 +37,4 @@ url   新的历史条目</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #F8F8F2">window.</span><span style="color: #A6E22E">addEventListener</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#39;hashchange&#39;</span><span style="color: #F8F8F2">, </span><span style="color: #66D9EF; font-style: italic">function</span><span style="color: #F8F8F2">() {</span></span>
 <span class="line"><span style="color: #F8F8F2">  console.</span><span style="color: #A6E22E">log</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#39;The hash has changed!&#39;</span><span style="color: #F8F8F2">)</span></span>
 <span class="line"><span style="color: #F8F8F2">}, </span><span style="color: #AE81FF">false</span><span style="color: #F8F8F2">);</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></template>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>

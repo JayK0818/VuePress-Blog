@@ -1,4 +1,4 @@
-<template><h1 id="ajax" tabindex="-1"><a class="header-anchor" href="#ajax" aria-hidden="true">#</a> Ajax</h1>
+<template><div><h1 id="ajax" tabindex="-1"><a class="header-anchor" href="#ajax" aria-hidden="true">#</a> Ajax</h1>
 <p>AJAX最大的优点是在不重新加载整个页面的情况下,可以与服务器交换数据并更新部分网页内容 通过在后台与服务器进行少量数据交换,
 AJAX可以使网页实现异步更新.</p>
 <p>EventTarget &lt;---- XMLHttpRequestEventTarget &lt;---- XMLHttpRequest</p>
@@ -331,4 +331,4 @@ arraybuffer/blob/json/text
 <span class="line"><span style="color: #F8F8F2">})</span></span>
 <span class="line"><span style="color: #A6E22E">cancel</span><span style="color: #F8F8F2">()</span></span>
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><!-- <JavaScript-AxiosCancel/> -->
-</template>
+</div></template>

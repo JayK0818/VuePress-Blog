@@ -1,4 +1,4 @@
-<template><h1 id="函数防抖与函数截流" tabindex="-1"><a class="header-anchor" href="#函数防抖与函数截流" aria-hidden="true">#</a> 函数防抖与函数截流</h1>
+<template><div><h1 id="函数防抖与函数截流" tabindex="-1"><a class="header-anchor" href="#函数防抖与函数截流" aria-hidden="true">#</a> 函数防抖与函数截流</h1>
 <h2 id="debounce" tabindex="-1"><a class="header-anchor" href="#debounce" aria-hidden="true">#</a> Debounce</h2>
 <p>当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// 实现一个函数防抖 debounce</span></span>
@@ -103,4 +103,4 @@
 <span class="line"><span style="color: #F8F8F2">}</span></span>
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>下面也是一个例子, 试着调节窗口大小</p>
 <React-Throttle-Delay/>
-</template>
+</div></template>

@@ -1,65 +1,58 @@
 export const data = {
   "key": "v-14918cba",
   "path": "/react/concept.html",
-  "title": "概念",
+  "title": "Redux",
   "lang": "zh-CN",
   "frontmatter": {},
   "excerpt": "",
   "headers": [
     {
       "level": 2,
-      "title": "Redux",
-      "slug": "redux",
-      "children": [
-        {
-          "level": 3,
-          "title": "Immutability",
-          "slug": "immutability",
-          "children": []
-        },
-        {
-          "level": 3,
-          "title": "Actions",
-          "slug": "actions",
-          "children": []
-        },
-        {
-          "level": 3,
-          "title": "Reducers",
-          "slug": "reducers",
-          "children": []
-        },
-        {
-          "level": 3,
-          "title": "Store",
-          "slug": "store",
-          "children": []
-        },
-        {
-          "level": 3,
-          "title": "Dispatch",
-          "slug": "dispatch",
-          "children": []
-        },
-        {
-          "level": 3,
-          "title": "combineReducers",
-          "slug": "combinereducers",
-          "children": []
-        },
-        {
-          "level": 3,
-          "title": "useSelector",
-          "slug": "useselector",
-          "children": []
-        },
-        {
-          "level": 3,
-          "title": "useDispatch",
-          "slug": "usedispatch",
-          "children": []
-        }
-      ]
+      "title": "Immutability",
+      "slug": "immutability",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Actions",
+      "slug": "actions",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Reducers",
+      "slug": "reducers",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Store",
+      "slug": "store",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "Dispatch",
+      "slug": "dispatch",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "combineReducers",
+      "slug": "combinereducers",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "useSelector",
+      "slug": "useselector",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "useDispatch",
+      "slug": "usedispatch",
+      "children": []
     }
   ],
   "git": {

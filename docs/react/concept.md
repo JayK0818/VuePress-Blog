@@ -1,10 +1,8 @@
-# 概念
-
-## Redux
+# Redux
 
   Redux is a library for managing global application state
 
-### Immutability
+## Immutability
 
   'Mutable' means 'changeable',If something is 'immutable', It can never be changed.
   In order to update values immutably,your code must make copies of existing objects/arrays,and then modify the copies. We can do this by hand using JavaScript's array/object spread operators.
@@ -32,7 +30,7 @@ const obj2 = {
   }
 }
 ```
-### Actions
+## Actions
 
   An action is a plain JavaScript objet that has a type filed.The type filed should be a string that gives this 
   action a descriptive name,like 'todos/todoAdded', ------- 'domain/eventName'。
@@ -46,9 +44,9 @@ const addTodo = text => {
   }
 }
 ```
-### Reducers
+## Reducers
 
-  A reducer is a function that receives the current state and an action object,decides how to update the state if necessart.
+  A reducer is a function that receives the current state and an action object,decides how to update the state if necessary.
   and returns the new state:(state,action) => newState.
 ```js
 const initialState = {value: 0}
@@ -62,14 +60,14 @@ function counterReducer(state = initialState, action) {
   return state
 }
 ```
-### Store
+## Store
 
   The store is created by passing in a reducer.
 ```js
 import {createStore} from 'redux'
 const store = createStore(reducer)
 ```
-### Dispatch
+## Dispatch
 
   The Redux store has a method called dispatch,The only way to update the state is to call store.dispatch()
   and pass in an action object.
@@ -81,7 +79,7 @@ const increment = () => {
 }
 store.dispatch(increment())
 ```
-### combineReducers
+## combineReducers
 
   Redux has a function called combineReducers,It accepts an object full of slice reducers as its argument, and returns a
   function that calls each slice reducer whenever an action is dispatched.The result from each slice reducer are all combined
@@ -96,11 +94,11 @@ const rootReducer = combineReducers({
   The key names in the object will define the keys in our final state value. When we pass in an object like {counter:counterReducer},
   that says we want to have a state.counter section of our Redux state object.
 
-### useSelector
+## useSelector
 
   The useSelector hooks lets our component extract whatever pieces of data it needs from the Redux store state.
 
-### useDispatch
+## useDispatch
 
   The useDispatch hook can give us the actual dispatch method from the Redux store,so we can dispatch actions when the user does
   something like clicking on a button

@@ -1,7 +1,6 @@
-<template><div><h1 id="概念" tabindex="-1"><a class="header-anchor" href="#概念" aria-hidden="true">#</a> 概念</h1>
-<h2 id="redux" tabindex="-1"><a class="header-anchor" href="#redux" aria-hidden="true">#</a> Redux</h2>
+<template><div><h1 id="redux" tabindex="-1"><a class="header-anchor" href="#redux" aria-hidden="true">#</a> Redux</h1>
 <p>Redux is a library for managing global application state</p>
-<h3 id="immutability" tabindex="-1"><a class="header-anchor" href="#immutability" aria-hidden="true">#</a> Immutability</h3>
+<h2 id="immutability" tabindex="-1"><a class="header-anchor" href="#immutability" aria-hidden="true">#</a> Immutability</h2>
 <p>'Mutable' means 'changeable',If something is 'immutable', It can never be changed.
 In order to update values immutably,your code must make copies of existing objects/arrays,and then modify the copies. We can do this by hand using JavaScript's array/object spread operators.</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> obj </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {a:</span><span style="color: #AE81FF">1</span><span style="color: #F8F8F2">, b:</span><span style="color: #AE81FF">2</span><span style="color: #F8F8F2">}</span></span>
@@ -24,7 +23,7 @@ In order to update values immutably,your code must make copies of existing objec
 <span class="line"><span style="color: #F8F8F2">    c: </span><span style="color: #AE81FF">42</span></span>
 <span class="line"><span style="color: #F8F8F2">  }</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="actions" tabindex="-1"><a class="header-anchor" href="#actions" aria-hidden="true">#</a> Actions</h3>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="actions" tabindex="-1"><a class="header-anchor" href="#actions" aria-hidden="true">#</a> Actions</h2>
 <p>An action is a plain JavaScript objet that has a type filed.The type filed should be a string that gives this
 action a descriptive name,like 'todos/todoAdded', ------- 'domain/eventName'。</p>
 <p>An action creator is a function that creates and returns an action object.</p>
@@ -34,8 +33,8 @@ action a descriptive name,like 'todos/todoAdded', ------- 'domain/eventName'。<
 <span class="line"><span style="color: #F8F8F2">    payload:text</span></span>
 <span class="line"><span style="color: #F8F8F2">  }</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="reducers" tabindex="-1"><a class="header-anchor" href="#reducers" aria-hidden="true">#</a> Reducers</h3>
-<p>A reducer is a function that receives the current state and an action object,decides how to update the state if necessart.
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="reducers" tabindex="-1"><a class="header-anchor" href="#reducers" aria-hidden="true">#</a> Reducers</h2>
+<p>A reducer is a function that receives the current state and an action object,decides how to update the state if necessary.
 and returns the new state:(state,action) =&gt; newState.</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> initialState </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {value: </span><span style="color: #AE81FF">0</span><span style="color: #F8F8F2">}</span></span>
 <span class="line"><span style="color: #66D9EF; font-style: italic">function</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">counterReducer</span><span style="color: #F8F8F2">(</span><span style="color: #FD971F; font-style: italic">state</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> initialState, </span><span style="color: #FD971F; font-style: italic">action</span><span style="color: #F8F8F2">) {</span></span>
@@ -47,11 +46,11 @@ and returns the new state:(state,action) =&gt; newState.</p>
 <span class="line"><span style="color: #F8F8F2">  }</span></span>
 <span class="line"><span style="color: #F8F8F2">  </span><span style="color: #F92672">return</span><span style="color: #F8F8F2"> state</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="store" tabindex="-1"><a class="header-anchor" href="#store" aria-hidden="true">#</a> Store</h3>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="store" tabindex="-1"><a class="header-anchor" href="#store" aria-hidden="true">#</a> Store</h2>
 <p>The store is created by passing in a reducer.</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #F92672">import</span><span style="color: #F8F8F2"> {createStore} </span><span style="color: #F92672">from</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#39;redux&#39;</span></span>
 <span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> store </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">createStore</span><span style="color: #F8F8F2">(reducer)</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="dispatch" tabindex="-1"><a class="header-anchor" href="#dispatch" aria-hidden="true">#</a> Dispatch</h3>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="dispatch" tabindex="-1"><a class="header-anchor" href="#dispatch" aria-hidden="true">#</a> Dispatch</h2>
 <p>The Redux store has a method called dispatch,The only way to update the state is to call store.dispatch()
 and pass in an action object.</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">increment</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> () </span><span style="color: #66D9EF; font-style: italic">=&gt;</span><span style="color: #F8F8F2"> {</span></span>
@@ -60,7 +59,7 @@ and pass in an action object.</p>
 <span class="line"><span style="color: #F8F8F2">  }</span></span>
 <span class="line"><span style="color: #F8F8F2">}</span></span>
 <span class="line"><span style="color: #F8F8F2">store.</span><span style="color: #A6E22E">dispatch</span><span style="color: #F8F8F2">(</span><span style="color: #A6E22E">increment</span><span style="color: #F8F8F2">())</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="combinereducers" tabindex="-1"><a class="header-anchor" href="#combinereducers" aria-hidden="true">#</a> combineReducers</h3>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="combinereducers" tabindex="-1"><a class="header-anchor" href="#combinereducers" aria-hidden="true">#</a> combineReducers</h2>
 <p>Redux has a function called combineReducers,It accepts an object full of slice reducers as its argument, and returns a
 function that calls each slice reducer whenever an action is dispatched.The result from each slice reducer are all combined
 together into a single object as the final result.</p>
@@ -71,9 +70,9 @@ together into a single object as the final result.</p>
 <span class="line"><span style="color: #F8F8F2">})</span></span>
 <span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>The key names in the object will define the keys in our final state value. When we pass in an object like {counter:counterReducer},
 that says we want to have a state.counter section of our Redux state object.</p>
-<h3 id="useselector" tabindex="-1"><a class="header-anchor" href="#useselector" aria-hidden="true">#</a> useSelector</h3>
+<h2 id="useselector" tabindex="-1"><a class="header-anchor" href="#useselector" aria-hidden="true">#</a> useSelector</h2>
 <p>The useSelector hooks lets our component extract whatever pieces of data it needs from the Redux store state.</p>
-<h3 id="usedispatch" tabindex="-1"><a class="header-anchor" href="#usedispatch" aria-hidden="true">#</a> useDispatch</h3>
+<h2 id="usedispatch" tabindex="-1"><a class="header-anchor" href="#usedispatch" aria-hidden="true">#</a> useDispatch</h2>
 <p>The useDispatch hook can give us the actual dispatch method from the Redux store,so we can dispatch actions when the user does
 something like clicking on a button</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> dispatch </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #A6E22E">useDispatch</span><span style="color: #F8F8F2">()</span></span>

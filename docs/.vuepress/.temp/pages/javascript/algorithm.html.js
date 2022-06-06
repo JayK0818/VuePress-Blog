@@ -8,15 +8,101 @@ export const data = {
   "headers": [
     {
       "level": 2,
-      "title": "将一个数组旋转k步",
-      "slug": "将一个数组旋转k步",
-      "children": []
+      "title": "数组",
+      "slug": "数组",
+      "children": [
+        {
+          "level": 3,
+          "title": "电话号码的字母组合",
+          "slug": "电话号码的字母组合",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "卡牌分组",
+          "slug": "卡牌分组",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "将一个数组旋转k步",
+          "slug": "将一个数组旋转k步",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "二分查找",
+          "slug": "二分查找",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "数组中和为n的两个数",
+          "slug": "数组中和为n的两个数",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "移动指定元素到数组末尾(不改变原数组)",
+          "slug": "移动指定元素到数组末尾-不改变原数组",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "数组转为树",
+          "slug": "数组转为树",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "树转为数组",
+          "slug": "树转为数组",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "种花",
+          "slug": "种花",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "格雷编码",
+          "slug": "格雷编码",
+          "children": []
+        }
+      ]
     },
     {
       "level": 2,
-      "title": "判断字符串括号匹配",
-      "slug": "判断字符串括号匹配",
-      "children": []
+      "title": "字符串",
+      "slug": "字符串",
+      "children": [
+        {
+          "level": 3,
+          "title": "判断字符串括号匹配",
+          "slug": "判断字符串括号匹配",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "连续出现最长的字符",
+          "slug": "连续出现最长的字符",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "回文数字",
+          "slug": "回文数字",
+          "children": []
+        },
+        {
+          "level": 3,
+          "title": "字母大小写转换",
+          "slug": "字母大小写转换",
+          "children": []
+        }
+      ]
     },
     {
       "level": 2,
@@ -40,18 +126,6 @@ export const data = {
       "level": 2,
       "title": "链表实现队列",
       "slug": "链表实现队列",
-      "children": []
-    },
-    {
-      "level": 2,
-      "title": "二分查找",
-      "slug": "二分查找",
-      "children": []
-    },
-    {
-      "level": 2,
-      "title": "数组中和为n的两个数",
-      "slug": "数组中和为n的两个数",
       "children": []
     },
     {
@@ -81,30 +155,6 @@ export const data = {
     },
     {
       "level": 2,
-      "title": "移动指定元素到数组末尾(不改变原数组)",
-      "slug": "移动指定元素到数组末尾-不改变原数组",
-      "children": []
-    },
-    {
-      "level": 2,
-      "title": "连续出现最长的字符",
-      "slug": "连续出现最长的字符",
-      "children": []
-    },
-    {
-      "level": 2,
-      "title": "回文数字",
-      "slug": "回文数字",
-      "children": []
-    },
-    {
-      "level": 2,
-      "title": "字母大小写转换",
-      "slug": "字母大小写转换",
-      "children": []
-    },
-    {
-      "level": 2,
       "title": "SleepMan",
       "slug": "sleepman",
       "children": []
@@ -113,18 +163,6 @@ export const data = {
       "level": 2,
       "title": "LRU(Least Recently Used)",
       "slug": "lru-least-recently-used",
-      "children": []
-    },
-    {
-      "level": 2,
-      "title": "数组转为树",
-      "slug": "数组转为树",
-      "children": []
-    },
-    {
-      "level": 2,
-      "title": "树转为数组",
-      "slug": "树转为数组",
       "children": []
     }
   ],

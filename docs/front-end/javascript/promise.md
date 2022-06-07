@@ -68,7 +68,7 @@ console.log(1); // 1, 2, 3, 4
 ```js
 const promise2 = promise.then(onFulfilled, onRejected)
 ```
-![Promise.prototype.then](./images/promise.then.png)
+![Promise.prototype.then](../images/promise.then.png)
 ```js
 const promise1 = new Promise((resolve) => {
   resolve('hello')
@@ -94,7 +94,7 @@ Promise.resolve()
 // 依次输出 hello world !
 ```
 
-![The Promise Resolution Procedure](./images/promise-procedure.png)
+![The Promise Resolution Procedure](../images/promise-procedure.png)
 
 ## Promise.prototype.catch
 

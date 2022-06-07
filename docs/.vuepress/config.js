@@ -38,44 +38,53 @@ const side = {
       ]
     }
   ],
-  javascript: [
+  front_end: [
     {
-      title: 'JavaScript',
+      text: 'JavaScript',
       collapsable: false,
       children: [
-        '/javascript/bom',
-        '/javascript/event',
-        '/javascript/ajax',
-        '/javascript/fetch',
-        '/javascript/constructor-function',
-        '/javascript/scope-closure',
-        '/javascript/this',
-        '/javascript/high-order-function',
-        '/javascript/promise',
-        '/javascript/javascript-new-features',
-        '/javascript/concept',
-        '/javascript/value-copy',
-        '/javascript/json',
-        '/javascript/debounce-throttle',
-        '/javascript/code-snippet',
-        '/javascript/node',
-        '/javascript/element',
-        '/javascript/object',
-        '/javascript/javascript-route',
-        '/javascript/algorithm',
-        '/javascript/sort'
+        '/front-end/javascript/bom',
+        '/front-end/javascript/event',
+        '/front-end/javascript/ajax',
+        '/front-end/javascript/fetch',
+        '/front-end/javascript/constructor-function',
+        '/front-end/javascript/scope-closure',
+        '/front-end/javascript/this',
+        '/front-end/javascript/high-order-function',
+        '/front-end/javascript/promise',
+        '/front-end/javascript/javascript-new-features',
+        '/front-end/javascript/concept',
+        '/front-end/javascript/value-copy',
+        '/front-end/javascript/json',
+        '/front-end/javascript/debounce-throttle',
+        '/front-end/javascript/code-snippet',
+        '/front-end/javascript/node',
+        '/front-end/javascript/element',
+        '/front-end/javascript/object',
+        '/front-end/javascript/javascript-route',
+        '/front-end/javascript/sort'
       ]
     },
     {
-      title: 'TypeScript',
+      text: 'TypeScript',
       collapsable: false,
       children: [
-        '/javascript/typescript/types',
-        '/javascript/typescript/function',
-        '/javascript/typescript/object',
-        '/javascript/typescript/narrowing',
-        '/javascript/typescript/type-manipulation',
-        '/javascript/typescript/class'
+        '/front-end/typescript/types',
+        '/front-end/typescript/function',
+        '/front-end/typescript/object',
+        '/front-end/typescript/narrowing',
+        '/front-end/typescript/type-manipulation',
+        '/front-end/typescript/class'
+      ]
+    },
+    {
+      text: '算法',
+      collapsable: false,
+      children: [
+        '/front-end/algorithm/array',
+        '/front-end/algorithm/string',
+        '/front-end/algorithm/list',
+        '/front-end/algorithm/tree'
       ]
     }
   ],
@@ -135,7 +144,7 @@ module.exports = {
         text:'首页',
         link:'/'
       },
-      {text:'JavaScript',link:'/javascript/bom'},
+      {text:'前端',link:'/front-end/javascript/bom'},
       {text:'Node',link:'/node/'},
       {text:'Vue',link:'/vue/data-transfer/'},
       {text:'React',link:'/react/create-react-app/'},
@@ -146,9 +155,9 @@ module.exports = {
     darkMode:true,
     logo:null,
     sidebar:{
-      collapsable: false,
+      collapsable: true,
       '/react/': side.react,
-      '/javascript/': side.javascript,
+      '/front-end/': side.front_end,
       '/node/': side.node,
       '/vue/': side.vue
     },

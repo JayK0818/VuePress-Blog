@@ -2,7 +2,7 @@ import {
   del,
   isVue2,
   set
-} from "./chunk-UCTSIBZQ.js";
+} from "./chunk-VCBTCJNU.js";
 import {
   setupDevtoolsPlugin
 } from "./chunk-32SXXUVQ.js";

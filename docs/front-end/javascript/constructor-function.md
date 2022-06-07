@@ -154,8 +154,8 @@ obj1.__proto__ = {
 }
 console.log('hello:', obj1.name)  // hello
 ```
-![object.__proto__](./images/__proto__1.png)
-![object.__proto__](./images/__proto__2.png)
+![object.__proto__](../images/__proto__1.png)
+![object.__proto__](../images/__proto__2.png)
 
 :::danger
 箭头函数函数不可以用作构造函数

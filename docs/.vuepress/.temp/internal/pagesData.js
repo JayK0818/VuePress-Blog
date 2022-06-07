@@ -1,6 +1,10 @@
 export const pagesData = {
   // path: /
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"/Users/jinkang/Desktop/vuepress-blog/docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
+  // path: /node/
+  "v-15051314": () => import(/* webpackChunkName: "v-15051314" */"/Users/jinkang/Desktop/vuepress-blog/docs/.vuepress/.temp/pages/node/index.html.js").then(({ data }) => data),
+  // path: /node/node_module.html
+  "v-1be64244": () => import(/* webpackChunkName: "v-1be64244" */"/Users/jinkang/Desktop/vuepress-blog/docs/.vuepress/.temp/pages/node/node_module.html.js").then(({ data }) => data),
   // path: /react/concept.html
   "v-14918cba": () => import(/* webpackChunkName: "v-14918cba" */"/Users/jinkang/Desktop/vuepress-blog/docs/.vuepress/.temp/pages/react/concept.html.js").then(({ data }) => data),
   // path: /react/context.html
@@ -9,10 +13,6 @@ export const pagesData = {
   "v-0a4aa4a4": () => import(/* webpackChunkName: "v-0a4aa4a4" */"/Users/jinkang/Desktop/vuepress-blog/docs/.vuepress/.temp/pages/react/create-react-app.html.js").then(({ data }) => data),
   // path: /react/react-performance-optimization.html
   "v-8c683810": () => import(/* webpackChunkName: "v-8c683810" */"/Users/jinkang/Desktop/vuepress-blog/docs/.vuepress/.temp/pages/react/react-performance-optimization.html.js").then(({ data }) => data),
-  // path: /node/
-  "v-15051314": () => import(/* webpackChunkName: "v-15051314" */"/Users/jinkang/Desktop/vuepress-blog/docs/.vuepress/.temp/pages/node/index.html.js").then(({ data }) => data),
-  // path: /node/node_module.html
-  "v-1be64244": () => import(/* webpackChunkName: "v-1be64244" */"/Users/jinkang/Desktop/vuepress-blog/docs/.vuepress/.temp/pages/node/node_module.html.js").then(({ data }) => data),
   // path: /vue/data-transfer.html
   "v-2f769766": () => import(/* webpackChunkName: "v-2f769766" */"/Users/jinkang/Desktop/vuepress-blog/docs/.vuepress/.temp/pages/vue/data-transfer.html.js").then(({ data }) => data),
   // path: /vue/entry-and-version.html

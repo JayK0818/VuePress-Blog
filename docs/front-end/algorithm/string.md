@@ -252,3 +252,16 @@ console.log(letterSwitch(string)) // aCCXd2@XyZ
 ## 重复子字符串
 
   判断一个字符串是否 由 n个重复的子字符串组成。
+```ts
+function check(str: string) {
+  const reg = /^(\w+)\1+$/
+  return reg.test(str)
+}
+
+console.log(check('abcabc'))  // true
+console.log(check('abcdabc')) // false
+console.log(check('abcabcd')) // false
+console.log(check('aabaab'))  // true
+console.log(check('abaaabaa'))  // true
+```
+  

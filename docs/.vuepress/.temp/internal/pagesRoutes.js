@@ -2,12 +2,12 @@ import { Vuepress } from '@vuepress/client'
 
 const routeItems = [
   ["v-8daa1a0e","/",{"title":""},["/index.html","/README.md"]],
+  ["v-15051314","/node/",{"title":"常用的Node包"},["/node/index.html","/node/README.md"]],
+  ["v-1be64244","/node/node_module.html",{"title":"常用npm包"},["/node/node_module","/node/node_module.md"]],
   ["v-14918cba","/react/concept.html",{"title":"Redux"},["/react/concept","/react/concept.md"]],
   ["v-d762745a","/react/context.html",{"title":"Context"},["/react/context","/react/context.md"]],
   ["v-0a4aa4a4","/react/create-react-app.html",{"title":"create-react-app"},["/react/create-react-app","/react/create-react-app.md"]],
   ["v-8c683810","/react/react-performance-optimization.html",{"title":"React性能优化"},["/react/react-performance-optimization","/react/react-performance-optimization.md"]],
-  ["v-15051314","/node/",{"title":"常用的Node包"},["/node/index.html","/node/README.md"]],
-  ["v-1be64244","/node/node_module.html",{"title":"常用npm包"},["/node/node_module","/node/node_module.md"]],
   ["v-2f769766","/vue/data-transfer.html",{"title":"组件通信"},["/vue/data-transfer","/vue/data-transfer.md"]],
   ["v-3c367b94","/vue/entry-and-version.html",{"title":"Vue构建版本和打包入口"},["/vue/entry-and-version","/vue/entry-and-version.md"]],
   ["v-ec241072","/vue/global-api.html",{"title":"GlobalApi"},["/vue/global-api","/vue/global-api.md"]],

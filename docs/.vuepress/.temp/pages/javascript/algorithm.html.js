@@ -167,7 +167,7 @@ export const data = {
     }
   ],
   "git": {
-    "updatedTime": 1652629709000
+    "updatedTime": 1654529689000
   },
   "filePathRelative": "javascript/algorithm.md"
 }

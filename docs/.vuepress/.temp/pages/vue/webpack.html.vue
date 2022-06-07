@@ -932,7 +932,97 @@ LimitChunkCountPlugin can post-process your chunks by merging them.</p>
 <div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #F92672">new</span><span style="color: #F8F8F2"> webpack.optimize.</span><span style="color: #A6E22E">MinChunkSizePlugin</span><span style="color: #F8F8F2">({</span></span>
 <span class="line"><span style="color: #F8F8F2">  minChunkSize: </span><span style="color: #AE81FF">10000</span><span style="color: #F8F8F2">, </span><span style="color: #88846F">// Minimum number of characters</span></span>
 <span class="line"><span style="color: #F8F8F2">});</span></span>
-<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="开发环境和生产环境" tabindex="-1"><a class="header-anchor" href="#开发环境和生产环境" aria-hidden="true">#</a> 开发环境和生产环境</h2>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="resolve" tabindex="-1"><a class="header-anchor" href="#resolve" aria-hidden="true">#</a> Resolve</h2>
+<p>这些选项能够设置模块如何被解析。</p>
+<ol>
+<li>alias</li>
+</ol>
+<p>创建 import 或者 require 的别名, 来确保模块引入变得更简单</p>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// webpack.config.js</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">const</span><span style="color: #F8F8F2"> path </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> </span><span style="color: #66D9EF">require</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#39;path&#39;</span><span style="color: #F8F8F2">)</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #88846F">// ...</span></span>
+<span class="line"><span style="color: #F8F8F2">  resolve: {</span></span>
+<span class="line"><span style="color: #F8F8F2">    alias: {</span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #E6DB74">&#39;@&#39;</span><span style="color: #F8F8F2">: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;src&#39;</span><span style="color: #F8F8F2">),</span></span>
+<span class="line"><span style="color: #F8F8F2">    }</span></span>
+<span class="line"><span style="color: #F8F8F2">  }</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2">
+<li>resolve.enforceExtension</li>
+</ol>
+<p>如果是true, 将不允许无扩展名文件, 默认false</p>
+<ol start="3">
+<li>extensions</li>
+</ol>
+<p>尝试按顺序解析这些后缀名。如果有多个文件有相同的名字，但后缀名不同，webpack 会解析列在数组首位的后缀的文件
+并跳过其余的后缀。</p>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// webpack.config.js</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  </span><span style="color: #88846F">// ...</span></span>
+<span class="line"><span style="color: #F8F8F2">  resolve: {</span></span>
+<span class="line"><span style="color: #F8F8F2">    extensions: [</span><span style="color: #E6DB74">&#39;.js&#39;</span><span style="color: #F8F8F2">, </span><span style="color: #E6DB74">&#39;.jsx&#39;</span><span style="color: #F8F8F2">, </span><span style="color: #E6DB74">&#39;.ts&#39;</span><span style="color: #F8F8F2">],</span></span>
+<span class="line"><span style="color: #F8F8F2">    mainFiles: [</span><span style="color: #E6DB74">&#39;index&#39;</span><span style="color: #F8F8F2">],  </span><span style="color: #88846F">// 解析目录时要使用的文件名</span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #88846F">// webpack解析模块时 应该搜索的目录</span></span>
+<span class="line"><span style="color: #F8F8F2">    modules: [path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;src&#39;</span><span style="color: #F8F8F2">), </span><span style="color: #E6DB74">&#39;node_modules&#39;</span><span style="color: #F8F8F2">]</span></span>
+<span class="line"><span style="color: #F8F8F2">  }</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>能够是用户在引入模块时不带扩展</p>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #F92672">import</span><span style="color: #F8F8F2"> { print } </span><span style="color: #F92672">from</span><span style="color: #F8F8F2"> </span><span style="color: #E6DB74">&#39;./print&#39;</span></span>
+<span class="line"><span style="color: #A6E22E">print</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#39;hello world&#39;</span><span style="color: #F8F8F2">)</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="devserver" tabindex="-1"><a class="header-anchor" href="#devserver" aria-hidden="true">#</a> DevServer</h2>
+<div class="language-javascript ext-js line-numbers-mode"><pre v-pre class="shiki" style="background-color: #272822"><code><span class="line"><span style="color: #88846F">// webpack.config.js</span></span>
+<span class="line"><span style="color: #66D9EF; font-style: italic">module</span><span style="color: #F8F8F2">.</span><span style="color: #66D9EF; font-style: italic">exports</span><span style="color: #F8F8F2"> </span><span style="color: #F92672">=</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">  devServer: {</span></span>
+<span class="line"><span style="color: #F8F8F2">    allowHosts: [ </span><span style="color: #88846F">// 允许访问开发服务器的白名单</span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #E6DB74">&#39;host.com&#39;</span></span>
+<span class="line"><span style="color: #F8F8F2">    ],</span></span>
+<span class="line"><span style="color: #F8F8F2">    client: { </span><span style="color: #88846F">// 出现编译错误或者警告时, 在浏览器中显示全屏覆盖</span></span>
+<span class="line"><span style="color: #F8F8F2">      overlay: </span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">      progress: </span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">,  </span><span style="color: #88846F">//在浏览器中以百分比显示编译进度</span></span>
+<span class="line"><span style="color: #F8F8F2">      reconnect: </span><span style="color: #AE81FF">false</span><span style="color: #F8F8F2">,  </span><span style="color: #88846F">// 应该尝试重新连接客户端的次数</span></span>
+<span class="line"><span style="color: #F8F8F2">    },</span></span>
+<span class="line"><span style="color: #F8F8F2">    compress: </span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">,  </span><span style="color: #88846F">// 启用gzip 压缩</span></span>
+<span class="line"><span style="color: #F8F8F2">    historyApiFallback: </span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #88846F">// When using the HTML5 History API, the index.html page will likely have to be</span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #88846F">// served in place of any 404 responses.</span></span>
+<span class="line"><span style="color: #F8F8F2">    host: </span><span style="color: #E6DB74">&#39;0.0.0.0&#39;</span><span style="color: #F8F8F2">,  </span><span style="color: #88846F">// 主机</span></span>
+<span class="line"><span style="color: #F8F8F2">    hot: </span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">, </span><span style="color: #88846F">// 启用热模块替换</span></span>
+<span class="line"><span style="color: #F8F8F2">    open: </span><span style="color: #AE81FF">true</span><span style="color: #F8F8F2">,  </span><span style="color: #88846F">// 在服务器启动后打开浏览器</span></span>
+<span class="line"><span style="color: #F8F8F2">    port: </span><span style="color: #AE81FF">8080</span><span style="color: #F8F8F2">,  </span><span style="color: #88846F">// 服务启动的端口</span></span>
+<span class="line"><span style="color: #F8F8F2">    proxy: {</span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #88846F">// &#39;/api&#39;: &#39;http://example.com&#39;</span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #88846F">// 如果需要重写路径</span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #E6DB74">&#39;/api&#39;</span><span style="color: #F8F8F2">: {</span></span>
+<span class="line"><span style="color: #F8F8F2">        target: </span><span style="color: #E6DB74">&#39;http://example.com&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">        pathRewrite: {</span></span>
+<span class="line"><span style="color: #F8F8F2">          </span><span style="color: #E6DB74">&#39;^/api&#39;</span><span style="color: #F8F8F2">: </span><span style="color: #E6DB74">&#39;&#39;</span></span>
+<span class="line"><span style="color: #F8F8F2">        }</span></span>
+<span class="line"><span style="color: #F8F8F2">      }</span></span>
+<span class="line"><span style="color: #F8F8F2">    },</span></span>
+<span class="line"><span style="color: #F8F8F2">    proxy: [</span></span>
+<span class="line"><span style="color: #F8F8F2">      {</span></span>
+<span class="line"><span style="color: #F8F8F2">        context: [</span><span style="color: #E6DB74">&#39;/api&#39;</span><span style="color: #F8F8F2">, </span><span style="color: #E6DB74">&#39;/auth&#39;</span><span style="color: #F8F8F2">],</span></span>
+<span class="line"><span style="color: #F8F8F2">        target: </span><span style="color: #E6DB74">&#39;http://example.com&#39;</span><span style="color: #F8F8F2">  </span><span style="color: #88846F">// 将多个特定路径代理到同一个目标</span></span>
+<span class="line"><span style="color: #F8F8F2">      }</span></span>
+<span class="line"><span style="color: #F8F8F2">    ],</span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #88846F">// 提供自定义函数和中间件能力</span></span>
+<span class="line"><span style="color: #F8F8F2">    </span><span style="color: #A6E22E">setupMiddlewares</span><span style="color: #F8F8F2">: (</span><span style="color: #FD971F; font-style: italic">middleware</span><span style="color: #F8F8F2">, </span><span style="color: #FD971F; font-style: italic">devServer</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF; font-style: italic">=&gt;</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #88846F">// js文件可以 通过请求这个接口 获取数据</span></span>
+<span class="line"><span style="color: #F8F8F2">      devServer.app.</span><span style="color: #A6E22E">get</span><span style="color: #F8F8F2">(</span><span style="color: #E6DB74">&#39;/api/players&#39;</span><span style="color: #F8F8F2">, (</span><span style="color: #FD971F; font-style: italic">_</span><span style="color: #F8F8F2">, </span><span style="color: #FD971F; font-style: italic">response</span><span style="color: #F8F8F2">) </span><span style="color: #66D9EF; font-style: italic">=&gt;</span><span style="color: #F8F8F2"> {</span></span>
+<span class="line"><span style="color: #F8F8F2">        response.</span><span style="color: #A6E22E">send</span><span style="color: #F8F8F2">([</span></span>
+<span class="line"><span style="color: #F8F8F2">          {</span></span>
+<span class="line"><span style="color: #F8F8F2">            firstName: </span><span style="color: #E6DB74">&#39;kyrie&#39;</span><span style="color: #F8F8F2">,</span></span>
+<span class="line"><span style="color: #F8F8F2">            lastName: </span><span style="color: #E6DB74">&#39;irving&#39;</span></span>
+<span class="line"><span style="color: #F8F8F2">          }</span></span>
+<span class="line"><span style="color: #F8F8F2">        ])</span></span>
+<span class="line"><span style="color: #F8F8F2">      })</span></span>
+<span class="line"><span style="color: #F8F8F2">      </span><span style="color: #F92672">return</span><span style="color: #F8F8F2"> middlewares</span></span>
+<span class="line"><span style="color: #F8F8F2">    },</span></span>
+<span class="line"><span style="color: #F8F8F2">    static: path.</span><span style="color: #A6E22E">resolve</span><span style="color: #F8F8F2">(__dirname, </span><span style="color: #E6DB74">&#39;dist&#39;</span><span style="color: #F8F8F2">) </span><span style="color: #88846F">// 从目录提供静态文件</span></span>
+<span class="line"><span style="color: #F8F8F2">  }</span></span>
+<span class="line"><span style="color: #F8F8F2">}</span></span>
+<span class="line"></span></code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="开发环境和生产环境" tabindex="-1"><a class="header-anchor" href="#开发环境和生产环境" aria-hidden="true">#</a> 开发环境和生产环境</h2>
 <p>开发环境和生产环境下的构建目标不同, 可以将某些在production和development环境下的通用配置提取出来,
 然后分别为不同环境下写彼此独立的webpack配置. 使用webpack-merge工具 将不同环境下的配置合并。</p>
 <p>以下配置是针对上述知识点做的一个demo</p>

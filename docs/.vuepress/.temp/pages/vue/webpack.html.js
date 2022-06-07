@@ -175,6 +175,18 @@ export const data = {
     },
     {
       "level": 2,
+      "title": "Resolve",
+      "slug": "resolve",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "DevServer",
+      "slug": "devserver",
+      "children": []
+    },
+    {
+      "level": 2,
       "title": "开发环境和生产环境",
       "slug": "开发环境和生产环境",
       "children": []

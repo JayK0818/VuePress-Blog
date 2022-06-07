@@ -1081,6 +1081,106 @@ new webpack.optimize.MinChunkSizePlugin({
   minChunkSize: 10000, // Minimum number of characters
 });
 ```
+## Resolve
+
+  这些选项能够设置模块如何被解析。
+
+1. alias
+
+  创建 import 或者 require 的别名, 来确保模块引入变得更简单
+```js
+// webpack.config.js
+const path = require('path')
+module.exports = {
+  // ...
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    }
+  }
+}
+```
+2. resolve.enforceExtension
+
+  如果是true, 将不允许无扩展名文件, 默认false
+
+3. extensions
+
+  尝试按顺序解析这些后缀名。如果有多个文件有相同的名字，但后缀名不同，webpack 会解析列在数组首位的后缀的文件 
+  并跳过其余的后缀。
+```js
+// webpack.config.js
+module.exports = {
+  // ...
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts'],
+    mainFiles: ['index'],  // 解析目录时要使用的文件名
+    // webpack解析模块时 应该搜索的目录
+    modules: [path.resolve(__dirname, 'src'), 'node_modules']
+  }
+}
+```
+  能够是用户在引入模块时不带扩展
+```js
+import { print } from './print'
+print('hello world')
+```
+
+## DevServer
+
+```js
+// webpack.config.js
+module.exports = {
+  devServer: {
+    allowHosts: [ // 允许访问开发服务器的白名单
+      'host.com'
+    ],
+    client: { // 出现编译错误或者警告时, 在浏览器中显示全屏覆盖
+      overlay: true,
+      progress: true,  //在浏览器中以百分比显示编译进度
+      reconnect: false,  // 应该尝试重新连接客户端的次数
+    },
+    compress: true,  // 启用gzip 压缩
+    historyApiFallback: true,
+    // When using the HTML5 History API, the index.html page will likely have to be
+    // served in place of any 404 responses.
+    host: '0.0.0.0',  // 主机
+    hot: true, // 启用热模块替换
+    open: true,  // 在服务器启动后打开浏览器
+    port: 8080,  // 服务启动的端口
+    proxy: {
+      // '/api': 'http://example.com'
+      // 如果需要重写路径
+      '/api': {
+        target: 'http://example.com',
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    },
+    proxy: [
+      {
+        context: ['/api', '/auth'],
+        target: 'http://example.com'  // 将多个特定路径代理到同一个目标
+      }
+    ],
+    // 提供自定义函数和中间件能力
+    setupMiddlewares: (middleware, devServer) => {
+      // js文件可以 通过请求这个接口 获取数据
+      devServer.app.get('/api/players', (_, response) => {
+        response.send([
+          {
+            firstName: 'kyrie',
+            lastName: 'irving'
+          }
+        ])
+      })
+      return middlewares
+    },
+    static: path.resolve(__dirname, 'dist') // 从目录提供静态文件
+  }
+}
+```
 
 ## 开发环境和生产环境
 

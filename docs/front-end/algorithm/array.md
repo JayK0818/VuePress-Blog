@@ -483,3 +483,198 @@ console.log(grey_code(4))
 // ['0000', '0001', '0011', '0010', '0110', '0111', '0101', '0100', '1100', '1101',
 // '1111', '1110', '1010', '1011', '1001', '1000']
 ```
+
+## 数组相邻元素差值
+
+```ts
+// 数组排序之后, 相邻元素之间最大的的差, 数组元素小于 2 输出 0
+function max(array: number []): number {
+  if(!array.length) return 0
+  if(array.length === 1) return 0
+  let number = Number.MIN_SAFE_INTEGER
+  array.sort((a,b) => a - b)
+  for(let i = 0, length = array.length - 1; i < length; i++) {
+    const next = array[i+1], prev = array[i]
+    if(next - prev > number) {
+      number = next - prev
+    }
+  }
+  return number
+}
+
+console.log(max([4, 5, 2, 1, 9])) // 4
+console.log(max([4, 10, 7, 3, 40, 50, 22])) // 18
+console.log(max([1, 9]))  // 8
+console.log(max([1])) // 0
+```
+  利用冒泡排序时, 每次找到最大值 排到数组末尾, 每次将找到的最大值 依次相减.
+```ts
+function max(array: number[]): number {
+  if(!array.length) return 0
+  if(array.length === 1) return 0
+  let number = Number.MIN_SAFE_INTEGER
+  for(let i = array.length - 1; i >= 0; i--) {
+    for(let j = 0; j < i; j++) {
+      const temp = array[j]
+      if(array[j+1] < temp) {
+        array[j] = array[j+1];
+        array[j+1] = temp;
+      }
+    }
+    // 第一次循环只能找到 一个最大值, 第二个找到第二大的值, 两者之差和number相比
+    if(i === array.length - 1) continue;
+    if(array[i+1] - array[i] > number) {
+      number = array[i+1] - array[i]
+    }
+  }
+  return number
+}
+console.log(max([4, 5, 2, 1, 9])) // 4
+console.log(max([4, 10, 7, 3, 40, 50, 22])) // 18
+console.log(max([1, 9]))  // 8
+console.log(max([1]))     // 0
+```
+## 奇偶排序
+
+  给定一个偶数长度的数组, 数组元素按奇偶排序, 并且保证array[i] 为奇数时, i也为奇数
+
+```ts
+function sort(array: number[]): number[] {
+  const even_array = array.filter(item => item%2 === 0)
+  const odd_array = array.filter(item => item%2 !== 0)
+  const temp = []
+  for(let i = 0; i < array.length / 2; i++) {
+    temp.push(even_array[i])
+    temp.push(odd_array[i])
+  }
+  return temp
+}
+
+console.log(sort([3, 5, 2, 4])) // [2, 3, 4, 5]
+console.log(sort([1, 3, 5, 2, 4, 6])) // [2, 1, 4, 3, 6, 5]
+```
+  利用两个索引值, 分别表示 奇数位置 和 偶数位置 下标
+```ts
+function sort(array: number[]): number[] {
+  let odd_index = 1, even_index = 0, temp: number[] = [];
+  array.forEach(item => {
+    if(item % 2 === 0) {
+      temp[even_index] = item
+      even_index += 2
+    } else {
+      temp[odd_index] = item;
+      odd_index += 2
+    }
+  })
+  return temp
+}
+console.log(sort([3, 5, 2, 4]))       // [2, 3, 4, 5]
+console.log(sort([1, 3, 5, 2, 4, 6])) // [2, 1, 4, 3, 6, 5]
+```
+## 数组第k大的元素
+
+```ts
+// 先将数组从大到小排序, 然后直接取出 k-1 个值
+function max_number(array: number[], k: number): number {
+  if(k <= 0) return 0
+  return array.sort((a,b) => b - a)[k-1]
+}
+
+console.log(max_number([3, 6, 10, 20, 17, 100], 2)) // 20
+console.log(max_number([3, 6, 10, 20, 17, 100], 1)) // 100
+console.log(max_number([3, 6, 10, 20, 17, 100], 6)) //  3
+
+
+// ----- 利用冒泡排序, 每次排序找到的是最大值 -------
+function max_number_2(array: number[], n: number): number {
+  if(n > array.length) return 0
+  let max:number = 0
+  for(let i = array.length - 1; i >= 0; i--) {
+    for(let k = 0; k < i; k++) {
+      const tmp = array[k]
+      if(tmp > array[k+1]) {
+        array[k] = array[k+1]
+        array[k+1] = tmp
+      }
+    }
+    if((array.length - n) === i) {
+      max = array[array.length - n]
+      break;
+    }
+  }
+  return max
+}
+console.log(max_number_2([3, 6, 10, 20, 17, 100], 2)) // 20
+console.log(max_number_2([3, 6, 10, 20, 17, 100], 1)) // 100
+console.log(max_number([3, 6, 10, 20, 17, 100], 6))   //  3
+
+
+// ---- 或者调整一个 控制循环次数的 条件-------
+function max_number_3(array: number[], n: number): number {
+  const length = array.length - 1
+  for(let i = length; i > length - n; i--) {
+    for(let k = 0; k < i; k++) {
+      const tmp = array[k]
+      if(array[k+1] < tmp) {
+        array[k] = array[k+1]
+        array[k+1] = tmp
+      }
+    }
+  }
+  return array[length-(n-1)]
+}
+console.log(max_number_3([3, 6, 10, 20, 17, 100], 2)) // 20
+console.log(max_number_3([3, 6, 10, 20, 17, 100], 1)) // 100
+console.log(max_number_3([3, 6, 10, 20, 17, 100], 6))   //  3
+```
+
+## 缺失的第一个正数
+
+  给定一个未排序的整数数组, 找出其中没有出现的最小的正整数。
+1. [1, 2, 0] ===> 3
+2. [3, 4, -1, 1] ===> 2
+
+```ts
+function lack(array: number[]): number {
+  const temp = array.slice().filter(item => item > 0) // 先过滤出正整数
+  if(!temp.length) return 1
+  temp.sort((a,b) => a - b) // 从小到大排序
+  for(let i = 0, length = temp.length - 1; i < length; i++) {
+    if(temp[i+1] - temp[i] !== 1) {
+      return temp[i] + 1
+    }
+  }
+  return temp[temp.length-1] + 1
+}
+
+console.log(lack([1, 2, 0]))  // 3
+console.log(lack([3, 4, -1, 1]))  // 2
+console.log(lack([-1, -2, 5, 2, 3, 1]))  // 4
+```
+  利用选择排序, 每次选择的是一个最小的数值, 至少找到两个最小值时, 开始计算两个数是否为连续的数字
+```ts
+function lack_2(array: number[]): number {
+  const temp = array.slice().filter(item => item > 0)
+  for(let i = 0, length = temp.length; i < length; i++) {
+    let min = temp[i]
+    for(let j = i+1 ; j < temp.length; j++) {
+      if(temp[j] < min) {
+        let c = min
+        min = temp[j]
+        temp[j] = c
+      }
+    }
+    temp[i] = min
+    if(i > 0) { // 至少遍历两个最小值, 求出是否是连续的
+      if(temp[i] - temp[i-1] !== 1) return temp[i-1] + 1
+    } else {
+      if(temp[i] !== 1) return 1
+    }
+  }
+  return temp.length ? temp[temp.length-1] + 1 : 1
+}
+console.log(lack_2([1, 2, 0]))             // 3
+console.log(lack_2([3, 4, -1, 1]))         // 2
+console.log(lack_2([-1, -2, 5, 2, 3, 1]))  // 4
+console.log(lack_2([2, 3, 4, 5]))          // 1
+```

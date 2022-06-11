@@ -111,7 +111,6 @@ class SleepMan {
   sleep(time) {
     const task = () => {
       setTimeout(() => {
-        console.log('sleep')
         this.next()
       },time * 1000)
     }

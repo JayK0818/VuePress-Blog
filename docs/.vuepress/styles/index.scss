@@ -26,11 +26,6 @@ ul.sidebar-items{
   --sidebar-width: 18rem;
   --content-width: 980px;
 }
-
-.vue-home{
-  .theme-default-content{
-    padding: 0;
-    margin: 0;
-  }
+.toggle-dark-button{
+  display: none;
 }
-

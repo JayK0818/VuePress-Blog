@@ -87,15 +87,16 @@ export const themeData = {
           "/front-end/algorithm/array",
           "/front-end/algorithm/string",
           "/front-end/algorithm/list",
-          "/front-end/algorithm/tree"
+          "/front-end/algorithm/tree",
+          "/front-end/algorithm/other"
         ]
       }
     ],
     "/node/": [
       {
-        "title": "Node",
+        "text": " Util",
         "children": [
-          "/node/node_module"
+          "/node/util/tapable"
         ]
       }
     ],

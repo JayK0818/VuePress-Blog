@@ -2,12 +2,12 @@ import { Vuepress } from '@vuepress/client'
 
 const routeItems = [
   ["v-8daa1a0e","/",{"title":""},["/index.html","/README.md"]],
+  ["v-1be64244","/node/node_module.html",{"title":"常用npm包"},["/node/node_module","/node/node_module.md"]],
+  ["v-15051314","/node/",{"title":"常用的Node包"},["/node/index.html","/node/README.md"]],
   ["v-14918cba","/react/concept.html",{"title":"Redux"},["/react/concept","/react/concept.md"]],
   ["v-d762745a","/react/context.html",{"title":"Context"},["/react/context","/react/context.md"]],
   ["v-0a4aa4a4","/react/create-react-app.html",{"title":"create-react-app"},["/react/create-react-app","/react/create-react-app.md"]],
   ["v-8c683810","/react/react-performance-optimization.html",{"title":"React性能优化"},["/react/react-performance-optimization","/react/react-performance-optimization.md"]],
-  ["v-15051314","/node/",{"title":"常用的Node包"},["/node/index.html","/node/README.md"]],
-  ["v-1be64244","/node/node_module.html",{"title":"常用npm包"},["/node/node_module","/node/node_module.md"]],
   ["v-2f769766","/vue/data-transfer.html",{"title":"组件通信"},["/vue/data-transfer","/vue/data-transfer.md"]],
   ["v-3c367b94","/vue/entry-and-version.html",{"title":"Vue构建版本和打包入口"},["/vue/entry-and-version","/vue/entry-and-version.md"]],
   ["v-ec241072","/vue/global-api.html",{"title":"GlobalApi"},["/vue/global-api","/vue/global-api.md"]],
@@ -19,7 +19,6 @@ const routeItems = [
   ["v-4493bb0c","/front-end/algorithm/other.html",{"title":"其他"},["/front-end/algorithm/other","/front-end/algorithm/other.md"]],
   ["v-2146a2d7","/front-end/algorithm/string.html",{"title":"字符串"},["/front-end/algorithm/string","/front-end/algorithm/string.md"]],
   ["v-3853cf2a","/front-end/algorithm/tree.html",{"title":"树"},["/front-end/algorithm/tree","/front-end/algorithm/tree.md"]],
-  ["v-3ca30831","/front-end/javascript/",{"title":"ECMAScript"},["/front-end/javascript/index.html","/front-end/javascript/README.md"]],
   ["v-643a81a8","/front-end/javascript/ajax.html",{"title":"Ajax"},["/front-end/javascript/ajax","/front-end/javascript/ajax.md"]],
   ["v-4216bb6c","/front-end/javascript/bom.html",{"title":"BOM"},["/front-end/javascript/bom","/front-end/javascript/bom.md"]],
   ["v-290ef9ab","/front-end/javascript/code-snippet.html",{"title":"代码片段"},["/front-end/javascript/code-snippet","/front-end/javascript/code-snippet.md"]],
@@ -37,6 +36,7 @@ const routeItems = [
   ["v-7160a306","/front-end/javascript/node.html",{"title":"Node"},["/front-end/javascript/node","/front-end/javascript/node.md"]],
   ["v-46d06c29","/front-end/javascript/object.html",{"title":"Object"},["/front-end/javascript/object","/front-end/javascript/object.md"]],
   ["v-345d7162","/front-end/javascript/promise.html",{"title":"Promise"},["/front-end/javascript/promise","/front-end/javascript/promise.md"]],
+  ["v-3ca30831","/front-end/javascript/",{"title":"ECMAScript"},["/front-end/javascript/index.html","/front-end/javascript/README.md"]],
   ["v-4c571f70","/front-end/javascript/scope-closure.html",{"title":"作用域和闭包"},["/front-end/javascript/scope-closure","/front-end/javascript/scope-closure.md"]],
   ["v-54e6bcea","/front-end/javascript/sort.html",{"title":"排序"},["/front-end/javascript/sort","/front-end/javascript/sort.md"]],
   ["v-343603ea","/front-end/javascript/this.html",{"title":"This"},["/front-end/javascript/this","/front-end/javascript/this.md"]],
@@ -48,6 +48,7 @@ const routeItems = [
   ["v-7db6c2e2","/front-end/typescript/type-manipulation.html",{"title":"Type Manipulation"},["/front-end/typescript/type-manipulation","/front-end/typescript/type-manipulation.md"]],
   ["v-059d78d9","/front-end/typescript/types.html",{"title":"Types"},["/front-end/typescript/types","/front-end/typescript/types.md"]],
   ["v-2fed1fc5","/front-end/typescript/utility-type.html",{"title":"Utility Types"},["/front-end/typescript/utility-type","/front-end/typescript/utility-type.md"]],
+  ["v-3e823056","/node/util/tapable.html",{"title":"Tapable"},["/node/util/tapable","/node/util/tapable.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
 ]
 

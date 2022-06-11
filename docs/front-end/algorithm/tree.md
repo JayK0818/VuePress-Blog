@@ -1,5 +1,80 @@
 # 树
 
+## 数组转化树
+
+```ts
+interface Tree {
+  value: number
+  left?: Tree,
+  right?: Tree
+}
+
+function create_tree(array: number[]): Tree {
+  if(array.length === 0) return { value: 0}
+  const tree_node: Tree = {value: array.shift()} // 根节点
+  const root: Tree[] = [tree_node]
+  while(array.length > 0) {
+    // 每次取出来的时候 当前对象都是上一个对象的 left 或者 right 节点
+    const node = root.shift()
+    if(!array.length) break
+    const left = {
+      value: array.shift()
+    }
+    node.left = left
+    // 左节点
+    root.push(left)
+    if(!array.length) break
+    const right = {
+      value: array.shift()
+    }
+    // 右节点
+    node.right = right
+    root.push(right)
+  }
+  return tree_node
+}
+console.log(create_tree[1, 2, 3, 4, 5, 6, 7])
+/*
+{
+  value: 1,
+  left: {
+    value: 2, 
+    left: { value: 4},
+    right: { value: 5}
+  },
+  right: {
+    value: 3,
+    left: {value: 6},
+    right: {value: 7}
+  }
+}
+*/
+```
+```js
+function create_tree(array) {
+  if(!array.length) return
+  const tree = [];
+  let root = null;  // 根节点
+  for(let i = 0, length = array.length; i < length; i++) {
+    const value = array[i]
+    const node = { value }  // 将所有节点用变量保存并添加进数组
+    tree.push(node)
+    if( i > 0) {
+      // 索引和 父节点之间的关系
+      const parent_node = tree[Math.floor((i-1) / 2)] // 父节点
+      if(!parent_node.left) {
+        parent_node.left = node
+      } else {
+        parent_node.right = node
+      }
+    } else {
+      root = node
+    }
+  }
+  return root
+}
+console.log(create_tree_2([1, 2, 3, 4, 5, 6, 7]))
+```
 ## 二叉树
 
   根据根节点在遍历时的位置 可以分为 前序遍历, 中序遍历, 后序遍历。
@@ -53,6 +128,3 @@ function back_tree_map(node: TreeNodeProps) {
 }
 back_tree_map(binary_tree)  // 3 4 2 6 7 5 1
 ```
-## 数组和二叉树
-
-![数组和二叉树](../images/heap.png)

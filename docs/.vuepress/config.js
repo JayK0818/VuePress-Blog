@@ -42,9 +42,10 @@ const side = {
     {
       text: 'CSS',
       children: [
-        '/front-end/css/display',
         '/front-end/css/box',
-        '/front-end/css/float'
+        '/front-end/css/float',
+        '/front-end/css/flex',
+        '/front-end/css/center'
       ]
     },
     {
@@ -139,10 +140,16 @@ module.exports = {
         VuePropFather: resolve('Vue', 'Prop', 'Father'),
         VueEmitFather: resolve('Vue', 'Emit', 'Father'),
         VueProvideFather: resolve('Vue', 'Provide', 'Father'),
-        CssFloat: resolve('CSS', 'Float','Float'),
-        CssFloatLayout: resolve('CSS', 'Float' ,'FloatLayout'),
-        CssFloatText: resolve('CSS', 'Float', 'FloatText'),
-        CssFloatSilence: resolve('CSS', 'Float', 'FloatSilence')
+        CssFloat: resolve('Css', 'Float','Float'),
+        CssFloatLayout: resolve('Css', 'Float' ,'FloatLayout'),
+        CssFloatText: resolve('Css', 'Float', 'FloatText'),
+        CssFloatSilence: resolve('Css', 'Float', 'FloatSilence'),
+        CssCenter: resolve('Css', 'Center', 'Center'),
+        CssRowCenter: resolve('Css', 'Center', 'RowCenter'),
+        CssFlex: resolve('Css', 'Center', 'Flex'),
+        CssFlexColumn: resolve('Css', 'Center', 'FlexColumn'),
+        CssFlexGroup: resolve('Css', 'Center', 'FlexGroup'),
+        CssStickyFooter: resolve('Css', 'Center', 'StickyFooter')
       }
     })
   ],

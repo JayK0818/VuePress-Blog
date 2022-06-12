@@ -45,9 +45,10 @@ export const themeData = {
       {
         "text": "CSS",
         "children": [
-          "/front-end/css/display",
           "/front-end/css/box",
-          "/front-end/css/float"
+          "/front-end/css/float",
+          "/front-end/css/flex",
+          "/front-end/css/center"
         ]
       },
       {

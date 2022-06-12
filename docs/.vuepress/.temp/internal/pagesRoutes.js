@@ -20,7 +20,8 @@ const routeItems = [
   ["v-2146a2d7","/front-end/algorithm/string.html",{"title":"字符串"},["/front-end/algorithm/string","/front-end/algorithm/string.md"]],
   ["v-3853cf2a","/front-end/algorithm/tree.html",{"title":"二叉树"},["/front-end/algorithm/tree","/front-end/algorithm/tree.md"]],
   ["v-638de28b","/front-end/css/box.html",{"title":"盒模型"},["/front-end/css/box","/front-end/css/box.md"]],
-  ["v-175ff374","/front-end/css/display.html",{"title":"display"},["/front-end/css/display","/front-end/css/display.md"]],
+  ["v-3da607e7","/front-end/css/center.html",{"title":"水平垂直居中"},["/front-end/css/center","/front-end/css/center.md"]],
+  ["v-94d3a0fa","/front-end/css/flex.html",{"title":"Flex"},["/front-end/css/flex","/front-end/css/flex.md"]],
   ["v-80ee854c","/front-end/css/float.html",{"title":"浮动"},["/front-end/css/float","/front-end/css/float.md"]],
   ["v-3ca30831","/front-end/javascript/",{"title":"ECMAScript"},["/front-end/javascript/index.html","/front-end/javascript/README.md"]],
   ["v-643a81a8","/front-end/javascript/ajax.html",{"title":"Ajax"},["/front-end/javascript/ajax","/front-end/javascript/ajax.md"]],
@@ -44,7 +45,6 @@ const routeItems = [
   ["v-54e6bcea","/front-end/javascript/sort.html",{"title":"排序"},["/front-end/javascript/sort","/front-end/javascript/sort.md"]],
   ["v-343603ea","/front-end/javascript/this.html",{"title":"This"},["/front-end/javascript/this","/front-end/javascript/this.md"]],
   ["v-6ea57cd7","/front-end/javascript/value-copy.html",{"title":"深拷贝与浅拷贝"},["/front-end/javascript/value-copy","/front-end/javascript/value-copy.md"]],
-  ["v-3e823056","/node/util/tapable.html",{"title":"Tapable"},["/node/util/tapable","/node/util/tapable.md"]],
   ["v-13a8ef3a","/front-end/typescript/class.html",{"title":"Class"},["/front-end/typescript/class","/front-end/typescript/class.md"]],
   ["v-1da56c88","/front-end/typescript/function.html",{"title":"Function"},["/front-end/typescript/function","/front-end/typescript/function.md"]],
   ["v-20fc5beb","/front-end/typescript/narrowing.html",{"title":"Narrowing"},["/front-end/typescript/narrowing","/front-end/typescript/narrowing.md"]],
@@ -52,6 +52,7 @@ const routeItems = [
   ["v-7db6c2e2","/front-end/typescript/type-manipulation.html",{"title":"Type Manipulation"},["/front-end/typescript/type-manipulation","/front-end/typescript/type-manipulation.md"]],
   ["v-059d78d9","/front-end/typescript/types.html",{"title":"Types"},["/front-end/typescript/types","/front-end/typescript/types.md"]],
   ["v-2fed1fc5","/front-end/typescript/utility-type.html",{"title":"Utility Types"},["/front-end/typescript/utility-type","/front-end/typescript/utility-type.md"]],
+  ["v-3e823056","/node/util/tapable.html",{"title":"Tapable"},["/node/util/tapable","/node/util/tapable.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
 ]
 

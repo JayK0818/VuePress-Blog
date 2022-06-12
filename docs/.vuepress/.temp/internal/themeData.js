@@ -43,6 +43,14 @@ export const themeData = {
     ],
     "/front-end/": [
       {
+        "text": "CSS",
+        "children": [
+          "/front-end/css/display",
+          "/front-end/css/box",
+          "/front-end/css/float"
+        ]
+      },
+      {
         "text": "JavaScript",
         "collapsable": false,
         "children": [

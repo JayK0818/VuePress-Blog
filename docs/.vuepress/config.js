@@ -40,6 +40,14 @@ const side = {
   ],
   front_end: [
     {
+      text: 'CSS',
+      children: [
+        '/front-end/css/display',
+        '/front-end/css/box',
+        '/front-end/css/float'
+      ]
+    },
+    {
       text: 'JavaScript',
       collapsable: false,
       children: [
@@ -130,7 +138,11 @@ module.exports = {
         JavaScriptScrollBottom: resolve('JavaScript', 'ScrollBottom'),
         VuePropFather: resolve('Vue', 'Prop', 'Father'),
         VueEmitFather: resolve('Vue', 'Emit', 'Father'),
-        VueProvideFather: resolve('Vue', 'Provide', 'Father')
+        VueProvideFather: resolve('Vue', 'Provide', 'Father'),
+        CssFloat: resolve('CSS', 'Float','Float'),
+        CssFloatLayout: resolve('CSS', 'Float' ,'FloatLayout'),
+        CssFloatText: resolve('CSS', 'Float', 'FloatText'),
+        CssFloatSilence: resolve('CSS', 'Float', 'FloatSilence')
       }
     })
   ],

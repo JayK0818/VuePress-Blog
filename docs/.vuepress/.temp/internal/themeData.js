@@ -48,6 +48,7 @@ export const themeData = {
           "/front-end/css/box",
           "/front-end/css/float",
           "/front-end/css/flex",
+          "/front-end/css/grid",
           "/front-end/css/center"
         ]
       },

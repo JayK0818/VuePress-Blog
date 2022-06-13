@@ -1,6 +1,6 @@
 {
   "hash": "4c11479f",
-  "browserHash": "d85284f0",
+  "browserHash": "185d8489",
   "optimized": {
     "@vue/devtools-api": {
       "src": "../../../../node_modules/_@vue_devtools-api@6.1.4@@vue/devtools-api/lib/esm/index.js",
@@ -54,12 +54,6 @@
       "src": "../../../../node_modules/_ant-design-vue@3.2.5@ant-design-vue/es/index.js",
       "file": "ant-design-vue.js",
       "fileHash": "aca1d70e",
-      "needsInterop": false
-    },
-    "mitt": {
-      "src": "../../../../node_modules/_mitt@3.0.0@mitt/dist/mitt.mjs",
-      "file": "mitt.js",
-      "fileHash": "9492e79e",
       "needsInterop": false
     },
     "ant-design-vue/es/select/style/css": {

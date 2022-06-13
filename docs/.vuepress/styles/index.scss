@@ -10,7 +10,7 @@ ol,ul{
     color: rgba(0,0,0,.85);
   }
 }
-h2{
+h2, h3, h4{
   margin-top: 10px!important;
 }
 p{
@@ -29,6 +29,10 @@ ul.sidebar-items{
   --sidebar-width: 18rem;
   --content-width: 980px;
 }
+.back-to-top {
+  --back-to-top-color: #8c8c8c;
+  --back-to-top-color-hover: #262626;
+}
 .toggle-dark-button{
   display: none;
 }
@@ -37,4 +41,12 @@ ul.sidebar-items{
     padding: 0;
     margin: 0;
   }
+}
+span.next, span.prev{
+  a{
+    color: #3eaf7c!important;
+  }
+}
+a.header-anchor{
+  color: #3eaf7c!important;
 }

@@ -45,7 +45,8 @@ const side = {
         '/front-end/css/box',
         '/front-end/css/float',
         '/front-end/css/flex',
-        '/front-end/css/center'
+        '/front-end/css/grid',
+        '/front-end/css/center',
       ]
     },
     {
@@ -149,7 +150,8 @@ module.exports = {
         CssFlex: resolve('Css', 'Center', 'Flex'),
         CssFlexColumn: resolve('Css', 'Center', 'FlexColumn'),
         CssFlexGroup: resolve('Css', 'Center', 'FlexGroup'),
-        CssStickyFooter: resolve('Css', 'Center', 'StickyFooter')
+        CssStickyFooter: resolve('Css', 'Center', 'StickyFooter'),
+        CssGridTemplate: resolve('Css', 'Grid', 'Template')
       }
     })
   ],

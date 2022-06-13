@@ -177,4 +177,42 @@ flex-basis 具有更高的优先级。
 
 ## sticky-footer
 
+  A sticky footer pattern is one where the footer of your page 'sticks' to the bottom of the viewport.
+  In case where the content is shorter than the viewport height.
+  If the content of the page extends past the viewport bottom, the footer then sits below the
+  content as normal.
+
+  下面是两种实现方式:
+
+```css
+/* flex  */
+.container{
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.container .body{
+  flex-grow: 1;
+}
+
+
+/* 利用padding-bottom 和 margin-top  */
+.clearfix-container{
+  min-height: 100%;
+  height: 600px;
+  padding-bottom: 30px;
+  &::after {
+    display: block;
+    content: ".";
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}
+.footer{
+  margin: -30px 0 0 auto;
+}
+/* 也可以通过绝对定位的方式 */
+```
+
 <Css-StickyFooter/>

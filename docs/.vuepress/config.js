@@ -151,7 +151,10 @@ module.exports = {
         CssFlexColumn: resolve('Css', 'Center', 'FlexColumn'),
         CssFlexGroup: resolve('Css', 'Center', 'FlexGroup'),
         CssStickyFooter: resolve('Css', 'Center', 'StickyFooter'),
-        CssGridTemplate: resolve('Css', 'Grid', 'Template')
+        CssGridTemplate: resolve('Css', 'Grid', 'Template'),
+        CssGridItems: resolve('Css', 'Grid', 'GridItems'),
+        CssGridContent: resolve('Css', 'Grid', 'GridContent'),
+        CssGridFlow: resolve('Css', 'Grid', 'GridFlow'),
       }
     })
   ],

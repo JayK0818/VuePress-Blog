@@ -1,6 +1,6 @@
 {
   "hash": "4c11479f",
-  "browserHash": "185d8489",
+  "browserHash": "40120203",
   "optimized": {
     "@vue/devtools-api": {
       "src": "../../../../node_modules/_@vue_devtools-api@6.1.4@@vue/devtools-api/lib/esm/index.js",
@@ -60,6 +60,12 @@
       "src": "../../../../node_modules/_ant-design-vue@3.2.5@ant-design-vue/es/select/style/css.js",
       "file": "ant-design-vue_es_select_style_css.js",
       "fileHash": "7bdf4da9",
+      "needsInterop": false
+    },
+    "ant-design-vue/es/checkbox/style/css": {
+      "src": "../../../../node_modules/_ant-design-vue@3.2.5@ant-design-vue/es/checkbox/style/css.js",
+      "file": "ant-design-vue_es_checkbox_style_css.js",
+      "fileHash": "92360a76",
       "needsInterop": false
     }
   },

@@ -124,5 +124,12 @@ export default defineComponent({
   grid-template-rows: repeat(3, 100px);
   border: 1px solid #e8e8e8;
   box-sizing: content-box;
+  .item{
+    text-align: center;
+    font-weight: bold;
+    text-align: center;
+    line-height: 100px;
+    font-size: 30px;
+  }
 }
 </style>

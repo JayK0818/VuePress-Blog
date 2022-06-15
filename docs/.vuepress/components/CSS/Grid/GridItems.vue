@@ -97,6 +97,10 @@ export default defineComponent({
   .item {
     width: 60px;
     height: 60px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 60px;
   }
 }
 .select-container{

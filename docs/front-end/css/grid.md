@@ -30,6 +30,8 @@
 .container {
   display: grid;
   grid-template-columns: repeat(auto-fill, 100px);
+  grid-template-columns: 100px repeat(5, 100px);
+  grid-template-columns: 100px minmax(100px, 1fr) 100px; /*中间的宽度自适应,最小100px*/
 }
 ```
 ## grid-template-areas/grid-area
@@ -38,6 +40,14 @@
   每行 由单引号内定义, 以空格分隔。 . 号表示没有名称的网格项。
 
   grid-area 使用在 grid-template-areas 定义布局的名字, 相同的部分将会合并。
+
+  grid-area 属性指定网格元素在网格布局中的大小和位置, 是以下属性的简写属性:
+
+1. grid-row-start
+2. grid-row-end
+3. grid-column-start
+4. grid-column-end
+
 ```css
 .grid-example {
   display: grid;
@@ -61,6 +71,25 @@
   grid-area: c;
   background-color: orange;
 }
+
+/* 从第2行和第1列开始, 横跨2行3列 */
+.item {
+  grid-area: 2 / 1 / span 2 / span 3
+}
+
+/* 栅格布局 */
+.col-1 {
+  grid-area: auto / auto / auto / auto / span 1;
+}
+.col-2 {
+  grid-area: auto / auto / auto / auto / span 2;
+}
+.col-3 {
+  grid-area: auto / auto / auto / auto / span 3;
+}
+/*
+...
+*/
 ```
 ## column-gap/row-gap
 
@@ -157,7 +186,7 @@ dense 关键字指定 自动布局算法使用一种 '稠密' 堆积算法, 如�
 ## justify-self/align-self
 
   justify-self 和 align-self 属性设置单元格内容的水平位置 和 justify-items/align-items属性的用法完全一致, 但只作用于单个项目。
-  
+
 ```css
 .item {
   justify-self: start | end | center | stretch;

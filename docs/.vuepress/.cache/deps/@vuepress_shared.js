@@ -2,19 +2,10 @@ import {
   isArray,
   isFunction,
   isString
-} from "./chunk-6XDEX5A4.js";
-import {
-  init_define_EXTERNAL_LINK_ICON_LOCALES,
-  init_define_MZ_ZOOM_OPTIONS
-} from "./chunk-GKUGKL7A.js";
-
-// dep:@vuepress_shared
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-init_define_MZ_ZOOM_OPTIONS();
+} from "./chunk-BVKGIXQL.js";
+import "./chunk-AALNWKDH.js";
 
 // node_modules/_@vuepress_shared@2.0.0-beta.46@@vuepress/shared/dist/index.js
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-init_define_MZ_ZOOM_OPTIONS();
 var resolveHeadIdentifier = ([
   tag,
   attrs,

@@ -97,3 +97,59 @@ function format2(money: number): number | string {
 const number = 1234567678
 console.log(format2(number)) // 1,234,567,678
 ```
+
+## 判断对象是否具有属性
+
+### in运算符
+
+```js
+const player = {firstName: 'kyrie', lastName: 'irving'}
+console.log('firstName' in player)  // true
+console.log('age' in player)        // false
+
+// in运算符也可以访问对象原型上的属性
+console.log( 'toString' in player)  // true
+```
+### Reflect.has()
+
+  语法: Reflect.has(object, property)
+```js
+console.log(Reflect.has(player, 'firstName')) // true
+console.log(Reflect.has(player, 'age'))       // false
+```
+
+### hasOwnProperty
+
+  语法: object.hasOwnProperty(property)
+```js
+console.log(player.hasOwnProperty('firstName')) // true
+console.log(player.hasOwnProperty('age'))       // false
+```
+  这个写法会有一个缺点, 就是如果对象是使用Object.create(null)创建的话, 直接在对象上调用这个方法会报错
+```js
+const player = Object.create(null, {
+  firstName: {
+    value: 'kyrie',
+    writable: true,
+    enumerable: true,
+    configurable: true
+  },
+  lastName: {
+    value: 'irving',
+    writable: true,
+    enumerable: true,
+    configurable: true
+  }
+})
+//  player.hasOwnProperty is not a function  报错
+
+// Object.prototype.hasOwnProperty.call(obj, property) 可以这么调用
+console.log(Object.prototype.hasOwnProperty.call(player, 'firstName'))  // true
+```
+### Object.hasOwn
+
+  ES2022中一个新的方法, 如果对象中存在某个执行属性则返回true, 如果不存在 或者出现出现在原型上 则返回false.
+```js
+console.log(Object.hasOwn(player, 'firstName')) // true
+console.log(Object.hasOwn(player, 'age'))  // false
+```

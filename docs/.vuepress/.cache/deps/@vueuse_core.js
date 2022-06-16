@@ -3,7 +3,7 @@ import {
   isVue2,
   isVue3,
   set
-} from "./chunk-UXCVAHMQ.js";
+} from "./chunk-VCBTCJNU.js";
 import {
   computed,
   customRef,
@@ -31,11 +31,24 @@ import {
   unref,
   watch,
   watchEffect
-} from "./chunk-NIZK5GOI.js";
-import "./chunk-BVKGIXQL.js";
-import "./chunk-AALNWKDH.js";
+} from "./chunk-RIQ4F2C5.js";
+import "./chunk-6XDEX5A4.js";
+import {
+  init_define_EXTERNAL_LINK_ICON_LOCALES,
+  init_define_MZ_ZOOM_OPTIONS
+} from "./chunk-GKUGKL7A.js";
+
+// dep:@vueuse_core
+init_define_EXTERNAL_LINK_ICON_LOCALES();
+init_define_MZ_ZOOM_OPTIONS();
+
+// node_modules/_@vueuse_core@8.6.0@@vueuse/core/index.mjs
+init_define_EXTERNAL_LINK_ICON_LOCALES();
+init_define_MZ_ZOOM_OPTIONS();
 
 // node_modules/_@vueuse_shared@8.6.0@@vueuse/shared/index.mjs
+init_define_EXTERNAL_LINK_ICON_LOCALES();
+init_define_MZ_ZOOM_OPTIONS();
 var __defProp$8 = Object.defineProperty;
 var __defProps$5 = Object.defineProperties;
 var __getOwnPropDescs$5 = Object.getOwnPropertyDescriptors;

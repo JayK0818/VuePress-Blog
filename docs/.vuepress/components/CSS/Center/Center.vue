@@ -28,13 +28,14 @@ export default defineComponent({
   justify-content: space-between;
 }
 .center{
-  width: 160px;
-  height: 160px;
+  flex: 1;
+  margin:0 5px;
+  height: 8rem;
   border: 1px solid #d9d9d9;
 }
 .box{
-  width: 100px;
-  height: 100px;
+  width: 3rem;
+  height: 3rem;
 }
 .box1{
   background-color:#f50;

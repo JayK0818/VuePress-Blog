@@ -21,7 +21,7 @@ export default defineComponent({
 .container{
   height: 300px;
   border: 1px solid #d9d9d9;
-  padding: 5px 10px;
+  padding: 4px 8px;
   overflow: auto;
   .title{
     font-weight: bold;
@@ -29,8 +29,8 @@ export default defineComponent({
     color: #000;
   }
   img{
-    margin-right: 10px;
-    width: 240px;
+    margin-right: 1rem;
+    width: 12rem;
     float: left;
   }
   .text{

@@ -16,6 +16,7 @@ export default defineComponent({
 <style lang='scss' scoped>
 .float-layout-container{
   height: 200px;
+  overflow:hidden;
   &:after{
     content: '';
     display: block;
@@ -23,19 +24,20 @@ export default defineComponent({
   }
   .left{
     float: left;
-    width: 120px;
+    width: 6rem;
     height: 100%;
     background-color: skyblue;
   }
   .right{
     float: right;
-    width: 100px;
+    width: 6rem;
     height: 100%;
     background-color: orange;
   }
   .middle{
     background-color: pink;
     width: auto;
+    min-width:5rem;
     height: 100%;
   }
 }

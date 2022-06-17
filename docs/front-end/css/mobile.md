@@ -18,3 +18,96 @@
 4. maximum-scale:  定义缩放的最大值
 5. minimum-scale:  定义缩放的最小值
 6. user-scalable:  如果设置为no,用户将不能放大或缩小网页。
+
+
+## 媒体查询
+
+  使用@media, 可以针对不同的媒体类型定义不同的样式。@media可以针对不同的屏幕尺寸设置不同的样式。
+```js
+@media screen and (max-width: 300px) {
+  body {
+    background-color: skyblue;
+  }
+}
+```
+
+  媒体类型:
+1. all 用于所有设备
+2. print 用于打印机和打印预览
+3. screen 用于电脑屏幕, 平板电脑 智能手机等
+4. speech 用于屏幕阅读器等发声设备
+
+  媒体功能:
+1. device-height / device-width
+2. height / width
+3. max-device-height / max-device-width
+4. max-resolution / min-resolution
+5. max-width / max-height
+6. resolution
+
+## 固定宽度布局
+
+  假定设计稿的宽度为750px, 根据设备的分辨率将设计稿进行缩放 装载进 屏幕
+
+```js
+function setSize(w = window.screen.width) {
+  const meta = document.querySelector('meta[name="viewport"]');
+  const designWidth = 750;
+  const scale = (w / designWidth).toFixed(5)
+  if(meta) {
+    meta.setAttribute('content', 
+    `width=${designWidth}, initial-scale=${scale}, 
+    maximum-scale=${scale},minimum-scale=${scale},user-scalable=no`
+  )
+  }else {
+    const meta = document.createElement('meta')
+    meta.setAttribute('name', 'viewport')
+    meta.setAttribute('content', 
+      `width=${designWidth}, initial-scale=${scale}, maximum-scale=${scale},
+      minimum-scale=${scale},user-scalable=no`
+    )
+    document.head.append(meta)
+  }
+}
+setSize()
+window.addEventListener('orientationchange', () => {
+  const deg = window.orientation
+  if(deg === 90 || deg === -90) { // 横屏
+    const w = window.screen.height;
+    setSize(w)
+  }
+  if(deg === 0 || deg === 180) { // 数屏
+    const w = window.screen.width
+    setSize(w)
+  }
+}, false)
+```
+## rem布局
+
+  rem 是CSS3新增的一个相对单位。使用rem为元素设定字体大小时, 相对html根元素的font-size。
+
+:::tip
+rm是相对长度单位,相对于当前对象内文本的字体尺寸。如果当前元素没有设置字体尺寸, 则相对于腹肌元素的字体大小。
+:::
+
+```js
+// 假定设计稿的宽度为750px, 此时以html的font-size为100px 作为基准, 计算在不同设备下
+// html的font-size
+(function(window,document) {
+  function refresh() {
+    const oHtml = document.querySelector('html');
+    const oWidth = oHtml.getBoundingClientRect().width || window.screen.width;
+    const baseWidth = 750;  // 设计稿的宽度
+    const baseFontSize = 100;   // 750设计稿的宽度下，以根元素的字体大小为100px;
+    oHtml.style.fontSize = (baseFontSize / (baseWidth/oWidth)) + 'px';
+  }
+  const resizeEvent = 'orientationchange' in window ? 'orientation' : 'resize';
+  window.addEventListener(resizeEvent, refresh, false);
+  // document.addEventListener('DOMContentLoaded',refresh,false);
+  document.addEventListener('readystatechange',() => {
+    if(document.readyState === "interactive"){
+      refresh()
+    }
+  },false);
+})(window,document)
+```

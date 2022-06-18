@@ -19,17 +19,9 @@
 5. minimum-scale:  定义缩放的最小值
 6. user-scalable:  如果设置为no,用户将不能放大或缩小网页。
 
-
 ## 媒体查询
 
   使用@media, 可以针对不同的媒体类型定义不同的样式。@media可以针对不同的屏幕尺寸设置不同的样式。
-```js
-@media screen and (max-width: 300px) {
-  body {
-    background-color: skyblue;
-  }
-}
-```
 
   媒体类型:
 1. all 用于所有设备
@@ -44,7 +36,30 @@
 4. max-resolution / min-resolution
 5. max-width / max-height
 6. resolution
+7. orientation
 
+```css
+/* 横屏 */
+@media (orientation: landscape) {
+  body {
+    background: pink;
+  }
+}
+/* 竖屏 */
+@media (orientation: portrait) {
+  body {
+    background: skyblue;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  body {
+    background-color: skyblue;
+  }
+}
+```
+  移动端 -> PC端的适配原则： min-width从小到大
+  PC端 -> 移动端适配原则： max-width从大到小  
 ## 固定宽度布局
 
   假定设计稿的宽度为750px, 根据设备的分辨率将设计稿进行缩放 装载进 屏幕
@@ -110,4 +125,34 @@ rm是相对长度单位,相对于当前对象内文本的字体尺寸。如果�
     }
   },false);
 })(window,document)
+```
+
+## vw
+
+  vm就是视口的宽度, 把屏幕均分为100份。 1vw = 1 / 100 屏幕的宽度。
+  在750px的设计稿下, 1vw 就是 7.5px。
+```css
+.box{
+  width: 10vw;
+  height: 10vw;
+}
+```
+
+## 阈值设定
+
+1. extra small < 576px
+2. small >= 576px
+3. medium >= 768px
+4. large >= 992px
+5. x-large >= 1200px
+6. extra-large >= 1400px
+```css
+@media screen and (min-width: 576px) {
+  .col-2 {
+    width: 5%;
+  }
+  .sm-hidden {
+    display: none;
+  }
+}
 ```

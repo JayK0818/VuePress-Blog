@@ -50,7 +50,10 @@ export const themeData = {
           "/front-end/css/flex",
           "/front-end/css/grid",
           "/front-end/css/center",
-          "/front-end/css/mobile"
+          "/front-end/css/mobile",
+          "/front-end/css/bfc",
+          "/front-end/css/pseudo",
+          "/front-end/css/other"
         ]
       },
       {

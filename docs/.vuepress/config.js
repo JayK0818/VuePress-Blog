@@ -47,7 +47,10 @@ const side = {
         '/front-end/css/flex',
         '/front-end/css/grid',
         '/front-end/css/center',
-        '/front-end/css/mobile'
+        '/front-end/css/mobile',
+        '/front-end/css/bfc',
+        '/front-end/css/pseudo',
+        '/front-end/css/other'
       ]
     },
     {
@@ -156,6 +159,7 @@ module.exports = {
         CssGridItems: resolve('Css', 'Grid', 'GridItems'),
         CssGridContent: resolve('Css', 'Grid', 'GridContent'),
         CssGridFlow: resolve('Css', 'Grid', 'GridFlow'),
+        CssPseudoBefore: resolve('Css', 'Pseudo', 'Before')
       }
     })
   ],

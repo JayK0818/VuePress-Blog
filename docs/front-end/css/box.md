@@ -92,3 +92,18 @@ margin 可以设置为负数, 但是padding不可以
   inherit: 继承父元素的属性
   initial: 初始值
   unset:  混合了inherit 和 initial, 如果该属性可以继承, 则等同于inherit,否则等同于 initial
+
+```css
+/* 自定义滚动条 */
+.box::-webkit-scrollbar{
+  width: 6px;
+  height: 6px;
+}
+.box::-webkit-scrollbar-thumb{
+  background: #51606d;
+  border-radius: 3px;
+}
+.box::-webkit-scrollbar-track {
+  background: #263849;
+}
+```

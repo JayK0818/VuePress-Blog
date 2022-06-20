@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a-button type='primary' @click='open_dialog_1' size='small'>click me</a-button>
-    <a-button type='primary' @click='open_dialog_2' style='margin-left:10px;' size='small'>click me</a-button>
+    <n-button type='primary' @click='open_dialog_1' size='small'>click me</n-button>
+    <n-button type='primary' @click='open_dialog_2' style='margin-left:10px;' size='small'>click me</n-button>
   </div>
   <teleport to='body' v-if='visible'>
     <div class='wrapper'>
@@ -9,8 +9,8 @@
         <div class="header">这是一个弹窗</div>
         <div class="body">爱情来得很快,只是需要等待</div>
         <div class="footer">
-          <a-button type='danger' @click='close_modal' size='small'>取消</a-button>
-          <a-button type='primary' style='margin-left:10px;' size='small'>确认</a-button>
+          <n-button type='error' @click='close_modal' size='small'>取消</n-button>
+          <n-button type='primary' style='margin-left:10px;' size='small'>确认</n-button>
         </div>
       </div>
     </div>
@@ -18,7 +18,7 @@
 </template>
 
 <script lang='ts'>
-import { Button } from 'ant-design-vue'
+import { NButton } from 'naive-ui'
 // --------判断页面是否有滚动条------
 function hasScrollbar() {
   return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight)
@@ -36,7 +36,7 @@ function getScrollBarWidth() {
 import { defineComponent, ref } from 'vue'
 export default defineComponent({
   components: {
-    [Button.name]: Button
+    [NButton.name]: NButton
   },
   setup() {
     const visible = ref<boolean>(false)

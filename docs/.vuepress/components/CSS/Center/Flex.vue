@@ -1,18 +1,18 @@
 <template>
   <div class='container'>
-    <span class="title">Flex-Direction</span><a-select :options='directions' v-model:value='direction' style='width: 200px;'/>
+    <n-select :options='directions' v-model:value='direction' class='select'/>
     <div class="flex-container" :style='direction_style'>
       <div v-for='i in 3' class='item' :key='i'>{{i}}</div>
     </div>
   </div>
   <div class="container">
-    <span class="title">Align-Items</span><a-select :options='justifys' v-model:value='justify' style='width: 200px;'/>
+    <n-select :options='justifys' v-model:value='justify' class='select'/>
     <div class="flex-container" :style='justify_style'>
       <div v-for='i in 3' class='item' :key='i'>{{i}}</div>
     </div>
   </div>
   <div class="container">
-    <span class="title">Align-Content</span><a-select :options='items' v-model:value='item' style='width: 200px;'/>
+    <n-select :options='items' v-model:value='item' class='select'/>
     <div class="flex-container items-container" :style='item_style'>
       <div class="item item1">1</div>
       <div class="item item2">2</div>
@@ -23,7 +23,7 @@
 
 <script lang='ts'>
 import { defineComponent, ref, computed } from 'vue'
-import { Select } from 'ant-design-vue'
+import { NSelect } from 'naive-ui'
 
 interface SelectOption {
   label: string
@@ -32,6 +32,9 @@ interface SelectOption {
 }
 
 export default defineComponent({
+  components: {
+    [NSelect.name]: NSelect
+  },
   setup () {
     const direction = ref<number>(1)
     const directions = ref<SelectOption[]>([
@@ -144,10 +147,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .container{
   padding: 15px 0;
-  .title{
-    display: inline-block;
-    color:#000;
-    width: 100px;
+  .select{
+    width: 300px;
   }
 }
 .flex-container{
@@ -158,22 +159,29 @@ export default defineComponent({
 }
 .item{
   margin: 0 5px 0 0;
-  width: 60px;
-  height: 60px;
+  width: 4rem;
+  height: 4rem;
   background-color: #2db7f5;
   text-align: center;
   line-height: 60px;
   color: #fff;
 }
 .items-container{
-  height: 150px;
+  height: 8rem;
   .item1{
-    height: 40px;
-    line-height: 40px;
+    height: 2rem;
+    line-height: 2rem;
   }
   .item3{
-    height: 80px;
-    line-height: 80px;
+    height: 3rem;
+    line-height: 3rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    .select{
+      width: 100%;
+    }
   }
 }
 </style>

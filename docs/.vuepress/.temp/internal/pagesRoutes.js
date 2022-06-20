@@ -1,6 +1,4 @@
-import { Vuepress } from '@vuepress/client'
-
-const routeItems = [
+export const pagesRoutes = [
   ["v-8daa1a0e","/",{"title":""},["/index.html","/README.md"]],
   ["v-14918cba","/react/concept.html",{"title":"Redux"},["/react/concept","/react/concept.md"]],
   ["v-d762745a","/react/context.html",{"title":"Context"},["/react/context","/react/context.md"]],
@@ -36,7 +34,7 @@ const routeItems = [
   ["v-71f0205d","/front-end/javascript/constructor-function.html",{"title":"构造函数"},["/front-end/javascript/constructor-function","/front-end/javascript/constructor-function.md"]],
   ["v-7f2d98dc","/front-end/javascript/debounce-throttle.html",{"title":"函数防抖与函数截流"},["/front-end/javascript/debounce-throttle","/front-end/javascript/debounce-throttle.md"]],
   ["v-0aed33e4","/front-end/javascript/element.html",{"title":"Element"},["/front-end/javascript/element","/front-end/javascript/element.md"]],
-  ["v-2b98c520","/front-end/javascript/event.html",{"title":"事件"},["/front-end/javascript/event","/front-end/javascript/event.md"]],
+  ["v-2b98c520","/front-end/javascript/event.html",{"title":"Event"},["/front-end/javascript/event","/front-end/javascript/event.md"]],
   ["v-7c76c560","/front-end/javascript/fetch.html",{"title":"Fetch"},["/front-end/javascript/fetch","/front-end/javascript/fetch.md"]],
   ["v-3dc8b848","/front-end/javascript/high-order-function.html",{"title":"高阶函数"},["/front-end/javascript/high-order-function","/front-end/javascript/high-order-function.md"]],
   ["v-f18e0cc0","/front-end/javascript/javascript-new-features.html",{"title":"ECMAScript新特性"},["/front-end/javascript/javascript-new-features","/front-end/javascript/javascript-new-features.md"]],
@@ -60,28 +58,3 @@ const routeItems = [
   ["v-3e823056","/node/util/tapable.html",{"title":"Tapable"},["/node/util/tapable","/node/util/tapable.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
 ]
-
-export const pagesRoutes = routeItems.reduce(
-  (result, [name, path, meta, redirects]) => {
-    result.push(
-      {
-        name,
-        path,
-        component: Vuepress,
-        meta,
-      },
-      ...redirects.map((item) => ({
-        path: item,
-        redirect: path,
-      }))
-    )
-    return result
-  },
-  [
-    {
-      name: '404',
-      path: '/:catchAll(.*)',
-      component: Vuepress,
-    }
-  ]
-)

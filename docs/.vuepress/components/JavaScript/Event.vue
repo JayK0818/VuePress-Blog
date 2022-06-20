@@ -21,6 +21,7 @@
 
 <script>
 import { defineComponent, ref, onMounted, nextTick, onUnmounted } from 'vue'
+
 export default defineComponent({
   setup() {
     const box_1 = ref(null)
@@ -29,14 +30,15 @@ export default defineComponent({
     const box_4 = ref(null)
     const box_5 = ref(null)
     const box_6 = ref(null)
+
     function listener_1(e) {
-      alert('box1')
+      window.alert('box1...')
     }
     function listener_2() {
-      alert('box2')
+      window.alert('box2...')
     }
     function listener_3(){
-      alert('box3')
+      window.alert('box3...')
     }
     onMounted(() => {
       nextTick(() => {
@@ -81,24 +83,24 @@ export default defineComponent({
   display:flex;
   align-items:center;
   justify-content:center;
-  width:200px;
-  height:200px;
-  background-color:skyblue;
+  width: 10rem;
+  height: 10rem;
+  background-color:#0071c8;
   cursor:pointer;
 }
 .box2{
   display:flex;
   align-items:center;
   justify-content:center;
-  width:140px;
-  height:140px;
-  background-color:pink;
+  width:7rem;
+  height: 7rem;
+  background-color:#ff8c00;
   cursor:pointer;
 }
 .box3{
-  width:70px;
-  height:70px;
-  background-color:plum;
+  width:3rem;
+  height:3rem;
+  background-color:#00b03b;
   cursor:pointer;
 }
 </style>

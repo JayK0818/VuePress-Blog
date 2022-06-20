@@ -2,7 +2,7 @@
   <div class='todo-container'>
     <div class="header">
       <input type="text" class='text-input' placeholder='what next to do' v-model.trim='todo'>
-      <a-button type='primary' @click.stop='submit'>submit</a-button>
+      <n-button type='primary' @click.stop='submit'>submit</n-button>
     </div>
     <div class="filter">
       <span
@@ -17,7 +17,7 @@
       <ul>
         <li class="item" v-for='todo in store.filteredTodo' :key='todo.id'>
           <section style='flex:1;'>
-            <a-checkbox :checked='todo.completed' @click.stop='toggle_todo(todo.id)'/>
+            <n-checkbox :checked='todo.completed' @click.stop='toggle_todo(todo.id)'/>
             <span class='text' :class='{active: todo.completed}'>{{todo.text}}</span>
           </section>
           <span class='icon' @click.stop='delete_todo(todo.id)'>
@@ -34,13 +34,13 @@
 import { defineComponent, ref } from 'vue'
 import useTodoStore from '../../../store/todos.js'
 import { storeToRefs } from 'pinia'
-import { Button, Checkbox } from 'ant-design-vue'
+import { NButton, NCheckbox } from 'naive-ui'
 
 type Filter = 'All' | 'Finished' | 'Unfinished'
 export default defineComponent({
   components: {
-    [Button.name]: Button,
-    [Checkbox.name]: Checkbox
+    [NButton.name]: NButton,
+    [NCheckbox.name]: NCheckbox
   },
   setup() {
     const todo = ref<string>('')
@@ -72,9 +72,6 @@ export default defineComponent({
     function reset() {
       store.$reset()
     }
-    store.$subscribe((mutation, state) => {
-      console.log(state)
-    })
     return {
       store,
       todo,
@@ -98,7 +95,7 @@ export default defineComponent({
   .text-input{
     outline:none;
     border:1px solid #d9d9d9;
-    height:32px;
+    height:30px;
     text-indent:8px;
     width:500px;
     font-size:16px;
@@ -151,6 +148,16 @@ export default defineComponent({
     &:hover{
       color:red;
     }
+  }
+}
+@media screen and (max-width: 768px) {
+  .header{
+    display: flex;
+    align-items: center;
+  }
+  .text-input{
+    flex: 1;
+    min-width: 0;
   }
 }
 </style>

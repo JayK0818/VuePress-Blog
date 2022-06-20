@@ -1,6 +1,6 @@
 const { registerComponentsPlugin } = require('@vuepress/plugin-register-components')
 const { defaultTheme } = require('vuepress')
-const { AntDesignVueResolver } = require('unplugin-vue-components/resolvers')
+const { NaiveUiResolver } = require('unplugin-vue-components/resolvers')
 const { shikiPlugin } = require('@vuepress/plugin-shiki')
 const { viteBundler } = require('@vuepress/bundler-vite')
 const path = require('path')
@@ -136,7 +136,6 @@ module.exports = {
         JavaScriptEvent: resolve('JavaScript', 'Event'),
         JavaScriptEventDelegation: resolve('JavaScript', 'EventDelegation'),
         VueEventBus: resolve('Vue', 'EventBus', 'EventBus'),
-        JavaScriptAxiosCancel: resolve('JavaScript', 'AxiosCancel'),
         PiniaState: resolve('Vue', 'Pinia', 'State'),
         PiniaTodo: resolve('Vue', 'Pinia', 'Todos'),
         VueHome: resolve('Vue', 'Home', 'index'),
@@ -197,7 +196,7 @@ module.exports = {
     viteOptions: {
       plugins: [
         require('unplugin-vue-components/vite')({
-          resolvers: [AntDesignVueResolver()]
+          resolvers: [NaiveUiResolver()]
         })
       ]
     }

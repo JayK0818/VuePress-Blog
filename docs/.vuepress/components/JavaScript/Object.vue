@@ -1,17 +1,17 @@
 <template>
   <div>
-    <a-button size='small' type='primary' @click='get_extensible(1)'>object_1</a-button>
-    <a-button size='small' type='primary' @click='get_extensible(2)'>object_2</a-button>
-    <a-button size='small' type='primary' @click='get_extensible(3)'>object_3</a-button>
-    <a-button size='small' type='primary' @click='get_extensible(4)'>object_4</a-button>
-    <a-button size='small' type='primary' @click='get_extensible(5)'>object_5</a-button>
+    <n-button size='small' type='primary' @click='get_extensible(1)'>object_1</n-button>
+    <n-button size='small' type='primary' @click='get_extensible(2)'>object_2</n-button>
+    <n-button size='small' type='primary' @click='get_extensible(3)'>object_3</n-button>
+    <n-button size='small' type='primary' @click='get_extensible(4)'>object_4</n-button>
+    <n-button size='small' type='primary' @click='get_extensible(5)'>object_5</n-button>
     <div class='result-text' v-show='show'>是否可扩展: {{isExtensible ? '是': '否'}}</div>
   </div>
 </template>
 
 <script lang='ts'>
 import { defineComponent, ref } from 'vue'
-import { Button } from 'ant-design-vue'
+import { NButton } from 'naive-ui'
 
 interface ObjectProps {
   [propName: string]: string
@@ -20,7 +20,7 @@ interface ObjectProps {
 export default defineComponent({
   name:'Object',
   components: {
-    [Button.name]: Button
+    [NButton.name]: NButton
   },
   setup() {
     const isExtensible = ref<boolean>(false)

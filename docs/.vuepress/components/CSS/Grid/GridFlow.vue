@@ -1,8 +1,8 @@
 <template>
   <div class="select-header">
-    <a-select :options='select_options' v-model:value='direction' class='select'/>
+    <n-select :options='select_options' v-model:value='direction' class='select'/>
     <span class="text">dense</span>
-    <a-checkbox v-model:checked='dense'/>
+    <n-checkbox v-model:checked='dense'/>
   </div>
   <div class='container'
     :style='{
@@ -23,7 +23,7 @@
 
 <script lang='ts'>
 import { defineComponent, ref, computed } from 'vue'
-import { Select, Checkbox } from 'ant-design-vue'
+import { NSelect, NCheckbox } from 'naive-ui'
 type SelectOption = {
   label: string;
   value: number
@@ -31,9 +31,8 @@ type SelectOption = {
 export default defineComponent({
   name: 'grid-flow',
   components: {
-    [Select.name]: Select,
-    [Select.Option.name]: Select.Option,
-    [Checkbox.name]: Checkbox
+    [NSelect.name]: NSelect,
+    [NCheckbox.name]: NCheckbox
   },
   setup () {
     const colors = ref<string[]>(['#f00', '#ff8c00', '#00b03b', '#0071c8', '#cc6cb1'])
@@ -74,6 +73,8 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .select-header{
+  display: flex;
+  align-items: center;
   padding: 10px 0;
   .select{
     width: 120px;
@@ -84,21 +85,32 @@ export default defineComponent({
 }
 .container {
   display: grid;
-  grid-template-columns: repeat(4, 100px);
-  grid-template-rows: repeat(4, 100px);
-  width: 400px;
-  height: 400px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 20rem;
+  height: 20rem;
   border: 1px solid #e8e8e8;
   .item{
-    height: 100px;
+    height: 5rem;
     font-size: 30px;
     text-align: center;
-    line-height: 100px;
+    line-height: 5rem;
     font-weight: bold;
   }
   .item-1{
     grid-column-start: 2;
     grid-column-end: 4;
+  }
+}
+@media screen and (max-width: 768px) {
+  .select-header{
+    .select{
+      flex: 1;
+      min-width: 0;
+    }
+  }
+  .container{
+    width: 100%;
   }
 }
 </style>

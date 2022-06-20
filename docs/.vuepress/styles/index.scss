@@ -11,6 +11,7 @@ ol,ul{
   }
 }
 h2, h3, h4{
+  padding-top: 0!important;
   margin-top: 10px!important;
 }
 p{
@@ -33,20 +34,10 @@ ul.sidebar-items{
   --back-to-top-color: #8c8c8c;
   --back-to-top-color-hover: #262626;
 }
-.toggle-dark-button{
-  display: none;
-}
 .vue-home{
   .theme-default-content{
     padding: 0;
     margin: 0;
   }
 }
-span.next, span.prev{
-  a{
-    color: #3eaf7c!important;
-  }
-}
-a.header-anchor{
-  color: #3eaf7c!important;
-}
+

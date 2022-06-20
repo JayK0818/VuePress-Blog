@@ -2,10 +2,10 @@ import {
   del,
   isVue2,
   set
-} from "./chunk-VCBTCJNU.js";
+} from "./chunk-EHT2PM2S.js";
 import {
   setupDevtoolsPlugin
-} from "./chunk-32SXXUVQ.js";
+} from "./chunk-K3JL7DZJ.js";
 import {
   computed,
   effectScope,
@@ -23,13 +23,12 @@ import {
   toRefs,
   unref,
   watch
-} from "./chunk-RIQ4F2C5.js";
-import "./chunk-6XDEX5A4.js";
+} from "./chunk-7JU4TAFU.js";
+import "./chunk-ZEGACNTT.js";
 import {
-  __spreadValues,
   init_define_EXTERNAL_LINK_ICON_LOCALES,
   init_define_MZ_ZOOM_OPTIONS
-} from "./chunk-GKUGKL7A.js";
+} from "./chunk-UKF2MNSR.js";
 
 // dep:pinia
 init_define_EXTERNAL_LINK_ICON_LOCALES();
@@ -644,9 +643,10 @@ function addStoreToDevtools(app, store) {
       const eventData = {
         time: now(),
         title: formatMutationType(type),
-        data: __spreadValues({
-          store: formatDisplay(store.$id)
-        }, formatEventData(events)),
+        data: {
+          store: formatDisplay(store.$id),
+          ...formatEventData(events)
+        },
         groupId: activeAction
       };
       activeAction = void 0;
@@ -1188,9 +1188,10 @@ function createSetupStore($id, setup, options = {}, pinia, hot, isOptionsStore) 
     };
     if (IS_CLIENT) {
       ["_p", "_hmrPayload", "_getters", "_customProperties"].forEach((p) => {
-        Object.defineProperty(store, p, __spreadValues({
-          value: store[p]
-        }, nonEnumerable));
+        Object.defineProperty(store, p, {
+          value: store[p],
+          ...nonEnumerable
+        });
       });
     }
   }

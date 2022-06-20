@@ -8,13 +8,16 @@
 
 <script>
 import { defineComponent } from 'vue'
+import { createDiscreteApi } from 'naive-ui'
+
 export default defineComponent({
   setup () {
+    const { message } = createDiscreteApi(['message'])
     function get_player(event) {
       const text = event.target.textContent;
       const aLi = event.target.parentElement.children;
       const index = Array.from(aLi).indexOf(event.target)
-      window.alert(`${index} - ${text}`)
+      message.success(`${index} - ${text}`)
     }
     return {
       get_player

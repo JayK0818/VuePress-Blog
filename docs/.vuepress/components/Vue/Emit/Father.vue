@@ -14,11 +14,9 @@ export default defineComponent({
   },
   setup () {
     const count = ref<number>(1)
-
     const increment = (payload): void => {
       count.value = payload;
     }
-
     return {
       count, increment
     }

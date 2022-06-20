@@ -29,7 +29,7 @@ export default defineComponent({
 .container{
   padding: 5px 0;
   display: flex;
-  width: 300px;
+  width: 20rem;
   border: 1px solid #d9d9d9;
   .item{
     flex: 1;
@@ -46,6 +46,11 @@ export default defineComponent({
   }
   .icon{
     font-size: 24px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container{
+    width: 100%;
   }
 }
 </style>

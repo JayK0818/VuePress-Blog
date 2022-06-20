@@ -1,4 +1,4 @@
-# 事件
+# Event
 
   1. 事件类型(event type)
   2. 事件目标(event target)

@@ -1,13 +1,11 @@
 <template>
   <div class="select-header">
-    <span class="text">Justify-Content</span>
-    <a-select
+    <n-select
       :options='select_options'
       class='select'
       v-model:value='justify'
     />
-    <span class="text">Align-Content</span>
-    <a-select
+    <n-select
       class='select'
       :options='select_options'
       v-model:value='align'
@@ -33,12 +31,11 @@
 
 <script lang='ts'>
 import { defineComponent, ref, computed } from 'vue'
-import { Select } from 'ant-design-vue'
+import { NSelect } from 'naive-ui'
 export default defineComponent({
   name: 'grid-content',
   components: {
-    [Select.name]: Select,
-    [Select.Option.name]: Select.Option
+    [NSelect.name]: NSelect,
   },
   setup () {
     const colors = ['#f00', '#ff8c00', '#00b03b', '#0071c8', '#cc6cb1', '#fdd394', '#b5aa79', '#cae9a2', '#00c8f2']
@@ -105,31 +102,40 @@ export default defineComponent({
 <style lang="scss" scoped>
 .select-header{
   padding: 8px 0;
+  display: flex;
   .select{
-    width: 150px;
-  }
-  .text{
-    color: #878787;
-    padding-right: 4px;
-    &:nth-of-type(2) {
-      margin-left: 20px;
-    }
+    margin-right: 10px;
+    width: 200px;
+    border-radius: 0!important;
   }
 }
 .container{
   display: grid;
-  width: 600px;
-  height: 400px;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
+  width: 40rem;
+  height: 20rem;
+  grid-template-columns: repeat(3, 5rem);
+  grid-template-rows: repeat(3, 5rem);
   border: 1px solid #e8e8e8;
   box-sizing: content-box;
   .item{
     text-align: center;
     font-weight: bold;
     text-align: center;
-    line-height: 100px;
+    line-height: 5rem;
     font-size: 30px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .select-header{
+    display: block;
+    .select{
+      width: 100%;
+      margin-right: 0;
+      margin-top: 10px;
+    }
+  }
+  .container{
+    width: 100%;
   }
 }
 </style>

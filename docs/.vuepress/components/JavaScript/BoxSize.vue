@@ -2,22 +2,22 @@
   <div class='box' ref='box'>
     <div class="inner"></div>
   </div>
-  <a-button type='primary' size='small' @click.stop='getHeight("clientHeight")'>Element.clientHeight</a-button>
-  <a-button type='primary' size='small' @click.stop='getHeight("offsetHeight")'>Element.offsetHeight</a-button>
-  <a-button type='primary' size='small' @click.stop='getHeight("scrollHeight")'>Element.scrollHeight</a-button>
+  <n-button type='primary' size='small' @click.stop='getHeight("clientHeight")'>Element.clientHeight</n-button>
+  <n-button type='primary' size='small' @click.stop='getHeight("offsetHeight")'>Element.offsetHeight</n-button>
+  <n-button type='primary' size='small' @click.stop='getHeight("scrollHeight")'>Element.scrollHeight</n-button>
 </template>
 
 <script lang='ts'>
 import { defineComponent, ref } from 'vue'
-import { Button, message } from 'ant-design-vue'
-import 'ant-design-vue/es/message/style/css';
+import { NButton, useMessage } from 'naive-ui'
 
 export default defineComponent({
   name: 'box-size',
   components: {
-    [Button.name]: Button
+    [NButton.name]: NButton
   },
   setup () {
+    const message = useMessage()
     const box = ref<HTMLElement | null>(null)
 
     const getHeight = (type):void => {

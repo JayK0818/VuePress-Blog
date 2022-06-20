@@ -1,9 +1,9 @@
 <template>
   <div class='insert-before-container'>
     <div class="button-container">
-      <a-button type='primary' size='small' @click.stop='insert_target'>插入到指定位置</a-button>
-      <a-button type='primary' size='small' @click.stop='insert_null'>参考节点为null</a-button>
-      <a-button type='primary' size='small' @click.stop='insert_document_fragment'>插入节点为DocumentFragment</a-button>
+      <n-button type='primary' size='small' @click.stop='insert_target'>插入到指定位置</n-button>
+      <n-button type='primary' size='small' @click.stop='insert_null'>参考节点为null</n-button>
+      <n-button type='primary' size='small' @click.stop='insert_document_fragment'>插入节点为DocumentFragment</n-button>
     </div>
     <ol ref='parent'>
       <li>kyrie</li>
@@ -15,12 +15,12 @@
 
 <script lang='ts'>
   import { defineComponent, ref, onMounted } from 'vue'
-  import { Button } from 'ant-design-vue'
+  import { NButton } from 'naive-ui'
 
   export default defineComponent({
     name:'InsertBefore',
     components: {
-      [Button.name]: Button
+      [NButton.name]: NButton
     },
     setup() {
       const parent = ref<null | HTMLOListElement>(null)
@@ -50,7 +50,7 @@
         parent.value.insertBefore(fragment, null)
       }
       return {
-        parent, insert_target,
+        parent, insert_target, insert_null,
         insert_document_fragment, insert_document_fragment
       }
     }

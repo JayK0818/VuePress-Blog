@@ -2,17 +2,17 @@
   <div>
     子组件:
     {{count}}
-    <a-button type='primary' size='small' @click.stop='add'>click</a-button>
+    <n-button type='primary' size='small' @click.stop='add'>click</n-button>
   </div>
 </template>
 
 <script lang='ts'>
 import { defineComponent, ref } from 'vue'
-import { Button } from 'ant-design-vue'
+import { NButton } from 'naive-ui'
 export default defineComponent({
   name: 'child',
   components: {
-    [Button.name]: Button
+    [NButton.name]: NButton
   },
   emits:['increment'],
   setup (props, context) {

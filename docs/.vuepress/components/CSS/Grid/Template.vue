@@ -29,11 +29,24 @@ export default defineComponent({
 .section{
   display: flex;
   justify-content: space-between;
+  .container{
+    width: 20rem;
+    height: 20rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .section{
+    display: block;
+  }
+  .container{
+    margin-bottom: 10px;
+    width: 100%;
+  }
 }
 .example-container{
   display: grid;
-  grid-template-columns: 100px 100px 100px;
-  grid-template-rows: 100px 100px 100px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   column-gap: 8px;
   row-gap: 8px;
   .item{
@@ -46,10 +59,8 @@ export default defineComponent({
 }
 .merge-container{
   display: grid;
-  width: 300px;
-  height: 300px;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   column-gap: 8px;
   row-gap: 8px;
   grid-template-areas:

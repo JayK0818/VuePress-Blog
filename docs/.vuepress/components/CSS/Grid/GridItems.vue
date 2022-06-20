@@ -1,9 +1,7 @@
 <template>
   <div class="select-container">
-    <span class="text">Justify-Items</span>
-    <a-select class='select' :options='select_options' v-model:value='justify'/>
-    <span class="text">Align-Items</span>
-    <a-select class='select' :options='select_options' v-model:value='align'/>
+    <n-select class='select' :options='select_options' v-model:value='justify'/>
+    <n-select class='select' :options='select_options' v-model:value='align'/>
   </div>
   <div class='container' :style='{
     ...align_style,
@@ -19,7 +17,7 @@
 
 <script lang='ts'>
 import { defineComponent, ref, computed } from 'vue'
-import { Select } from 'ant-design-vue'
+import { NSelect } from 'naive-ui'
 
 type SelectOption = {
   label: string
@@ -30,8 +28,7 @@ type SelectOption = {
 export default defineComponent({
   name: 'grid-items',
   components: {
-    [Select.name]: Select,
-    [Select.Option.name]: Select.Option
+    [NSelect.name]: NSelect,
   },
   setup () {
     const colors = ['#f00', '#ff8c00', '#00b03b', '#0071c8', '#cc6cb1', '#fdd394', '#b5aa79', '#cae9a2', '#00c8f2']
@@ -88,10 +85,8 @@ export default defineComponent({
   display: grid;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
-  // column-gap: 5px;
-  // row-gap: 5px;
-  width: 300px;
-  height: 300px;
+  width: 20rem;
+  height: 20rem;
   border: 1px solid #e8e8e8;
   box-sizing: content-box;
   .item {
@@ -104,16 +99,25 @@ export default defineComponent({
   }
 }
 .select-container{
+  display: flex;
   padding: 10px 0;
-  .text{
-    padding-right: 5px;
-    color: #878787;
-    &:nth-of-type(2) {
-      margin-left: 30px;
+  .select{
+    margin-right: 20px;
+    width: 150px;
+    border-radius: 0!important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .select-container{
+    display: block;
+    .select{
+      margin-right: 0;
+      margin-top: 10px;
+      width: 100%;
     }
   }
-  .select{
-    width: 120px;
+  .container{
+    width: 100%;
   }
 }
 </style>

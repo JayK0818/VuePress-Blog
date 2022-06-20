@@ -1,29 +1,4 @@
-export const data = {
-  "key": "v-731d388a",
-  "path": "/vue/vue-instance.html",
-  "title": "Vue Instance",
-  "lang": "zh-CN",
-  "frontmatter": {},
-  "excerpt": "",
-  "headers": [
-    {
-      "level": 2,
-      "title": "Vue构造函数",
-      "slug": "vue构造函数",
-      "children": []
-    },
-    {
-      "level": 2,
-      "title": "initMixin(vm)",
-      "slug": "initmixin-vm",
-      "children": []
-    }
-  ],
-  "git": {
-    "updatedTime": 1652629709000
-  },
-  "filePathRelative": "vue/vue-instance.md"
-}
+export const data = JSON.parse("{\"key\":\"v-731d388a\",\"path\":\"/vue/vue-instance.html\",\"title\":\"Vue Instance\",\"lang\":\"zh-CN\",\"frontmatter\":{},\"excerpt\":\"\",\"headers\":[{\"level\":2,\"title\":\"Vue构造函数\",\"slug\":\"vue构造函数\",\"children\":[]},{\"level\":2,\"title\":\"initMixin(vm)\",\"slug\":\"initmixin-vm\",\"children\":[]}],\"git\":{\"updatedTime\":1652629709000},\"filePathRelative\":\"vue/vue-instance.md\"}")
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()

@@ -21,19 +21,19 @@
     <div class="search-wrapper">
       <input type="text" class='search-input' placeholder='你见过最烂的代码...'>
     </div>
-    <a-button type='default' size='small'>登录</a-button>
-    <a-button type='primary' size='small'>加入知乎</a-button>
+    <n-button type='default' size='small'>登录</n-button>
+    <n-button type='primary' size='small'>加入知乎</n-button>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
-import { Button } from 'ant-design-vue'
+import { NButton } from 'naive-ui'
 
 export default defineComponent({
   name: 'flex-group',
   components: {
-    [Button.name]: Button
+    [NButton.name]: NButton
   }
 })
 </script>
@@ -49,6 +49,7 @@ export default defineComponent({
   align-items:center;
   padding: 10px 0;
   border-bottom: 1px solid #e8e8e8;
+  overflow: auto;
   img{
     width: 60px;
   }
@@ -60,6 +61,7 @@ export default defineComponent({
     margin: 0 5px;
     cursor: pointer;
     transition: all .3s;
+    white-space: nowrap;
     &:hover{
       color: #3eaf7c;
     }
@@ -74,6 +76,7 @@ export default defineComponent({
   display:flex;
   align-items: center;
   border-bottom: 1px solid #e8e8e8;
+  overflow: auto;
   .nav{
     padding:0 10px;
     white-space: nowrap;

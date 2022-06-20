@@ -24,25 +24,24 @@ laoreet nisi a odio ornare non congue turpis eleifend. Cum sociis natoque penati
 nascetur ridiculus mus. Cras vulputate libero sed arcu iaculis nec lobortis orci fermentum.
   </div>
   <div style='text-align:center;padding-top:5px;'>
-    <a-button type='primary' size='small' :disabled='!isBottom'>submit</a-button>
+    <n-button type='primary' size='small' :disabled='!isBottom'>submit</n-button>
   </div>
 </template>
 
 <script lang='ts'>
 import { defineComponent, ref } from 'vue'
-import { Button } from 'ant-design-vue'
+import { NButton } from 'naive-ui'
 
 export default defineComponent({
   name: 'scroll-bottom',
   components: {
-    [Button.name]: Button
+    [NButton.name]: NButton
   },
   setup () {
     const container = ref<HTMLDivElement | null>(null)
     const isBottom = ref<boolean>(false)
 
     const scroll = (event): void => {
-      console.log(event.target.scrollTop)
       if(container.value.scrollHeight - event.target.scrollTop - container.value.clientHeight < 1) {
         isBottom.value = true
       }
@@ -60,7 +59,7 @@ export default defineComponent({
   padding:5px;
   width:100%;
   height:180px;
-  border:1px solid #1890ff;
+  border:1px solid #18a058;
   overflow:auto;
 }
 </style>

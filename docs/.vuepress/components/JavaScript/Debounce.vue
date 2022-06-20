@@ -7,6 +7,9 @@
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
+  components: {
+    [NInput.name]: NInput
+  },
   setup () {
     const keyword = ref<string>('')
     function debounce(fn, delay) {
@@ -40,7 +43,7 @@ export default defineComponent({
   outline:none;
   transition: all .45s;
   &:hover{
-    border-color:#1890ff;
+    border-color:#36ad6a;
   }
 }
 .text{

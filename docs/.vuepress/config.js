@@ -20,7 +20,6 @@ const side = {
       children: [
         '/react/basis',
         '/react/create-react-app',
-        '/react/context',
         '/react/react-performance-optimization',
         '/react/concept'
       ]

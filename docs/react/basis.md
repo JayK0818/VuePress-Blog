@@ -677,3 +677,73 @@ class ErrorBoundary extends React.Component {
   }
 }
 ```
+
+## refs及refs转发
+  
+  refs提供了一种方式允许我们访问DOM节点或者在render方法中创建的react元素
+  Refs 可以通过React.createRef()创建, 并通过ref属性附加到React元素。
+```jsx
+function App () {
+  const ref1 = React.createRef(null)
+  const ref2 = useRef(null)
+  const handleFocus = () => {
+    console.log(ref1, ref2)
+    // ref1 和 ref2下的current属性挂载了 input元素
+  }
+  return (
+    <div>
+      <input type="text" ref={ref1}/>
+      <input type="text" ref={ref2}/>
+      <button onClick={handleFocus}>click</button>
+    </div>
+  )
+}
+```
+```jsx
+// refs转发
+// 获取input焦点
+const InputComponent = React.forwardRef((props, ref) => (
+  <input type='input' placeholder={props.placeholder} ref={ref}/>
+))
+
+// 获取textarea焦点
+class TextareaComponent extends React.Component {
+  constructor(props) {
+    super(props)
+    this.textareaRef = React.createRef()
+    this.focus = this.focus.bind(this)
+  }
+  focus() {
+    this.textareaRef.current.focus()
+  }
+  render() {
+    return (
+      <textarea placeholder={this.props.placeholder} ref={this.textareaRef}></textarea>
+    )
+  }
+}
+
+function App () {
+  const [count, setCount] = useState(0)
+  const inputRef = useRef(null)
+  const componentRef = useRef(null)
+  const handleFocus = () => {
+    // 轮流获取 input 和 textarea焦点(分别通过refs转发 和 refs)
+    setCount(count => {
+      if(count % 2 === 0) {
+        inputRef.current.focus()
+      } else {
+        componentRef.current.focus()
+      }
+      return count+1
+    })
+  }
+  return (
+    <div>
+      <InputComponent ref={inputRef} placeholder='What next to do ?'/>
+      <TextareaComponent ref={componentRef} placeholder='hello world'/>
+      <button onClick={handleFocus}>click</button>
+    </div>
+  )
+}
+```

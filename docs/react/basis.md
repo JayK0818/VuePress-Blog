@@ -490,6 +490,14 @@ class ClassCounter extends React.Component {
     )
   }
 }
+const MemoCounter = memo(function() {
+  // 此时函数组件只会渲染一次, 但是value值会更新, 而class组件即使shoulComponentUpdate返回false, render函数也会执行
+  return (
+    <CounterContext.Consumer>
+      {value => (<div>函数组件: {value}</div>)}
+    </CounterContext.Consumer>
+  )
+})
 ```
 :::danger
 这里可能会有一些陷阱, 当provider的父组件进行重新渲染时, 可能会在consumers组件中触发意外的渲染。
@@ -507,7 +515,7 @@ class App extends React.Component {
 ```
 :::
 
-## 在嵌套组件中更新Context
+  在嵌套组件中更新Context
 
 ```jsx
 const themes = {
@@ -572,6 +580,170 @@ function ThemeButtonFunctionComponent() {
         }}>toggle</button>
       )}
     </ThemeContext.Consumer>
+  )
+}
+```
+## 组合
+
+```jsx
+function SideBar(props) {
+  return (
+    <div>{props.children}</div>
+  )
+}
+function NavigationBar(props) {
+  return (
+    <div>{props.children}</div>
+  )
+}
+function Dialog(props) {
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <div>{props.content}</div>  
+    </div>
+  )
+}
+function App() {
+  return (
+    <div className='app'>
+      <SideBar>我是侧边导航栏</SideBar>
+      <NavigationBar>我是顶部导航栏</NavigationBar>
+      <Dialog
+        title='Welcome'
+        content='Thank you for visiting our spacecraft!'
+      />
+    </div>
+  )
+}
+```
+
+## 错误边界
+
+  错误边界是一种React组件, 这种组件可以捕获并打印发生在其子组件树中任何位置的JavaScript, 并且它会渲染备用UI, 而不是渲染那些崩溃了的
+  子组件树。
+:::tip
+错误编辑无法在以下场景中产生的错误:
+1. 事件处理
+2. 异步代码 (setTimeout 等)
+3. 服务端渲染
+4. 它自身抛出的错误而非子组件
+:::
+  在错误边界组件中 定义了任意 static getDerivedStateFromError 或者 componentDidCatch 两个生命周期方法中的任意一个时
+  它就变成了错误边界。
+```jsx
+// componentDidCatch
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      error: null,
+      errorInfo: null
+    }
+  }
+  componentDidCatch(error, errorInfo) {
+    this.setState({
+      error,
+      errorInfo
+    })
+  }
+  render() {
+    if(this.state.hasError) return (
+      <div>Something went wrong</div>
+    )
+    return this.props.children
+  }
+}
+
+
+// getDerivedStateFromError
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      hasError
+    }
+  }
+  static getDerivedStateFromError() {
+    return {
+      hasError
+    }
+  }
+  render() {
+    if(this.state.hasError) return (
+      <div>Something went wrong</div>
+    )
+    return this.props.children
+  }
+}
+```
+
+## refs及refs转发
+  
+  refs提供了一种方式允许我们访问DOM节点或者在render方法中创建的react元素
+  Refs 可以通过React.createRef()创建, 并通过ref属性附加到React元素。
+```jsx
+function App () {
+  const ref1 = React.createRef(null)
+  const ref2 = useRef(null)
+  const handleFocus = () => {
+    console.log(ref1, ref2)
+    // ref1 和 ref2下的current属性挂载了 input元素
+  }
+  return (
+    <div>
+      <input type="text" ref={ref1}/>
+      <input type="text" ref={ref2}/>
+      <button onClick={handleFocus}>click</button>
+    </div>
+  )
+}
+```
+```jsx
+// refs转发
+// 获取input焦点
+const InputComponent = React.forwardRef((props, ref) => (
+  <input type='input' placeholder={props.placeholder} ref={ref}/>
+))
+
+// 获取textarea焦点
+class TextareaComponent extends React.Component {
+  constructor(props) {
+    super(props)
+    this.textareaRef = React.createRef()
+    this.focus = this.focus.bind(this)
+  }
+  focus() {
+    this.textareaRef.current.focus()
+  }
+  render() {
+    return (
+      <textarea placeholder={this.props.placeholder} ref={this.textareaRef}></textarea>
+    )
+  }
+}
+
+function App () {
+  const [count, setCount] = useState(0)
+  const inputRef = useRef(null)
+  const componentRef = useRef(null)
+  const handleFocus = () => {
+    // 轮流获取 input 和 textarea焦点(分别通过refs转发 和 refs)
+    setCount(count => {
+      if(count % 2 === 0) {
+        inputRef.current.focus()
+      } else {
+        componentRef.current.focus()
+      }
+      return count+1
+    })
+  }
+  return (
+    <div>
+      <InputComponent ref={inputRef} placeholder='What next to do ?'/>
+      <TextareaComponent ref={componentRef} placeholder='hello world'/>
+      <button onClick={handleFocus}>click</button>
+    </div>
   )
 }
 ```

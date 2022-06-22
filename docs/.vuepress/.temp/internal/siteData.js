@@ -1,4 +1,19 @@
-export const siteData = JSON.parse("{\"base\":\"/\",\"lang\":\"zh-CN\",\"title\":\"牧童的博客\",\"description\":\"Vuepress,JavaScript,Node.js,React.js,Vue.js,前端开发\",\"head\":[[\"link\",{\"rel\":\"icon\",\"href\":\"/code.png\"}]],\"locales\":{}}")
+export const siteData = {
+  "base": "/",
+  "lang": "zh-CN",
+  "title": "牧童的博客",
+  "description": "Vuepress,JavaScript,Node.js,React.js,Vue.js,前端开发",
+  "head": [
+    [
+      "link",
+      {
+        "rel": "icon",
+        "href": "/code.png"
+      }
+    ]
+  ],
+  "locales": {}
+}
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()

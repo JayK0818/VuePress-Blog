@@ -1,6 +1,6 @@
 import {
   setupDevtoolsPlugin
-} from "./chunk-K3JL7DZJ.js";
+} from "./chunk-LK2ZCEXT.js";
 import {
   computed,
   defineComponent,
@@ -18,20 +18,11 @@ import {
   unref,
   watch,
   watchEffect
-} from "./chunk-7JU4TAFU.js";
-import "./chunk-ZEGACNTT.js";
-import {
-  init_define_EXTERNAL_LINK_ICON_LOCALES,
-  init_define_MZ_ZOOM_OPTIONS
-} from "./chunk-UKF2MNSR.js";
+} from "./chunk-NIZK5GOI.js";
+import "./chunk-BVKGIXQL.js";
+import "./chunk-AALNWKDH.js";
 
-// dep:vue-router
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-init_define_MZ_ZOOM_OPTIONS();
-
-// node_modules/_vue-router@4.0.16@vue-router/dist/vue-router.esm-bundler.js
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-init_define_MZ_ZOOM_OPTIONS();
+// node_modules/_vue-router@4.0.15@vue-router/dist/vue-router.esm-bundler.js
 var hasSymbol = typeof Symbol === "function" && typeof Symbol.toStringTag === "symbol";
 var PolySymbol = (name) => hasSymbol ? Symbol(true ? "[vue-router]: " + name : name) : (true ? "[vue-router]: " : "_vr_") + name;
 var matchedRouteKey = PolySymbol(true ? "router view location matched" : "rvlm");
@@ -695,17 +686,7 @@ function comparePathParserScore(a, b) {
       return comp;
     i++;
   }
-  if (Math.abs(bScore.length - aScore.length) === 1) {
-    if (isLastScoreNegative(aScore))
-      return 1;
-    if (isLastScoreNegative(bScore))
-      return -1;
-  }
   return bScore.length - aScore.length;
-}
-function isLastScoreNegative(score) {
-  const last = score[score.length - 1];
-  return score.length > 0 && last[last.length - 1] < 0;
 }
 var ROOT_TOKEN = {
   type: 0,
@@ -1380,7 +1361,6 @@ function useLink(props) {
 }
 var RouterLinkImpl = defineComponent({
   name: "RouterLink",
-  compatConfig: { MODE: 3 },
   props: {
     to: {
       type: [String, Object],
@@ -2388,7 +2368,7 @@ export {
   viewDepthKey
 };
 /*!
-  * vue-router v4.0.16
+  * vue-router v4.0.15
   * (c) 2022 Eduardo San Martin Morote
   * @license MIT
   */

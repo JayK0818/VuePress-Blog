@@ -2,19 +2,10 @@ import {
   isArray,
   isFunction,
   isString
-} from "./chunk-ZEGACNTT.js";
-import {
-  init_define_EXTERNAL_LINK_ICON_LOCALES,
-  init_define_MZ_ZOOM_OPTIONS
-} from "./chunk-UKF2MNSR.js";
+} from "./chunk-BVKGIXQL.js";
+import "./chunk-AALNWKDH.js";
 
-// dep:@vuepress_shared
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-init_define_MZ_ZOOM_OPTIONS();
-
-// node_modules/_@vuepress_shared@2.0.0-beta.48@@vuepress/shared/dist/index.js
-init_define_EXTERNAL_LINK_ICON_LOCALES();
-init_define_MZ_ZOOM_OPTIONS();
+// node_modules/_@vuepress_shared@2.0.0-beta.46@@vuepress/shared/dist/index.js
 var resolveHeadIdentifier = ([
   tag,
   attrs,
@@ -78,12 +69,11 @@ var htmlUnescapeRegexp = /&(amp|#38|lt|#60|gt|#62|apos|#39|quot|#34);/g;
 var htmlUnescape = (str) => str.replace(htmlUnescapeRegexp, (char) => htmlUnescapeMap[char]);
 var isLinkFtp = (link) => link.startsWith("ftp://");
 var isLinkHttp = (link) => /^(https?:)?\/\//.test(link);
-var markdownLinkRegexp = /.md((\?|#).*)?$/;
 var isLinkExternal = (link, base = "/") => {
   if (isLinkHttp(link) || isLinkFtp(link)) {
     return true;
   }
-  if (link.startsWith("/") && !link.startsWith(base) && !markdownLinkRegexp.test(link)) {
+  if (link.startsWith("/") && !link.startsWith(base) && !link.endsWith(".md")) {
     return true;
   }
   return false;

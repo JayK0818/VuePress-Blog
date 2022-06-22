@@ -1,71 +1,59 @@
 {
-  "hash": "330edbdd",
-  "browserHash": "cf82ba5f",
+  "hash": "749be46c",
+  "browserHash": "241ef935",
   "optimized": {
     "@vue/devtools-api": {
       "src": "../../../../node_modules/_@vue_devtools-api@6.1.4@@vue/devtools-api/lib/esm/index.js",
       "file": "@vue_devtools-api.js",
-      "fileHash": "83714e33",
+      "fileHash": "6df2c63d",
       "needsInterop": false
     },
     "@vuepress/shared": {
-      "src": "../../../../node_modules/_@vuepress_shared@2.0.0-beta.48@@vuepress/shared/dist/index.js",
+      "src": "../../../../node_modules/_@vuepress_shared@2.0.0-beta.46@@vuepress/shared/dist/index.js",
       "file": "@vuepress_shared.js",
-      "fileHash": "2d4e4b30",
+      "fileHash": "e2ebe56b",
       "needsInterop": false
     },
     "@vueuse/core": {
-      "src": "../../../../node_modules/_@vueuse_core@8.7.4@@vueuse/core/index.mjs",
+      "src": "../../../../node_modules/_@vueuse_core@8.6.0@@vueuse/core/index.mjs",
       "file": "@vueuse_core.js",
-      "fileHash": "3b94ee2b",
+      "fileHash": "bf4b985b",
       "needsInterop": false
     },
     "vue": {
-      "src": "../../../../node_modules/_vue@3.2.37@vue/dist/vue.runtime.esm-bundler.js",
+      "src": "../../../../node_modules/_vue@3.2.36@vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "eb4d3d65",
+      "fileHash": "c412de80",
       "needsInterop": false
     },
     "vue-router": {
-      "src": "../../../../node_modules/_vue-router@4.0.16@vue-router/dist/vue-router.esm-bundler.js",
+      "src": "../../../../node_modules/_vue-router@4.0.15@vue-router/dist/vue-router.esm-bundler.js",
       "file": "vue-router.js",
-      "fileHash": "742e42c0",
+      "fileHash": "5fe15f28",
       "needsInterop": false
     },
     "pinia": {
       "src": "../../../../node_modules/_pinia@2.0.14@pinia/dist/pinia.esm-browser.js",
       "file": "pinia.js",
-      "fileHash": "fad1a44d",
-      "needsInterop": false
-    },
-    "naive-ui": {
-      "src": "../../../../node_modules/_naive-ui@2.30.5@naive-ui/es/index.js",
-      "file": "naive-ui.js",
-      "fileHash": "9ed2365b",
-      "needsInterop": false
-    },
-    "mitt": {
-      "src": "../../../../node_modules/_mitt@3.0.0@mitt/dist/mitt.mjs",
-      "file": "mitt.js",
-      "fileHash": "034264d5",
+      "fileHash": "b8e4bdab",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-EHT2PM2S": {
-      "file": "chunk-EHT2PM2S.js"
+    "chunk-UXCVAHMQ": {
+      "file": "chunk-UXCVAHMQ.js"
     },
-    "chunk-K3JL7DZJ": {
-      "file": "chunk-K3JL7DZJ.js"
+    "chunk-LK2ZCEXT": {
+      "file": "chunk-LK2ZCEXT.js"
     },
-    "chunk-7JU4TAFU": {
-      "file": "chunk-7JU4TAFU.js"
+    "chunk-NIZK5GOI": {
+      "file": "chunk-NIZK5GOI.js"
     },
-    "chunk-ZEGACNTT": {
-      "file": "chunk-ZEGACNTT.js"
+    "chunk-BVKGIXQL": {
+      "file": "chunk-BVKGIXQL.js"
     },
-    "chunk-UKF2MNSR": {
-      "file": "chunk-UKF2MNSR.js"
+    "chunk-AALNWKDH": {
+      "file": "chunk-AALNWKDH.js"
     }
   }
 }

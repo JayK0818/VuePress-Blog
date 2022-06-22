@@ -1,4 +1,42 @@
-export const data = JSON.parse("{\"key\":\"v-ec241072\",\"path\":\"/vue/global-api.html\",\"title\":\"GlobalApi\",\"lang\":\"zh-CN\",\"frontmatter\":{},\"excerpt\":\"\",\"headers\":[{\"level\":2,\"title\":\"initUse\",\"slug\":\"inituse\",\"children\":[]},{\"level\":2,\"title\":\"initMixin\",\"slug\":\"initmixin\",\"children\":[]},{\"level\":2,\"title\":\"initAssetRegisters\",\"slug\":\"initassetregisters\",\"children\":[{\"level\":3,\"title\":\"组件注册\",\"slug\":\"组件注册\",\"children\":[]}]}],\"git\":{\"updatedTime\":1652629709000},\"filePathRelative\":\"vue/global-api.md\"}")
+export const data = {
+  "key": "v-ec241072",
+  "path": "/vue/global-api.html",
+  "title": "GlobalApi",
+  "lang": "zh-CN",
+  "frontmatter": {},
+  "excerpt": "",
+  "headers": [
+    {
+      "level": 2,
+      "title": "initUse",
+      "slug": "inituse",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "initMixin",
+      "slug": "initmixin",
+      "children": []
+    },
+    {
+      "level": 2,
+      "title": "initAssetRegisters",
+      "slug": "initassetregisters",
+      "children": [
+        {
+          "level": 3,
+          "title": "组件注册",
+          "slug": "组件注册",
+          "children": []
+        }
+      ]
+    }
+  ],
+  "git": {
+    "updatedTime": 1652629709000
+  },
+  "filePathRelative": "vue/global-api.md"
+}
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()

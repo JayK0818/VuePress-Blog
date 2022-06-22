@@ -19,6 +19,7 @@ const side = {
       title: 'React',
       children: [
         '/react/basis',
+        '/react/hook',
         '/react/create-react-app',
         '/react/react-performance-optimization',
         '/react/concept'

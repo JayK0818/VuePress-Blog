@@ -2,7 +2,10 @@
 
 ## JSX
 
+  JSX是React.createElement(component, props, ...children)函数的语法糖
+
 ```jsx
+// 用户定义的组件必须以大写字母开头。以小写字母开头的元素表示一个HTML标签。
 function Player({firstName, lastName}) {
   return (
     <div>{firstName} {lastName}</div>
@@ -22,6 +25,19 @@ const root = React.createRoot(document.getElementById('#app'))
 root.render(
   element
 )
+```
+```jsx
+// 根据动态prop来渲染不同组件的情况
+const components = {
+  photo: PhotoStory,
+  video: VideoStory
+}
+function Store(props) {
+  const RenderComponent = components[props.type]
+  return (
+    <RenderComponent/>
+  )
+}
 ```
 
 ## 事件
@@ -491,7 +507,7 @@ class ClassCounter extends React.Component {
   }
 }
 const MemoCounter = memo(function() {
-  // 此时函数组件只会渲染一次, 但是value值会更新, 而class组件即使shoulComponentUpdate返回false, render函数也会执行
+  // 此时函数组件只会渲染一次, 但是value值会更新, 而class组件即使shouldComponentUpdate返回false, render函数也会执行
   return (
     <CounterContext.Consumer>
       {value => (<div>函数组件: {value}</div>)}
@@ -682,6 +698,14 @@ class ErrorBoundary extends React.Component {
   
   refs提供了一种方式允许我们访问DOM节点或者在render方法中创建的react元素
   Refs 可以通过React.createRef()创建, 并通过ref属性附加到React元素。
+1. 当ref属性用于HTML元素时, React组件中使用createRef()创建的ref接受底层DOM元素作为其current属性
+2. 当ref属性用于自定义class组件时, ref对象接受组件的挂载实例作为current属性。
+:::tip
+1. 不能在函数组件上使用ref属性, 因为它们没有实例, 可以在函数组件内部使用ref属性,只要它们指向一个DOM元素或class组件
+2. 避免在dialog组件里暴露open() 和 close() 方法, 最后传递isOpen属性
+:::
+
+  Refs转发是一个可选特性, 其允许某些组件接受ref, 并将其向下传递给子组件。
 ```jsx
 function App () {
   const ref1 = React.createRef(null)
@@ -743,6 +767,145 @@ function App () {
       <InputComponent ref={inputRef} placeholder='What next to do ?'/>
       <TextareaComponent ref={componentRef} placeholder='hello world'/>
       <button onClick={handleFocus}>click</button>
+    </div>
+  )
+}
+```
+  回调Refs, 它能帮助你更精细地控制何时refs被设置和解除。回调refs挂载的DOM节点不是在current属性下。
+
+```jsx
+// class组件
+class InputClassComponent extends React.Component {
+  constructor() {
+    super(...arguments)
+    this.state = {
+      inputRef: null
+    }
+  }
+  handleFocus = () => {
+    this.state.inputRef.focus()
+  }
+  render() {
+    return (
+      <div>
+        <input type='text' ref={element => this.state.inputRef = element}/>
+        <button onClick={this.handleFocus}>click</button>
+      </div>
+    )
+  }
+}
+
+// 函数组件里也可以使用回调refs, 因为有useRef()钩子函数,所以这么使用没必要, 这里只作为演示...
+function InputFunctionComponent() {
+  const [inputRef, setInputRef] = useState(null)
+  const handleClick = () => {
+    inputRef.focus()
+  }
+  return (
+    <div>
+      <input type='text' ref={element => setInputRef(element)}/>
+      <button onClick={handleClick}>click</button>
+    </div>
+  )
+}
+```
+
+## Fragments
+
+  Fragments允许将子列表分组, 而无需向DOM添加额外节点。
+```jsx
+class Columns extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <td>Hello</td>
+        <td>World</td>
+      </React.Fragment>
+    );
+  }
+}
+```
+  key是唯一可以传递给Fragment的属性。
+
+## Portals
+
+  ReactDOM.createPortal(child, container) 可以将子节点渲染到存在于父组件以外的DOM节点的方法。
+```jsx
+// 创建一个水平垂直居中的 dialog 挂载到 body下
+const wrapper_style = {
+  position: 'fixed',
+  left: 0,
+  right: 0,
+  top: 0,
+  bottom: 0,
+  background:'rgba(0, 0, 0, .65)',
+  zIndex: 100
+}
+const container_style = {
+  position: 'absolute',
+  left: '50%',
+  top: '50%',
+  width: '400px',
+  height: '400px',
+  background: '#fff',
+  transform: 'translate(-50%, -50%)'
+}
+
+function DialogComponent() {
+  const wrapperRef = useRef(null)
+  const handleClose = () => {
+    document.body.removeChild(wrapperRef.current)
+  }
+  const element = (
+    <div style={wrapper_style} ref={wrapperRef}>
+      <div style={container_style}>
+        <button onClick={handleClose}>close</button>
+      </div>
+    </div>
+  )
+  return window.ReactDOM.createPortal(element, document.body)
+}
+
+
+// 一个通用的 Modal 组件
+class Modal extends window.React.Component {
+  constructor(props) {
+    super(props)
+    this.element = document.createElement('div')
+  }
+  componentDidMount() {
+    document.body.appendChild(this.element)
+  }
+  componentWillUnmount() {
+    document.body.removeChild(this.element)
+  }
+  render() {
+    return window.ReactDOM.createPortal(this.props.children, this.element)
+  }
+}
+```
+  虽然可以通过createPortal修改DOM节点渲染的位置, 由于portal仍然存在于React树, 从portal内部触发的事件也会一直冒泡至
+  包含React树的祖先。
+```jsx
+function ChildComponent() {
+  return (
+    // 点击button, 会发现文档标题栏也会修改
+    <button>click me</button>
+  )
+}
+function App() {
+  const [count, setCount] = useState(0)
+  const handleClick = () => {
+    setCount(count => count+1)
+  }
+  useEffect(() => {
+    document.title = `you clicked ${count} times`
+  }, [count])
+  return (
+    <div onClick={handleClick}>
+      <Modal>
+        <ChildComponent/>
+      </Modal>
     </div>
   )
 }

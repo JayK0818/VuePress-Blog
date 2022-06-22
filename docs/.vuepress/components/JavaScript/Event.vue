@@ -31,14 +31,14 @@ export default defineComponent({
     const box_5 = ref(null)
     const box_6 = ref(null)
 
-    function listener_1(e) {
-      window.alert('box1...')
+    function listener_1() {
+      window.$message.success('box1...')
     }
     function listener_2() {
-      window.alert('box2...')
+      window.$message.success('box2...')
     }
     function listener_3(){
-      window.alert('box3...')
+      window.$message.success('box3...')
     }
     onMounted(() => {
       nextTick(() => {

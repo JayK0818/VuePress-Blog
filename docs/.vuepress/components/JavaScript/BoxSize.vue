@@ -9,7 +9,7 @@
 
 <script lang='ts'>
 import { defineComponent, ref } from 'vue'
-import { NButton, useMessage } from 'naive-ui'
+import { NButton } from 'naive-ui'
 
 export default defineComponent({
   name: 'box-size',
@@ -17,13 +17,12 @@ export default defineComponent({
     [NButton.name]: NButton
   },
   setup () {
-    const message = useMessage()
     const box = ref<HTMLElement | null>(null)
 
     const getHeight = (type):void => {
       if(!box.value) return
       const height = box.value[type];
-      message.success(`${type} - ${height}`, 2)
+      window.$message.success(`${type} - ${height}`)
     }
     return {
       box, getHeight
@@ -37,7 +36,6 @@ export default defineComponent({
   height:100px;
   padding:10px;
   margin:5px;
-  border:5px;
   overflow:auto;
   box-sizing:border-box;
 }

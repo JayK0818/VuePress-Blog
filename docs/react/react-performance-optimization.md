@@ -10,8 +10,8 @@
 import React, {useState,PureComponent} from 'react'
 // 当app组件更新page时, Counter1和Counter2 Counter3是不用更新的
 function App(){
-  const [count,setCount] = useState(0)
-  const [page,setPage] = useState(0)
+  const [count, setCount] = useState(0)
+  const [page, setPage] = useState(0)
   return(
     <div>
       <button onClick={() => setCount(count+1)}>{count}</button>
@@ -47,9 +47,9 @@ const Counter3 = memo(function({count}) {
 })
 ```
 
-## useState的惰性初始state
+## useState惰性初始state
 
-  initialState参数只会在组件的初试渲染中起作用,如果初始state需要通过复杂计算获得,useState中可以传入一个函数
+  如果初始state需要通过复杂计算获得,useState中可以传入一个函数,initialState参数只会在组件的初试渲染中起作用.
 ```js
 // App.jsx
 import {useState} from 'react'
@@ -60,6 +60,23 @@ function App({props}) {
   })
   return (
     <div>{count}</div>
+  )
+}
+
+function App() {
+  const [count, setCount] = useState(() => {
+    const array = []
+    for(let i = 0; i < 100; i++) {
+      array.push(i)
+    }
+    console.log('initial state') // 只会在第一次渲染的时候执行
+    return array.reduce((prev,next) => prev + next, 0)
+  })
+  const handleClick = () => {
+    setCount(count => count+1)
+  }
+  return (
+    <button onClick={handleClick}>click {count}</button>
   )
 }
 ```

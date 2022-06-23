@@ -37,7 +37,10 @@ function getScrollBarWidth() {
   return scrollBarWidth;
 }
 ```
-<JavaScript-ModalButton/>
+
+<ClientOnly>
+  <JavaScript-ModalButton/>
+</ClientOnly>
 
 ### 全局变量
 

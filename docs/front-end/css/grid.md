@@ -105,7 +105,9 @@
   column-gap: 2rem;
 }
 ```
-<Css-Grid-Template/>
+<ClientOnly>
+  <Css-Grid-Template/>
+</ClientOnly>
 
 ## justify-items/align-items
 
@@ -123,7 +125,10 @@
   place-items: <align-items> <justify-items>
 }
 ```
-<Css-Grid-Items/>
+
+<ClientOnly>
+  <Css-Grid-Items/>
+</ClientOnly>
 
 ## justify-content/align-content
 
@@ -141,7 +146,9 @@
 }
 ```
 
-<Css-Grid-Content/>
+<ClientOnly>
+  <Css-Grid-Content/>
+</ClientOnly>
 
 ## grid-auto-flow
 
@@ -181,7 +188,9 @@ dense 关键字指定 自动布局算法使用一种 '稠密' 堆积算法, 如�
 }
 ```
 
-<Css-Grid-Flow/>
+<ClientOnly>
+  <Css-Grid-Flow/>
+</ClientOnly>
 
 ## justify-self/align-self
 

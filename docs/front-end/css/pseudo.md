@@ -61,7 +61,9 @@ element::after { style properties }  /* CSS3 语法 */
 
   下面是一个案例， 将伪类和伪元素结合在一起使用.
 
-<Css-Pseudo-Before/>
+<ClientOnly>
+  <Css-Pseudo-Before/>
+</ClientOnly>
 
 ```html
 <div class='container'>

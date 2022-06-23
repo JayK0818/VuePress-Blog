@@ -95,8 +95,9 @@ divElement.textContent = `<h1>我是新插入的html</h1>`; // 直接插入标�
 
 [MDN-Node.insertBefore(newNode,referenceNode)](https://developer.mozilla.org/zh-CN/docs/Web/API/Node/insertBefore)
 
-<JavaScript-InsertBefore/>
-
+<ClientOnly>
+  <JavaScript-InsertBefore/>
+</ClientOnly>
 
 ## NodeList
 

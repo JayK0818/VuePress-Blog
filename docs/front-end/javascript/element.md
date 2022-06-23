@@ -20,7 +20,9 @@
 </script>
 ```
 
-<JavaScript-Attribute/>
+<ClientOnly>
+  <JavaScript-Attribute/>
+</ClientOnly>
 
 :::tip
 遍历attributes对象,每个attribute也是一个对象, 可以通过attribute.name 和 attribute.value 属性获取属性名和值.
@@ -89,7 +91,9 @@ offsetParent为最近的table table cell 或根元素。当元素的display设�
 }
 ```
 
-<JavaScript-BoxSize/>
+<ClientOnly>
+  <JavaScript-BoxSize/>
+</ClientOnly>
 
 上面是一个div, 里面包含一个更大的div, 可以分别点击 不同按钮 获取它的尺寸数据。
 
@@ -100,4 +104,7 @@ offsetParent为最近的table table cell 或根元素。当元素的display设�
 :::tip
   在使用显示比例缩放的系统上, scrollTop可能会提供一个小数。
 :::
-<JavaScript-ScrollBottom/>
+
+<ClientOnly>
+  <JavaScript-ScrollBottom/>
+</ClientOnly>

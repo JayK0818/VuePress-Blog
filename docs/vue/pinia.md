@@ -31,7 +31,9 @@ new Vue({
 
 ## 一个简单的Demo
 
-<Pinia-State/>
+<ClientOnly>
+  <Pinia-State/>
+</ClientOnly>
 
 下面是主要的实现代码
 ```js
@@ -357,4 +359,6 @@ export default defineStore('main', {
 ```
 ## Pinia Todos Demo
 
-<Pinia-Todo/>
+<ClientOnly>
+  <Pinia-Todo/>
+</ClientOnly>

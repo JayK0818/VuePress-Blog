@@ -48,7 +48,9 @@ class App extends React.Component {
 ```
   下面input框设置的防抖间隔为500ms, 最后一次输入结束后500ms, input框的内容会显示在下方。
 
-<JavaScript-Debounce/>
+<ClientOnly>
+  <JavaScript-Debounce/>
+</ClientOnly>
 
 ## Throttle
 
@@ -102,7 +104,9 @@ class App extends Component {
   但是上面的函数节流 对监听当前窗口尺寸有点问题,如果立马触发 resize 事件马上就停止了(<500ms), 此时页面上显示的 第一次触发 resize 事件时
   记录到的文档尺寸大小。而不是resize停止时的文档大小。
 
-<React-Throttle-Immediate/>
+<ClientOnly>
+  <React-Throttle-Immediate/>
+</ClientOnly>
 
   对上面的 throttle_immediate() 另一种实现方式, 延后指定的时间再执行,首次不执行
 ```js
@@ -121,4 +125,6 @@ function throttle_delay(fn,delay = 300) {
 ```
   下面也是一个例子, 试着调节窗口大小
   
-<React-Throttle-Delay/>
+<ClientOnly>
+  <React-Throttle-Delay/>
+</ClientOnly>

@@ -1,0 +1,1 @@
+import{_ as a,o as t,c as s,d as e,e as r}from"./app.02e89851.js";const c={},l=e("h1",{id:"skill",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#skill","aria-hidden":"true"},"#"),r(" Skill")],-1),i=[l];function o(_,n){return t(),s("div",null,i)}var h=a(c,[["render",o],["__file","javascript-skill.html.vue"]]);export{h as default};

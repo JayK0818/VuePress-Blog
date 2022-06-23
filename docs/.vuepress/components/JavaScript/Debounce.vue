@@ -7,9 +7,6 @@
 import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
-  components: {
-    [NInput.name]: NInput
-  },
   setup () {
     const keyword = ref<string>('')
     function debounce(fn, delay) {

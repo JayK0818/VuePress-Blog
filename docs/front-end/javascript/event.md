@@ -130,7 +130,9 @@ function handler(event) {
 
   可点击下方带颜色的盒子,从大到小 依次为 box1 box2 box3.
 
-<JavaScript-Event/>
+<ClientOnly>
+  <JavaScript-Event/>
+</ClientOnly>
 
 ### Event.target
 
@@ -139,7 +141,9 @@ function handler(event) {
 
 **可点击下方球员列表,会弹出当前球员姓名和li元素索引。**
 
-<JavaScript-EventDelegation/>
+<ClientOnly>
+  <JavaScript-EventDelegation/>
+</ClientOnly>
 
 ### Event.currentTarget
 

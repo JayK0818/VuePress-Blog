@@ -74,6 +74,7 @@
 ```
 
   下面是使用上述四种方式 设置子元素 水平垂直居中。
-
-<Css-Center/>
+<ClientOnly>
+  <Css-Center/>
+</ClientOnly>
 

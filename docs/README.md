@@ -3,5 +3,6 @@ navbar: false
 lastUpdated: false
 pageClass: vue-home 
 ---
-
-<Vue-Home/>
+<ClientOnly>
+  <Vue-Home/>
+</ClientOnly>

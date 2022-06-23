@@ -59,11 +59,15 @@ export default defineComponent({
 })
 </script>
 ```
-<Vue-PropFather/>
+<ClientOnly>
+  <Vue-PropFather/>
+</ClientOnly>
 
 ### emit
 
-<Vue-EmitFather/>
+<ClientOnly>
+  <Vue-EmitFather/>
+</ClientOnly>
 
 ```vue
 <!-- parent.vue -->
@@ -134,7 +138,9 @@ export default defineComponent({
 
   下面的案例 左侧使用的是 props选项, 右侧使用的是setup实现。
 
-<Vue-ProvideFather/>
+<ClientOnly>
+  <Vue-ProvideFather/>
+</ClientOnly>
 
 ```vue
 <!-- father -->
@@ -259,7 +265,9 @@ mitter.on('foo', e => console.log('foo', e) )
 
   下面是一个利用事件车在兄弟组件中通信的小demo, 可以分别点击首发 或者 替补中的球员, 将其放入替补中 或者 移入到首发。
 
-<Vue-EventBus/>
+<ClientOnly>
+  <Vue-EventBus/>
+</ClientOnly>
 
 ```js
 // StartingUp.vue

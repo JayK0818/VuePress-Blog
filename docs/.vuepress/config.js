@@ -22,7 +22,7 @@ const side = {
         '/react/hook',
         '/react/create-react-app',
         '/react/react-performance-optimization',
-        '/react/concept'
+        '/react/redux'
       ]
     }
   ],
@@ -31,9 +31,9 @@ const side = {
       title:'Vue',
       children: [
         '/vue/data-transfer',
-        '/vue/entry-and-version',
-        '/vue/global-api',
-        '/vue/vue-instance',
+        // '/vue/entry-and-version',
+        // '/vue/global-api',
+        // '/vue/vue-instance',
         '/vue/pinia',
         '/vue/webpack'
       ]
@@ -164,8 +164,7 @@ module.exports = {
     })
   ],
   theme: defaultTheme({
-    smoothScroll: false,
-    lastUpdated: true,
+    lastUpdated: false,
     lastUpdatedText:'上次更新',
     contributors: false,
     sidebarDepth: 2,
@@ -179,8 +178,6 @@ module.exports = {
       {text:'Vue',link:'/vue/data-transfer/'},
       {text:'React',link:'/react/create-react-app/'},
     ],
-    lastUpdated:true,
-    lastUpdatedText:'上次更新',
     contributors: false,
     darkMode:true,
     logo:null,

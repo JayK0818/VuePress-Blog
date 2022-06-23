@@ -1,23 +1,34 @@
 <template>
-  <canvas ref="canvas" class="canvas"></canvas>
+  <canvas ref="canvas" class="canvas" @click='click'></canvas>
 </template>
 
 <script lang='ts'>
-import { defineComponent, ref, onMounted } from 'vue'
+import { defineComponent, ref, onMounted, onBeforeUnmount } from 'vue'
+import { useRouter } from 'vue-router'
 
 function paddingLeftZero(s: number | string): string {
   return ('00'+s).substring(s.toString().length)
 }
+
 export default defineComponent({
   name: 'Home',
   setup () {
     const canvas = ref<null | HTMLCanvasElement>(null)
+    const timer = ref<number | null>(null)
+    const window_width = ref<number>(0)
+    const window_height = ref<number>(0)
+    const router = useRouter()
     onMounted(() => {
       const width = window.innerWidth
       const height = window.innerHeight
       if(!canvas.value) return
       canvas.value.width = width
       canvas.value.height = height
+      window_width.value = width
+      window_height.value = height
+      timer.value = setInterval(() => {
+        draw_text()
+      }, 1000)
       draw_text()
     })
     const get_date_string = () => { // 获取默认日期
@@ -31,15 +42,27 @@ export default defineComponent({
       if(!canvas.value) return
       const ctx = canvas.value.getContext('2d')
       if(!ctx) return
+      ctx.clearRect(0, 0, canvas.value.width, canvas.value.height)
       const date_string = get_date_string()
-      ctx.font = "32px serif"
+      ctx.font = "24px serif"
       ctx.fillStyle = '#fff'
-      ctx.fillText(date_string, 100, 200)
+      ctx.textAlign = 'center'
+      ctx.fillText(date_string, window_width.value/2, window_height.value/2- 10)
+      ctx.font = '38px serif';
       const time_string = get_time_string()
-      ctx.fillText(time_string, 100, 300)
+      ctx.fillText(time_string, window_width.value/2, window_height.value/2 + 40)
+      ctx.font = '52px serif';
+      ctx.fillText('What next to do ?', window_width.value/2, window_height.value/2 + 100)
     }
+    const click = () => {
+      router.push('/front-end/javascript/bom')
+    }
+    onBeforeUnmount(() => {
+      if(timer.value) clearInterval(timer.value)
+    })
     return {
-      canvas
+      canvas,
+      click
     }
   }
 })

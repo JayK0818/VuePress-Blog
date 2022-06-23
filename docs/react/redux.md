@@ -94,11 +94,9 @@ const rootReducer = combineReducers({
   The key names in the object will define the keys in our final state value. When we pass in an object like {counter:counterReducer},
   that says we want to have a state.counter section of our Redux state object.
 
-## useSelector
+## useDispatch / useSelector
 
   The useSelector hooks lets our component extract whatever pieces of data it needs from the Redux store state.
-
-## useDispatch
 
   The useDispatch hook can give us the actual dispatch method from the Redux store,so we can dispatch actions when the user does
   something like clicking on a button

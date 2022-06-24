@@ -60,11 +60,12 @@ function TodoList () {
     </div>
   )
 }
-
-const element = document.querySelector('._react_redux_todolist')
-const root = createRoot(element)
-root.render(
-  <Provider store={store}>
-    <TodoList/>
-  </Provider>
-)
+if(!__VUEPRESS_SSR__) {
+  const element = document.querySelector('._react_redux_todolist')
+  const root = createRoot(element)
+  root.render(
+    <Provider store={store}>
+      <TodoList/>
+    </Provider>
+  )
+}

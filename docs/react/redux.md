@@ -94,31 +94,6 @@ const rootReducer = combineReducers({
   The key names in the object will define the keys in our final state value. When we pass in an object like {counter:counterReducer},
   that says we want to have a state.counter section of our Redux state object.
 
-## useDispatch / useSelector
-
-  The useSelector hooks lets our component extract whatever pieces of data it needs from the Redux store state.
-
-  The useDispatch hook can give us the actual dispatch method from the Redux store,so we can dispatch actions when the user does
-  something like clicking on a button
-```js
-const dispatch = useDispatch()
-```
-```js
-import { useSelector, useDispatch } from 'react-redux'
-function App() {
-  const count = useSelector(state => state.counter)
-  const dispatch = useDispatch()
-  return (
-    <div>
-      <button onClick={() => dispatch({type:'increment'})}>+</button>
-      <button>{count}</button>
-      <button onClick={() => dispatch({type:'decrement'})}>-</button>
-    </div>
-  )
-}
-```
-  Any time an action has been dispatched and the Redux store has been updated, useSelector will re-run our selector function.
-
 <div class="_react_redux_todolist"></div>
 
 <ClientOnly>

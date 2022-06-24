@@ -22,7 +22,8 @@ const side = {
         '/react/basis',
         '/react/hook',
         '/react/create-react-app',
-        '/react/redux'
+        '/react/redux',
+        '/react/react-redux'
       ]
     }
   ],
@@ -134,6 +135,8 @@ module.exports = {
         ReactThrottleImmediate: resolve('React','ThrottleImmediate'),
         ReactCounter: path.resolve(__dirname, './components/React/UseReducerCounter.jsx'),
         ReactTodoList: path.resolve(__dirname, './components/React/TodoList/index.jsx'),
+        ReduxCounter: path.resolve(__dirname, './components/React/ReduxCounter/index.jsx'),
+        ReduxConnectCounter: path.resolve(__dirname, './components/React/ConnectReduxCounter/index.jsx'),
         JavaScriptObject: resolve('JavaScript', 'Object'),
         JavaScriptModalButton: resolve('JavaScript', 'ModalButton'),
         JavaScriptEvent: resolve('JavaScript', 'Event'),

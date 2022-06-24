@@ -14,7 +14,7 @@ export default defineComponent({
   name: 'Home',
   setup () {
     const canvas = ref<null | HTMLCanvasElement>(null)
-    const timer = ref<number | null>(null)
+    const timer = ref<number>(0)
     const window_width = ref<number>(0)
     const window_height = ref<number>(0)
     const router = useRouter()
@@ -26,7 +26,7 @@ export default defineComponent({
       canvas.value.height = height
       window_width.value = width
       window_height.value = height
-      timer.value = setInterval(() => {
+      timer.value = window.setInterval(() => {
         draw_text()
       }, 1000)
       draw_text()
@@ -48,10 +48,10 @@ export default defineComponent({
       ctx.fillStyle = '#fff'
       ctx.textAlign = 'center'
       ctx.fillText(date_string, window_width.value/2, window_height.value/2- 10)
-      ctx.font = '38px serif';
+      ctx.font = '32px serif';
       const time_string = get_time_string()
       ctx.fillText(time_string, window_width.value/2, window_height.value/2 + 40)
-      ctx.font = '52px serif';
+      ctx.font = '48px serif';
       ctx.fillText('What next to do ?', window_width.value/2, window_height.value/2 + 100)
     }
     const click = () => {

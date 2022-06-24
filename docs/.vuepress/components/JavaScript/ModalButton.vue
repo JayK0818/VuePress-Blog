@@ -80,8 +80,8 @@ export default defineComponent({
     left:50%;
     top:50%;
     transform:translate(-50%,-50%);
-    width: 440px;
-    height: 380px;
+    width:24rem;
+    height: 20rem;
     background-color:#fff;
     box-shadow:0 2px 10px 0 rgba(0,0,0,.1);
   }
@@ -101,6 +101,12 @@ export default defineComponent({
     border-top:1px solid #e8e8e8;
     padding:8px 30px 8px 0;
     text-align:right;
+  }
+}
+@media screen and (max-width: 768px) {
+  .wrapper .container{
+    width: 80%;
+    height: 40%;
   }
 }
 </style>

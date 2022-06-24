@@ -12,6 +12,7 @@ export default defineClientConfig({
         components: [NButton, NInput, NSelect, NCheckbox]
       })
       app.use(naive)
+      window.$message = message
     }
     app.use(pinia)
   }

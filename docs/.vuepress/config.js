@@ -3,6 +3,7 @@ const { defaultTheme } = require('vuepress')
 const { NaiveUiResolver } = require('unplugin-vue-components/resolvers')
 const { shikiPlugin } = require('@vuepress/plugin-shiki')
 const { viteBundler } = require('@vuepress/bundler-vite')
+const react = require('@vitejs/plugin-react')
 const path = require('path')
 
 function resolve(dirname,directory,filename){
@@ -21,7 +22,6 @@ const side = {
         '/react/basis',
         '/react/hook',
         '/react/create-react-app',
-        '/react/react-performance-optimization',
         '/react/redux'
       ]
     }
@@ -132,6 +132,8 @@ module.exports = {
         JavaScriptDebounce: resolve('JavaScript', 'Debounce'),
         ReactThrottleDelay:resolve('React','ThrottleDelay'),
         ReactThrottleImmediate: resolve('React','ThrottleImmediate'),
+        ReactCounter: path.resolve(__dirname, './components/React/UseReducerCounter.jsx'),
+        ReactTodoList: path.resolve(__dirname, './components/React/TodoList/index.jsx'),
         JavaScriptObject: resolve('JavaScript', 'Object'),
         JavaScriptModalButton: resolve('JavaScript', 'ModalButton'),
         JavaScriptEvent: resolve('JavaScript', 'Event'),
@@ -179,7 +181,7 @@ module.exports = {
       {text:'React',link:'/react/create-react-app/'},
     ],
     contributors: false,
-    darkMode:true,
+    darkMode: false,
     logo:null,
     sidebar:{
       collapsable: true,
@@ -195,6 +197,11 @@ module.exports = {
       plugins: [
         require('unplugin-vue-components/vite')({
           resolvers: [NaiveUiResolver()]
+        }),
+        react({
+          babel: {
+            plugins:['@babel/plugin-transform-react-jsx']
+          }
         })
       ]
     }

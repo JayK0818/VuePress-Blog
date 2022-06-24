@@ -64,7 +64,7 @@ function counterReducer(state = initialState, action) {
 
   The store is created by passing in a reducer.
 ```js
-import {createStore} from 'redux'
+import { createStore } from 'redux'
 const store = createStore(reducer)
 ```
 ## Dispatch
@@ -104,7 +104,7 @@ const rootReducer = combineReducers({
 const dispatch = useDispatch()
 ```
 ```js
-import {useSelector, useDispatch} from 'redux'
+import { useSelector, useDispatch } from 'react-redux'
 function App() {
   const count = useSelector(state => state.counter)
   const dispatch = useDispatch()
@@ -119,3 +119,8 @@ function App() {
 ```
   Any time an action has been dispatched and the Redux store has been updated, useSelector will re-run our selector function.
 
+<div class="_react_redux_todolist"></div>
+
+<ClientOnly>
+  <ReactTodoList/>
+</ClientOnly>

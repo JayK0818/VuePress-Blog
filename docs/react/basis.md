@@ -338,6 +338,52 @@ constructor -> render -> componentDidMount
 shouldComponentUpdate -> render -> getSnapshotBeforeUpdate -> componentDidUpdate
 */
 ```
+
+  shouldComponentUpdate()返回false不会子组件在state更新时重新渲染。 在函数组件中可以使用memo包裹组件。
+
+```jsx
+// 当app组件更新page时, Counter1和Counter2 Counter3是不用更新的
+function App(){
+  const [count, setCount] = useState(0)
+  const [page, setPage] = useState(0)
+  return(
+    <div>
+      <button onClick={() => setCount(count+1)}>{count}</button>
+      <button onClick={() => setPage(page+1)}>change-page-{page}</button>
+      <Counter1 count={count}/>
+      <Counter2 count={count}/>
+      <Counter3 count={count}/>
+    </div>
+  )
+}
+
+class Counter1 extends React.Component {
+  shouldComponentUpdate(nextProps,nextState){
+    return this.props.count !== nextProps.count
+  }
+  render() {
+    console.log('counter-1 render')
+    return (
+      <div>{this.props.count}</div>
+    )
+  }
+}
+class Counter2 extends React.PureComponent{
+  console.log('counter-2 render')
+  render() {
+    return (
+      <div>{this.props.count}</div>
+    )
+  }
+}
+const Counter3 = memo(function({count}) {
+  console.log('counter-3 render')
+  return (
+    <div>{count}</div>
+  )
+})
+```
+
 ## 表单
 ```jsx
 // ---- 受控组件 ------

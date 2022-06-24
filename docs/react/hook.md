@@ -42,6 +42,38 @@ useEffect(() => {
   return () => clearInterval(id)
 })
 ```
+  如果初始state需要通过复杂计算获得,useState中可以传入一个函数,initialState参数只会在组件的初试渲染中起作用.
+```jsx
+// App.jsx
+import {useState} from 'react'
+function App({props}) {
+  const [count,setCount] = useState(() => {
+    // 只会在第一次初始渲染的时候才会计算
+    return props.count || 0
+  })
+  return (
+    <div>{count}</div>
+  )
+}
+
+function App() {
+  const [count, setCount] = useState(() => {
+    const array = []
+    for(let i = 0; i < 100; i++) {
+      array.push(i)
+    }
+    console.log('initial state') // 只会在第一次渲染的时候执行
+    return array.reduce((prev,next) => prev + next, 0)
+  })
+  const handleClick = () => {
+    setCount(count => count+1)
+  }
+  return (
+    <button onClick={handleClick}>click {count}</button>
+  )
+}
+```
+
 ## useEffect
 
   useEffect 跟class组件中的componentDidMount, componentDidUpdate 和 componentWillUnmount 具有相同的用途。
@@ -246,6 +278,12 @@ function App() {
 }
 // 此时初始count 就是120
 ```
+<div class="_usereducer_counter"></div>
+<ClientOnly>
+  <React-Counter/>
+</ClientOnly>
+
+  虽然这是用vuepress搭建的博客, 但是这个组件确实使用react+useReducer实现的!
 
 ## useCallback
 
@@ -267,6 +305,29 @@ function App() {
   }
   return (
     <button onClick={handleClick}>{count}</button>
+  )
+}
+```
+```jsx
+// 将一个函数传递给子组件
+const Foo = memo(function Foo({click}){
+  console.log('foo-render')
+  return (
+    <p onClick={click}>click me</p>
+  )
+})
+
+function Container() {
+  const [count, setCount] = useState(0)
+  //在点击button时，如果不使用useCallback,每次传递给Foo组件的都是新的函数,会导致Foo组件重新渲染
+  const callback = useCallback(() => {
+    console.log('click')
+  },[])
+  return (
+    <div>
+      <button onClick={() => setCount(count => count+1)}>click{count}times</button>
+      <Foo click={callback}/>
+    </div>
   )
 }
 ```

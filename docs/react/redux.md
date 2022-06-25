@@ -93,9 +93,3 @@ const rootReducer = combineReducers({
 ```
   The key names in the object will define the keys in our final state value. When we pass in an object like {counter:counterReducer},
   that says we want to have a state.counter section of our Redux state object.
-
-<div class="_react_redux_todolist"></div>
-
-<ClientOnly>
-  <ReactTodoList/>
-</ClientOnly>

@@ -4,10 +4,8 @@ button, input{
 ol,ul{
   font-size: 16px;
   padding: 0;
-  list-style:none;
   li{
     line-height: 1.7;
-    color: rgba(0,0,0,.85);
   }
 }
 h2, h3, h4{
@@ -29,10 +27,6 @@ ul.sidebar-items{
 :root{
   --sidebar-width: 18rem;
   --content-width: 980px;
-}
-.back-to-top {
-  --back-to-top-color: #8c8c8c;
-  --back-to-top-color-hover: #262626;
 }
 .vue-home{
   .theme-default-content{
@@ -56,4 +50,7 @@ button.primary-button{
   &:active{
     background-color:rgb(12, 122, 67);
   }
+}
+code{
+  font-size: 16px;
 }

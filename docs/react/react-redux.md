@@ -274,33 +274,68 @@ const mapDispatchToProps = (dispatch) => {
 
   The useSelector hooks lets our component extract whatever pieces of data it needs from the Redux store state.
 1. useSelector 可以返回任意类型的值,不仅仅是一个对象。返回值可以直接在组件中使用。
-2. useSelector 不会接受ownProps 作为第二个参数, 但是可以通过函数闭包 读取组件的 props
+2. useSelector 不会接受ownProps 作为第二个参数, 但是可以通过函数闭包 读取组件的 props.
+3. 和connect()函数的第一个参数mapStateToProps不同,useSelector()返回一个对象的话每次都是返回一个新的对象,会触发组件重新渲染。
+
+3.1 多次调用useSelector(),每次分别返回一个单独的键值
+
+3.2 使用类似reselect 第三方库, 只有返回对象的键值修改了才返回一个新的对象触发组件渲染。
+
+3.3 给useSelector传递第二个参数 shallowEqual. (from React-Redux)
 
 ```js
+import { shallowEqual, useSelector } from 'react-redux'
+// later
+const selectedData = useSelector((state) => ({value: state.count}), shallowEqual)
+```
+
+```js
+// 简单用法
 function Counter() {
   const count = useSelector(state => state)
   return (
     <div>{count}</div>
   )
 }
-
-
+// 依赖组件的props
 const TodoListItem = (props) => {
   const todo = useSelector((state) => state.todos[props.id])
   return <div>{todo.text}</div>
 }
+
+// 使用reselect
+const selectCompletedTodos = createSelector(
+  state => state.todos,
+  todos => todos.filter(todo => todo.completed).length
+)
+function App() {
+  const length = useSelector(selectCompletedTodos)
+  return (
+    <div>{length}</div>
+  )
+}
 ```
-## useDispatch
+### useDispatch
 
-
-  The useDispatch hook can give us the actual dispatch method from the Redux store,so we can dispatch actions when the user does
-  something like clicking on a button.
+  This hook returns a reference to the dispatch function from the Redux store. You may use it to dispatch actions as needed
 
   Now we can use the React Redux hooks to let React components interact with the Redux store.
 ```js
 const dispatch = useDispatch()
-const todos = useSelector(state => state.todos)
 ```
+:::tip
+The dispatch function reference will be stable as long as the same store instance is being passed to the Provider.
+Normally, that store instance never changes in an application.
+```js
+const Todos = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchTodos())
+    // Safe to add dispatch to the dependencies array
+  }, [dispatch])
+}
+```
+:::
 ```js
 // store.js
 const INCREMENT = 'counter/increment'
@@ -349,11 +384,33 @@ root.render(
   </Provider>
 )
 ```
-  Any time an action has been dispatched and the Redux store has been updated, useSelector will re-run our selector function.
-
 <div class="_react_redux_counter"></div>
+
 <ClientOnly>
   <ReduxCounter/>
 </ClientOnly>
   
   这个是上面代码的展示效果
+
+  如果给子组件传递dispatch, 可以使用useCallback缓存dispatch,并给子组件使用memo包裹防止子组件不必要的更新。
+```jsx
+const Button = memo((props) => {
+  console.log('render')
+  return (
+    <button onClick={props.increment}>increment</button>
+  )
+})
+
+function App() {
+  const dispatch = useDispatch()
+  const increment = useCallback(() => {
+    dispatch({type: 'increment'})
+  }, [dispatch])
+  return (
+    <Button increment={increment}/>
+  )
+}
+// 上述demo 在父组件更新的时候 不会触发子组件的更新。
+```
+
+### useStore

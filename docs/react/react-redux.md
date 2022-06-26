@@ -58,7 +58,6 @@ connect(mapStateToProps, mapDispatchToProps, null, { context: MyContext })(
 )
 ```
 
-
 ```jsx
 // 将上面的计数器 使用useSelector 和 useDispatch 通过connect 方法实现
 // store.js

@@ -1,10 +1,5 @@
 # create-react-app
 
-  1. 在使用 npx create-react-app 脚手架创建项目时一直提示超时安装不了。
-  报错信息为: An unexpected error occurred: "https://registry.yarnpkg.com/react
-  
-  解决方式： 换源
-  npm config set registry https://registry.npm.taobao.org
 ## 配置别名
 
   为了简化文件引入路径配置react别名,在vue脚手架中已经配置好了webpack,通过 @ 引入src目录下的文件,或者用webpack自行搭建项目时可以

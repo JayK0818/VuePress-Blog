@@ -23,7 +23,8 @@ const side = {
         '/react/hook',
         '/react/create-react-app',
         '/react/redux',
-        '/react/react-redux'
+        '/react/react-redux',
+        '/react/shopping-cart'
       ]
     }
   ],
@@ -137,6 +138,7 @@ module.exports = {
         ReduxCounter: path.resolve(__dirname, './components/React/ReduxCounter/index.jsx'),
         ReduxConnectCounter: path.resolve(__dirname, './components/React/ConnectReduxCounter/index.jsx'),
         ReactDispatch: path.resolve(__dirname, './components/React/MapDispatch/index.jsx'),
+        ReactShoppingCart: path.resolve(__dirname, './components/React/ShoppingCart/index.jsx'),
         JavaScriptObject: resolve('JavaScript', 'Object'),
         JavaScriptModalButton: resolve('JavaScript', 'ModalButton'),
         JavaScriptEvent: resolve('JavaScript', 'Event'),

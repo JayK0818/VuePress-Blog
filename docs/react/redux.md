@@ -62,29 +62,59 @@ function counterReducer(state = initialState, action) {
 ```
 ## Store
 
-  The store is created by passing in a reducer.
+  The store is created by passing in a reducer. createStore to actually create a Redux store.
 ```js
 import { createStore } from 'redux'
 const store = createStore(reducer)
 ```
-## Dispatch
-
-  The Redux store has a method called dispatch,The only way to update the state is to call store.dispatch()
-  and pass in an action object.
+  一个应用程序只能有一个store, 可以使用combineReducers 合并多个reducer。更改store状态的唯一方式是派发action。
+  你也可以通过store.subscribe() 订阅状态的更新。
 ```js
-const increment = () => {
-  return {
-    type: 'counter/increment'
+// usage
+function todos(state = [], action) {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return state.concat([action.text])
+    default:
+      return state
   }
 }
-store.dispatch(increment())
+const store = createStore(todos, ['Use Redux'])
+```
+
+```js
+// store's Api
+const state = store.getState()
+/*
+返回当前store的状态。
+*/
+
+
+// dispatch
+/*
+dispatches an action, This is the only way to trigger a state change。
+*/
+const store = createStore(todos, ['Use Redux'])
+const addTodo = text => ({type: 'ADD_TODO', text})
+store.dispatch(addTodo('Hello World'))
+
+
+// subscribe
+/*
+It will be called any time an action is dispatched.
+*/
+const unsubscribe = store.subscribe(() => {
+  console.log(store.getState())
+})
+// 如果要取消订阅, 可以执行store.subscribe() 返回的函数
 ```
 ## combineReducers
 
-  Redux has a function called combineReducers,It accepts an object full of slice reducers as its argument, and returns a
-  function that calls each slice reducer whenever an action is dispatched.The result from each slice reducer are all combined
-  together into a single object as the final result.
+  如果你的项目变得越来越复杂, 需要维护的状态越来越多, 可以使用combineReducers来组织你的reducer, 可以将不同的状态维护切分为比较小的reducer。
+  combineReducers接受一个对象, 对象的每个字段都是一个reducer。
+
 ```js
+// example
 const rootReducer = combineReducers({
   users: usersReducer,
   posts: postsReducer,
@@ -93,3 +123,46 @@ const rootReducer = combineReducers({
 ```
   The key names in the object will define the keys in our final state value. When we pass in an object like {counter:counterReducer},
   that says we want to have a state.counter section of our Redux state object.
+
+## applyMiddleware
+
+  applyMiddleware 是一个用来扩展redux的方法.一般来说,如果需要触发异步的action, 需要使用中间件。
+  如果需要使用多个中间件, 可以依次传递给applyMiddleware, 将返回结果作为参数传递到 createStore。
+
+  每一个中间件会接受 store's dispatch 和 getState 函数。 并且返回一个函数。 该函数接受一个next参数(middleware's dispatch methods) 并且返回一个调用 next(action)就会触发dispatch。
+  中间件的 方式 （{getState, dispatch}） => next => action.
+```js
+// usage
+
+// 一个打印redux日志的中间件
+const logger = store => next => action => {
+  console.log(store.getState(), action.type)
+  next(action)  // 一定要调用next(action)
+}
+
+import { applyMiddleware, createStore } from 'redux'
+const store = createStore(reducer, applyMiddleware(logger))
+```
+
+  如果是一个异步操作, 可以actionCreator 返回的不是一个对象,而是一个函数, 该函数会接受dispatch 和 getState作为参数。
+  当异步操作完成后再调用 next(action)。
+```js
+import { applyMiddleware, createStore } from 'redux'
+function increment_async() {
+  return (dispatch, getState) => {
+    setTimeout(() => {
+      dispatch({
+        type: 'increment'
+      })
+    }, 2000)
+  }
+}
+
+const thunk = store => next => action => {
+  if(typeof action === 'function') {
+    return action(store.dispatch, store.getState)
+  }
+  next(action)
+}
+const store = createStore(reducer, applyMiddleware(thunk))
+```

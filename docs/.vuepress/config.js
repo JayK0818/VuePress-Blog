@@ -201,11 +201,7 @@ module.exports = {
         require('unplugin-vue-components/vite')({
           resolvers: [NaiveUiResolver()]
         }),
-        react({
-          babel: {
-            plugins:['@babel/plugin-transform-react-jsx']
-          }
-        })
+        react()
       ]
     }
   })

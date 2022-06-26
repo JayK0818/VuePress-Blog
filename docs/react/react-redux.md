@@ -23,16 +23,41 @@ root.render(
   </Provider>
 )
 ```
+
+  Provider 组件也剋提供一个可选的 context 参数。
+```jsx
+const ThemeContext = React.createContext('dark')
+function MyProvider() {
+  return (
+    <Provider context={ThemeContext} store={store}>{props.children}</Provider>
+  )
+}
+```
+
 ## connect
 
-  React Redux provides a connect function for you to react values from the Redux store(and re-read the values when the store updates)
+  The connect() function connects a React component to a Redux store. It does not modify the component class passed
+  to it. instead, it returns a new, connected component class that wrap the component you passed in.
   
   Arguments:
-1. mapStateToProps  called every time the store state chagnes. It receives the entire store state, and should return an object
+1. mapStateToProps  called every time the store state changes. It receives the entire store state, and should return an object
 of data this component needs
 
 2. mapDispatchToProps : (functions / object)
   参数可以是对象 或者 函数, 一般来说是一个函数 包含当前组件需要的 actionCreator。
+
+3. mergeProps: (stateProps, dispatchProps, ownProps) => Object
+  是一个可选参数, 它决定最终你的组件会接受到怎样的props参数,如果没有提供的话, 组件将接受 {...ownProps, ...stateProps, ...dispatchProps}。
+
+4. options:
+  这也是一个可选参数, React-Redux v6允许传递一个自定义的context, 需要在Provider 和 当前组件传递 context。
+```js
+const MyContext = React.createContext();
+connect(mapStateToProps, mapDispatchToProps, null, { context: MyContext })(
+  MyComponent
+)
+```
+
 
 ```jsx
 // 将上面的计数器 使用useSelector 和 useDispatch 通过connect 方法实现
@@ -74,7 +99,7 @@ const Counter = connect(mapStateToProps, mapDispatchToProps)((props) => {
 
 1. 如果connect函数两个参数都没有传递, 那么组件将不会更新(当store的数据更新时)。 组件会接受props.dispatch
 
-2. 如果只传递了mapStatetoProps,但是没有传递mapDispatchToProps, 组件会在store数据更新时更新, 并接受props.dispatch。
+2. 如果只传递了mapStateToProps,但是没有传递mapDispatchToProps, 组件会在store数据更新时更新, 并接受props.dispatch。
 
 3. 如果只传递了mapDispatchToProps,但是没有传递mapStateToProps, 组件在store数据更新时不会更新, 并接受action生成器(传递给mapDispatchToProps里的函数)
 
@@ -315,6 +340,17 @@ function App() {
   )
 }
 ```
+  和connect() 不一样的是, useSelector() 在父组件重新渲染的时候不会阻止子组件重新渲染, 即使子组件的props没有改变。此时可以考虑
+  使用React.memo()包裹组件.
+
+```jsx
+const Counter = React.memo(function() {
+  const counter = useSelector((state) => state.counter)
+  return (
+    <div>{name}: {counter}</div>
+  )
+})
+```
 ### useDispatch
 
   This hook returns a reference to the dispatch function from the Redux store. You may use it to dispatch actions as needed
@@ -414,3 +450,17 @@ function App() {
 ```
 
 ### useStore
+
+  This Hook returns a reference to the same Redux store that was passed in to the Provider component.
+
+```js
+import { useStore } from 'react-redux'
+
+export const CounterComponent = ({ value }) => {
+  const store = useStore()
+
+  // EXAMPLE ONLY! Do not do this in a real app.
+  // The component will not automatically update if the store state changes
+  return <div>{store.getState()}</div>
+}
+```

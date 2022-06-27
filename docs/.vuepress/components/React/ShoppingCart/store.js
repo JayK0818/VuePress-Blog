@@ -13,7 +13,6 @@ function reducer(state = [], action) {
     case ADD_GOOD: {
       // 判断是否已经添加过, 如果没有添加则新增, 否则新增数量
       const index = state.findIndex(good => good.id === payload.id)
-      console.log('index', index)
       if(index === -1) {
         return [...state, {...payload, count: 1}]
       }

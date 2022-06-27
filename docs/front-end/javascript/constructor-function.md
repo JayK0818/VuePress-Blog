@@ -138,9 +138,8 @@ console.log(animal) // {name: 'monkey'}
 animal.__proto__ === Animal.prototype
 ```
 ```js
-// 如果是手动给 将object的__proto__ 赋值给function.prototype, 不能使用
-// Object.create(null) 来创建一个空对象, 此时在修改__proto__ 原型指向无效
-// 只是给 object 添加了一个 __proto__ 属性 这个属性指向 function.prototype
+// 如果是手动将 Object.create(null)创建的对象的__proto__ 赋值给function.prototype, 不能使用
+// 只是给 object 添加了一个 __proto__ 属性 这个属性指向 function.prototype,无法实现原型链的继承
 
 const obj = Object.create(null)
 obj.__proto__ = {

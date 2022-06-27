@@ -1,0 +1,72 @@
+.todo_wrapper{
+  display: flex;
+}
+.todo_input{
+  outline: none;
+  border: 1px solid #d9d9d9;
+  flex: 1;
+  min-width: 0;
+  height: 36px;
+  text-indent: 4px;
+  font-size: 16px;
+  &:-webkit-input-placeholder{
+    color: rgba(0,0,0,.45);
+    font-weight: bold;
+  }
+  &:hover {
+    border-color: rgb(54, 173, 106);
+  }
+}
+.todo_list_wrapper {
+  .todo_item {
+    margin: 6px 0;
+    padding: 8px 5px;
+    display: flex;
+    align-items: center;
+    &:hover {
+      background-color: rgb(231,245,238);
+    }
+    border-bottom: 1px solid #e8e8e8;
+  }
+  .todo_text{
+    flex: 1;
+    min-width: 0;
+    font-size: 22px;
+    color: rgba(0, 0, 0, .85);
+    &.completed {
+      text-decoration: line-through;
+      color: #878787;
+      font-style: italic;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .delete_icon{
+    cursor: pointer;
+    &:hover{
+      color:red;
+    }
+  }
+}
+.filter_footer{
+  display: flex;
+  padding: 10px 0;
+  align-items: center;
+  .tip {
+    margin-right: auto;
+  }
+  .filter_item{
+    margin: 0 10px;
+    padding:2px 4px;
+    color: #000;
+    border: 1px solid rgba(0,0,0,0);
+    cursor: pointer;
+    &:hover {
+      border-color: #CE4646;
+    }
+    &.active {
+      border-color: #CE4646;
+    }
+  }
+}

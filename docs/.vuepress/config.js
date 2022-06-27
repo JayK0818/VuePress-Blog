@@ -24,7 +24,8 @@ const side = {
         '/react/create-react-app',
         '/react/redux',
         '/react/react-redux',
-        '/react/shopping-cart'
+        '/react/shopping-cart',
+        '/react/todo-list'
       ]
     }
   ],
@@ -139,6 +140,7 @@ module.exports = {
         ReduxConnectCounter: path.resolve(__dirname, './components/React/ConnectReduxCounter/index.jsx'),
         ReactDispatch: path.resolve(__dirname, './components/React/MapDispatch/index.jsx'),
         ReactShoppingCart: path.resolve(__dirname, './components/React/ShoppingCart/index.jsx'),
+        ReactTodoList: path.resolve(__dirname, './components/React/TodoList/index.jsx'),
         JavaScriptObject: resolve('JavaScript', 'Object'),
         JavaScriptModalButton: resolve('JavaScript', 'ModalButton'),
         JavaScriptEvent: resolve('JavaScript', 'Event'),

@@ -90,7 +90,6 @@ const TodoFilter = memo(() => {
   )
 })
 
-
 function App() {
   return (
     <Fragment>
@@ -100,7 +99,6 @@ function App() {
     </Fragment>
   )
 }
-
 
 if(!__VUEPRESS_SSR__) {
   const root = createRoot(document.querySelector('._react_todo_list'))

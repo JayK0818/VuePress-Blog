@@ -4,4 +4,5 @@
 
 <ClientOnly>
   <ReactTodoList/>
+  <VueReactHelper/>
 </ClientOnly>

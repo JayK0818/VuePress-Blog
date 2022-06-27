@@ -2,20 +2,7 @@ import { createStore, combineReducers } from 'redux'
 
 const ADD_TODO = 'todo/add', DELETE_TODO = 'todo/delete', TOGGLE_TODO = 'todo/toggle'
 
-const initial_state = [
-  {
-    id: 1,
-    text: '学习React和Redux',
-    completed: false
-  },
-  {
-    id: 2,
-    text: '学习Vue和Vuex',
-    completed: true
-  }
-]
-
-const todos_reducer = (state = initial_state, action) => {
+const todos_reducer = (state = [], action) => {
   const { type, payload } = action
   switch(type) {
     case ADD_TODO:

@@ -423,6 +423,7 @@ root.render(
 
 <ClientOnly>
   <ReduxCounter/>
+  <VueReactHelper/>
 </ClientOnly>
   
   这个是上面代码的展示效果

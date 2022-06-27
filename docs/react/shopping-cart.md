@@ -6,4 +6,5 @@
 
 <ClientOnly>
   <ReactShoppingCart/>
+  <VueReactHelper/>
 </ClientOnly>

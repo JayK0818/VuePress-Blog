@@ -148,7 +148,6 @@ module.exports = {
         VuePropFather: resolve('Vue', 'Prop', 'Father'),
         VueEmitFather: resolve('Vue', 'Emit', 'Father'),
         VueProvideFather: resolve('Vue', 'Provide', 'Father'),
-        VueReactHelper: resolve('Vue', 'ReactHelper', 'index'),
         CssFloat: resolve('Css', 'Float','Float'),
         CssFloatLayout: resolve('Css', 'Float' ,'FloatLayout'),
         CssFloatText: resolve('Css', 'Float', 'FloatText'),

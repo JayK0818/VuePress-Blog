@@ -54,7 +54,7 @@ const {override,addWebpackAlias} = require("customize-cra");
 module.exports = override(
   config => {
     config.resolve.alias = {
-      "@":path.resolve(__dirname,'@')
+      "@":path.resolve(__dirname, 'src')
     }
     return config
   }
@@ -63,7 +63,7 @@ module.exports = override(
 // 第二种方式
 module.exports = override(
   addWebpackAlias({
-    "@":path.resolve(__dirname,"src")
+    "@":path.resolve(__dirname, "src")
   })
 )
 ```

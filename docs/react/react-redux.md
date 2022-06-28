@@ -1,11 +1,11 @@
 # React Redux
 
-  React Redux is the official Redux UI binding library for React. If you are using Redux and React togther,
+  React Redux is the official Redux UI binding library for React. If you are using Redux and React together,
   you should also use React Redux to bind these two libraries.
 
 :::tip
 You can ensure that each connected component only extracts the specific pieces of data from the store state that 
-are needed by that component. This means that you own component will need to re-render less ofen.
+are needed by that component. This means that you own component will need to re-render less often.
 :::
 
 ## Provider
@@ -87,12 +87,6 @@ const Counter = connect(mapStateToProps, mapDispatchToProps)((props) => {
   )
 })
 ```
-<div class="_redux_connect_counter"></div>
-<ClientOnly>
-  <ReduxConnectCounter/>
-</ClientOnly>
-
-  这是一个通过connect方法实现的counter计数器, 效果和使用useSelector/useDispatch 相同。
 
 **Common ways of calling connect**
 
@@ -256,11 +250,6 @@ const mapTripleDispatch = function(dispatch, ownProps) {
 }
 ```
 
-<div class="_react_map_dispatch"></div>
-<ClientOnly>
-  <ReactDispatch/>
-</ClientOnly>
-
   如果mapDispatchToProps是一个函数, 该函数需返回一个对象, 对象的每个字段是 一个函数(action creator)用来更新store的状态。
   这个对象将会和组件的props合并, 所以可以直接通过组件的 props[actionCreator] 方式调用。
 
@@ -419,16 +408,7 @@ root.render(
   </Provider>
 )
 ```
-<div class="_react_redux_counter"></div>
 
-<ClientOnly>
-  <ReduxCounter/>
-  <VueReactHelper/>
-</ClientOnly>
-  
-  这个是上面代码的展示效果
-
-  如果给子组件传递dispatch, 可以使用useCallback缓存dispatch,并给子组件使用memo包裹防止子组件不必要的更新。
 ```jsx
 const Button = memo((props) => {
   console.log('render')
@@ -464,3 +444,4 @@ export const CounterComponent = ({ value }) => {
   return <div>{store.getState()}</div>
 }
 ```
+

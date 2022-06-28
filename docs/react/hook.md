@@ -278,12 +278,6 @@ function App() {
 }
 // 此时初始count 就是120
 ```
-<div class="_react_usereducer_counter"></div>
-
-<ClientOnly>
-  <ReactUseReducerCounter/>
-  <VueReactHelper/>
-</ClientOnly>
 
   虽然这是用vuepress搭建的博客, 但是这个组件确实使用react+useReducer实现的!
 

@@ -103,3 +103,31 @@
   text-align: right;
   padding-top: 10px;
 }
+@media screen and (max-width: 1100px) {
+  .goods_list .good_item {
+    width: 33.333%
+  }
+}
+@media screen and (max-width: 840px) {
+  .goods_list .good_item {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .goods_list .good_item {
+    margin: 0 auto;
+    width: 90%;
+  }
+  .cart_wrapper{
+    .header{
+      font-size: 12px;
+    }
+    .cart_item{
+      font-size: 12px;
+      img{
+        width: 36px;
+      }
+    }
+  }
+}

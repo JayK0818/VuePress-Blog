@@ -1,4 +1,4 @@
-# React-Router-DOM
+# react-router-dom
 
 ## Usage
 
@@ -95,7 +95,7 @@ function Player() {
   const params = useParams() // {id: 1}
   const findPlayer = players.find(p => p.id === params.id*1) // 此处id 是一个字符串
   return (
-    <div>Player Page {findPlayer ? <span>{findPlayer.firstName + '' + findPlayer.lastName}</span> : null}</div>
+    <div>Player Page{findPlayer?<span>{findPlayer.firstName+''+findPlayer.lastName}</span> : null}</div>
   )
 }
 
@@ -103,7 +103,9 @@ function App() {
   return (
     <div className="App">
       {
-        players.map(player => (<Link key={player.id} to={`player/${player.id}`}>{player.firstName}</Link>))
+        players.map(player => (
+          <Link key={player.id} to={`player/${player.id}`}>{player.firstName}</Link>
+        ))
       }
       <Routes>
         <Route element={<Player/>} path={'/player/:id'}/>

@@ -22,6 +22,7 @@ const side = {
         '/react/basis',
         '/react/hook',
         '/react/create-react-app',
+        '/react/react-router-dom',
         '/react/redux',
         '/react/react-redux',
         '/react/shopping-cart',

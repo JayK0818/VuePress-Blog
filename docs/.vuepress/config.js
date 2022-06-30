@@ -3,7 +3,6 @@ const { defaultTheme } = require('vuepress')
 const { NaiveUiResolver } = require('unplugin-vue-components/resolvers')
 const { shikiPlugin } = require('@vuepress/plugin-shiki')
 const { viteBundler } = require('@vuepress/bundler-vite')
-const react = require('@vitejs/plugin-react')
 const path = require('path')
 
 function resolve(dirname,directory,filename){
@@ -25,6 +24,7 @@ const side = {
         '/react/react-router-dom',
         '/react/redux',
         '/react/react-redux',
+        '/react/redux-toolkit',
         '/react/shopping-cart',
         '/react/todo-list'
       ]
@@ -200,8 +200,7 @@ module.exports = {
       plugins: [
         require('unplugin-vue-components/vite')({
           resolvers: [NaiveUiResolver()]
-        }),
-        react()
+        })
       ]
     }
   })

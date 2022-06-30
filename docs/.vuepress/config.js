@@ -125,6 +125,7 @@ module.exports = {
   head:[
     ['link', {rel:'icon',href:'/code.png'}]
   ],
+  base: process.env.NODE_ENV === 'development' ? '/' : '/blog/',
   plugins:[
     shikiPlugin({
       theme: 'monokai'

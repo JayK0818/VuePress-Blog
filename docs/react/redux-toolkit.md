@@ -111,8 +111,8 @@ const store = configureStore({
 ```
 ## createAsyncThunk
 
-  在configureStore中调用异步逻辑, 需要使用createAsyncThunk函数, 它接受两个参数, 第一个参数是action type, 字符串.
-  第二个参数是一个函数, 这个函数接受两个参数(payload, thunkApi), thunkApi下有一个dispatch方法, 可以在异步操作结束后
+  在configureStore中调用异步逻辑, 需要使用createAsyncThunk函数, 它接受三个参数, 第一个参数是action type, 字符串.
+  第二个参数是一个函数payloadCreator, 这个函数接受两个参数(payload, thunkApi), thunkApi下有一个dispatch方法, 可以在异步操作结束后
   dispatch触发更新。
 
 ```js
@@ -122,6 +122,51 @@ const increment_async = createAsyncThunk('counter/async_increment', (payload, {d
   },2000)
 })
 ```
+1. type将会生成三个 action type 变量, 在上面的案例中, counter/async_increment 将会生成：
+
+**counter/async_increment/pending**
+
+**counter/async_increment/fulfilled** 
+
+**counter/async_increment/rejected**
+
+
+2. payloadCreator 返回一个promise,返回最终的异步操作后的结果。该函数接受两个参数：
+
+2.1  arg: a single value, containing the first parameter that was passed to the thunk action creator when it was dispatched。
+
+2.2 thunkApi: 是一个对象,包含dispatch, getState 等redux store method.
+
+```js
+// 一个异步添加todo的例子
+import { createAsyncThunk } from '@reduxjs/toolkit'
+
+const add_todo_async = createAsyncThunk('add_todo/async', (payload) => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(payload)
+    }, 2000)
+  })
+})
+const todo_reducer = createSlice({
+  name: 'todo',
+  initialState: [],
+  reducers: {
+    // ...
+  },
+  extraReducers: {
+    [add_todo_async.fulfilled]: (state, action) => {
+      state.push({
+        id: nanoid(),
+        text: action.payload,
+        completed: false
+      })
+    }
+  }
+})
+```
+  add_todo_async.pending / add_todo_async.fulfilled / add_todo_async.rejected 是一个action creator. 它们的toString()方法会返回对应的
+  action type.
 
 ## createAction
 
@@ -166,6 +211,8 @@ console.log(add_todo('你好, 生活'))
 
 ## createReducer
 
+### Builder Callback
+
   在redux中书写reducer函数时, 有时需要写很多的 case 语句来为不同的action定义对应的数据更新。createReducer可以简化
   此类reducer的实现.
 ```js
@@ -197,7 +244,7 @@ const reducer = createReducer(0, {
   上面用到了对象的计算属性, 第二种方式 会调用decrement.toString()方法, 该函数改写了toString(),返回值和直接调用decrement.type
   结果是一样的, 都是 counter/decrement.
 
-  createReducer中 可以直接修改对象的属性提交, 而无需使用对象扩展运算符 或者 Object.assign 来返回一个新的对象。
+  在Redux中要求reducer必须是一个纯函数,不允许直接修改参数state,但是在createReducer中 可以直接修改对象的属性提交, 而无需使用对象扩展运算符 或者 Object.assign 来返回一个新的对象。
 ```js
 // 在一个todo-list中, 新增todo,和 toggle。直接在原始数组push一条数据
 import { createAction, createReducer } from '@reduxjs/toolkit'
@@ -205,7 +252,7 @@ import { createAction, createReducer } from '@reduxjs/toolkit'
 const toggle = createAction('todo/toggle')
 const add = createAction('todo/add')
 
-const reducer = createReducer([], builder => {
+const todo_reducer = createReducer([], builder => {
   builder
   .addCase(toggle, (state, action) => {
     const index = action.payload
@@ -215,7 +262,60 @@ const reducer = createReducer([], builder => {
   .addCase(add, (state, action) => {
     const todo = action.payload
     state.push(todo)
-    // 不要再写return 语句
   })
 })
 ```
+### Map Object
+
+```jsx
+// 或者使用对象方式
+const todo_reducer = createReducer([], {
+  [toggle_todo]: (state, action) => {
+    const todo = state.find(todo => todo.id === action.payload)
+    if(todo) {
+      todo.completed = !todo.completed
+    }
+  },
+  [add_todo]: (state, action) => {
+    state.push(action.payload)
+  }
+})
+```
+:::tip 
+在createReducer中,可以提交可变更新, 或者 返回一个新数据, 但是只能使用其中一种方式, 不可以在变更state状态后 再将变更后的数据返回。
+```js
+const todo_reducer = createReducer([], {
+  [toggle_todo]: (state, action) => {
+    const index = state.findIndex(todo => todo.id === action.payload)
+    if(index >= 0) {
+      const todo = state[index]
+      todo.completed = !todo.completed // 变更状态就可以了, 无需再次返回新的state, 否则会报错
+      return [...state.slice(0, index), todo, ...state.slice(index+1)]
+    }
+  },
+  [add_todo]: (state, action) => {
+    state.push(action.payload)
+  }
+})
+```
+:::
+
+### current
+
+```jsx
+import { createSlice, current } from '@reduxjs/toolkit'
+
+const slice = createSlice({
+  name: 'todos',
+  initialState: [{ id: 1, title: 'Example todo' }],
+  reducers: {
+    addTodo: (state, action) => {
+      console.log(state)  // state 是一个proxy对象, 在控制台比较难以阅读
+      console.log('before', current(state))
+      state.push(action.payload)
+      console.log('after', current(state))
+    },
+  },
+})
+```
+

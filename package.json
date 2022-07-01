@@ -18,9 +18,9 @@
   },
   "dependencies": {
     "mitt": "^3.0.0",
-    "naive-ui": "^2.30.6",
+    "naive-ui": "^2.30.8",
     "pinia": "^2.0.14",
-    "unplugin-vue-components": "^0.19.9",
+    "unplugin-vue-components": "^0.20.1",
     "vuepress-plugin-clipboard": "^2.1.1"
   }
 }

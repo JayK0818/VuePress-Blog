@@ -26,7 +26,8 @@ class Counter() {
     })
     // makeAutoObservable(this)
     /*
-    computed 计算值可以用来从其他可观察对象中派生信息。计算值采用惰性求值。会缓存其输出。并且只有当其依赖的可观察对象被改变时才会重新计算。
+    computed 计算值可以用来从其他可观察对象中派生信息。计算值采用惰性求值。会缓存其输出。并且只有当其依
+    赖的可观察对象被改变时才会重新计算。
     */
   }
   increment() {
@@ -158,7 +159,7 @@ const CounterComponent = ({counter}) => {
 }
 ```
 
-## useLocalObservable hook
+## useLocalObservable
 
   本地的可以观察对象状态通过使用useLocalObservable钩子引入。
 ```jsx
@@ -197,3 +198,66 @@ const todo = useLocalObservable(() => {
 })
 */
 ```
+## Autorun
+
+  autorun 函数接受一个函数作为参数, 每当该函数观察的参数值发生变化时, 都会运行。
+```js
+// 一个来自官网的例子
+class Animal {
+  constructor(name) {
+    this.name = name
+    this.energyLevel = 100
+    makeAutoObservable(this)
+  }
+  reduceEnergy() {
+    this.energyLevel -= 10
+  }
+  get isHungry() {
+    return this.energyLevel < 50
+  }
+}
+
+const giraffe = new Animal("Gary")
+autorun(() => {
+  console.log("Energy level:", giraffe.energyLevel)
+})
+autorun(() => {
+  if (giraffe.isHungry) {
+      console.log("Now I'm hungry!")
+  } else {
+      console.log("I'm not hungry!")
+  }
+})
+console.log("Now let's change state!")
+for (let i = 0; i < 10; i++) {
+  giraffe.reduceEnergy()
+}
+/*
+Energy level: 100
+I'm not hungry!
+Now let's change state!
+Energy level: 90
+Energy level: 80
+Energy level: 70
+Energy level: 60
+Energy level: 50
+Energy level: 40
+Now I'm hungry!
+Energy level: 30
+Energy level: 20
+Energy level: 10
+Energy level: 0
+*/
+```
+:::tip
+在一个计数器counter的案例中,如果autorun中的函数没有读取counter.value,那么它只会执行一次.比如下面的代码,只会在
+autorun创建时执行一次。正确操作是在 autorun中 读取 counter.value
+```js
+autorun(() => {
+  console.log('i am changed')
+})
+setInterval(() => {
+  counter.increment()
+}, 1000)
+```
+:::

@@ -58,44 +58,56 @@ Symbol.toString(), typeof Symbol.toString()
 ## 千分位转化数字
 
 ```ts
-// 暂只考虑正整数
-// ---- 使用数组的reduce方法 ----
-function format1(money: number): number | string {
-  if(money >= 0 && money <= 999) return money
-  const array = money.toString().split('').reverse()
-  // [7,6,5,4,3,2,1]
-  return array.reduce((prev,next,i) => {
-    if(i % 3 === 0 && i !== 0) {
+// ---- 使用数组的reduce 或者 forEach 遍历方法 ----
+function format(money: number): number | string {
+  const arr = (money+'').split('.')
+  const int = arr[0]
+  const decimal = arr[1] || ''
+  int.split('').reverse().reduce((prev, next, i) => {
+    if(i !== 0 && i % 3 === 0) {
       return next + ',' + prev
-    }else{
+    } else {
       return next + prev
     }
-  }, '')
+  })
+  return decimal ? (number_string + '.' + decimal) : number_string
 }
 const number = 1234567;
 console.log(format(number)) // 1,234,567
 
+function format(number) {
+  const arr = (number+'').split('.')
+  const int = arr[0]
+  const decimal = arr[1] || ''
+  let number_string = ''
+  int.split('').reverse().forEach((n, i) => {
+    if(i !== 0 && i % 3 === 0) {
+      number_string = n + ',' + number_string
+    } else {
+      number_string = n + number_string
+    }
+  })
+  return decimal ? (number_string + '.' + decimal) : number_string
+}
 
 // --- 使用字符串的方法 -----
-function format2(money: number): number | string {
-  if(money >= 0 && money <= 999) return money
-  const string = money.toString()
-  const length = string.length
-  // 1234567
-  let str = '';
-  //i 6 / j 1
-  for(let i = length - 1; i >= 0; i--) {
-    const j = length - i - 1
-    if(j % 3 === 0 && j !== 0) {
-      str = string[i] + ',' + str
-    }else{
-      str = string[i] + str
+function format(money: number | string) {
+  const arr = (money+'').split('.')
+  const int = arr[0]
+  const decimal = arr[1] || ''
+  let number_string = ''
+  for(let i = int.length-1; i >= 0; i--) {
+    const j = int.length - i - 1
+    if(j !== 0 && j % 3 == 0) {
+      number_string = int[i] + ',' + number_string
+    } else {
+      number_string = int[i] + number_string
     }
   }
-  return str
+  return decimal ? (number_string + '.' + decimal) : number_string
 }
 const number = 1234567678
-console.log(format2(number)) // 1,234,567,678
+console.log(format(number)) // 1,234,567,678
 ```
 
 ## 判断对象是否具有属性
@@ -153,3 +165,4 @@ console.log(Object.prototype.hasOwnProperty.call(player, 'firstName'))  // true
 console.log(Object.hasOwn(player, 'firstName')) // true
 console.log(Object.hasOwn(player, 'age'))  // false
 ```
+

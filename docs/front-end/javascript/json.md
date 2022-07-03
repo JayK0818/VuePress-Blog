@@ -8,8 +8,15 @@
   JSON.stringify() 方法将一个 JavaScript 对象或值转换为 JSON 字符串，如果指定了一个 replacer 函数.
   则可以选择性地替换值，或者指定的 replacer 是数组，则可选择性地仅包含数组指定的属性
 ```js
-// 1. 转换值如果有 toJSON() 方法，该方法定义什么值将被序列化
-let obj = {
+// 1. 对大多数简单值来说,JSON.stringify()效果和toString()一样
+console.log(JSON.stringify(123))  // '123'
+console.log(JSON.stringify(true)) // 'true'
+console.log(JSON.stringify(undefined))  // 'undefined'
+console.log(JSON.stringify(null)) // 'null'
+console.log(JSON.stringify("123"))  // ""123""
+
+// 2. 转换值如果有 toJSON() 方法，该方法定义什么值将被序列化
+const obj = {
   toJSON() {
     return {name:'lebron'}
   },
@@ -17,43 +24,53 @@ let obj = {
 }
 console.log(JSON.stringify(obj)) // {"name":"lebron"}
 
-// 2 布尔值,数字 字符串的包装对象在序列化过程中会自动转换成对应的原始值
-let obj = {
+// 3 布尔值,数字 字符串的包装对象在序列化过程中会自动转换成对应的原始值
+const obj = {
   a:Number(123),
   b:String(123),
   c:Boolean(false)
 }
-let array = [Number(123),String(123),Boolean(false)]
+const array = [Number(123),String(123),Boolean(false)]
 console.log(JSON.stringify(obj)) // {"a":123,"b":"123","c":false}
 console.log(JSON.stringify(array)) // [123,"123",false]
 
 
-/*3. undefined任意的函数以及symbol值,在序列化的过程中会被忽略
-(出现在非数组对象的属性值中时 或者被转换成null(出现在数组中时) 
-函数 undefined被单独转换时,会返回undefined */
+/*4. undefined任意的函数以及symbol值,在序列化的过程中会被忽略
+(出现在数组对象的属性值中时被转换成null(以保证单元位置不变) */
 console.log(JSON.stringify(undefined), JSON.stringify(function() {})) 
 // undefined undefined
-let obj = {
+
+const obj = {
+  [Symbol(123)]: 'hello',
+  b: function() {
+    return 'hello'
+  },
+  a: undefined
+}
+console.log(JSON.stringify(obj))  // {}
+
+
+const obj = {
   a: undefined,
   b: function() {},
   c: Symbol['foo'],
   d: 'hello world'
 }
-let array = [undefined,function(){},Symbol('foo'),'hello world']
+const array = [undefined,function(){},Symbol('foo'),'hello world']
 console.log(JSON.stringify(obj))  // {"d":"hello world"}
 console.log(JSON.stringify(array))  // [null,null,null,"hello world"]
 
 
-//4. 包含循环引用的对象(对象之间相互引用,形成无线循环)执行此方法会报错
-let a = {}, b = {};
+//5. 包含循环引用的对象(对象之间相互引用,形成无线循环)执行此方法会报错
+const a = {}, b = {};
 a.foo = b;
 b.bar = a;
 console.log(JSON.stringify(a))
 // Converting circular structure to JSON
 
 
-//5. 所有以Symbol为属性键的属性都会被完全忽略掉,即使replacer参数中强制指定包含了它们
-let obj = {
+//6. 所有以Symbol为属性键的属性都会被完全忽略掉,即使replacer参数中强制指定包含了它们
+const obj = {
   [Symbol('foo')]:'foo',
   [Symbol('bar')]:'bar'
 }
@@ -85,6 +102,7 @@ function replacer(key,value) {
 }
 console.log(JSON.stringify(foo,replacer)) // {"week":45,"month":7}
 
+// 如果replacer是一个数组, 那么它必定是一个字符串数组, 包含要处理对象的属性名称。
 JSON.stringify(foo, ['week', 'month']);
 // '{"week":45,"month":7}', 只保留 “week” 和 “month” 属性值。
 
@@ -138,8 +156,31 @@ console.log(JSON.stringify(data).indexOf(JSON.stringify(obj)))  // 1
 const obj = {firstName:'kyrie',lastName:'irving'}
 console.log(window.localStorage.setItem('player',JSON.stringify(obj)))
 ```
-  3. 可以实现深拷贝,开发中,有时候怕影响原始数据,可以深拷贝一份数据做任意操作。但是使用JSON.stringify()有一些坑,可以参考写的另一篇文章
-  深拷贝与浅拷贝
+  3. 可以实现深拷贝,开发中,有时候怕影响原始数据,可以深拷贝一份数据做任意操作。
+
+  JSON.stringify() 还有一个可选的第三个参数space, 用来指定输出的缩紧格式。
+```js
+const player = {
+  firstName: 'lebron',
+  lastName: 'james',
+  age: 38
+}
+console.log(JSON.stringify(player, null, 3))
+console.log(JSON.stringify(player, null, '------'))
+/*
+{
+   "firstName": "lebron",
+   "lastName": "james",
+   "age": 38
+}
+
+{
+------"firstName": "lebron",
+------"lastName": "james",
+------"age": 38
+}
+*/
+```
 ## JSON.parse()
   
   JSON.parse()用来解析JSON字符串。

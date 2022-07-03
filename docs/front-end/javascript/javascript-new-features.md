@@ -105,7 +105,7 @@ for(let item of player){
 ```
 ### Symbol
 
-  1. Symbol表示独一无二的值,它是JavaScript语言的第七种数据类型。
+1. Symbol表示独一无二的值,它是JavaScript语言的第七种数据类型。
 ```js
 Symbol('foo') === Symbol('foo') // false
 ```
@@ -139,7 +139,7 @@ function getArea(shape, options) {
 }
 getArea(shapeType.triangle, { width: 100, height: 100 });
 ```
-  2. Symbol作为属性名遍历对象的时候,不会被for...in Object.keys() Object.getOwnPropertyNames() JSON.stringify()返回
+2. Symbol作为属性名遍历对象的时候,不会被for...in Object.keys() Object.getOwnPropertyNames() JSON.stringify()返回
 ```js
 let player = {
   [Symbol('first')]: 'kyrie',
@@ -161,13 +161,13 @@ Object.getOwnPropertySymbols(player);
 //[Symbol(first),Symbol(last),Symbol(age)]
 JSON.stringify(player) // {"team":"nets"}
 ```
-  3. Symbol.for() / Symbol.keyFor()
+3. Symbol.for() / Symbol.keyFor()
 
   Symbol.for()不会每次调用就返回一个新的 Symbol 类型的值，而是会先检查给定的key是否已经存在，如果不存在才会新建一个值。
 ```js
 Symbol.for('key') === Symbol.for('key');  // true
 ```
-  4. Symbol.toStringTag
+4. Symbol.toStringTag
   
   Symbol.toStringTag 是一个内置symbol,它通常作为对象的属性键使用,对应的属性值应该为字符串类型,通常只有内置的Object.prototype.toString()
   方法会读取这个标签并把它包含在自己的返回值里。
@@ -212,6 +212,23 @@ Object.prototype.toString.call(d1)             // [object hello world]
   };
 })();
 ```
+5. Symbol.toPrimitive
+
+  Symbol.toPrimitive是一个内置的Symbol值, 它是作为对象的函数值属性存在的, 当一个对象转换为对应的原始值时, 会调用此函数。
+  一个对象可被转换为原始值时,  该函数被调用时, 会被传递一个字符串参数hint,表示要转换到的原始值的预期类型(number/string/default).
+```js
+const player = {
+  [Symbol.toPrimitive](hint) {
+    if(hint === 'number') return 10
+    if(hint === 'string') return 'hello'
+    return true
+  }
+}
+console.log(`${player}`)  // hello
+console.log(player+'')    // true
+console.log(+player)      // 10
+```
+
 ### Set和Map数据解构
 
   1. Set数据解构类似与数组,但数据的成员值都是唯一的,没有重复的值。

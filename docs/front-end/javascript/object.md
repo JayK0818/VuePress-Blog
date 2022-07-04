@@ -225,6 +225,31 @@ Object.prototype.setPrototypeOf(object, prototype) {
   }
 }
 ```
+
+## Object.getPrototypeOf
+
+  Object.getPrototypeOf 方法返回指定对象的原型。
+```js
+const obj = Object.create(null)
+console.log(Object.getPrototypeOf(obj)) // null
+
+
+function Player(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
+const player = new Player('kyrie', 'irving')
+
+const object = {};
+object.__proto__ = player;
+console.log(Object.getPrototypeOf(object))  // Player{ firstName: "kyrie", lastName: "irving"}
+
+
+console.log(Object.getPrototypeOf(Object))    // ƒ () { [native code] }
+console.log(Object.getPrototypeOf(Function))  // f () { [native code] }
+console.log(Object.getPrototypeOf(Object) === Function.prototype) // true
+```
+
 ## Object.prototype.valueOf
 
   valueOf() 方法返回指定对象的原始值。
@@ -257,7 +282,7 @@ console.log(string.valueOf(), string.valueOf() === string)  // 123 true
 console.log(object.valueOf(), object.valueOf() === object)  // {msg: 'hello world'} true
 ```
 
-## for...in
+## 对象的属性
 
 ```js
 // 常规属性
@@ -313,3 +338,41 @@ for(const key of Object.keys(e)) {
   对象拥有两个隐藏属性 elements 和 properties, 数字属性会被放到elements属性中,被称为排序属性。在elements对象中,会按照属性值数字大小排序。
   字符串属性被称为常规属性, 在properties中会按照创建属性的先后顺序保存。
   
+## 遍历
+
+
+| 方法名 | 普通属性 | 不可枚举属性 | Symbol属性 | 原型属性 |
+| --- | --- | --- | --- | --- |
+| for...in | :ok_hand: | :x: |  :x:| :ok_hand: |
+| Object.getOwnPropertyNames | :ok_hand: | :ok_hand: | :x: | :x: |
+| Object.getOwnPropertySymbols | :x: | :ok_hand: | :ok_hand: | :x: |
+| Object.keys | :ok_hand: | :x: | :x: | :x: |
+| Reflect.ownKeys | :ok_hand: | :ok_hand: | :ok_hand:| :x: |
+
+```js
+// 遍历object的属性(普通属性/不可枚举属性/原型属性/Symbol属性/静态属性)
+const object = {
+  firstName: 'kyrie',
+  [Symbol('lastName')]: 'irving'
+}
+Object.defineProperty(object, 'age', {
+  value: 30,
+  enumerable: false,
+  writable: true,
+  configurable: true
+})
+object.__proto__.skill = 'crossover'
+console.log('player', object)
+
+for(const key in object) {
+  console.log('for---in', key)  // firstName, skill (原型和普通属性)
+}
+for(const key of Object.keys(object)) {
+  console.log('Object.key---', key) // firstName (普通属性)
+}
+console.log(Object.getOwnPropertyNames(object)) // ['firstName', 'age'] (普通属性和不可枚举属性)
+console.log(Object.getOwnPropertySymbols(object)) // [Symbol(lastName)] (Symbol属性)
+
+console.log(Reflect.ownKeys(object))  
+//['firstName', 'lastName', 'age', Symbol(fullName)] (普通属性/不可枚举属性/Symbol属性)
+```

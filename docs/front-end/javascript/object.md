@@ -281,6 +281,37 @@ console.log(number.valueOf(), number.valueOf() === number)  // 123 true
 console.log(string.valueOf(), string.valueOf() === string)  // 123 true
 console.log(object.valueOf(), object.valueOf() === object)  // {msg: 'hello world'} true
 ```
+```js
+const objA = {property: 'ObjectA'}
+const objB = {property: 'ObjectB'}
+
+const o = {
+  [objA]: 'hello',
+  [objB]: 'world'
+}
+console.log(o)
+/*
+{
+  [object Object]: "world"
+}
+*/
+
+
+const objA = {property: 'ObjectA', valueOf() {return 'hello'}}
+const objB = {property: 'ObjectB', toString() {return 'world'}}
+
+const o = {
+  [objA]: 'hello',
+  [objB]: 'world'
+}
+console.log(o)
+/*
+{
+[object Object]: "hello"
+world: "world"
+}
+*/
+```
 
 ## 对象的属性
 

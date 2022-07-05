@@ -14,6 +14,13 @@ console.log(JSON.stringify(true)) // 'true'
 console.log(JSON.stringify(undefined))  // 'undefined'
 console.log(JSON.stringify(null)) // 'null'
 console.log(JSON.stringify("123"))  // ""123""
+const set = new Set()
+const map = new Map()
+set.add(1)
+map.set('hello', 'world')
+console.log(JSON.stringify(set), JSON.stringify(map)) // {} {}
+console.log(JSON.stringify(NaN))        // null
+console.log(JSON.stringify(Infinity))   // null
 
 // 2. 转换值如果有 toJSON() 方法，该方法定义什么值将被序列化
 const obj = {

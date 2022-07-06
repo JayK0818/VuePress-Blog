@@ -196,42 +196,44 @@ console.log(clone([s1, s2]))  // [ {}, {} ]
 
 ```ts
 // ------------ 支持array/object/map/set -------------
-function deep_clone(object: any, map = new WeakMap()) :any {
-  if(typeof object !== 'object' || object == null) return object
-  const fromMap = map.get(object) // 判断是否循环引用了
-  if(fromMap) return fromMap
-  let target: any = {};
-  map.set(object, target)
-  const type = Object.prototype.toString.call(object).slice(8,-1)
-  switch(type) {
-    case 'Map': {
-      target = new Map()
-      object.forEach((value, key) => {
-        target.set(deep_clone(value, map), deep_clone(key, map))
-      })
-    }
-    break;
-    case 'Set': {
-      target = new Set()
-      object.forEach(v => {
-        target.add(deep_clone(v), map)
-      })
-    }
-    break;
-    case 'Array': {
-      target = object.map(item => deep_clone(item), map)
-    }
-    break;
-    case 'Object': {
-      target = {}
-      for(const key in object) {
-        const v = deep_clone(object[key], map)
-        target[key] = v
+function deep_clone(obj, map = new WeakMap()) {
+  if(typeof obj === 'object' && obj !== null) {
+    const f = map.get(obj)
+    if(f) return obj
+    let target = {}
+    map.set(obj, target)
+    const type = Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()
+    switch(type) {
+      case 'map': {
+        target = new Map()
+        obj.forEach((value, key) => {
+          target.set(deep_clone(value, map), deep_clone(key, map))
+        })
+      }
+      break;
+      case 'set': {
+        target = new Set()
+        obj.forEach(v => {
+          target.add(deep_clone(v, map))
+        })
+      }
+      break;
+      case 'array': {
+        target = obj.map(item => deep_clone(item, map))
+      }
+      break;
+      case 'object': {
+        target = {}
+        for(const key in obj) {
+          const v = deep_clone(obj[key], map)
+          target[key] = v
+        }
       }
     }
-    break;
+    return target
+  } else {
+    return obj
   }
-  return target
 }
 
 // ----- 测试 ------

@@ -166,3 +166,39 @@ console.log(Object.hasOwn(player, 'firstName')) // true
 console.log(Object.hasOwn(player, 'age'))  // false
 ```
 
+## NaN
+
+```js
+console.log(typeof NaN)   // number
+Object.getOwnPropertyDescriptor(window, 'NaN')
+
+console.log(NaN === NaN)  // false
+console.log(Object.getOwnPropertyDescriptor(window, 'NaN'))
+/*
+{
+  configurable: false
+  enumerable: false
+  value: NaN
+  writable: false
+}
+*/
+
+// Number.isNaN() 是ES6 新增的方法
+console.log(Object.getOwnPropertyDescriptor(Number, 'NaN'))
+/*
+{
+  configurable: false
+  enumerable: false
+  value: NaN
+  writable: false
+}
+*/
+
+// -------- 判断是否为NaN ----------
+function isNaN(number) {
+  return typeof number === 'number' && number !== number
+}
+function isNaN(number) {
+  
+}
+```

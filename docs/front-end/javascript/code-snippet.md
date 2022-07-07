@@ -202,3 +202,67 @@ function isNaN(number) {
   
 }
 ```
+
+## 生成指定长度的数组
+
+```js
+function create_array(length) {
+  return new Array(length).fill(null).map((item, i) => i)
+}
+create_array(100) // [0,2,3,4,5,...,99]
+
+
+function create_array(length) {
+  return Array.from({length}, (item, i) => i)
+}
+create_array(100) // [0,2,3,4,5,...,99]
+```
+
+## 类数组
+
+```js
+// 判断一个对象是数组还是类数组
+function isArrayLikeObject(arr) {
+  if(typeof arr !== 'object') return false
+  if(arr === null) return false
+  const max_length = Math.pow(2,53) - 1;
+  // 判断是否有length属性
+  if(!Object.prototype.hasOwnProperty.call(arr, 'length')) return false
+  // 判断length 是否为 number
+  if(typeof arr.length !== 'number') return false
+  // 判断是否是 有限的length
+  if(!Number.isFinite(arr.length)) return false
+  // 判断是不是数组本身
+  if(Array.isArray(arr)) return false
+  if(arr.length >= 0 && arr.length < max_length) return true
+  return false
+}
+
+const a = {
+  0: 'hello',
+  1: 'world',
+  length: 'hello'
+}
+const b = [1, 2, 3]
+
+const player = {
+  firstName: 'kyrie',
+  lastName: 'irving',
+  age: 30
+}
+const c = {
+  0: 'hello',
+  1: 'world',
+  length: Infinity
+}
+const d = {
+  0: 'hello',
+  1: 'world',
+  length: 2
+}
+isArrayLikeObject(a)  // false
+isArrayLikeObject(b)  // false
+isArrayLikeObject(c)  // false
+isArrayLikeObject(d)  // true
+isArrayLikeObject(player) // false
+```

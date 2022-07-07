@@ -1,4 +1,3 @@
-
 # ECMAScript新特性
 
 ## ES2015
@@ -103,6 +102,23 @@ for(let item of player){
   console.log(item) // kyrie, irving, 30
 }
 ```
+```js
+const has_empty_array = [1, , 3, , 5, , 7]
+// for...of 会遍历空位
+for(const item of has_empty_array) {
+  console.log('for...of', item)
+}
+/*
+for...of 1
+for...of undefined
+for...of 3
+for...of undefined
+for...of 5
+for...of undefined
+for...of 7
+*/
+```
+
 ### Symbol
 
 1. Symbol表示独一无二的值,它是JavaScript语言的第七种数据类型。
@@ -462,6 +478,12 @@ console.log(rest) // [2,3,4,5]
 // 4. 实现了Iterator接口的对象
 const nodeList = document.querySelectorAll('div')
 [...nodeList]
+
+
+// 扩展运算符会将空位转为undefined
+const has_empty_array = [1, , 3, , 5, , 7]
+console.log([...has_empty_array])
+// [ 1, undefined, 3, undefined, 5, undefined, 7 ]
 ```
 #### Array.from()
 
@@ -482,7 +504,7 @@ Array.from({length:3})  // [undefined,undefined,undefined]
 :::
   2. Array.from() 还可以接受第二个参数,作用类似于数组的map方法,用来对每个元素进行处理,将处理后的值放入返回的数组
 ```js
-let array = Array.from({length:10},() => Math.random())
+const array = Array.from({length:10},() => Math.random())
 //  [
 //   0.9914679755190499,
 //   0.6476812277611301,
@@ -495,6 +517,12 @@ let array = Array.from({length:10},() => Math.random())
 //   0.5190184961310442,
 //   0.40094030827389204
 // ]
+
+
+// Array.from会将数组的空位转为undefined。
+const has_empty_array = [1, , 3, , 5, , 7]
+console.log(Array.from(has_empty_array, (item) => item))
+// [ 1, undefined, 3, undefined, 5, undefined, 7 ]
 ```
 #### Array.of()
 
@@ -533,6 +561,112 @@ for(const [key,value] of ['a','b','c'].entries()){
   2 c
   */
 }
+```
+#### 数组的空位
+
+  数组的空位指的是 数组的某个位置没有任何值。
+1. forEach(), filter(), reduce(), every(), some()都会跳过空位, map()会跳过空位,但是保留这个值。
+2. join()和toString()会将空位视为undefined,而undefined和null会被处理为空字符串。
+
+```js
+const has_empty_array = [1, , 3, , 5, , 7]
+console.log(has_empty_array)
+
+has_empty_array.forEach(item => {
+  console.log('forEach', item)
+  /*
+    forEach 1
+    forEach 3
+    forEach 5
+    forEach 7
+  */
+})
+has_empty_array.filter(item => {
+  console.log('filter', item)
+  return item
+})
+/*
+filter 1
+filter 3
+filter 5
+filter 7
+*/
+
+has_empty_array.reduce((prev,next) => {
+  console.log('reduce:', prev, next)
+  return prev + next
+}, 0)
+/*
+reduce: 0 1
+reduce: 1 3
+reduce: 4 5
+reduce: 9 7
+*/
+
+has_empty_array.every(item => {
+  console.log('every', item)
+  return item
+})
+/*
+every 1
+every 3
+every 5
+every 7
+*/
+
+has_empty_array.some(item => {
+  console.log('some', item)
+  return item
+})
+
+console.log(has_empty_array.map(item => {
+  console.log('map', item)
+  return item
+}))
+/*
+map 1
+map 3
+map 5
+map 7
+[ 1, <1 empty item>, 3, <1 empty item>, 5, <1 empty item>, 7 ]
+*/
+
+
+console.log(has_empty_array.toString(), has_empty_array.join())
+// 1,,3,,5,,7
+// 1,,3,,5,,7
+```
+  ES6明确的将空位处理为undefined.
+  entries() / values() / keys() / find() / findIndex() 会将空位处理成undefined
+```js
+console.log([...has_empty_array.entries()])
+/*
+[
+  [ 0, 1 ],
+  [ 1, undefined ],
+  [ 2, 3 ],
+  [ 3, undefined ],
+  [ 4, 5 ],
+  [ 5, undefined ],
+  [ 6, 7 ]
+]
+*/
+console.log([...has_empty_array.keys()])
+/*
+[
+  0, 1, 2, 3,
+  4, 5, 6
+]
+*/
+console.log([...has_empty_array.values()])
+/*
+[ 1, undefined, 3, undefined, 5, undefined, 7 ]
+*/
+
+console.log([,'a'].find(x => true)) // undefined
+console.log([,'a'].findIndex(x => true)) // 0
+console.log(has_empty_array.includes(undefined))  // true
+console.log(has_empty_array.indexOf(undefined))   // -1
 ```
 ### 函数的扩展
 
@@ -1546,6 +1680,22 @@ Object.hasOwn(object2, "foo") // false
 let object3 = Object.create(null)
 Object.hasOwn(object3, "foo") // false
 ```
+
+### findLast / findLastIndex
+
+  ES2022新增了两个方法 findLast()和findLastIndex(),从数组的最后一个成员开始, 依次向前检查。
+```js
+const array = [
+  { value: 1 },
+  { value: 2 },
+  { value: 3 },
+  { value: 4 }
+];
+
+array.findLast(n => n.value % 2 === 1); // { value: 3 }
+array.findLastIndex(n => n.value % 2 === 1); // 2
+```
+
 [MDN-hasOwn](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwn)
 
 [ES6入门教程](https://es6.ruanyifeng.com/#README)

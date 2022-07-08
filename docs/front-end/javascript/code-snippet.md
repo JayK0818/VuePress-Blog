@@ -203,9 +203,10 @@ function isNaN(number) {
 }
 ```
 
-## 生成指定长度的数组
+## 数组
 
 ```js
+// 生成指定长度的数组
 function create_array(length) {
   return new Array(length).fill(null).map((item, i) => i)
 }
@@ -216,6 +217,17 @@ function create_array(length) {
   return Array.from({length}, (item, i) => i)
 }
 create_array(100) // [0,2,3,4,5,...,99]
+
+// 序列生成器
+const range = (start, stop, step) => Array.from({length: (stop-start)/step + 1}, (_, i) => {
+  return start + (i*step)
+})
+console.log('range:' ,range(1, 10, 2))  // [1, 3, 5, 7, 9]
+
+
+// 排除 falsy值. Array.prototype.filter(Boolean)
+const has_virtual_item = ['', undefined, NaN, 0, 123, 'hello', false, '你好']
+console.log(has_virtual_item.filter(Boolean)) // [ 123, 'hello', '你好' ]
 ```
 
 ## 类数组

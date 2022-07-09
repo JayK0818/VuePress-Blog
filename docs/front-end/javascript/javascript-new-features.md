@@ -1150,7 +1150,7 @@ console.log(proxy)  //  { _prop: 'hello' }
 
 ## ES2017
 
-### padStart/padEnd
+### padStart / padEnd
 
   如果某个字符串不够指定长度,会在头部或尾部补全。padStart()用于头部补全,padEnd()用于尾部补全。
   padStart()和padEnd() 一共接收两个参数, 第一个参数是字符串补全生效的最大长度,第二个参数是用来补全的字符串。
@@ -1181,9 +1181,9 @@ if(原字符串的长度 >= 最大长度) {
 }
 */
 ```
-### Object.getOwnPropertyDescriptors()
+### Object.getOwnPropertyDescriptors
 
-  返回指定对象所有自身属性的描述对象。
+  Object.getOwnPropertyDescriptors() 返回指定对象所有自身属性的描述对象。
 ```js
 const o = {
   foo: 123,
@@ -1208,25 +1208,25 @@ console.log(Object.getOwnPropertyDescriptors(o))
 */
 ```
 
-### Object.values/Object.entries() 
+### Object.values / Object.entries
 
   返回对象自身可遍历的属性
 ```js
-let {keys, values, entries} = Object;
-let obj = { a: 1, b: 2, c: 3 };
+const {keys, values, entries} = Object;
+const obj = { a: 1, b: 2, c: 3 };
 
-for (let key of keys(obj)) {
+for (const key of keys(obj)) {
   console.log(key); // 'a', 'b', 'c'
 }
 
-for (let value of values(obj)) {
+for (const value of values(obj)) {
   console.log(value); // 1, 2, 3
 }
 
 const object = {100: 'a', 2: 'b', 3: 'c'}
 Object.values(object) // ['b', 'c',  'a']
 
-for (let [key, value] of entries(obj)) {
+for (const [key, value] of entries(obj)) {
   console.log([key, value]); // ['a', 1], ['b', 2], ['c', 3]
 }
 ```
@@ -1329,7 +1329,7 @@ const { a, b, c } = z;
 console.log(a, b, c)  // 3 4 5
 ```
 
-### Promise.prototype.finally()
+### Promise.prototype.finally
 
   finally()方法用于指定不管Promise对象最后状态如何,都会执行的操作.该方法是ES2018引入标准的。
 ```js
@@ -1349,7 +1349,7 @@ Promise.prototype.finally = function(callback) {
 ```
 ## ES2019 
 
-### trimStart()/trimEnd()
+### trimStart / trimEnd
 
   对字符串新增了 trimStart() 和 trimEnd() 方法，分别用于取消字符串头部与尾部对空格。
 ```js
@@ -1359,12 +1359,12 @@ console.log(s2.trimStart()) //  abc
 console.log(s1.trimEnd()) // abc
 ```
   浏览器还部署了额外的两个方法，trimLeft()是trimStart()的别名，trimRight()是trimEnd()的别名。
-### Function.prototype.toString()
+### Function.prototype.toString
 
   ES2019对函数实例的toString()方法做出了修改。toString()方法返回函数代码本身,以前会省略注释和空格。
   修改后的toString()方法明确要求返回一摸一样的原始代码
 
-### Array.prototype.sort()
+### Array.prototype.sort
 
   ES2019明确规定,Array.prototype.sort()的默认排序算法必须稳定。
 
@@ -1375,7 +1375,7 @@ console.log(s1.trimEnd()) // abc
 const symbol = Symbol('foo')
 console.log(symbol.description) // foo
 ```
-### Object.fromEntries()
+### Object.fromEntries
 
   Object.entries() 可以将一个对象转化为键值对的二维数组, Object.fromEntries()是对 Object.entries()的反向操作。
 ```js
@@ -1426,7 +1426,7 @@ try{
 
 ## ES2020
 
-### import()
+### import
 
   ES2020引入import函数,支持动态加载模块, 可以在需要的时候,再加载某个模块。
 
@@ -1480,7 +1480,7 @@ Math.pow(2n, 54n)   // 报错 Cannot convert a BigInt value to a number
 1n == 1   // true
 1n === 1  // false
 ```
-### Array.prototype.flat()
+### Array.prototype.flat
 
   Array.prototype.flat()用于将嵌套的数组 '拉平', 变成一维的数组,该方法返回一个新数组。对愿数组没有影响。
 ```js
@@ -1623,7 +1623,7 @@ console.log(NaN ?? 'hello') // NaN
 ```
 ## ES2021 
 
-### replaceAll()
+### replaceAll
   replace方法只能替换第一个匹配,如果要替换所有的匹配,可以使用正则表达式全局匹配。
   在ES2021中字符串的方法引入了replaceAll()方法,可以一次性替换所有匹配。
 ```js
@@ -1665,7 +1665,7 @@ const string = 'hello world'
 string.at(0)  // h
 ```
   
-### Object.hasOwn()
+### Object.hasOwn
 
   The Object.hasOwn() static method returns true if the specified object has the indicated property as its
   own property. If the property is inherited, or does not exist, the method returns false

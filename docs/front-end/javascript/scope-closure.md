@@ -122,7 +122,7 @@ var a = 2
 console.log(a)  // 2
 ```
 
-## 提升
+### 提升
 
 ```js
 a = 2
@@ -174,6 +174,58 @@ function baz() {
 // 以上代码输出3
 ```
 
+## Function.name
+
+```js
+const person_1 = {
+  name: 'kyrie',
+  getName: function() {
+    return this.name
+  }
+}
+console.log('function name:',person_1.getName.name) // getName
+
+const person_2 = {
+  name: 'kyrie'
+}
+person_2.getName = function() {
+  return this.name
+}
+console.log('function name:', person_2.getName.name)  // ''
+
+
+const new_function = new Function('number_1', 'number_2', 'return number_1 + number_2')
+console.log(new_function(1,3), new_function.name) // 4 anonymous
+
+const person_3 = {
+  _name: 'kyrie',
+  get name() {
+    return this._name
+  },
+  set name(value) {
+    this._name = value
+  }
+}
+const descriptor = Object.getOwnPropertyDescriptor(person_3, 'name')
+console.log(descriptor.get.name, descriptor.set.name) // get name, set name
+
+
+const person_4 = {
+  name: 'kyrie'
+}
+const get_name = (function getName() {
+  return this.name
+}).bind(person_4)
+console.log(get_name.name)  // bound getName
+
+const person_5 = {
+  name: 'kyrie',
+  [Symbol.for('get_name')]() {
+    return this.name
+  }
+}
+console.log(person_5[Symbol.for('get_name')]['name']) // [get_name]
+```
 ## 闭包
 
   一个函数和对其周围状态的引用捆绑在一起 这样的组合就是闭包。闭包可以让你可以在一个内层函数中访问到其外层函数的作用域。

@@ -391,3 +391,34 @@ isArrayLikeObject(c)  // false
 isArrayLikeObject(d)  // true
 isArrayLikeObject(player) // false
 ```
+## 链式调用
+
+```js
+class Calculator {
+  constructor(value) {
+    this._value = value
+  }
+  add(number) {
+    this._value += number
+    return this
+  }
+  minus(number) {
+    this._value -= number
+    return this
+  }
+  divide(number) {
+    this._value = this._value / number
+    return this
+  }
+  multiple(number) {
+    this._value = this._value * number;
+    return this;
+  }
+  get value() {
+    return this._value
+  }
+}
+const calculator = new Calculator(1)
+console.log(calculator.add(12).multiple(2).minus(2).divide(2).value)  // 12
+console.log(new Calculator(12).multiple(2).divide(3).value) // 8
+```

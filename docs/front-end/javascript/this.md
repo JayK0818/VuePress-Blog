@@ -58,8 +58,6 @@ object2.object1.foo() // 2
 object1.object2.foo() // 100
 ```
 
-### 隐式丢失
-
   一个最常见的this绑定问题就是隐式绑定的函数会丢失绑定对象。从而把this绑定到全局对象或者undefined上。
 ```js
 function foo() {
@@ -400,12 +398,12 @@ numbers.forEach(item => {
 })
 console.log(max, min) // 5  1
 ```
-### 手写apply
 
 ```js
+// 手写apply
 Function.prototype.myApply = function(context, args) {
   if(context === null || context === undefined) context = globalThis
-  if(! typeof context !== 'object') context = Object(context)
+  if(typeof context !== 'object') context = Object(context)
   const fnKey = Symbol()  // 防止属性名称被覆盖
   context[fnKey] = this
   const result = context[fnKey](...args)
@@ -415,4 +413,15 @@ Function.prototype.myApply = function(context, args) {
 
 console.log(Math.min.myApply(null, numbers))  // 1
 console.log(Math.max.myApply(null, numbers))  // 5
+```
+
+```js
+const name = 'window'
+function log_name() {
+  console.log(this)
+  console.log(this.name)
+}
+const person = {name: 'person', log_name};
+(person.log_name)();  // person, this为person
+(1, person.log_name)(); // undefined, this为window
 ```

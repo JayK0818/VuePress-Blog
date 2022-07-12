@@ -226,6 +226,33 @@ const person_5 = {
 }
 console.log(person_5[Symbol.for('get_name')]['name']) // [get_name]
 ```
+
+## Function
+
+  Function 每个JavaScript函数实际上都是一个Function对象。(function(){}).constructor === Function
+```js
+// 可以直接调用Function构造函数动态创建函数。Function构造函数创建的函数只能在全局作用域中运行
+var x = 10
+function createFunction() {
+  var x = 20
+  return new Function('return x')
+}
+const f1 = createFunction()
+console.log(f1())   // 10
+```
+```js
+const result = new Function('a', 'b','return a + b')
+console.log(result(10, 20)) // 30
+
+// ---------- 在对象中调用 new Function() 创建的函数 -----------
+const fn = new Function('console.log(this.name)')
+const player = {
+  name: 'kyrie',
+  fn
+}
+player.fn()   // kyrie
+```
+
 ## 闭包
 
   一个函数和对其周围状态的引用捆绑在一起 这样的组合就是闭包。闭包可以让你可以在一个内层函数中访问到其外层函数的作用域。

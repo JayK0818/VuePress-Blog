@@ -301,3 +301,23 @@ function traverse(root) {
 ------- element ------- IMG
 */
 ```
+```js
+// Node节点继承关系
+function inherit_node (node) {
+  const result = []
+  let proto = node
+  while(proto.__proto__) {
+    const name = proto.__proto__.constructor.name
+    result.push(name)
+    proto = proto.__proto__
+  }
+  return result
+}
+
+console.log(inherit_node(document.createElement('div')))
+// ['HTMLDivElement', 'HTMLElement', 'Element', 'Node', 'EventTarget', 'Object']
+console.log(inherit_node(document.createTextNode('hello')))
+// ['Text', 'CharacterData', 'Node', 'EventTarget', 'Object']
+console.log(inherit_node(document))
+// ['HTMLDocument', 'Document', 'Node', 'EventTarget', 'Object']
+```

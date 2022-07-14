@@ -108,3 +108,74 @@ offsetParent为最近的table table cell 或根元素。当元素的display设�
 <ClientOnly>
   <JavaScript-ScrollBottom/>
 </ClientOnly>
+
+## Document
+
+1. 显式地创建一个元素
+```js
+const div = document.createElement('div')
+const comment = document.createComment('注释')
+const text = document.createTextNode('文本')
+const fragment = document.createDocumentFragment()
+```
+
+2. 挂载元素
+```js
+// 1 append 最后一个子元素之后插入节点
+const body = document.querySelector('body')
+body.append(document.createTextNode('hello world')) // body的子元素
+
+// 2. before 在节点之前插入元素
+const element = document.createElement('div')
+document.body.appendChild(element)
+element.before(document.createTextNode('你好,世界'))  // text和element同级,text在element前
+
+// 3. prepend 在第一个节点之前插入元素
+element.prepend(document.createTextNode('我是前面的元素'))
+
+// 4. after 在节点之后插入元素
+element.after(document.createTextNode('hello')) // 和element同级, text在element后
+
+// 5. element.insertAdjacentHTML(position, string)
+const insert = document.createElement('div')
+document.body.appendChild(insert)
+
+insert.insertAdjacentHTML('afterbegin', '<p>after-begin</p>')
+insert.insertAdjacentHTML('afterend', '<p>after-end</p>')
+insert.insertAdjacentHTML('beforebegin', '<p>before-begin</p>')
+insert.insertAdjacentHTML('beforeend', '<p>before-end</p>')
+/*
+<p>before-begin</p>
+<div>
+  <p>after-begin</p>
+  <p>before-end</p>
+</div>
+<p>after-end</p>
+*/
+
+// 5. element.insertAdjacentText(position, text)
+insert.insertAdjacentText('afterbegin', 'HELLO')
+insert.insertAdjacentText('beforeend', 'WORLD')
+
+// 6. element.insertAdjacentElement(position, element)
+message.insertAdjacentElement('beforeend', document.createElement('div'))
+message.insertAdjacentElement('beforebegin', document.createTextNode('hello')) // 报错,不是一个element
+```
+3. 删除元素
+```js
+// 把对象从所属的DOM树中删除
+const message = document.createElement('div')
+message.textContent = 'hello world, 你好世界';
+document.body.appendChild(message)
+message.remove()
+```
+4. outerHTML
+
+  element DOM接口的outerHTML属性获取描述元素的序列化HTML片段。也可以设置为指定字符串解析的节点替换元素。
+```js
+const content = document.body.outerHTML
+element.outerHTML = "<p>This paragraph replaced the original div.</p>";
+/*
+element不再是文档树的一部分,新段替换了它(不在页面中显示, 但是仍然在内存中)
+*/
+```

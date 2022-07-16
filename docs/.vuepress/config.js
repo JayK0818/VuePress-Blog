@@ -81,6 +81,7 @@ const side = {
         '/front-end/javascript/code-snippet',
         '/front-end/javascript/node',
         '/front-end/javascript/element',
+        '/front-end/javascript/web-component',
         '/front-end/javascript/object',
         '/front-end/javascript/javascript-route',
         '/front-end/javascript/sort'

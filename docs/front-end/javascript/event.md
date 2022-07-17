@@ -77,13 +77,14 @@ class DomEvent {
   removeEvent(type, handler) {
     if(this.element.removeEventListener){
       this.element.removeEventListener(type, handler, false)
-    }else if(this.element.detachEvent{
+    }else if(this.element.detachEvent){
       this.element.detachEvent('on' + type)
     }else{
       this.element['on'+type] = null
     }
   }
 }
+
 function stopPropagation(event){
   if(event.stopPropagation()){
     event.stopPropagation()
@@ -97,12 +98,31 @@ function preventDefault(event){
   if(event.returnValue) event.returnValue = false
   return false
 }
+
 // IE9 及 之前的IE不支持addEventListener()和removeEventListener(), 
 // IE5之后定义了类似的  attachEvent()和 detachEvent()
 ```
 :::tip
 stopPropagation()可以在事件传播期间的任何时间调用,它能工作在捕获阶段,事件目标本身中和冒泡阶段
 :::
+```js
+// 如果addEventListener() 注册事件的参数都相同,那么只会执行一次
+function listen_click() {
+  console.log('click')
+}
+const click_button = document.querySelector('.click_button')
+click_button.addEventListener('click', listen_click, true)
+click_button.addEventListener('click', listen_click, true)
+// 点击button时只会执行一次, listen_click只会执行一次
+
+// 这样注册时会执行两次,因为函数句柄不相同
+click_button.addEventListener('click', function() {
+  console.log('click')
+}, false)
+click_button.addEventListener('click', function() {
+  console.log('click')
+}, false)
+```
 
 ## removeEventListener()
 
@@ -112,7 +132,7 @@ target.removeEventListener(type, listener[, options]);
 target.removeEventListener(type, listener[, useCapture]);
 ```
 
-### 事件处理程序的参数
+  事件处理程序的参数
 
   在IE8及之前的版本中, 调用事件处理函数时并未传递事件对象作为第一个参数,此时需要通过全局对象window.event来获得事件对象。
 ```js
@@ -121,7 +141,7 @@ function handler(event) {
 }
 ```
 
-### 事件传播
+## 事件传播
 
   事件捕获 -> 目标对象 -> 事件冒泡
 
@@ -134,7 +154,7 @@ function handler(event) {
   <JavaScript-Event/>
 </ClientOnly>
 
-### Event.target
+## Event.target
 
   触发事件的对象(某个DOM元素的)引用。 使用该属性可以用来实现事件委托。
 
@@ -145,10 +165,71 @@ function handler(event) {
   <JavaScript-EventDelegation/>
 </ClientOnly>
 
-### Event.currentTarget
+## Event.currentTarget
 
   event.currentTarget总是指向事件绑定的元素。
 
-### Event.stopPropagation
+## Event.stopPropagation
 
   阻止捕获和冒泡阶段中当前事件的进一步传播, 但是它不能阻止任何默认行为的发生,例如对连接的点击仍会被处理。
+
+## Event.type
+
+  只读属性Event.type会返回一个字符串,表示该事件对象的事件类型。
+
+```js
+function getEventType(event) {
+  console.log(event.type)
+}
+
+document.addEventListener('keypress', getEventType, false)
+document.addEventListener('keydown', getEventType, false)
+document.addEventListener('click', getEventType, false)
+```
+```html
+<button onclick='click1()'>click-1</button>
+<button onclick='click2(this)'>click-2</button>
+<button onclick='console.log("Hello World")'>click-3</button>
+
+<script>
+  // click1 和 click2会在全局作用域下查找。
+var click1 = () => {
+  console.log('click-1')
+}
+
+var click2 = (...args) => { // this指向button自身
+  console.log(args)
+}
+</script>
+```
+## Event.preventDefault
+
+  用来阻止浏览器的默认行为, 此事件还是会继续传播。 比如禁止a标签跳转, checkbox选中 或者表单提交等。
+```js
+document.getElementById('checkbox').addEventListener('click', function(event) {
+  event.preventDefault()
+}, false)
+
+document.querySelector('.link').addEventListener('click', function(event) {
+  event.preventDefault()
+})
+```
+## Event.stopImmediatePropagation
+
+  Event.stopImmediatePropagation() 阻止监听同一事件的其他事件监听器被调用。如果在其中一个事件监听器中执行 stopImmediatePropagation() ，那么剩下的事件监听器都不会被调用。
+```js
+immediate_button.addEventListener('click', function() {
+  console.log('hello 1')
+})
+immediate_button.addEventListener('click', function(event) {
+  console.log('hello 2')
+  // event.stopImmediatePropagation() // 不仅阻止事件冒泡, 后面注册的相同类型事件全部不执行
+  event.stopPropagation() // 仅阻止事件冒泡,button注册的其他click事件会被执行
+})
+immediate_button.addEventListener('click', function() {
+  console.log('hello 3')
+})
+immediate_button.addEventListener('click', function() {
+  console.log('hello 4')
+})
+```

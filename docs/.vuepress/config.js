@@ -96,7 +96,8 @@ const side = {
         '/front-end/typescript/object',
         '/front-end/typescript/narrowing',
         '/front-end/typescript/type-manipulation',
-        '/front-end/typescript/class'
+        '/front-end/typescript/class',
+        '/front-end/typescript/utility-type'
       ]
     },
     {

@@ -44,6 +44,7 @@ target.addEventListener(type, listener, options);
   capture: Boolean  // false冒泡阶段, true 捕获阶段
   once: Boolean     // 如果设置为true,listener会在其被调用之后自动移除
   passive: Boolean  // 设置为true, 表示listener永远不会调用preventDefault()
+  signal: AbortSignal // 该AbortSignal的abort()方法被调用时,监听器会被移除。
 }
 ```
 ```js
@@ -113,7 +114,7 @@ function listen_click() {
 const click_button = document.querySelector('.click_button')
 click_button.addEventListener('click', listen_click, true)
 click_button.addEventListener('click', listen_click, true)
-// 点击button时只会执行一次, listen_click只会执行一次
+// 点击button时只会执行一次, listen_click只会执行一次,重复的都被自动抛弃了。
 
 // 这样注册时会执行两次,因为函数句柄不相同
 click_button.addEventListener('click', function() {
@@ -123,7 +124,19 @@ click_button.addEventListener('click', function() {
   console.log('click')
 }, false)
 ```
-
+```html
+<!-- This 问题 -->
+<button onclick='click1'>click-1</button>
+<button onclick='click2'>click-2</button>
+<script>
+function click1() {
+  console.log('click-1', this)  // window
+}
+function click2(t) {
+  console.log('click-2', t);  // button元素
+}
+</script>
+```
 ## removeEventListener()
 
   删除使用EventTarget.addEventListener()方法添加的事件。
@@ -233,3 +246,105 @@ immediate_button.addEventListener('click', function() {
   console.log('hello 4')
 })
 ```
+## CustomEvent
+
+  使用CustomEvent 可以创建自定义事件。
+```js
+const event = new CustomEvent(type, {
+  detail: null,  // default null
+  bubbles: false, //表示事件是否冒泡
+  cancelable: true  // 表示事件是否可以取消
+})
+```
+```js
+// 一个案例
+window.addEventListener('cat', function(e) {
+  console.log(e.detail) //  {message: 'hello world'}
+})
+const custom_event = new CustomEvent('cat', {
+  detail: {
+    message: 'hello world'
+  }
+})
+const custom_button = document.querySelector('.custom-button')
+custom_button.addEventListener('click', function() {
+  window.dispatchEvent(custom_event)
+})
+```
+## 发布订阅模式
+
+  利用window.addEventListener() / window.removeEventListener() 实现一个发布订阅模式
+```js
+window._on = window.addEventListener
+window._off = window.removeEventListener
+window._once = (type, listener) => window.addEventListener(type, listener, {
+  once: true
+})
+window._emit = (type, detail) => window.dispatchEvent(new CustomEvent(type, {
+  detail
+}))
+
+const listen_custom_event = (event) => {
+  console.log(event.detail)
+}
+
+window._on('custom-event', listen_custom_event)
+window._emit('custom-event', { message: '你好生活'})  // {message: '你好生活'}
+
+window._once('once-event', listen_custom_event)
+window._emit('once-event', { message: 'hello, world'})  // {message: 'hello, world'}
+window._emit('once-event', { message: 'hello, world'})  // 无输出
+
+window._emit('custom-event', { message: '你好生活'})    // {message: '你好生活'}
+window._off('custom-event', listen_custom_event)
+window._emit('custom-event', { message: '你好生活'})  //  无输出
+```
+
+```js
+// 将上述挂载在window上的事件监听和触发 通过EventTarget修改
+// EventTarget是一个DOM接口,可以接收事件,并且可以创建侦听器的对象实现。
+class EventEmitter extends EventTarget {
+  on(type, listener) {
+    this.addEventListener(type, listener)
+  }
+  once(type, listener) {
+    this.addEventListener(type, listener, {
+      once: true
+    })
+  }
+  off(type, listener) {
+    this.removeEventListener(type, listener)
+  }
+  emit(type, data) {
+    this.dispatchEvent(new CustomEvent(type, {
+      detail: data
+    }))
+  }
+}
+
+const event_emitter = new EventEmitter()
+const listen_event_emitter = (event) => {
+  console.log('event-emitter:', event.detail)
+}
+event_emitter.on('dog', listen_event_emitter)
+event_emitter.emit('dog', {
+  name: 'hello'
+})  // 正常触发
+event_emitter.emit('dog', {
+  name: 'world'
+}) // 正常触发
+event_emitter.off('dog', listen_event_emitter)
+event_emitter.emit('dog', {
+  name: 'hello world'
+})  // 此时触发没有输出
+
+
+event_emitter.once('cat', listen_event_emitter)
+event_emitter.emit('cat', {
+  name: '你好'
+})
+event_emitter.emit('cat', {
+  name: '生活'
+})
+```
+[MDN-EventTarget]('https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget')

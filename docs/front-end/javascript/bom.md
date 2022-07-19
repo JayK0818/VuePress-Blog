@@ -211,3 +211,20 @@ window.addEventListener('storage', (event) => {
 })
 ```
 [MDN-localStorage]('https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage')
+
+## window.location
+
+  window.location是一个只读属性,返回一个location对象,其中包含有关文档当前位置的信息。
+```js
+window.location.href = 'http://www.baidu.com'
+window.location.assign('http://www.baidu.com')
+window.location.reload(true)
+window.location.replace('http://www.baidu.com')
+window.location.search  // 地址?后的部分(设置或者获取)
+window.location.hash    // #a (设置或者获取)
+
+// window.hashchange
+window.addEventListener('hashchange', () => {
+  console.log('hash changed')
+}, false)
+```

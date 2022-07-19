@@ -348,3 +348,40 @@ event_emitter.emit('cat', {
 })
 ```
 [MDN-EventTarget]('https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget')
+
+## BroadcastChannel
+
+  BroadcastChannel接口代理了一个命名频道, 可以让指定origin下当任意browsing context来订阅它。它允许同源的不同浏览器窗口,tab页面,
+  iframe下的不同文档之间相互通信。
+```js
+// 父窗口
+const channel = new BroadcastChannel('cat')
+button.addEventListener('click', () => {
+  channel.postMessage('hello world')
+  channel.postMessage([{firstName: 'kyrie', lastName: 'irving'}])
+}, false)
+
+
+// 子窗口
+const channel = new BroadcastChannel('cat')
+channel.addEventListener('message', function(e) {
+  console.log(e.data)
+})
+
+console.log(channel.name)   // cat
+```
+1. BroadcastChannel.close()
+  通过调用BroadcastChannel.close() 方法可以马上断开其与对应频道的关联。并让其被垃圾回收。
+
+2. BroadcastChannel.postMessage()
+  BroadcastChannel.postMessage()发送一条任意Object类型的消息。给所有同源下监听了该频道的所有浏览器上下文。
+
+3. BroadcastChannel: message event
+
+  监听通过postMessage()发送的消息
+```js
+const channel = new BroadcastChannel('cat')
+channel.addEventListener('message', function(event) {
+  console.log(event.data)
+})
+```

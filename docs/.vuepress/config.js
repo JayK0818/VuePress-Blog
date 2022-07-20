@@ -36,6 +36,7 @@ const side = {
       title:'Vue',
       children: [
         '/vue/data-transfer',
+        '/vue/migration',
         // '/vue/entry-and-version',
         // '/vue/global-api',
         // '/vue/vue-instance',

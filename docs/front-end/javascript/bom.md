@@ -228,3 +228,82 @@ window.addEventListener('hashchange', () => {
   console.log('hash changed')
 }, false)
 ```
+## window.navigator
+
+  window.navigator会返回一个navigator对象的引用。可以用于请求运行当前代码的应用程序的相关信息。
+```js
+// 检测浏览器
+function get_browser() {
+  const browser_list = ['Chrome', 'Safari', 'Edge', 'Opera', 'Firefox', 'MicroMessenger']
+  const urgent = window.navigator.userAgent
+  const b_index = browser_list.findIndex(b => urgent.includes(b))
+  if(~b_index) {
+    return browser_list[b_index]
+  }
+  return 'unknown'
+}
+const urgent = get_browser()
+
+// 一个检测浏览器的第三方库 ua-parser-js
+```
+```js
+console.log(window.navigator.onLine)  //检测是否有网络(true/false)
+
+// navigator.clipboard 
+/*
+Clipboard API Navigator接口添加了只读属性clipboard. 可以实现剪贴,复制,粘贴的功能
+*/
+const clipboard_button = document.querySelector('.clipboard-button')
+clipboard_button.addEventListener('click', function() {
+  window.navigator.clipboard.writeText('hello world, 你好生活')
+}, false)
+
+// 查看复制的内容
+window.navigator.clipboard.readText().then(res => {
+  console.log(res)
+})
+
+// 监听copy事件并设置要复制内容
+document.addEventListener('copy', function(e){
+  e.clipboardData.setData('text/plain', 'Hello, world!');
+  e.clipboardData.setData('text/html', '<b>Hello, world!</b>');
+  e.preventDefault(); // We want our data, not data from any selection, to be written to the clipboard
+});
+```
+## window.history
+
+  window.history对象包含浏览器的历史
+
+1. window.history.back()
+2. window.history.forward()
+3. window.history.go()
+
+### history.pushState / history.replaceState
+
+  history.pushState(state, title, url) 方法向当前浏览器会话的历史堆栈中添加一个状态。
+  history.replaceState(state, title, url) 修改当前历史记录实体。
+
+:::tip
+state 是一个JavaScript状态对象,它与pushState()创建的历史记录条目相关联。
+title 当前大多数浏览器都忽略此参数.
+url   新的历史条目
+:::
+
+[MDN-history.pushState](https://developer.mozilla.org/zh-CN/docs/Web/API/History/pushState)
+
+  描述:
+  从某种程度上说, 调用pushState() 和 window.location = '#foo'基本上一样, 它们都会在当前都document中创建和激活一个新的历史记录。
+  但是pushState()有以下优势:
+
+1. 新的url可以是任何和当前url同源的url,当设置window.location只会在你只设置锚的时候才会使用当前url.
+2. window.location = '#foo' 仅仅会在锚的值不是 #foo情况下创建一条新的历史记录
+3. 可以在新的历史记录中关联任何数据。
+  
+### popState
+
+  当活动历史条目更改时,将会触发popstate事件。 如果被激活的历史条目是通过history.pushState()或者history.replaceState()
+  的调用影响,popstate事件的state属性包含历史条目的状态对象的副本。
+:::tip
+history.pushState() 或者 history.replaceState() 不会触发popstate事件。
+用户点击浏览器的回退按钮,或者history.back() / history.forward() / history.go() 才会触发。
+:::

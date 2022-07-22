@@ -23,6 +23,10 @@ setTimeout(() => {console.log(1)}, 0)
   HTML5规定了setTimeout()的第二个参数最小值不得低于4ms，如果低于这个值就会自动增加。 setTimeout()只是将事件插入了'任务队列',
   所以没有办法保证,回调函数一定会在setTimeout()指定的事件执行。
 
+4. JS引擎线程: 负责解析和执行js,js引擎线程和GUI渲染线程是互斥的,同时只能一个在执行
+5. GUI渲染线程: 解析HTML和CSS,构建DOM树,CSSOM树等。
+6. 事件触发线程: 主要用于控制事件循环(setInterval, setTimeout),异步网络请求等。
+
 **宏任务/微任务**
 
 1. 宏任务: 整体代码 setTimeout setInterval

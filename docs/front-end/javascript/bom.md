@@ -307,3 +307,35 @@ url   新的历史条目
 history.pushState() 或者 history.replaceState() 不会触发popstate事件。
 用户点击浏览器的回退按钮,或者history.back() / history.forward() / history.go() 才会触发。
 :::
+
+## queueMicrotask
+
+ 微任务(microtask)的执行顺序在所有挂起的任务(pending tasks)完成之后,在对浏览器的事件循环产生控制之前。
+```js
+console.log('start', Date.now())
+
+setTimeout(() => {
+  console.log('setTimeout')
+}, 0)
+window.queueMicrotask(() => {
+  console.log('queueMicrotask')
+})
+Promise.resolve().then(() => {
+  console.log('promise')
+})
+console.log('end', Date.now())
+/*
+start 1658498438592
+end 1658498438592
+queueMicrotask
+promise
+*/
+```
+  下面是MDN上的一个queueMicrotask 的polyfill。 使用的是promise创建一个微任务
+```js
+if(typeof window.queueMicrotask !== 'function') {
+  window.queueMicrotask = function(callback) {
+    Promise.resolve().then(callback)
+  }
+}
+```

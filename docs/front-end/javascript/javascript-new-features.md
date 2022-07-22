@@ -118,7 +118,167 @@ for...of undefined
 for...of 7
 */
 ```
+### Generator
 
+  Generator函数会返回一个遍历器对象, 它是一个普通函数, function关键字和函数名之间有一个型号。 函数体内使用yield表达式。定义不同的状态。
+```js
+function* g1() {
+  yield 'hello'
+  yield 'world'
+}
+
+// 判断一个函数是否为generator function
+Object.getPrototypeOf(function* (){}).constructor  // [Function: GeneratorFunction]
+```
+  generator函数执行后返回的不是函数的运行结果,而是一个包含内部状态的指针对象。(Iterator Object),调用next()方法,指针移向下一个状态。
+```js
+function * helloWorldGenerator() {
+  yield 'hello'
+  yield 'world'
+  return 'ending'
+}
+const hw = helloWorldGenerator()
+console.log(hw.next())
+console.log(hw.next())
+console.log(hw.next())
+/*
+{ value: 'hello', done: false }
+{ value: 'world', done: false }
+{ value: 'ending', done: true }
+*/
+
+// ------ 最后没有return的时候 ----------
+function* player() {
+  yield 'kyrie'
+  yield 'irving'
+}
+const player_next = player()
+console.log(player_next.next())
+console.log(player_next.next())
+console.log(player_next.next())
+/*
+{ value: 'kyrie', done: false }
+{ value: 'irving', done: false }
+{ value: undefined, done: true }
+*/
+```
+```js
+// 与for...of的关系
+const obj = {
+  [Symbol.iterator]: function* () {
+    yield 1
+    yield 2
+    yield 3
+  }
+}
+console.log([...obj]) // 1 2 3 4
+
+// for...of循环可以自动遍历Generator函数运行时生成的Iterator对象。此时不需要调用next方法
+function * baz() {
+  yield 1
+  yield 2
+  yield 3
+  yield 4
+  return 5
+}
+for(let item of baz()){
+  console.log('item---:', item) // 1 2 3 4
+}
+```
+```js
+// Generator.prototype.return() 终止Generator。
+function* f1() {
+  yield 'hello'
+  yield 'world'
+  yield '你好'
+  yield '生活'
+}
+
+const s = f1()
+s.next()
+console.log(s.return('你好生活'))
+console.log(s.next())
+/*
+{ value: '你好生活', done: true }
+{ value: undefined, done: true }
+*/
+```
+```js
+// yield*表达式, 调用另一个Generator函数。
+function* m1() {
+  yield 'hello'
+  yield 'world'
+}
+
+function* m2() {
+  yield '你好'
+  yield* m1()
+  yield '生活'
+}
+
+for(const item of m2()) {
+  console.log(item)
+  /*你好 hello world 生活*/
+}
+
+
+// ---------- 使用for...of遍历对象 -------
+function* Entries(obj) {
+  const keys = Object.keys(obj)
+  for (const key of keys) {
+    yield [key, obj[key]]
+  }
+}
+
+for(const [key, value] of Entries({
+  firstName: 'kyrie',
+  lastName: 'irving',
+  age: 30
+})) {
+  console.log(key, value)
+}
+/*
+firstName kyrie
+lastName irving
+age 30
+*/
+```
+:::tip
+除了for...of循环以外,扩展运算符(...), 解构赋值和Array.from方法内部调用的都是遍历器接口。它们都可以将Generator函数返回的
+Iterator对象作为参数。
+```js
+function* player_list() {
+  yield 'lebron'
+  yield 'james'
+}
+console.log([...player_list()])
+console.log(Array.from(player_list()))
+const [firstName, lastName] = player_list()
+console.log(firstName, lastName)
+/*
+[ 'lebron', 'james' ]
+[ 'lebron', 'james' ]
+lebron james
+*/
+```
+:::
+```js
+// yield 表达式本身没有返回值, next方法可以传递一个参数, 作为上一个yield表达式的返回值
+function* calc(x) {
+  const y = 2 * (yield (x+1))
+  const z = yield (y/3)
+  return x + y + z
+}
+const calc_next = calc(5)
+console.log(calc_next.next())
+console.log(calc_next.next(12))
+console.log(calc_next.next(13))
+/*
+{ value: 6, done: false }
+{ value: 8, done: false }
+{ value: 42, done: true }
+*/
+```
 ### Symbol
 
 1. Symbol表示独一无二的值,它是JavaScript语言的第七种数据类型。

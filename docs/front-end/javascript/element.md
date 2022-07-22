@@ -7,16 +7,36 @@
 <div class='name' id='hello' data-id='123' style='color:red;'></div>
 
 <script>
-  let oDiv = document.querySelector('.name');
-  oDiv.attributes // 返回
-  /*
-  {
-    0: class='name',
-    1: id='hello',
-    2: data-id='123',
-    3: style='color:red;'
-  }
-  */
+const oDiv = document.querySelector('.name');
+oDiv.attributes // 返回
+/*
+{
+  0: class='name',
+  1: id='hello',
+  2: data-id='123',
+  3: style='color:red;'
+}
+*/
+
+for(const value of Object.values(attribute.attributes)){
+  console.log('value:', value)
+}
+/*
+value: class=​"name"
+value: id=​"hello"
+value: data-id=​"123"
+value: style=​"color:​red;​"
+*/
+
+for(const [key,value] of Object.entries(attribute.attributes)){
+  console.log(key, value)
+}
+/*
+0 class=​"name"
+1 id=​"hello"
+2 data-id=​"123"
+3 style=​"color:​red;​"
+*/
 </script>
 ```
 
@@ -179,3 +199,53 @@ element.outerHTML = "<p>This paragraph replaced the original div.</p>";
 element不再是文档树的一部分,新段替换了它(不在页面中显示, 但是仍然在内存中)
 */
 ```
+
+## MutationObserver
+
+  MutationObserver接口提供了监视对DOM树所做更改的能力。该功能是DOM3 Events规范的一部分。
+
+```js
+// 一个DEMO
+const targetNode = document.querySelector('.mutation-container')
+const observer_button = document.querySelector('.mutation-observer-button')
+
+const observer = new MutationObserver(function(mutationList, observer) {
+  // observer是一个微任务
+  setTimeout(() => {
+    console.log('我执行了')
+  }, 0)
+  for(const mutation of mutationList) {
+    console.log('mutation:', mutation)
+  }
+})
+observer.observe(targetNode, {
+  attributes: true, // 属性变化
+  childList: true,  // 子节点变化
+  subtree: true     // 后代节点变化
+})
+
+observer_button.addEventListener('click', () => {
+  targetNode.style.color = 'red'
+  targetNode.setAttribute('data-id', Math.random().toString().substring(0, 6))
+  /*
+  {
+    attributeName: 'style',
+    type: 'attributes',
+    oldValue: ''
+  }
+  */ 
+  const element = document.createElement('img')
+  targetNode.appendChild(element) /*
+    {
+      attributeName: null,
+      type: 'childList'
+    }
+  */
+}, false)
+```
+  MutationObserver的disconnect()方法停止观察对象,可以通过调用observe()方法重用观察者。
+```js
+observer.disconnect();
+```
+
+  [MDN-MutationObserver]('https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver')

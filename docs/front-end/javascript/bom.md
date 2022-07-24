@@ -176,7 +176,7 @@ window.addEventListener('click', function(event) {
 }, false)
 ```
 
-## storage
+## Storage
 
 1. window.localStorage
 2. window.sessionStorage
@@ -211,6 +211,96 @@ window.addEventListener('storage', (event) => {
 })
 ```
 [MDN-localStorage]('https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage')
+
+```js
+// 一个模拟localStorage 可以设置过期事件的变通方法
+const save_button = document.querySelector('.save-button')
+const get_button = document.querySelector('.get-button')
+
+// value 是一个对象, 要存储的键值对对象
+function save(key, value, expire) {
+  if(typeof value === null) return
+  if(Object.prototype.toString.call(value) === '[object Object]') {
+    const last_value = JSON.parse(window.localStorage.getItem(key) || '{}')
+    window.localStorage.setItem(key, JSON.stringify({
+      ...last_value,
+      ...value,
+      expire: expire ? (Date.now() + expire) : 0
+    }))
+  }
+}
+
+function get(key) {
+  const value = JSON.parse(window.localStorage.getItem(key) || '{}')
+  if (value.expire) {
+    const current = Date.now()
+    if (current > value.expire) {
+      // 过期时删除存储的值
+      window.localStorage.removeItem(key)
+      return null
+    }
+    const { expire, ...data } = value
+    return data
+  } else {
+    return value
+  }
+}
+save_button.addEventListener('click', () => {
+  save('__player__', {
+    firstName: 'kyrie',
+    lastName: 'irving',
+    age: 30
+  }, 10000)
+}, false)
+
+
+get_button.addEventListener('click', () => {
+  const player = get('__player__')
+  console.log(player)
+}, false)
+```
+
+[web-storage-cache]('https://www.npmjs.com/package/web-storage-cache')
+
+```js
+// 本地存储加密, 分别使用URIComponent和base64加密， 对称加密
+const encrypt_button = document.querySelector('.encrypt-button')
+const decrypt_button = document.querySelector('.decrypt-button')
+
+encrypt_button.addEventListener('click', () => {
+  const player = {
+    firstName: 'kyrie',
+    lastName: 'irving',
+    age: 30
+  }
+  window.localStorage.setItem('encode_player', encodeURIComponent(JSON.stringify(player)))
+  window.localStorage.setItem('base_player', window.btoa(JSON.stringify(player)))
+}, false)
+
+decrypt_button.addEventListener('click', () => {
+  try {
+    const string_1 = window.localStorage.getItem('encode_player')
+    if(string_1) {
+      const player = JSON.parse(decodeURIComponent(string_1))
+      console.log(player)
+    }
+    const string_2 = window.localStorage.getItem('base_player')
+    if(string_2) {
+      const player = JSON.parse(window.atob(string_2))
+      console.log(player)
+    }
+  } catch(err) {
+    console.log(err)
+    return null
+  }
+}, false)
+```
+
+[secure-ls]('https://www.npmjs.com/package/secure-ls')
+
+[crypto-js]('https://www.npmjs.com/package/crypto-js')
+
+[localstorage-slim]('https://www.npmjs.com/package/localstorage-slim')
 
 ## window.location
 

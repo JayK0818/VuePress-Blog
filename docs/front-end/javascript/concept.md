@@ -130,6 +130,54 @@ end
 ```
   Promise对象的状态改变,只有两种可能:从pending变为fulfilled和从pending变为rejected.状态改变就凝固了不会再改变了。
 
+```html
+<!-- 一个DEMO -->
+<div class="outer-container">
+  <div class="inner-container"></div>
+</div>
+
+<script>
+  const outer_container = document.querySelector('.outer-container')
+  const inner_container = document.querySelector('.inner-container')
+
+  const click_observer = new MutationObserver(function(mutationsList) {
+    console.log('observer')
+  })
+  function click_function(event) {
+    console.log('click invoked')
+    click_observer.observe(event.target, {
+      attributes: true
+    })
+    event.target.setAttribute('data-id', Math.random().toString().substring(0, 5))
+    Promise.resolve().then(() => {
+      console.log('promise')
+    })
+    setTimeout(() => {
+      console.log('setTimeout')
+    }, 0)
+  }
+  inner_container.addEventListener('click', click_function, false)
+  outer_container.addEventListener('click', click_function, false)
+  /*
+  点击inner,因为事件冒泡:
+    click invoked
+    observer
+    promise
+    click invoked
+    observer
+    promise
+    2次 setTimeout
+  */
+ /*
+  点击outer的执行顺序:
+    click invoked
+    observer
+    promise
+    etTimeout
+ */
+</script>
+```
+
 ## 垃圾回收
 
 1. 函数的局部变量

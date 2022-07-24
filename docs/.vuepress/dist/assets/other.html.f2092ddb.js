@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-1d6f9db4","path":"/front-end/css/other.html","title":"CSS\u5C5E\u6027","lang":"zh-CN","frontmatter":{},"excerpt":"","headers":[{"level":2,"title":"object-fit","slug":"object-fit","children":[]},{"level":2,"title":"object-position","slug":"object-position","children":[]}],"git":{},"filePathRelative":"front-end/css/other.md"}');export{t as data};

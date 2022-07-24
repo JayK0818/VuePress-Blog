@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-7db6c2e2","path":"/front-end/typescript/type-manipulation.html","title":"Type Manipulation","lang":"zh-CN","frontmatter":{},"excerpt":"","headers":[],"git":{},"filePathRelative":"front-end/typescript/type-manipulation.md"}');export{t as data};

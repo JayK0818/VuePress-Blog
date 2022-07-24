@@ -26,7 +26,7 @@ class UserCard extends HTMLElement {
 }
 window.customElements.define('user-card', UserCard)
 ```
-  然后在页面中可以通过 <user-card></user-card> 的方式使用它, 或者通过document.createElement('user-card')。
+  然后在页面中可以通过 标签的方式 user-card 的方式使用它, 或者通过document.createElement('user-card')。
 
   自定义内置元素.
   window.customElements.define() 接受三个参数, 第三个参数是一个对象,用来扩展自定义元素

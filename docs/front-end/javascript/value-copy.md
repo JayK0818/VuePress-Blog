@@ -194,7 +194,7 @@ console.log(clone([s1, s2]))  // [ {}, {} ]
 ```
 ## 深拷贝(Map/Set/Array/Object)
 
-```ts
+```js
 // ------------ 支持array/object/map/set -------------
 function deep_clone(obj, map = new WeakMap()) {
   if(typeof obj === 'object' && obj !== null) {

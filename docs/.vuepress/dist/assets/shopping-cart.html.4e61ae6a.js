@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-a924d3c6","path":"/react/shopping-cart.html","title":"ShoppingCart","lang":"zh-CN","frontmatter":{},"excerpt":"","headers":[],"git":{},"filePathRelative":"react/shopping-cart.md"}');export{t as data};

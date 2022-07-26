@@ -429,3 +429,68 @@ if(typeof window.queueMicrotask !== 'function') {
   }
 }
 ```
+## requestAnimationFrame
+
+  window.requestAnimationFrame()高速浏览器 执行一个动画,并且要求浏览器在下次重绘之前调用指定的
+  回调函数更新动画。回调函数执行次数通常是每秒60次。
+```js
+window.requestAnimationFrame(callback)
+
+/*
+返回一个long整数, 可以传递这个值给window.cancelAnimationFrame()以取消回调函数
+*/
+const animation_id = window.requestAnimationFrame(callback)
+window.cancelAnimationFrame(animation_id)
+```
+```js
+// requestAnimationFrame
+const container = document.querySelector('.animation-container')
+let animation_left = 0
+let animation_id = 0
+function translate() {
+  container.style.transform = `translate3d(${animation_left++}px, 0, 0)`
+  animation_id = window.requestAnimationFrame(translate)
+  if (animation_left >= 300) {
+    window.cancelAnimationFrame(animation_id)
+  }
+}
+translate()
+
+
+// window.setTimeout()
+const container = document.querySelector('.animation-container')
+let animation_left = 0
+let animation_id = 0
+function translate() {
+  if(animation_id) {
+    clearTimeout(animation_id)
+  }
+  animation_id = window.setTimeout(() => {
+    container.style.transform = `translate3d(${animation_left++}px, 0, 0)`
+    if (animation_left >= 300) {
+      window.clearTimeout(animation_id)
+      return
+    }
+    translate()
+  }, 16)
+}
+translate()
+```
+
+[MDN-requestAnimationFrame]('https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame')
+
+## requestIdleCallback
+
+  window.requestIdleCallback() 方法插入一个函数, 这个函数将在浏览器空闲时期被调用。
+```js
+const handle = window.requestIdleCallback(callback, [, options])
+
+// 返回一个ID, 可以传入window.cancelIdleCallback() 方法用来结束回调
+/*
+options {
+  timeout 如果指定了timeout, 并且有一个正值, 而回调在timeout毫秒过后还没有调用, 那么回调任务将放入事件循环排队。
+}
+*/
+```
+
+[MDN-requestIdleCallback]('https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestIdleCallback')

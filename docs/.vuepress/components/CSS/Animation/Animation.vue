@@ -1,137 +1,134 @@
 <template>
   <div class='container'>
-    <div v-for='item in box_list'
-    :class='{
-      box: true,
-      ["box-"+item.value]: true
-    }'
-    :style='{
-      backgroundColor: item.color
-    }'
-    :ref='setBoxRef'
-    >{{item.label}}</div>
+    <n-button
+      @click.stop='toggle_move'
+      type='primary' size='small'
+      style='margin-bottom: 10px; width: 80px;'
+      class='flex-1'
+    >{{paused ? 'run' : 'pause'}}</n-button>
+    <n-select
+      class='flex-1 select'
+      size='small'
+      :options='direction_options_list'
+      v-model:value='direction'
+    />
   </div>
-  <n-button type='primary' @click='handle_transition'>click</n-button>
-  <div>下面的案例来自MDN, 鼠标放到div上 多个属性发生变化。</div>
-  <div class="animation-container"></div>
+  <div class='progress-container'>
+    <div class="progress-inner" :class='{
+      paused: paused,
+      [computed_direction_class]: true
+    }'></div>
+  </div>
 </template>
 
 <script lang='ts'>
-import { defineComponent, ref, onMounted, onBeforeUnmount } from 'vue'
-import { NButton } from 'naive-ui'
+import { defineComponent, ref, computed } from 'vue'
+import { NButton, NSelect } from 'naive-ui'
+interface SelectOption {
+  label: string
+  value: number
+}
 export default defineComponent({
   name: 'css-animation',
   components: {
-    [NButton.name]: NButton
+    [NButton.name]: NButton,
+    [NSelect.name]: NSelect
   },
   setup () {
-    const refList = ref<HTMLElement>([])
-    const box_list = ref<{label: string, value: value, color: string }[]>([
+    const paused = ref<boolean>(false)
+    const direction_options_list = ref<SelectOption[]>([
       {
-        label: 'linear',
-        value: 1,
-        color: 'pink'
+        label: 'normal',
+        value: 1
       },
       {
-        label: 'ease',
-        value: 2,
-        color: 'skyblue'
+        label: 'alternate',
+        value: 2
       },
       {
-        label: 'ease-in',
-        value: 3,
-        color: 'green'
+        label: 'reverse',
+        value: 3
       },
       {
-        label: 'ease-out',
-        value: 4,
-        color: 'blue'
-      },
-      {
-        label: 'ease-in-out',
-        value: 5,
-        color: 'orange'
+        label: 'alternate_reverse',
+        value: 4
       }
     ])
-    const setBoxRef = (element) => {
-      if (element) {
-        refList.value.push(element)
+    const direction = ref<number>(1)
+    const toggle_move = () => {
+      paused.value = !paused.value
+    }
+    const computed_direction_class = computed(() => {
+      const d = direction_options_list.value.find(d => d.value === direction.value)
+      console.log(d)
+      if(d) {
+        return d.label
+      } else {
+        return 'normal'
       }
-    }
-    const handle_transition = () => {
-      refList.value.forEach(box => {
-        box.classList.add('start')
-      })
-    }
-    const listen_animation = (event) => {
-      event.target.classList.remove('start')
-    }
-    onMounted(() => {
-      refList.value.forEach(item => {
-        item.addEventListener('transitionend', listen_animation, false)
-      })
-    })
-    onBeforeUnmount(() => {
-      refList.value.forEach(item => {
-        item.removeEventListener('transitionend', listen_animation, false)
-      })
     })
     return {
-      box_list,
-      setBoxRef,
-      handle_transition
+      paused,
+      toggle_move,
+      direction_options_list,
+      direction,
+      computed_direction_class
     }
   }
 })
 </script>
 
 <style lang='scss' scoped>
-.container {
-  padding-bottom: 10px;
+@keyframes move {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
 }
-.box {
-  margin-bottom: 10px;
+.progress-container{
   position: relative;
-  width: 100px;
-  height: 50px;
-  text-align: center;
-  color:#fff;
-  line-height: 50px;
-  left: 0;
-  transition-property: left;
-  transition-duration: 3000ms;
-}
-.box-1 {
-  transition-timing-function: linear;
-}
-.box-2 {
-  transition-timing-function: ease;
-}
-.box-3 {
-  transition-timing-function: ease-in;
-}
-.box-4 {
-  transition-timing-function: ease-out;
-}
-.box-5 {
-  transition-timing-function: ease-in-out;
-}
-.start {
-  left: calc(100% - 100px);
-}
-
-// animation-container
-.animation-container{
-  width: 100px;
-  height: 100px;
-  background-color: #0ff;
+  height: 30px;
   border:1px solid #e8e8e8;
-  transition: width 2s, height 2s, background-color 2s, transform 2s;
-  &:hover {
-    background-color: #fcc;
-    width: 200px;
-    height: 200px;
-    transform: rotate(180deg)
+  width: 100%;
+}
+.progress-inner {
+  position: absolute;
+  height: 100%;
+  background-color: skyblue;
+  animation-name: move;
+  animation-duration: 6s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-play-state: running;
+  &.paused {
+    animation-play-state: paused;
+  }
+  &.reverse {
+    animation-direction: reverse;
+  }
+  &.alternate_reverse {
+    animation-direction: alternate-reverse;
+  }
+  &.alternate {
+    animation-direction: alternate;
+  }
+  &.normal {
+    animation-direction: normal;
+  }
+}
+.container {
+  display: flex;
+  padding: 5px 0;
+}
+.select{
+  width: 200px;
+}
+@media screen and (max-width: 768px) {
+  .flex-1 {
+    min-width: 0;
+    flex: 1;
   }
 }
 </style>

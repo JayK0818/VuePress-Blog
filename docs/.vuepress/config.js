@@ -169,6 +169,7 @@ module.exports = {
         CssGridContent: resolve('CSS', 'Grid', 'GridContent'),
         CssGridFlow: resolve('CSS', 'Grid', 'GridFlow'),
         CssPseudoBefore: resolve('CSS', 'Pseudo', 'Before'),
+        CssTransition: resolve('CSS', 'Animation', 'Transition'),
         CssAnimation: resolve('CSS', 'Animation', 'Animation')
       }
     })

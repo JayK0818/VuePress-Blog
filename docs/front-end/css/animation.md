@@ -152,3 +152,5 @@ progress_container.addEventListener('animationiteration', () => {
 不支持animation的属性: background-image / float / display / position / visibility, 多个属性同时变化,
 用逗号分隔。
 :::
+
+[Animate-API]('https://developer.mozilla.org/zh-CN/docs/Web/API/Element/animate')

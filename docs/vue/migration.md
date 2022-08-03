@@ -497,5 +497,271 @@ const mixin_app = createApp({
 
 ## 移除的API
 
-  在3.x版本中已经移除了 $on，$off 和 $once
-  移除了 filter 过滤器
+1. 在3.x版本中已经移除了 $on，$off 和 $once
+2. 移除了 filter 过滤器
+3. 在2.x版本中, 不支持多个根节点组件, 在3.x版本中 组件可以包含多个根节点, 但是要求开发者显示定义attribute应该分布在哪里。
+4. Vue.extend移除
+5. 全局API通过具名导出支持tree-shaking
+6. 不在支持数字的keyCode事件修饰符, 不支持config.keyCodes
+7. 移除$listeners, 组件监听的事件作为 attrs的一部分
+8. propsData被移除, 可以在createApp() 第二个参数给根组件传递props
+9. 移除.native事件修饰符
+```html
+<!-- 2.x -->
+<input type="text" @keyup.13="keyup">
+<input type="text" @keyup.enter="keyup">
+
+
+<!-- 3.x -->
+<!-- 捕获q 和 Q -->
+<input type="text" @keyup.q="keyup">
+```
+```js
+// 全局API
+import { nextTick } from 'vue'
+```
+```js
+// 片段
+app.component('child-component', {
+  template: `<div>
+    <div>Hello, World</div>
+    <div>你好, 生活</div>
+  </div>
+  <div v-bind="$attrs">我是兄弟节点</div>`,
+  inheritAttrs: true
+})
+
+// 3.x 移除Vue.extend, 应该始终通过createApp() 创建实例
+const Profile = {
+  template: `<div>{{firstName}} - {{lastName}}</div>`,
+  data() {
+    return {
+      firstName: 'Kevin',
+      lastName: 'Durant'
+    }
+  }
+}
+createApp(Profile).mount('#app')
+```
+
+## 渲染函数和函数式组件
+
+```js
+// 渲染函数 2.x
+Vue.component('player-list', {
+  render: function(createElement) {
+    return createElement('ul', 
+      this.list.map(p => createElement('li',[
+        createElement('span', p.firstName), createElement('span', p.lastName)
+      ]))
+    )
+  },
+  props: {
+    list: {
+      type: Array,
+      required: true
+    }
+  }
+})
+
+// 函数式组件 2.x
+Vue.component('smart-list', {
+  functional: true,
+  render: function(createElement, context) {
+/*
+组件需要的一切都是通过context参数传递, 它是一个对象包含如下字段:
+1. props: 包含传递给组件的非props attribute, 和 组件props
+2. children: 子节点数组
+3. data: 传递给组件的整个数据对象, on, staticClass  attrs等
+4. parent: 对父组件的引用
+5. listeners: 所有父组件为当前组件注册的事件监听器的对象
+// ... 
+*/ 
+    return createElement('ul', 
+      context.data,
+      // 使用JavaScript代替 v-for
+      context.props.list.map(p => createElement('li',[
+        createElement('span', p.firstName), createElement('span', p.lastName)
+      ]))
+    )
+  }
+})
+
+const function_vm = new Vue({
+  el: '#function-app',
+  data() {
+    return {
+      player_list: [
+        {
+          firstName: 'kyrie',
+          lastName: 'irving'
+        },
+        {
+          firstName: 'lebron',
+          lastName: 'james'
+        }
+      ]
+    }
+  }
+})
+```
+  在3.x版本中, 所有的函数式组件都是用普通函数创建的。该函数接受props 和 context两个参数, context包含 attrs, slots 和emit。
+  此外, h函数是全局导入 而不是在render函数中隐式提供。
+```js
+const DynamicHeading = (props, context) => {
+  return h(`h${props.level}`, context.attrs, context.slots)
+}
+DynamicHeading.props = ['level']
+createApp({
+  components: {
+    [DynamicHeading.name]: DynamicHeading
+  }
+}).mount('#function-app')
+
+// 渲染函数
+function_app.component('anchored-heading', {
+  props: {
+    level: {
+      type: Number,
+      required: true
+    }
+  },
+  render() {
+    return h(`h${this.level}`, {}, this.$slots.default())
+  }
+})
+```
+
+## 挂载API
+
+  在2.x版本中, 当挂载一个具有template选项的组件时, 被渲染的元素内容会替换成要挂载的目标元素。 而在3.x版本中, 被渲染的应用会作为子元素插入。
+```js
+// 2.x
+const root_vm = new Vue({
+  el: '#root',
+  data() {
+    return {
+      message: 'hello world'
+    }
+  },
+  template: `<div class="root">{{message}}</div>`
+})
+/*
+<div id='root'></div>
+将被渲染为
+<div class='root'></div>
+*/
+
+// 3.x
+createApp({
+  template: `<div class="root">{{message}}</div>`,
+  setup() {
+    const message = ref('hello world')
+    return {
+      message
+    }
+  }
+}).mount('#root')
+/*
+<div id="root" data-v-app="">
+  <div class="root">hello world</div>
+</div>
+*/
+
+// setup 返回一个渲染函数
+const ButtonIncrement = {
+  setup() {
+    const count = ref(0)
+    const increment = () => {
+      count.value += 1
+    }
+    return () => h('button', {
+      onClick: increment,
+    },[count.value])
+  }
+}
+createApp(ButtonIncrement).mount('#root')
+```
+
+## v-for和v-if的优先级
+
+  在2.x版本中同一个元素上使用v-if 和 v-for时, v-for会优先作用, 但是在3.x版本中, v-if总是优先v-for生效。
+```html
+<!-- 2.x -->
+<ul>
+  <li v-for="p in player_list" v-if="p.visible">{{p.name}}</li>
+</ul>
+<script>
+new Vue({
+  data() {
+    return {
+      player_list: [
+        {
+          name: 'kyrie',
+          visible: false
+        },
+        {
+          name: 'lebron',
+          visible: true
+        },
+        {
+          name: 'durant',
+          visible: false
+        }
+      ]
+    }
+  }
+})
+/*
+渲染为 <ul><li>lebron</li></ul>
+*/ 
+</script>
+```
+```html
+<!-- 这么写会报错 -->
+<ul>
+  <li v-for="p in player_list" v-if="p.visible">{{p.name}}</li>
+</ul>
+
+<script>
+  createApp({
+    setup() {
+      const player_list = ref([
+        {
+          name: 'kyrie',
+          visible: false
+        },
+        {
+          name: 'lebron',
+          visible: true
+        },
+        {
+          name: 'durant',
+          visible: false
+        }
+      ])
+      return {
+        player_list
+      }
+    }
+  })
+</script>
+```
+
+## Teleport
+
+  Teleport可以将组件挂载与Vue App 根节点之外的地方。
+```html
+<!-- 将挂载在body下面 -->
+<teleport to="body">
+  <div v-if="modalOpen" class="modal">
+    <div>
+      I'm a teleported modal! 
+      (My parent is "body")
+      <button @click="modalOpen = false">
+        Close
+      </button>
+    </div>
+  </div>
+</teleport>
+```

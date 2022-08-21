@@ -25,9 +25,7 @@ const side = {
         '/react/redux',
         '/react/react-redux',
         '/react/redux-toolkit',
-        '/react/mobx',
-        '/react/shopping-cart',
-        '/react/todo-list'
+        '/react/mobx'
       ]
     }
   ],

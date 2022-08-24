@@ -157,3 +157,55 @@ rm是相对长度单位,相对于当前对象内文本的字体尺寸。如果�
 }
 ```
 
+## 判断是否为移动端
+
+1. window.navigator.userAgent
+
+```js
+if (/Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+  // 移动设备
+}
+```
+
+2. 通过屏幕宽度判断
+
+```js
+const is_mobile = () => {
+  return document.documentElement.clientWidth < 750
+}
+```
+
+3. window.orientation
+
+  手机屏幕可以横屏或者竖屏, 可以判断在window上是否有orientation属性。只有移动设备才有这个属性
+```js
+const is_mobile = () => {
+  return 'orientation' in window
+}
+```
+
+4. 移动端设备可以在DOM元素上设置touchstart属性,而移动设备没有这个属性。
+
+```js
+const is_mobile = () => {
+  return 'ontouchstart' in document.documentElement
+}
+```
+
+5. ua-parser-js
+
+  通过第三方工具包来检测是否是移动设备
+```js
+npm install ua-parser-js
+
+const is_mobile = () => {
+  const parser = new UAParser()
+  return parser.getDevice().type === 'mobile'
+}
+/*
+parser.getDevice().type: console / mobile / tablet / smarttv /...
+*/
+```
+[npm-ua-parser-js]('https://www.npmjs.com/package/ua-parser-js')
+
+[js判断设备是否为移动端]('https://www.ruanyifeng.com/blog/2021/09/detecting-mobile-browser.html')

@@ -35,9 +35,6 @@ const side = {
       children: [
         '/vue/data-transfer',
         '/vue/migration',
-        // '/vue/entry-and-version',
-        // '/vue/global-api',
-        // '/vue/vue-instance',
         '/vue/pinia',
         '/vue/webpack'
       ]
@@ -112,6 +109,10 @@ const side = {
     }
   ],
   node:[
+    {
+      text: 'Node',
+      children: ['/node/README.md']
+    },
     {
       text:' Util',
       children:[

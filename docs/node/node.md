@@ -1,4 +1,6 @@
-# Buffer
+# Node.js
+
+## Buffer
 
   Buffer 库为 Node.js 带来了一种存储原始数据的方法，可以让 Node.js 处理二进制数据. Buffer对象类似于数组,它的元素为16进制的两位数。
 ```js
@@ -167,4 +169,51 @@ fs.exists('./data/hello.txt', (err) => {
 fs.exists('./data/input.txt', (err) => {
   console.log(err)  // true
 })
+```
+
+## 模块系统
+
+  Node.js提供了一个模块系统，一个文件就是一个模块。通过require引入模块。
+```js
+// math.js
+const increase = (a, b) => a + b
+const decrease = (a, b) => a - b
+
+exports.increase = increase
+exports.decrease = decrease
+
+// index.js
+const math = require('./math.js')
+console.log(math.decrease(1, 3))  // -2
+console.log(math.increase(1, 3))  // 4
+
+
+// 或者通过module.exports 导出
+// math.js
+module.exports = {
+  increase,
+  decrease
+}
+// index.js
+const { increase, decrease } = require('./math.js')
+console.log(increase(1, 3))
+console.log(decrease(1, 3))
+```
+  exports是module.exports的一个引用。如果对外暴露属性或者方法, 用exports就行, 如果要对外导出对象,使用module.exports。
+
+```js
+// 在node.js中引入 esm 导出的文件()
+// math.mjs
+const increase = (a, b) => a + b
+const decrease = (a, b) => a - b
+
+export {
+  increase,
+  decrease
+}
+
+// index.mjs
+import { decrease, increase } from './math.mjs'
+console.log(decrease(1, 3)) // -2
+console.log(increase(1, 3)) // 4
 ```

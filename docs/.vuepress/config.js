@@ -31,13 +31,16 @@ const side = {
   ],
   vue:[
     {
-      title:'Vue',
+      text:'Vue.js',
       children: [
         '/vue/data-transfer',
         '/vue/migration',
-        '/vue/pinia',
-        '/vue/webpack'
+        '/vue/pinia'
       ]
+    },
+    {
+      text: 'Webpack',
+      children: ['/vue/webpack']
     }
   ],
   front_end: [
@@ -111,7 +114,10 @@ const side = {
   node:[
     {
       text: 'Node',
-      children: ['/node/README.md']
+      collapsable: false,
+      children: [
+        '/node/node.md',
+      ]
     },
     {
       text:' Util',
@@ -184,7 +190,7 @@ module.exports = {
         link:'/'
       },
       {text:'前端',link:'/front-end/javascript/bom'},
-      {text:'Node',link:'/node/'},
+      {text:'Node',link:'/node/node/'},
       {text:'Vue',link:'/vue/data-transfer/'},
       {text:'React',link:'/react/basis/'},
     ],

@@ -16,7 +16,7 @@ function resolve(dirname,directory,filename){
 const side = {
   react: [
     {
-      title: 'React',
+      text: 'React',
       children: [
         '/react/basis',
         '/react/hook',
@@ -117,12 +117,7 @@ const side = {
       collapsable: false,
       children: [
         '/node/node.md',
-      ]
-    },
-    {
-      text:' Util',
-      children:[
-        '/node/util/tapable'
+        '/node/tapable'
       ]
     }
   ]

@@ -217,3 +217,47 @@ import { decrease, increase } from './math.mjs'
 console.log(decrease(1, 3)) // -2
 console.log(increase(1, 3)) // 4
 ```
+
+## Stream
+
+  Stream 是一个抽象接口。Node.js中有四种流类型:
+1. Readable   - 可读流
+2. Writable   - 可写流
+3. Duplex     - 可读可写操作
+4. Transform  - 操作被写入数据,然后读出结果
+
+  所有Stream对象都是EventEmitter的实例, 常用的事件有:
+1. data   - 数据可读时触发
+2. end    - 没有更多数据可读时触发
+3. error  - 接收和写入发生错误时触发
+4. finish - 所有数据都已被写入到底层系统时触发
+
+```js
+// 创建可读流
+const fs = require('fs')
+const readStream = fs.createReadStream('./input.txt')
+
+const chunks = []
+readStream.on('data', chunk => {
+  chunks.push(chunk)
+})
+readStream.on('end', () => {
+  console.log(Buffer.concat(chunks).toString())
+})
+
+
+// 写入流
+const writeStream = fs.createWriteStream('./output.txt')
+writeStream.write('hello world')
+writeStream.end()
+
+
+// 追加写入内容
+fs.appendFile('./data/output.txt', '我是追加的内容', err => {
+  if(err) console.log('error', err)
+  console.log('追加成功')
+})
+
+// 也可以通过设置 flags 设置可写流为追加
+const writeStream = fs.createWriteStream('./output.txt', { flags: 'a' })
+```

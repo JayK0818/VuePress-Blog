@@ -117,6 +117,7 @@ const side = {
       collapsable: false,
       children: [
         '/node/node.md',
+        '/node/koa.md',
         '/node/tapable'
       ]
     }

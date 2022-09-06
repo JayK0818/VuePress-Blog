@@ -201,4 +201,179 @@ app.use(async ctx => {
 
 ### koa-session
 
-  
+  Simple session middleware for Koa。
+```js
+// 官网的一个案例
+app.keys = ['secret']  // 设置签名的Cookie密钥
+const CONFIG = {
+  key: 'koa.sess',    // cookie key (default is koa.sess)
+  maxAge: 86400000,   // maxAge in ms (default is 1 day)
+  httpOnly: true,     // js 是否可以读取下发的cookie
+  signed: true,       // 签名的cookie
+  secure: false,
+  sameSite: null      // (default null)
+}
+
+app.use(session(CONFIG, app));
+// or if you prefer all default config, just use => app.use(session(app));
+
+app.use(ctx => {
+  // ignore favicon
+  if (ctx.path === '/favicon.ico') return;
+
+  let n = ctx.session.views || 0;
+  ctx.session.views = ++n;
+  ctx.body = n + ' views';
+})
+
+
+app.use(async ctx => {
+  if (!ctx.session.username) { // 获取cookie
+    ctx.body = 'hello world'
+  } else {
+    ctx.body = 'welcome back'
+  }
+  ctx.session.username = 'kyrie'  // 设置cookie
+})
+
+app.listen(3000);
+```
+
+[koa-session]('https://github.com/koajs/session#readme')
+
+### koa-helmet
+
+  koa-helmet is a wrapper for helmet to work with koa. It provides important security heades to make your app more secure
+  by default.
+```js
+const helmet = require('koa-helmet')
+app.use(helmet())
+```
+
+[koa-helmet解析]('https://juejin.cn/post/6844903699584647175')
+
+[express-helmet]('https://helmetjs.github.io/')
+
+[Content Security Policy]('http://www.ruanyifeng.com/blog/2016/09/csp.html')
+
+[MDN - CSP]('https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP')
+
+### koa-jwt
+
+  JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object。
+
+  JSON Web Tokens consist of three parts separated by dots(.)
+1. Header
+2. Payload
+3. Signature
+
+```js
+// 一段生成的token
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+// eyJmb28iOiJiYXIiLCJpYXQiOjE2NjI0MzQ2OTZ9.
+// 73qtplCETawiJ0UiZdh4OPNUb8IPLg6-QhWCuBbcMlw
+
+// Header
+/*
+标头通常由两部分组成:令牌的类型(JWT)和使用的签名算法(如HMAC SHA256或RSA)。
+*/
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+// 然后再通过 base64URL 加密。
+
+// Payload
+{
+  "sub": "1234567890",
+  "name": "John Doe",
+  "admin": true
+}   
+```
+```js
+// jwt.sign(payload, secret, [options, callback])
+const jwt = require('jsonwebtoken')
+const token = jwt.sign({foo: 'bar'}, 'secret')
+
+const token = jwt.sign({foo: 'bar'}, 'secret', {
+  algorithm: 'RS256'
+})
+
+// Signing a token with one hour of expiration
+jwt.sign({
+  exp: Math.floor(Date.now() / 1000) + (60 * 60),
+  data: 'bar'
+}, 'secret')
+// 另一种写法
+jwt.sign({
+  data: 'foo'
+}, 'secret', {expiresIn: '1h'})
+
+jwt.sign({
+  data: 'foo'
+}, 'secret', {expiresIn: '60 * 60'})
+
+
+// 解码
+try {
+  const decoded = jwt.verify(token, 'secret')
+} catch(err) {
+
+}
+```
+
+[JSON Web Token]('https://jwt.io/introduction')
+
+[JSON Web Token]('http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html')
+
+[jsonwebtoken]('https://www.npmjs.com/package/jsonwebtoken')
+
+### koa-views
+
+```js
+const views = require('koa-views')
+const Koa = require('koa')
+const router = require('koa-router')()
+const path = require('path')
+
+const players = [
+  {
+    firstName: 'kyrie',
+    lastName: 'irving'
+  },
+  {
+    firstName: 'lebron',
+    lastName: 'james'
+  },
+  {
+    firstName: 'kevin',
+    lastName: 'durant'
+  }
+]
+const app = new Koa()
+app.use(views(path.resolve(__dirname, 'views'), {
+  extension: 'ejs',
+}))
+
+router.get('/player', async ctx => {
+  // 渲染页面, 并将数据输入页面
+  await ctx.render('player', {
+    players
+  })
+})
+```
+```js
+// ejs模板引擎
+<ul>
+  <% players.forEach(player => { %>
+    <li>
+      <span><%= player.firstName %></span>
+      <span><%= player.lastName %></span>
+    </li>
+  <%}) %>
+</ul>
+```
+
+[EJS]('https://ejs.bootcss.com/#features')
+
+[koa-views]('https://www.npmjs.com/package/koa-views')

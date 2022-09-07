@@ -118,6 +118,7 @@ const side = {
       children: [
         '/node/node.md',
         '/node/koa.md',
+        '/node/nest.md',
         '/node/tapable'
       ]
     }

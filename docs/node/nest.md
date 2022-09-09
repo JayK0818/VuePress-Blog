@@ -79,7 +79,7 @@ export class AppController {
   @HttpCode(200)        // 状态码
   @Header('Cache-Control', 'none')  // 响应头
   @Redirect('https://www.baidu.com', 301) // @Redirect takes two arguments url and statusCode.
-  getPlayers() {
+  getPlayers() { 
     return this.appService.getPlayers()
   }
 }
@@ -175,4 +175,71 @@ export class AppService {
     }
   }
 }
+```
+
+## Provider
+
+  Controllers should handle HTTP requests and delegate more complex tasks to providers. Providers are plain JavaScript classes
+  that are declared as providers in a module.
+```js
+// player.interface.ts
+type PlayerProps = {
+  firstName: string;
+  lastName: string;
+  age: number;
+};
+
+// player.controller.ts
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import type { PlayerProps } from './player.interface';
+import { PlayerService } from './player.service';
+
+// Controllers should handle HTTP request and delegate more complex tasks to providers.
+@Controller('/api/player')
+export class PlayerController {
+  constructor(private readonly playerService: PlayerService) {}
+
+  @Post('create')
+  create_player(@Body() player: PlayerProps) {
+    this.playerService.create(player);
+  }
+  @Get('find')
+  get_player() {
+    return this.playerService.get();
+  }
+}
+
+
+// player.service.ts
+// This service will be responsible for data storage and retrieval. and is designed to be 
+// used by the PlayerController.
+import { Injectable } from '@nestjs/common';
+import type { PlayerProps } from './player.interface';
+
+@Injectable()
+export class PlayerService {
+  private readonly players: PlayerProps[] = [
+    { firstName: 'kyrie', lastName: 'irving', age: 31 },
+    { firstName: 'lebron', lastName: 'james', age: 38 },
+  ];
+  create(player: PlayerProps) {
+    this.players.push(player);
+  }
+  get(): PlayerProps[] {
+    return this.players;
+  }
+}
+
+// app.module.ts
+import { Module } from '@nestjs/common';
+import { PlayerService } from './player/player.service';
+import { AppService } from './app.service';
+
+// Provider registration
+@Module({
+  imports: [],
+  controllers: [PlayerController],
+  providers: [PlayerService],
+})
+export class AppModule {}
 ```

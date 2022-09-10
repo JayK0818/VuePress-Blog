@@ -67,9 +67,7 @@ ctx.set({
 })
 ```
 
-## Middleware
-
-### koa-bodyparser
+## koa-bodyparser
 
   enctype: 表单Form的enctype属性规定在发送到服务器之前应该如何对表单数据进行编码。
 
@@ -102,7 +100,7 @@ app.use(bodyParser())
 ```
 [koa-bodyparser]('https://www.npmjs.com/package/koa-bodyparser')
 
-### koa-router
+## koa-router
 
 ```js
 const Koa = require('koa')
@@ -164,7 +162,7 @@ const router = require('koa-router')({
 app.use(router.routes()).use(router.allowedMethods())
 ```
 
-### koa-static
+## koa-static
 
   Koa static file serving middleware.
 ```js
@@ -176,7 +174,7 @@ app.use(static(path.resolve(__dirname, 'public')))
 ```
 [koa-static]('https://www.npmjs.com/package/koa-static')
 
-### @koa/cors
+## @koa/cors
 
   解决请求跨域问题, 允许前端跨域请求
 ```js
@@ -199,7 +197,7 @@ app.use(async ctx => {
 })
 ```
 
-### koa-session
+## koa-session
 
   Simple session middleware for Koa。
 ```js
@@ -241,7 +239,7 @@ app.listen(3000);
 
 [koa-session]('https://github.com/koajs/session#readme')
 
-### koa-helmet
+## koa-helmet
 
   koa-helmet is a wrapper for helmet to work with koa. It provides important security heades to make your app more secure
   by default.
@@ -258,7 +256,7 @@ app.use(helmet())
 
 [MDN - CSP]('https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP')
 
-### koa-jwt
+## koa-jwt
 
   JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object。
 
@@ -328,7 +326,7 @@ try {
 
 [jsonwebtoken]('https://www.npmjs.com/package/jsonwebtoken')
 
-### koa-views
+## koa-views
 
 ```js
 const views = require('koa-views')

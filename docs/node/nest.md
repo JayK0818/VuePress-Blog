@@ -242,4 +242,54 @@ import { AppService } from './app.service';
   providers: [PlayerService],
 })
 export class AppModule {}
+// A feature module simply organizes code relevant for a specific feature, keeping code
+// organized and establishing clear boundaries.
+
+
+// player.module.ts
+import { Module } from '@nestjs/common';
+import { PlayerService } from './player/player.service';
+import { PlayerController } from './player/player.controller';
+@Module({
+  controllers: [PlayerController],
+  providers: [PlayerService]
+})
+export class PlayerModule {}
+
+// app.module.ts
+// The last thing we need to do is import this module into the root module.
+import { PlayerModule } from './player/player.module'
+import { Module } from '@nestjs/common';
+@Module({
+  imports: [PlayerModule]
+})
+```
+
+## Middleware
+
+  Middleware is a function which is called before the route handler. Middleware have access to the
+  request and response objects.
+
+```ts
+// middleware/logger.middleware.ts
+import { Injectable, NestMiddleware } from '@nestjs/common';
+import { Request, Response, NextFunction } from 'express';
+@Injectable()
+export class LoggerMiddleware implements NestMiddleware {
+  use(req: Request, res: Response, next: NextFunction) {
+    console.log('request...')
+    next()
+  }
+}
+
+// Applying middleware
+// app.module.ts
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
+import { LoggerMiddleware } from './middleware/logger.middleware';
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    // set up the LoggerMiddleware for the /api/player route.
+    consumer.apply(LoggerMiddleware).forRoutes('api/player');
+  }
+}
 ```

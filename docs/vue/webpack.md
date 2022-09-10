@@ -624,24 +624,26 @@ module: {
       // 所有文件类名都不会被编译为哈希字符串 使用:local 的css 会会编译为 哈希类名
       modules: 'global',
       modules: 'local' // 所有文件类名都会被编译为哈希字符串 但是使用:global 的 css 除外
-      localIdentName: '[hash:base64:8]', //hash clss 生成的规则
-      // name: 文件名
-      // folder 文件夹名称
-      // path 文件夹的相对路径
-      // file filename and path
-      // hash hash字符串
-      // local : original class 转换前的类名
+      modules: {
+        localIdentName: '[hash:base64:8]', //hash class 生成的规则
+        // name: 文件名
+        // folder 文件夹名称
+        // path 文件夹的相对路径
+        // file filename and path
+        // hash hash字符串
+        // local : original class 转换前的类名
 
-      // Allows to redefine basic loader context for local ident name
-      localIdentContext: path.resolve(__dirname, 'src/css')
+        // Allows to redefine basic loader context for local ident name
+        localIdentContext: path.resolve(__dirname, 'src/css')
 
-      // Allows to specify hash function to generate classes. 
-      localIdentHashFunction: 'md4'
+        // Allows to specify hash function to generate classes. 
+        localIdentHashFunction: 'md4'
 
-      // Allows to specify hash digest length to generate class
-      localIdentHashDigestLength: 28
+        // Allows to specify hash digest length to generate class
+        localIdentHashDigestLength: 28
 
-      hashStrategy: 'resource-path-and-local-name'  // 生成has的策略
+        hashStrategy: 'resource-path-and-local-name'  // 生成has的策略
+      }
     }]
   }]
 }

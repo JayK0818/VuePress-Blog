@@ -290,6 +290,97 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     // set up the LoggerMiddleware for the /api/player route.
     consumer.apply(LoggerMiddleware).forRoutes('api/player');
+    // 另一种写法
+    consumer.apply(LoggerMiddleware).forRoutes(PlayerController);
+  }
+}
+```
+```ts
+// 将class middleware 转换为 functional middleware.
+// middleware/logger.ts
+import { Request, Response, NextFunction } from 'express';
+export function logger(req: Request, res: Response, next: NextFunction) {
+  console.log('request...')
+  next();
+}
+
+// app.module.ts
+consumer.apply(logger).forRoutes(PlayerController)
+
+
+// Multiple middleware
+consumer.apply(cors(), helmet(), logger).forRoutes(PlayerController);
+
+// global middleware
+// main.ts
+const app = await NestFactory.create(AppModule);
+app.use(logger);
+```
+
+## Exception
+
+```ts
+// Throwing standard exceptions
+// Nest provides a build-in HttpException class exposed from the '@nestjs/common' package.
+// player.controller.ts
+import { HttpStatus } from '@nestjs/common';
+
+@Get()
+async get() {
+  throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
+}
+```
+  The HttpException constructor takes two required arguments which determine the response:
+1. The response argument defines the JSON response body.
+2. The status argument defines the HTTP status code.
+
+```ts
+// overriding the entire response body:
+@Get()
+async get() {
+  throw new HttpException({
+    status: HttpStatus.FORBIDDEN,
+    error: 'This is a custom message'
+  }, HttpStatus.FORBIDDEN)
+}
+
+// 自定义异常
+// forbidden.exception.ts
+export class ForbiddenException extends HttpException {
+  constructor() {
+    super('Forbidden', HttpStatus.FORBIDDEN)
+  }
+}
+
+// player.controller.ts
+@Get()
+async get() {
+  throw new ForbiddenException();
+}
+```
+
+## Pipe
+
+  Pipes have two typical use cases:
+1. transformation: transform input data to the desired form;
+2. validation: evaluate input data and if valid, simply pass it through unchanged;
+
+```ts
+import { Get, Param, Controller, ParseIntPipe, Query } from '@nestjs/common';
+@Controller('api/player')
+export class PlayerController {
+  constructor(private readonly playerService: PlayerService){};
+  @Get('/search/:id')
+  // 将参数 id 由字符串转换为数字
+  find(@Param('id', ParseIntPipe) id: number) {
+    return this.playerService.findPlayer(id)
+  }
+  find(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })), id: number) {
+    return this.playerService.findPlayer(id)
+  }
+  @Get('query')
+  search(@Query('id', ParseIntPipe) id: number) {
+    return this.playerService.search_player(id);
   }
 }
 ```

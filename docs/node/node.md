@@ -260,4 +260,117 @@ fs.appendFile('./data/output.txt', '我是追加的内容', err => {
 
 // 也可以通过设置 flags 设置可写流为追加
 const writeStream = fs.createWriteStream('./output.txt', { flags: 'a' })
+
+// ------- 管道流 --------
+const pipeReadStream = fs.createReadStream('./data/iu.webp')
+pipeReadStream.pipe(fs.createWriteStream('./data/pipe.webp'))
+pipeReadStream.pipe(zlib.createGzip()).pipe(fs.createWriteStream('./data/pipe.webp.gz'))
+```
+
+## http
+
+  Node.js提供了http模块,用于搭建http服务端。
+```js
+const http = require('http')
+const server = http.createServer((req, res) => {
+  res.statusCode = 200
+  res.setHeader('Content-Type', 'text/plain')
+  res.end('Hello World\n!');
+})
+server.listen(3000)
+```
+
+### setHeader 和 writeHead
+
+```js
+response.setHeader('Content-Type', 'text/plain')
+response.setHeader('Content-Type', 'text/html')
+// 重复设置一个属性, 后面的值会覆盖前面
+response.setHeader('Set-Cookit', ['language=javascript'])
+
+
+response.writeHead(statusCode, [statusMessage], [headers])
+// response.writeHead() 只能调用一次, 一次可以设置多个响应头
+
+res.writeHead(200, 'success', {
+  'Content-Type': 'text/html',
+  'Set-Cookie': ['language=css']
+})
+res.write('hello world')
+res.end()
+```
+
+### method
+
+```js
+// 解析post请求的参数
+http.createServer((req, res) => {
+  if (req.url === '/api/login') {
+    let data = ''
+    req.on('data', chunk => {
+      data += chunk
+    })
+    req.on('end', () => {
+      console.log('data', data)
+      res.end('success')
+    })
+  }
+}).listen(3000, () => {
+  console.log('app starting at port 3000')
+})
+```
+
+## path
+
+  path模块提供了一些工具函数, 用于处理文件与目录的路径。
+```js
+const path = require('path')
+
+console.log(__dirname)    // 当前工作目录名
+console.log(__filename)   // 当前文件名
+
+// path.join() 使用平台特定的分隔符把全部给定的path片段连在一起。并规范化生成的路径。
+console.log(path.join('foo', 'bar', 'baz/asdf'))  // foo/bar/baz/asdf
+console.log(path.join('foo', 'bar'))              // foo/bar
+
+// path.parse() 方法返回一个对象, 对象的属性表示path的元素。
+console.log(path.parse(path.resolve(__dirname)))
+/*
+{
+  root: '/',
+  dir: '/Users/jinkang/Desktop/javascript-study-notes/Node',
+  base: 'global',
+  ext: '',
+  name: 'global'
+}
+*/
+console.log(path.parse(path.join(__dirname)))
+/*
+{
+  root: '/',
+  dir: '/Users/jinkang/Desktop/javascript-study-notes/Node',
+  base: 'global',
+  ext: '',
+  name: 'global'
+}
+*/
+
+
+// path.resolve() 把一个路径或路径片段的序列解析为一个绝对路径。
+path.resolve('/foo/bar', 'baz')    // /foo/bar/baz
+path.resolve('/foo/bar', './baz')  // /foo/bar/baz
+path.resolve('/foo/bar', '/baz')   // /baz
+
+path.join('/foo/bar', './baz')        // /foo/bar/baz
+path.join('/foo/bar', 'baz')          // /foo/bar/baz
+path.join('/foo/bar', '/baz')         // /foo/bar/baz
+
+
+// ----- path.isAbsolute() 判断path是否为一个绝对路径 ------
+path.isAbsolute('foo/bar/baz')        // true
+path.isAbsolute('./foo/bar/baz')      // false
+
+// ---- 返回path的扩展名, 从path的最后一部分中最后一个. 字符到字符串结束 ------
+path.extname('index.html')            // html
+path.extname('index.md')              // md
 ```

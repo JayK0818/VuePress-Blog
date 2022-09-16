@@ -2,7 +2,7 @@
 
   本文记录一下按照官方文档学习Nest的过程。
 
-[Nestjs]('https://docs.nestjs.com/')
+[Nestjs官网](https://docs.nestjs.com/)
 
 ## Install
 
@@ -375,7 +375,7 @@ export class PlayerController {
   find(@Param('id', ParseIntPipe) id: number) {
     return this.playerService.findPlayer(id)
   }
-  find(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })), id: number) {
+  find(@Param('id', new ParseIntPipe({errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE})),id:number) {
     return this.playerService.findPlayer(id)
   }
   @Get('query')
@@ -384,3 +384,96 @@ export class PlayerController {
   }
 }
 ```
+1. ValidatonPipe
+2. ParseIntPipe
+3. ParseFloatPipe
+4. ParseBoolPipe
+5. ParseArrayPipe
+6. ParseUUIDPipe
+7. PaeseEnumPipe
+
+  They are exported from the @nestjs/common package.
+
+### Custom Pipes
+
+```ts
+// player.validation.ts
+import { PipeTransform, Injectable, ArgumentMetadata } from '@nestjs/common';
+@Injectable()
+export class PlayerValidationPipe implements PipeTransform {
+  transform(value: any, metadata: ArgumentMetadata) {
+    return value
+  }
+}
+/*
+PipeTransform<T, R> // T 表示输入的value类型, R 表明value返回的数据类型
+自定义pipe验证器必须实现一个transform()方法。
+该方法有两个参数 value, metadata.
+1. value: 当前接收到的数据
+2. metadata: {
+  type: 'body' | 'query' | 'param' | 'custom', 表明当前参数类型
+  metatype?: Type<unknow>,
+  data?: string  传递给装饰器的参数
+}
+*/
+
+// player.controller.ts
+// ...
+@Get('search/:id')
+search_player(@Param('id', PlayerValidationPipe) id) {
+  return this.playerService.search_player(id)
+}
+```
+
+### Schema validation
+
+  The Joi library allows you to create schemas in a straightforward way.
+```js
+npm install --save joi
+npm install --save-dev @types/joi
+```
+
+[Joi](https://joi.dev/api/?v=17.6.0)
+
+```js
+// player.validation.ts
+import { ObjectSchema } from 'joi';
+import { PipeTransform, Injectable, BadRequestException } from '@nestjs/common';
+@Injectable()
+export class CreatePlayerValidation implements PipeTransform {
+  constructor(private schema: ObjectSchema) {}
+  transform(value) {
+/*
+  If the input is valid, then the error will be undefined. If the input is invalid, error
+  is assigned a ValidationError object providing more information.
+*/
+    const { error } = this.schema.validate(value)
+    if (error) {
+      throw new BadRequestException('Validation failed')
+    }
+    return value;
+  }
+}
+
+// player.controller.ts
+import { UsePipes } from '@nestjs/common';
+import { CreatePlayerValidation } from './player.validation';
+import Joi = require('joi');
+// 接收到创建一个球员数据的验证器
+const createPlayerSchema = Joi.object({
+  firstName: Joi.string(),
+  lastName: Joi.string(),
+  id: Joi.number(),
+  age: Joi.number(),
+});
+//...
+@Post('create')
+@UsePipes(new CreatePlayerValidation(createPlayerSchema))
+create(@Body() player: PlayerProps) {
+  return this.playerService.create(player)
+}
+```
+
+## Guards
+
+  

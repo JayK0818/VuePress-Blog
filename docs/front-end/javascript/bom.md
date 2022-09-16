@@ -210,7 +210,7 @@ window.addEventListener('storage', (event) => {
   console.log(event.storageArea)
 })
 ```
-[MDN-localStorage]('https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage')
+[MDN-localStorage](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/localStorage)
 
 ```js
 // 一个模拟localStorage 可以设置过期事件的变通方法
@@ -260,7 +260,7 @@ get_button.addEventListener('click', () => {
 }, false)
 ```
 
-[web-storage-cache]('https://www.npmjs.com/package/web-storage-cache')
+[web-storage-cache](https://www.npmjs.com/package/web-storage-cache)
 
 ```js
 // 本地存储加密, 分别使用URIComponent和base64加密， 对称加密
@@ -296,11 +296,11 @@ decrypt_button.addEventListener('click', () => {
 }, false)
 ```
 
-[secure-ls]('https://www.npmjs.com/package/secure-ls')
+[secure-ls](https://www.npmjs.com/package/secure-ls)
 
-[crypto-js]('https://www.npmjs.com/package/crypto-js')
+[crypto-js](https://www.npmjs.com/package/crypto-js)
 
-[localstorage-slim]('https://www.npmjs.com/package/localstorage-slim')
+[localstorage-slim](https://www.npmjs.com/package/localstorage-slim)
 
 ## window.location
 
@@ -357,7 +357,7 @@ window.navigator.clipboard.readText().then(res => {
 document.addEventListener('copy', function(e){
   e.clipboardData.setData('text/plain', 'Hello, world!');
   e.clipboardData.setData('text/html', '<b>Hello, world!</b>');
-  e.preventDefault(); // We want our data, not data from any selection, to be written to the clipboard
+  e.preventDefault();//We want our data, not data from any selection, to be written to the clipboard
 });
 ```
 ## window.history
@@ -477,7 +477,7 @@ function translate() {
 translate()
 ```
 
-[MDN-requestAnimationFrame]('https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame')
+[MDN-requestAnimationFrame](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame)
 
 ## requestIdleCallback
 
@@ -488,9 +488,9 @@ const handle = window.requestIdleCallback(callback, [, options])
 // 返回一个ID, 可以传入window.cancelIdleCallback() 方法用来结束回调
 /*
 options {
-  timeout 如果指定了timeout, 并且有一个正值, 而回调在timeout毫秒过后还没有调用, 那么回调任务将放入事件循环排队。
+  timeout:如果指定了timeout,并且有一个正值,而回调在timeout毫秒过后还没有调用,那么回调任务将放入事件循环排队
 }
 */
 ```
 
-[MDN-requestIdleCallback]('https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestIdleCallback')
+[MDN-requestIdleCallback](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestIdleCallback)

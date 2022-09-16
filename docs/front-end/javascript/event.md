@@ -347,7 +347,7 @@ event_emitter.emit('cat', {
   name: '生活'
 })
 ```
-[MDN-EventTarget]('https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget')
+[MDN-EventTarget](https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget)
 
 ## BroadcastChannel
 

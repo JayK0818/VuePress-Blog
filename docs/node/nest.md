@@ -474,6 +474,14 @@ create(@Body() player: PlayerProps) {
 }
 ```
 
-## Guards
+## Interceptors
 
-  
+  Interceptors have a set of useful capabilities, They make it possible to:
+1. bind extra logic before/after method execution
+2. transform the result returned from a function
+3. transform the exception thrown from a function
+4. extend the basic function behavior
+5. completely override a function depending on specfic conditions.
+
+  每一个拦截器需要实现intercept()方法, 该方法接受两个参数. 第一个参数是ExecutionContext, 第二个参数是一个CallHandler, 该接口实现了一个handle()
+  方法, 可以在某个节点执行该函数。如果不执行handle(), 那么路由将不会被执行。

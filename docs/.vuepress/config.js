@@ -118,8 +118,14 @@ const side = {
       children: [
         '/node/node.md',
         '/node/koa.md',
-        '/node/nest.md',
-        '/node/tapable'
+        '/node/nest.md'
+      ]
+    },
+    {
+      text: 'Util',
+      children: [
+        '/node/util/tapable',
+        '/node/util/commander'
       ]
     }
   ]

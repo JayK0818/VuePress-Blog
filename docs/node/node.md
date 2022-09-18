@@ -374,3 +374,153 @@ path.isAbsolute('./foo/bar/baz')      // false
 path.extname('index.html')            // html
 path.extname('index.md')              // md
 ```
+
+## npm
+
+  npm 是一个随nodejs安装的包管理工具。
+```js
+// 常用命令
+
+//查看版本
+npm -v
+
+// 安装某个包(本地安装)
+npm install express
+// 全局安装
+npm install express -g
+
+// 查看本地全局安装的模块
+npm list -g
+// 查看本地安装的模块
+npm list
+
+// 卸载
+npm uninstall express
+
+// 更新
+npm update express
+```
+
+## package.json
+
+  package.json文件必须有 "name" 和 "version" 字段。
+```js
+// package.json属性说明
+{
+  "name": "node-cli",  // 包名
+  "version": 1.0.0,     // 版本号
+  "description": "hello world", // 描述
+  "homepage": "http://www.xxx.com", // 包的官网url
+  "main": './index.js', // 程序的主入口文件
+}
+```
+```js
+// 创建一个默认的package.json文件
+npm init --yes
+npm init -y
+```
+
+## process
+
+  The process object provides information about and control over the current Node.js process.
+  The process object is an instance of EventEmitter.
+```js
+process.on('beforeExit', code => {
+  console.log('process before Exit event with code', code)
+})
+process.on('exit', (code) => {
+  console.log('process exit event with code', code)
+})
+console.log('hello world');
+
+/**
+ * hello world
+ * process before Exit event with code 0
+ * process exit event with code 0
+ */
+```
+
+[Node.js官网-Process](https://nodejs.org/api/process.html)
+
+1. 环境变量
+
+```js
+if (process.env.NODE_ENV === 'production') { // 生产环境
+  // ...
+} else {  // 开发环境
+
+}
+```
+
+2. process.argv
+
+  process.argv 返回一个数组包含命令行参数(return an array containing the command-line arguments passed then the
+  Node.js process was launched.)
+```js
+node-cli --version
+// [ '/usr/local/bin/node', '/usr/local/bin/node-cli', '--version' ]
+
+/**
+* first element is the process.execPath
+* second element is the path to the JavaScript file being executed.
+* the remaining elements will be any additional command-line arguments
+*/
+```
+```js
+#!/usr/bin/env node
+
+// 一个简单的demo
+function print() {
+  const argument = process.argv[2]
+  switch(argument) {
+    case '--version':
+      console.log('版本号');
+      break;
+    case '--help':
+      console.log('帮助');
+      break;
+  }
+}
+print()
+```
+
+```js
+const { program } = require('commander');
+program.option('-f --frameword <frameword>', '选择一个框架')
+program.parse(process.argv)
+```
+
+[commander](https://www.npmjs.com/package/commander)
+
+3. process.nextTick(fn)
+
+  process.nextTick() adds callback to the 'next tick queue'.
+
+```js
+console.log('start')
+setTimeout(() => {
+  console.log('setTimeout-1')
+},0)
+Promise.resolve().then(() => {
+  console.log('promise-1')
+})
+process.nextTick(() => {
+  console.log('process')
+})
+setTimeout(() => {
+  console.log('setTimeout-2')
+},0)
+Promise.resolve().then(() => {
+  console.log('promise-2')
+})
+console.log('end')
+/*
+1. start
+2. end
+3. process
+4. promise-1
+5. promise-2
+6. setTimeout-1
+7. setTimeout-2
+*/
+```

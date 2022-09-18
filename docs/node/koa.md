@@ -48,6 +48,7 @@ ctx.hostname        // 主机名(hostname:port)
 ctx.protocol        // 协议
 ctx.request         // 请求对象
 ```
+
 ![koa-request](./images/koa-request.png)
 
 ```js
@@ -98,6 +99,7 @@ const bodyParser = require('body-parser')
 app.use(bodyParser())
 // 获取请求的参数 ctx.request.body {username: 'kyrie', password: 123456}
 ```
+
 [koa-bodyparser](https://www.npmjs.com/package/koa-bodyparser)
 
 ## koa-router
@@ -172,11 +174,13 @@ const static = require('koa-static')
 const app = new Koa()
 app.use(static(path.resolve(__dirname, 'public')))
 ```
+
 [koa-static](https://www.npmjs.com/package/koa-static)
 
 ## @koa/cors
 
   解决请求跨域问题, 允许前端跨域请求
+
 ```js
 const Koa = require('koa');
 const cors = require('@koa/cors');
@@ -241,8 +245,8 @@ app.listen(3000);
 
 ## koa-helmet
 
-  koa-helmet is a wrapper for helmet to work with koa. It provides important security heades to make your app more secure
-  by default.
+  koa-helmet is a wrapper for helmet to work with koa. It provides important security heades to make your app more secure by default.
+
 ```js
 const helmet = require('koa-helmet')
 app.use(helmet())
@@ -360,7 +364,7 @@ router.get('/player', async ctx => {
   })
 })
 ```
-```js
+```html
 // ejs模板引擎
 <ul>
   <% players.forEach(player => { %>

@@ -1,8 +1,20 @@
 # Nest
 
   本文记录一下按照官方文档学习Nest的过程。
-
+  
 [Nestjs官网](https://docs.nestjs.com/)
+
+  Nest使用装饰器语法,并且内置了一些列有用的装饰器 比如 @Request(), @Response() @Body()
+  @Param() @Query()等。
+
+  官网上有一段关于装饰器的介绍:
+  
+  An ES2016 decorator is an expression which returns a function and can take a target, name and property descriptor as arguments.
+  You apply it by prefixing the decorator with an **@** character and placing this at the very top of what you are trying to decorate.
+  Decorator can be defined for either a class, a method or a property.
+
+[Nestjs Decorator](https://docs.nestjs.com/custom-decorators)
+
 
 ## Install
 
@@ -485,3 +497,49 @@ create(@Body() player: PlayerProps) {
 
   每一个拦截器需要实现intercept()方法, 该方法接受两个参数. 第一个参数是ExecutionContext, 第二个参数是一个CallHandler, 该接口实现了一个handle()
   方法, 可以在某个节点执行该函数。如果不执行handle(), 那么路由将不会被执行。
+
+```ts
+// login.interceptors.ts
+import { Injectable, NestInterceptor, ExecutionContext, Callhandler } from '@nestjs/common';
+
+@Injectable()
+export class LoginInterceptor implements NestInterceptor {
+  intercept(context: ExecutionContext, next: Callhandler) {
+    console.log('before...', Date.now())
+    return next.handle()
+    // handle() returns an Rxjs Observable.
+  }
+}
+
+
+// login.controller.ts
+import { UseInterceptors } from '@nestjs/common';
+@UseInterceptors(LoginInterceptor)
+export class LoginController {
+
+}
+```
+  这个拦截器会被控制器里的每个请求执行。如果想限制拦截器在某个指定的请求执行, 将注入控制器写在该函数的上方。
+  (As mentioned, the construction above attaches the interceptor to every handler declared by this controller. If we want to
+  restrict the interceptor's scope to a single method, we simply apply the decorator at the method level)
+
+```ts
+// 觉得比较有用的拦截器 (来自官网)
+// 1. 拦截响应, 将返回的数据 挂载到一个对象的 data属性下
+@Injectable()
+export class TransformInterceptor implements NestInterceptor {
+  interceptor(context: ExecutionContext, next: CallHandler) {
+    return next.handle().pipe(map(data => ({ data })))
+  }
+}
+/*
+当通过get或post请求时, 返回的结果 大概是这样的: { 'data': [] }
+*/
+
+// 2. 将null转换为空字符串
+export class ExcludeNullInterceptor implements NestInterceptor {
+  interceptor(context: ExecutionContext, next: CallHandler) {
+    return next.handle().pipe(map((value) => value === null ? '' : value))
+  }
+}
+```

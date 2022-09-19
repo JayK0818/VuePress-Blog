@@ -442,17 +442,7 @@ console.log('hello world');
 
 [Node.js官网-Process](https://nodejs.org/api/process.html)
 
-1. 环境变量
-
-```js
-if (process.env.NODE_ENV === 'production') { // 生产环境
-  // ...
-} else {  // 开发环境
-
-}
-```
-
-2. process.argv
+1. process.argv
 
   process.argv 返回一个数组包含命令行参数(return an array containing the command-line arguments passed then the
   Node.js process was launched.)
@@ -492,7 +482,7 @@ program.parse(process.argv)
 
 [commander](https://www.npmjs.com/package/commander)
 
-3. process.nextTick(fn)
+2. process.nextTick(fn)
 
   process.nextTick() adds callback to the 'next tick queue'.
 

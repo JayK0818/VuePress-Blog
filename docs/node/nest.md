@@ -264,7 +264,10 @@ import { PlayerService } from './player/player.service';
 import { PlayerController } from './player/player.controller';
 @Module({
   controllers: [PlayerController],
-  providers: [PlayerService]
+  providers: [PlayerService],
+// we want to share an instance of the PlayerService between several other modules.
+// Then any module that imports the PlayerModule has access to the PlayerService and will share the same instance.
+  exports: [PlayerService]
 })
 export class PlayerModule {}
 
@@ -540,6 +543,86 @@ export class TransformInterceptor implements NestInterceptor {
 export class ExcludeNullInterceptor implements NestInterceptor {
   interceptor(context: ExecutionContext, next: CallHandler) {
     return next.handle().pipe(map((value) => value === null ? '' : value))
+  }
+}
+```
+
+## Dynamic modules
+
+  dynamic modules provide an API for importing one module into another, and customizing the properties and behavior of that module 
+  when it is importer.
+
+  下面是官网的一个例子
+```js
+// User
+// user.service.ts
+import { Injectable, Inject } from '@nestjs/common';
+import { INQUIRER } from '@nestjs/core';
+
+@Injectable()
+export class UserService {
+  private user_list: string[] = [];
+// If you want to get the class where a provider was consturcted, you can inject the INQUIRER token.
+  constructor(@Inject(INQUIRER) private parentClass: object) {
+    this.user_list = ['kyrie', 'lebron', 'kevin'];
+  }
+  check(username: string) {
+    console.log(`${this.parentClass?.constructor?.name}`) // AuthService
+    return this.user_list.includes(username);
+  }
+}
+
+// user.module.ts
+import { Module } from '@nestjs/common';
+import { UserService } from './user.service';
+@Module({
+  providers: [UserService],
+  exports: [UserService],
+})
+export class UserModule {}
+```
+
+```js
+// Auth
+// auth.controller.ts
+@Controller('/api/auth')
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+  @Post('login')
+  login(@Body('username') username: string) {
+    return this.authService.login(username);  // 验证用户名是否存储
+  }
+}
+
+// auth.module.ts
+import { Module } from '@nestjs/common';
+import { AuthController } from './auth.controller';
+import { AuthService } from './auth.service';
+import { UserModule } from '../user/user.module';
+
+@Module({
+  imports: [UserModule], // These constructs allow us to inject UserService in.
+  providers: [AuthService],
+  controllers: [AuthController],
+})
+export class AuthModule {}
+
+// auth.service.ts
+@Injectable()
+export class AuthService {
+  constructor(private userService: UserService) {}
+  login(username: string) {
+    const flag = this.userService.check(username);
+    if (flag) {
+      return {
+        code: 200,
+        success: '登录成功',
+      };
+    }
+    return {
+      code: 0,
+      success: '用户名不存在',
+    };
   }
 }
 ```

@@ -193,7 +193,7 @@ module.exports = {
         link:'/'
       },
       {text:'前端',link:'/front-end/javascript/bom'},
-      {text:'Node',link:'/node/node/'},
+      {text:'后端',link:'/node/node/'},
       {text:'Vue',link:'/vue/data-transfer/'},
       {text:'React',link:'/react/basis/'},
     ],

@@ -116,16 +116,23 @@ const side = {
       text: 'Node',
       collapsable: false,
       children: [
-        '/node/node.md',
-        '/node/koa.md',
-        '/node/nest.md'
+        '/back-end/node.md',
+        '/back-end/koa.md',
+        '/back-end/nest.md'
+      ]
+    },
+    {
+      text: '数据库',
+      collapse: false,
+      children: [
+        '/back-end/mongodb/mongodb'
       ]
     },
     {
       text: 'Util',
       children: [
-        '/node/util/tapable',
-        '/node/util/commander'
+        '/back-end/util/tapable',
+        '/back-end/util/commander'
       ]
     }
   ]
@@ -193,7 +200,7 @@ module.exports = {
         link:'/'
       },
       {text:'前端',link:'/front-end/javascript/bom'},
-      {text:'后端',link:'/node/node/'},
+      {text:'后端',link:'/back-end/node/'},
       {text:'Vue',link:'/vue/data-transfer/'},
       {text:'React',link:'/react/basis/'},
     ],
@@ -204,7 +211,7 @@ module.exports = {
       collapsable: true,
       '/react/': side.react,
       '/front-end/': side.front_end,
-      '/node/': side.node,
+      '/back-end/': side.node,
       '/vue/': side.vue
     },
     topBanner: false

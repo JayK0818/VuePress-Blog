@@ -320,6 +320,32 @@ const result = await players.find({}, {
     age: -1
   }
 }).toArray()
+
+
+// forEach
+const cursor = players.find({})
+await cursor.forEach(doc => {console.log(doc)})
+```
+
+  Note that large numbers of matched documents can cause performance issues or failures if the operation exceeds memory constraints.
+  Consider using **forEach()** to iterate through results unless you want to return all documents at once.
+```js
+const result = await players.find({}).toArray()
+
+const cursor = players.find({})
+for await (const doc of cursor) {
+  console.log(doc)
+}
+
+// You can use the hasNext() method to check if a cursor can provide additional data.
+while(await cursor.hasNext()) {
+  console.log(await cursor.next())
+}
+
+// cursors expose the stream() method to convert them to Node Readable Streams.
+cursor.stream().on('data', doc => {
+  console.log(doc)
+})
 ```
 
 ### insertOne / insertMany
@@ -501,6 +527,7 @@ const result_1 = await todos.countDocuments({ title: 'Hello - 10' })
 ### Retrieve distinct value
 
   You can retrieve a list of distinct values for a field across a collection by using the **collection.distinct()** method.
+  The distinct() method requires a document filed as a parameter.
 
 ```js
 //...
@@ -511,4 +538,63 @@ console.log(result) // [30, 34, 37, 38]
 
 const result = await players.distinct('firstName')
 console.log(result) // [ 'chris', 'kevin', 'kyrie', 'lebron', 'stephen' ]
+```
+
+  下面的demo来自官网。 (数据源如下所示)
+```json
+[
+   { "_id": 1, "restaurant": "White Bear", "borough": "Queens", "cuisine": "Chinese" },
+   { "_id": 2, "restaurant": "Via Carota", "borough": "Manhattan", "cuisine": "Italian" },
+   { "_id": 3, "restaurant": "Borgatti's", "borough": "Bronx", "cuisine": "Italian" },
+   { "_id": 4, "restaurant": "Tanoreen", "borough": "Brooklyn", "cuisine": "Middle Eastern" },
+   { "_id": 5, "restaurant": "Äpfel", "borough": "Queens", "cuisine": "German" },
+   { "_id": 6, "restaurant": "Samba Kitchen", "borough": "Manhattan", "cuisine": "Brazilian" },
+]
+```
+![mongodb-restaurant-data](./images/mongodb-restaurant.png)
+
+```js
+const cursor = await collection.distinct('borough')
+// [ 'Bronx', 'Brooklyn', 'Manhattan', 'Queens' ]
+
+const cursor = await collection.distinct('cuisine', {
+  borough: { $ne: 'Brooklyn' } // exclude Broklyn restuarants from the output.
+})
+// [ 'Brazilian', 'Chinese', 'German', 'Italian' ]
+```
+
+### sort
+
+  Use sort to change the order in which read operations return documents. To sort returned documents by a field in
+  ascending(lowest first) order, use a value of **1**.
+
+```json
+// 数据源
+[
+  { "_id": 1, "name": "The Brothers Karamazov", "author": "Dostoyevsky", "length": 824 },
+  { "_id": 2, "name": "Les Misérables", "author": "Hugo", "length": 1462 },
+  { "_id": 3, "name": "Atlas Shrugged", "author": "Rand", "length": 1088 },
+  { "_id": 4, "name": "Infinite Jest", "author": "Wallace", "length": 1104 },
+  { "_id": 5, "name": "Cryptonomicon", "author": "Stephenson", "length": 918 },
+  { "_id": 6, "name": "A Dance with Dragons", "author": "Martin", "length": 1104 },
+]
+```
+```js
+const cursor = await collection.find({}).sort({length: -1}) // 从大到小
+const cursor = await collection.find({}).sort({length: 1}) // 从小到大
+
+// 作为find的第二个参数传递, 效果一样
+const result = await cursor.find({}, {
+  sort: {
+    length: -1
+  }
+}).toArray()
+
+/**
+ * 上述数据源中有两本书的长度一致, 所以返回的结果顺序是无法保证的, 这时可以再指定额外的一个参数用来排序。
+ */
+const result = await cursor.find({}).sort({
+  length: 1,
+  author: -1
+}).toArray()
 ```

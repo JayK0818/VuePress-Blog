@@ -280,7 +280,28 @@ const server = http.createServer((req, res) => {
 server.listen(3000)
 ```
 
-### setHeader 和 writeHead
+### createServer
+
+```js
+const http = require('http');
+
+// Create a local server to receive data from
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'application/json' });
+  res.end(JSON.stringify({
+    data: 'Hello World!'
+  }));
+});
+
+server.listen(8000);
+```
+
+### setHeader
+
+  response.setHeader(name, value)
+
+  Sets a single header value for implicit headers. If this header already in the to-be-sent headers, its value will
+  be replaced.
 
 ```js
 response.setHeader('Content-Type', 'text/plain')
@@ -288,16 +309,23 @@ response.setHeader('Content-Type', 'text/html')
 // 重复设置一个属性, 后面的值会覆盖前面
 response.setHeader('Set-Cookit', ['language=javascript'])
 
+// 防止中文乱码
+res.setHeader('Content-Type', 'text/plain;charset=utf-8')
+res.write('你好世界')
 
-response.writeHead(statusCode, [statusMessage], [headers])
-// response.writeHead() 只能调用一次, 一次可以设置多个响应头
-
-res.writeHead(200, 'success', {
-  'Content-Type': 'text/html',
-  'Set-Cookie': ['language=css']
-})
 res.write('hello world')
 res.end()
+```
+
+  When headers have been set with response.setHeader(), they will be merged with any headers passed to response.writeHead()
+```js
+// Returns content-type = text/plain
+const server = http.createServer((req, res) => {
+  res.setHeader('Content-Type', 'text/html');
+  res.setHeader('X-Foo', 'bar');
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('ok');
+});
 ```
 
 ### method
@@ -315,10 +343,79 @@ http.createServer((req, res) => {
       res.end('success')
     })
   }
+  const path = req.path
+  const host = req.host;
+  const protocol = req.protocol;
 }).listen(3000, () => {
   console.log('app starting at port 3000')
 })
+
 ```
+
+### end
+
+  response.end(data, encoding, callback)
+
+  data: string | buffer
+  encoding: string
+  callback: function
+
+  This message signals to the server that all of the response headers and body have been sent; that server consider this message complete.
+```js
+const data = Buffer.from('你好世界')
+http.createServer((req, res) => {
+  res.setHeader('Content-Type', 'text/plain;charset=utf-8')
+  res.end(data)
+}).listen(() => {
+  console.log('app start listening....')
+})
+```
+
+### getHeader
+
+```js
+res.setHeader('Content-Type', 'text/plain;charset=utf-8')
+res.setHeader('Set-Cookie', ['language=javascript,location=hangzhou'])
+
+const contentType = res.getHeader('content-type')
+const cookie = res.getHeader('set-cookit')
+console.log(contentType, cookie)
+
+// text/plain;charset=utf-8
+// [ 'language=javascript,location=hangzhou' ]
+```
+
+### statusCode / statusMessage
+
+  this property controls the status code that will be sent to the client when the headers get flushed.
+
+```js
+response.statusCode = 404 // (default: 200)
+response.statusMessage = 'success'
+```
+
+### writeHead
+
+  Sends a response header to the request.
+
+```js
+response.writeHead(statusCode, [statusMessage], [headers])
+// response.writeHead() 只能调用一次, 一次可以设置多个响应头
+
+res.writeHead(200, 'success', {
+  'Content-Type': 'text/html',
+  'Set-Cookie': ['language=css']
+})
+
+
+const body = 'hello world';
+response.writeHead(200, {
+  'Content-Length': Buffer.byteLength(body),
+  'Content-Type': 'text/plain'
+}).end(body)
+```
+
+  This method must only be called once on a message and it must be called before response.end() is called.
 
 ## path
 

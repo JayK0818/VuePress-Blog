@@ -132,7 +132,8 @@ const side = {
       text: 'Util',
       children: [
         '/back-end/util/tapable',
-        '/back-end/util/commander'
+        '/back-end/util/commander',
+        '/back-end/util/inquirer'
       ]
     }
   ]

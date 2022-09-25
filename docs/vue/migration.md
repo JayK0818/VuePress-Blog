@@ -130,8 +130,8 @@ const app = new Vue({
 </script>
 ```
 下图分别表示 在子组件上添加 attribute, 在设置了 inheritAttrs 为true 和 false 的结果。
-![inheritAttrs-true](./images/%24attrs_2_1.png)
-![inheritAttrs-false](./images/%24attrs_2_2.png)
+![inheritAttrs-true](./images/$attrs_2_1.png)
+![inheritAttrs-false](./images/$attrs_2_2.png)
 
 ```html
 <div>
@@ -171,8 +171,8 @@ app.mount('#attr-app')
 ```
   在3.x版本中, 对attrs的处理比较一致, inheritAttrs为false时, 根元素不会继承所有属性包括 class 和 style, 并且子组件的attrs中包含class和style.
 
-![inheritAttrs-true](./images/%24attrs_3_1.png)
-![inheritAttrs-false](./images/%24attrs_3_2.png)
+![inheritAttrs-true](./images/$attrs_3_1.png)
+![inheritAttrs-false](./images/$attrs_3_2.png)
 
 ## $children
 
@@ -186,7 +186,7 @@ app.mount('#attr-app')
   }
 }
 ```
-![Vue2-$children](./images/%24children.png)
+![Vue2-$children](./images/$children.png)
 
 ## directive
 

@@ -190,7 +190,32 @@ program
 
 ## action handler
 
+  You can specify (sub)commands using .command() or .addCommand(). There are two ways these can be implemented.
+  using an action handler attached to the command,
+
 ```js
+/*
+In the first parameter to .command() you specify the command name. You may append the command-arguments
+after the command name, or specify them separately using .argument().
+*/
+program
+.command('clone <source> [destination]')
+.description('clone a repository into a newly created directory')
+.action((source, destination) => {
+  console.log('clone command called: ', source, destination)
+})
+
+//等同于
+program
+.command('clone')
+.argument('<source>')
+.argument('<destination>')
+.description('clone a repository into a newly created directory')
+.action((source, destination) => {
+  console.log('clone command called: ', source, destination)
+})
+
+
 program
 .argument('name')
 .option('-t --title <title>', 'title to use before name')

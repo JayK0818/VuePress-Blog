@@ -3,7 +3,7 @@
   AJAX最大的优点是在不重新加载整个页面的情况下,可以与服务器交换数据并更新部分网页内容 通过在后台与服务器进行少量数据交换,
   AJAX可以使网页实现异步更新.
 
-  EventTarget <---- XMLHttpRequestEventTarget <---- XMLHttpRequest
+  EventTarget --- XMLHttpRequestEventTarget --- XMLHttpRequest
 ```js
 // usage:
 const xhr = new XMLHttpRequest()
@@ -288,7 +288,11 @@ function _ajax(options = {
     }else {
       xhr.open('POST',options.url, true)
       xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
-      xhr.send(options.data)
+      xhr.send(parse(options.data))
+
+      // 或者另一种方式
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.send(JSON.stringify(options.data))
     }
   })
 }

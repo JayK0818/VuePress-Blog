@@ -117,6 +117,7 @@ const side = {
       collapsable: false,
       children: [
         '/back-end/node.md',
+        '/back-end/express.md',
         '/back-end/koa.md',
         '/back-end/nest.md'
       ]

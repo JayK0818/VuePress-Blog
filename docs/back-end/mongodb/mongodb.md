@@ -321,6 +321,12 @@ const result = await players.find({}, {
   }
 }).toArray()
 
+// 查询有某个字段的
+const result = await collection.find({
+  age: {
+    $exists: true
+  }
+})
 
 // forEach
 const cursor = players.find({})
@@ -412,6 +418,7 @@ const result = await todos.insertMany([
   and an update document.
 
   set the **upsert** option to true to create a new document if no documents match the filter.
+  Update operations mutate specified fields in one or more documents and leave other fields and values unchanged.
 ```js
 const databse = client.db('test')
 const todos = databse.collection('todo');
@@ -437,6 +444,54 @@ console.log(result)
 }
 */
 ```
+```js
+// 更新数组的某个数据
+// 数据源
+[{
+   name: "Steve Lobsters",
+   address: "731 Yexington Avenue",
+   items: [
+     { type: "beverage", name: "Water", size: "17oz", },
+     { type: "pizza", size: "large", toppings: ["pepperoni"], },
+     { type: "pizza", size: "medium", toppings: ["mushrooms", "sausage", "green peppers"], comment: "Extra green peppers please!", },
+     { type: "pizza", size: "large", toppings: ["pineapple, ham"], comment: "red pepper flakes on top", },
+     { type: "calzone", fillings: ["canadian bacon", "sausage", "onion"], },
+     { type: "beverage", name: "Diet Pepsi", size: "16oz", },
+   ],
+ },
+ {
+   name: "Popeye",
+   address: "1 Sweethaven",
+   items: [
+     { type: "pizza", size: "large", toppings: ["garlic, spinach"], },
+     { type: "calzone", toppings: ["ham"], },
+   ],
+}]
+
+const result = await pizza.updateOne({ name: "Steve Lobsters", "items.type": "pizza" }, {
+  // 更新数组items 第一条数据的 size属性
+  $set: { "items.$.size": "extra large" }
+})
+
+
+const result = await pizza.updateOne({ name: 'Popeye' }, {
+  // items的每个 toppings数组 新增一条 fresh mozzarella
+  $push: { 'items.$[].toppings': 'fresh mozzarella' }
+})
+
+const result = await collection.updateMany({ name: 'Steve Lobsters'}, {
+  $push: { 'items.$[orderItem].toppings': 'garlic' }
+}, {
+  arrayFilters: [{
+    'orderItem.type': 'pizza',
+    'orderItem.size': 'large'
+  }]
+})
+// items: the array in the document to update
+// orderItem: the identifier for the filtered positional operator
+// toppings: the field on the items array element to update
+// garlic: the value to push onto the toppings array
+```
 
   You can update multiple documents using the **collection.updateMany()** method.
 ```js
@@ -459,6 +514,8 @@ const result = await todos.updateMany({completed: false}, {
   **collection.replaceOne()** This operation removes all fields and values in the original document and replaces
   them with the fields and value in the replacement document. The value of the _id field remains the same unless you
   explicitly specify a new value for _id in the replacement document.
+
+  Replace operations remove all existing fields in one or more documents and substitute them with specified fields and values.
 ```js
 const result = await todos.replaceOne(
   {id: 3},
@@ -597,4 +654,118 @@ const result = await cursor.find({}).sort({
   length: 1,
   author: -1
 }).toArray()
+```
+
+### skip
+
+  Use skip to omit documents from the beginning of the list of returned documents for a read operation.
+  Using skip without using sort omits arbitrary documents.
+
+```json
+// 数据源
+[
+   { "_id": 1, "name": "apples", "qty": 5, "rating": 3 },
+   { "_id": 2, "name": "bananas", "qty": 7, "rating": 1 },
+   { "_id": 3, "name": "oranges", "qty": 6, "rating": 2 },
+   { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 },
+]
+```
+```js
+const result = await collection.find({}, {
+  sort: {
+    rating: -1
+  },
+  skip: 2 // 从大到小排序后 忽略两条数据
+}).toArray()
+console.log(result)
+/**
+ * [
+      { _id: 3, name: 'oranges', qty: 6, rating: 2 },
+      { _id: 2, name: 'bananas', qty: 7, rating: 1 }
+    ]
+
+  */
+
+// 或者通过链式调用
+const result = await collection.find().sort({
+  rating: -1
+}).skip(2).toArray()
+
+// 超过返回的数据长度, 返回[]
+const result = await collection.find().sort({
+  rating: -1
+}).skip(5).toArray()
+```
+
+### limit
+
+  Limit the number of reuturned results. If limit is used with the skip method, the skip applies first and the limit only applies to
+  the documents left over after the skip.
+```js
+// 此处查询的数据和sort部分一致
+const collection = database.collection('book')
+
+const result = await collection.find({}).sort({
+  length: -1
+}).limit(3).toArray()
+/*
+[
+  { _id: 2, name: 'Les Misérables', author: 'Hugo', length: 1462 },
+  { _id: 6, name: 'A Dance with Dragons', author: 'Martin', length: 1104},
+  { _id: 4, name: 'Infinite Jest', author: 'Wallace', length: 1104 }
+]
+*/
+
+// 另一种写法
+const result = await collection.find({}, {
+  sort: {
+    length: -1
+  },
+  limit: 3
+}).toArray()
+```
+:::tip
+The order in which you call *limit* and *sort* does not matter because the driver reorders the calls to apply the sort first
+and the limit after it
+
+```js
+// 效果一样的
+collection.find(query).sort({ length: -1 }).limit(3);
+collection.find(query).limit(3).sort({ length: -1 });
+```
+:::
+
+
+### specify field to return
+
+  Use a projection to control which fields appear in the documents returned by read operations.Many requests only require
+  certain fields.
+
+  有两种使用方式: 显式的指定需要返回的字段, 设置属性为1. 或者显式地设置不需要返回的字段, 设置属性为0
+
+```js
+const collection = database.collection('fruit')
+// The projection document specifies a value of *1* for *name* to indicate that the 
+// read operation result should include the name field of each returned document.
+const result = await collection.find({}).project({name: 1}).toArray()
+
+// _id 默认会返回, 因为对每条数据来说是一个特别的标识符, 除非显示的指定不要返回_id.
+/*
+[
+  { _id: 1, name: 'apples' },
+  { _id: 2, name: 'bananas' },
+  { _id: 3, name: 'oranges' },
+  { _id: 4, name: 'avocados' }
+]
+*/
+
+const result = await collection.find({}).project({name: 0}).toArray()
+/*
+[
+  { _id: 1, qty: 5, rating: 3 },
+  { _id: 2, qty: 7, rating: 1 },
+  { _id: 3, qty: 6, rating: 2 },
+  { _id: 4, qty: 3, rating: 5 }
+]
+*/
 ```

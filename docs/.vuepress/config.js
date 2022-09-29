@@ -126,7 +126,8 @@ const side = {
       text: '数据库',
       collapse: false,
       children: [
-        '/back-end/mongodb/mongodb'
+        '/back-end/database/mongosh',
+        '/back-end/database/mongodb'
       ]
     },
     {

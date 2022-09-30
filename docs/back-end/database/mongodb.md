@@ -399,7 +399,7 @@ const result = await todos.replaceOne(
 ```
 ![mongodb-node-server](./images/mongodb-node-server.png)
 
-## deleteOne / deleteMany
+## DeleteOne / DeleteMany
 
   **deleteOne()** if you do not provide a query document (or if you provide an empty document), MongoDB matches
   all documents in the collection and deletes the first match.
@@ -418,7 +418,7 @@ const result = await todos.deleteMany({completed: true})
 console.log(result) // { acknowledged: true, deletedCount: 4 }
 ```
 
-## count documents
+## Count documents
 
   The Node.js driver provides two methods for counting documents in a collection.
 
@@ -488,7 +488,7 @@ const cursor = await collection.distinct('cuisine', {
 // [ 'Brazilian', 'Chinese', 'German', 'Italian' ]
 ```
 
-## sort
+## Sort
 
   Use sort to change the order in which read operations return documents. To sort returned documents by a field in
   ascending(lowest first) order, use a value of **1**.
@@ -524,7 +524,7 @@ const result = await cursor.find({}).sort({
 }).toArray()
 ```
 
-## skip
+## Skip
 
   Use skip to omit documents from the beginning of the list of returned documents for a read operation.
   Using skip without using sort omits arbitrary documents.
@@ -565,7 +565,7 @@ const result = await collection.find().sort({
 }).skip(5).toArray()
 ```
 
-## limit
+## Limit
 
   Limit the number of reuturned results. If limit is used with the skip method, the skip applies first and the limit only applies to
   the documents left over after the skip.
@@ -604,7 +604,7 @@ collection.find(query).limit(3).sort({ length: -1 });
 :::
 
 
-## specify field to return
+## Specify field to return
 
   Use a projection to control which fields appear in the documents returned by read operations.Many requests only require
   certain fields.
@@ -638,7 +638,7 @@ const result = await collection.find({}).project({name: 0}).toArray()
 */
 ```
 
-## indexes
+## Indexes
 
   Indexes are data structures that support the efficient execution of queries in MongoDB. They contain copies of parts of the data
   in documents to make queries more efficient.

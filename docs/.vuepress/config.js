@@ -127,7 +127,8 @@ const side = {
       collapse: false,
       children: [
         '/back-end/database/mongosh',
-        '/back-end/database/mongodb'
+        '/back-end/database/mongodb',
+        '/back-end/database/mongoose'
       ]
     },
     {

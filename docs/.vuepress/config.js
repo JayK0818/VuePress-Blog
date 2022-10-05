@@ -136,7 +136,8 @@ const side = {
       children: [
         '/back-end/util/tapable',
         '/back-end/util/commander',
-        '/back-end/util/inquirer'
+        '/back-end/util/inquirer',
+        '/back-end/util/nodemon'
       ]
     }
   ]

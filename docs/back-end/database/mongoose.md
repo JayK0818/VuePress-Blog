@@ -134,6 +134,26 @@ Player.find({}, (err, data) => { log(data) })
 
 Player.find({ age: 34 }).then((res) => log(res))
 
+const query = Player.findOne({ firstName: 'lebron' })
+// execute the query at a later time
+query.exec((err, player) => {
+  if (err) {
+    log(err)
+  } else {
+    log(player)
+    /*
+    {
+      _id: new ObjectId("6340d00d0098378fe6bfc1f6"),
+      firstName: 'lebron',
+      lastName: 'james',
+      age: 38,
+      create_time: 2022-10-08T01:19:09.983Z,
+      __v: 0
+    }
+    */
+  }
+})
+
 Player.findOne({}).then(res => log(res)) // 默认查找第一个
 
 Player.findOne({age: 34}).then(res => log(res))  // 第一个符合条件的
@@ -142,4 +162,219 @@ Player.findById('633691c7e6c86518d6f64a19').then(res => log(res))
 
 // 链式调用, 按年龄排序
 Player.find({}).sort({age: 1}).then(res => { log(res) })
+
+// deleteMany
+Player.deleteMany({age: 34})
+
+// deleteOne
+Player.deleteOne({ firstName: 'lebron'})
+
+// findByIdAndDelete
+Player.findByIdAndDelete({_id: '63369901f83a3cb0bcd2a4bd'})
+
+// findByIdAndUpdate
+Player.findByIdAndUpdate({ _id: '6340d00d0098378fe6bfc1f6' }, {
+  firstName: 'king'
+})
+
+// updateOne
+Player.updateOne({ firstName: 'king'}, { firstName: 'lebron'})
+```
+
+  The lean option tells Mongoose to skip hybrating the result documents, This makes queries faster and less memory intensive.
+```js
+// Lean options
+// 官网的一个demo
+const personSchema = new mongoose.Schema({
+  firstName: {
+    type: String,
+    get: capitalizeFirstLetter
+  },
+  lastName: {
+    type: String,
+    get: capitalizeFirstLetter
+  }
+})
+personSchema.virtual('fullName').get(function() {
+  return `${this.firstName} ${this.lastName}`
+})
+
+function capitalizeFirstLetter(v) {
+  return v.charAt(0).toUpperCase() + v.substring(1)
+}
+const Person = mongoose.model('Person', personSchema)
+
+// model's getters and virtuals do not run if you enable lean
+Person.findOne({}).lean().then(res => {
+  console.log(res.firstName, res.lastName, res.fullName)
+  // Benjamin / Sisko / Benjamin Sisko
+})
+Person.findOne({}).then(res => {
+  console.log(res.firstName, res.lastName, res.fullName)
+  // benjamin / sisko / undefined
+})
+```
+  if you do not modify the query results and do not use custom getters, you should use **lean()**.
+
+[Faster Mongoose Queries With Lean](https://mongoosejs.com/docs/tutorials/lean.html#lean-and-populate)
+
+## Validation
+
+
+### Build-in Validators
+
+```js
+/*
+内置的验证器
+All schemaTypes hava the build-in required Validators
+Numbers have min and max Validators
+Strings have enum, match, minLength and maxLength validators
+*/
+const catSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, 'Why no name?'] // 第二项为错误提示信息
+  },
+  age: {
+    type: Number,
+    min: 0,
+    max: [30, 'age is not legal']
+  },
+  drink: {
+    type: String,
+    enum: ['Milk', 'Water']
+  }
+})
+```
+
+### Custom Error Messages
+
+```js
+const catSchema = new mongoose.Schema({
+  age: {
+    type: Number,
+    min: [0, 'must be at least 0, got {VALUE}']
+  },
+  drink: {
+    type: String,
+    required: true,
+    enum: {
+      values: ['Water', 'Milk'],
+      message: '{VALUE} is not supported'
+    }
+  }
+})
+```
+
+### Unique
+
+  The unique option for schema is not a validator. It is a convenient helper for building MongoDB unique indexes.
+
+```js
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    min: [6, 'at least 6 characters'],
+    max: [20, 'length is not legal'],
+    unique: true
+  }
+})
+const User = mongoose.model('user', userSchema)
+
+User.insertMany([
+  { username: 'lebron' },
+  { username: 'lebron' }
+])
+//duplicate key error collection: test.users index: username_1 dup key: { username: "lebron" }
+```
+
+### Custom Validators
+
+  If the build-in validators are not enough, you can define custom validators to suit your needs.
+
+```js
+const userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    validate: {
+      validator: function(v) {
+        return v.length >= 6 && v.length <= 10
+      },
+      message: props => `${props.value} is not valid`
+    },
+    required: [true, 'username is required']
+  }
+})
+```
+
+### Required Validators on nested objects
+
+  对象嵌套时 字段的验证方式
+```js
+// 第一种方式
+const userSchema = new mongoose.Schema({
+  username: {
+    firstName: {
+      type: String,
+      required: true
+    },
+    lastName: { 
+      type: String,
+      required: true
+    }
+  }
+})
+
+// 嵌套一个schema
+const fullNameSchema = new mongoose.Schema({
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  }
+})
+const userSchema = new mongoose.Schema({
+  username: {
+    type: fullNameSchema,
+    required: true
+  }
+})
+```
+
+## Timestamps
+
+  Mongoose schemas support a timestamps option. If you set **timestamps: true**, Mongoose will add two properties of type *Date* to
+  your schema:
+
+1. createAt: a date representing when this document was created
+2. updateAt: a date representing when this document last updated
+
+```js
+const userSchema = new mongoose.Schema({
+  username: String,
+}, { timestamps: true })
+const User = userSchema.model('user', userSchema)
+
+User.create({username: 'lebron'})
+/*
+{
+  _id: 63414767a4b23046448fe263,
+  firstName: lebron,
+  __v: 0,
+  createdAt: 2022-10-08T09:48:23.727+00:00,
+  updatedAt: 2022-10-08T09:48:23.727+00:00
+}
+*/
+
+// 自定义createdAt 和 updatedAt 属性名
+// The **createdAt** property is immutable
+const userSchema = new Schema({ name: String }, {
+  timestamps: {
+    createdAt: 'created_at', // Use `created_at` to store the created date
+    updatedAt: 'updated_at' // and `updated_at` to store the last updated date
+  }
+});
 ```

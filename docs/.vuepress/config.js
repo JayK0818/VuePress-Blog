@@ -39,7 +39,7 @@ const side = {
       ]
     },
     {
-      text: 'Webpack',
+      text: '打包工具',
       children: ['/vue/webpack']
     }
   ],
@@ -140,6 +140,14 @@ const side = {
         '/back-end/util/nodemon'
       ]
     }
+  ],
+  algorithm: [
+    {
+      text: '数组',
+      children: [
+        '/algorithm/array/top'
+      ]
+    }
   ]
 }
 
@@ -200,14 +208,12 @@ module.exports = {
     contributors: false,
     sidebarDepth: 2,
     navbar:[
-      {
-        text:'首页',
-        link:'/'
-      },
-      {text:'前端',link:'/front-end/javascript/bom'},
-      {text:'后端',link:'/back-end/node/'},
-      {text:'Vue',link:'/vue/data-transfer/'},
-      {text:'React',link:'/react/basis/'},
+      { text: '首页', link:'/' },
+      { text: '前端',link:'/front-end/javascript/bom' },
+      { text: '后端',link:'/back-end/node/' },
+      { text: 'Vue',link:'/vue/data-transfer/' },
+      { text: 'React',link:'/react/basis/' },
+      { text: '算法', link: '/algorithm/array/top/'}
     ],
     contributors: false,
     darkMode: false,
@@ -217,7 +223,8 @@ module.exports = {
       '/react/': side.react,
       '/front-end/': side.front_end,
       '/back-end/': side.node,
-      '/vue/': side.vue
+      '/vue/': side.vue,
+      '/algorithm/': side.algorithm
     },
     topBanner: false
   }),

@@ -48,12 +48,59 @@ connected     // Emmitted when Mongoose successfully makes its initial connectio
 disconnected  // lost connection
 reconnected   //  Emitted if Mongoose lost connectivity to MongoDB and successfully reconnected
 ```
+## Schemas
 
-## Schema
+  Everything in Mongoose starts with a Schema. Each schema maps to a MongoDB collection and defines the shape of the documents within that collection.
+```js
+import mongoose from 'mongoose';
+const { Schema } = mongoose;
 
-  Everything in Mongoose starts with a Schema. Each Schema maps to a MongoDB collection and defines the shape of the
-  documents within that collection.
+const blogSchema = new Schema({
+  title:  String, // 简写方式 ---> { type: String }
+  author: String,
+  body:   String,
+  comments: [{ body: String, date: Date }],
+  date: { type: Date, default: Date.now },
+  meta: {
+    votes: Number,
+    favs:  Number
+  }
+})
+```
 
+### Virtuals
+
+  Virtuals are documents properties that you can get and set but that do not get persisted to MongoDB. The getters are useful
+  for formatting or combining fields.
+
+```js
+const PlayerSchema = new mongoose.Schema({
+  firstName: String,
+  lastName: String
+},
+// 第一种方式
+{
+  virtuals: {
+    fullName: {
+      get() {
+        return this.name.firstName + '-' + this.name.lastName
+      }
+    }
+  }
+})
+// 第二种方式
+PlayerSchema.virtual('reverseFullName').get(function() {
+  return this.name.lastName + '-' + this.name.firstName
+})
+const Player = mongoose.model('player', PlayerSchema)
+
+Player.find({}).then(res => {
+  const list = res.map(item => item.fullName)
+  const reverst_list = res.map(item => item.reverseFullName)
+  console.log(list, reverst_list)
+  // [ 'lebron-james' ] [ 'james-lebron' ]
+})
+```
 
 ## Models
 
@@ -377,4 +424,37 @@ const userSchema = new Schema({ name: String }, {
     updatedAt: 'updated_at' // and `updated_at` to store the last updated date
   }
 });
+```
+```js
+// timestamps on subdocuments
+const roleSchema = new mongoose.Schema({ value: String }, {
+  timestamps: true
+})
+const userSchema = new mongoose.Schema({ name: String, roles: [roleSchema]})
+const User = mongoose.model('user', userSchema)
+
+User.insertMany([
+  {
+    name: 'kyrie',
+    roles: [
+      {
+        value: 'admin'
+      }
+    ]
+  }
+])
+/*
+{
+  _id: 6342277be004bae12867197e,
+  name: "kyrie",
+  roles: [{
+    value: "admin",
+    _id: 6342277be004bae12867197f,
+    createdAt:2022-10-09T01:44:27.026+00:00,
+    updatedAt: 2022-10-09T01:44:27.026+00:00,
+    __v:0
+  }]
+}
+*/
+// Overwriting a subdocument will also overwrite createdAt
 ```

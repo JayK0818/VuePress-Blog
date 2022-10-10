@@ -147,6 +147,12 @@ const side = {
       children: [
         '/algorithm/array/top'
       ]
+    },
+    {
+      text: '链表',
+      children: [
+        '/algorithm/chain-list/chain'
+      ]
     }
   ]
 }

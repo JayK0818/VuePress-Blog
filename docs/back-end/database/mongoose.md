@@ -37,7 +37,7 @@ try {
   会尝试重新连接并同样抛出 error 事件。
 ```js
 // To handle errors after initial connection was established.
-mongoose.connect.on('error', (err) => {
+mongoose.connection.on('error', (err) => {
 
 })
 ```

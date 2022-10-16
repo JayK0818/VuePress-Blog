@@ -174,9 +174,9 @@ integer.validate('123') // 会转换为数字再进行验证
 // number.less()
 // specifies that the value must be less than limit
 const less = Joi.number().less(10)
-log(less.validate(5))
-log(less.validate(21)) // "value" must be less than 10
-log(less.validate('20'))  // "value" must be less than 10
+less.validate(5)
+less.validate(21) // "value" must be less than 10
+less.validate('20')  // "value" must be less than 10
 
 
 const max = Joi.number().max(10)
@@ -216,4 +216,48 @@ log(append.validate({
   lastName: 'irving',
   age: 30
 })) // "age" is not allowed
+```
+
+## array
+
+  Generates a schema object that matches an array data type. Note that undefined values inside arrays are not allowed
+  by default but can be by using **sparse()**
+
+```js
+// array.items()
+// Lists the types allowed for the array values
+const array = Joi.array().items(Joi.string())
+array.validate([1, 2, 3])  // "[0]" must be a string]
+array.validate(['1', '2', '3'])
+
+
+const string_number = Joi.array().items(Joi.string(), Joi.number())
+const forbidden_string = Joi.array().items(Joi.string().valid('hello').forbidden(), Joi.string())
+const label_string = Joi.array().items(Joi.string().label('hello').required(), Joi.string().required())
+
+string_number.validate(['1', 1, 'a', []])  // "[3]" does not match any of the allowed types]
+string_number.validate([1, '1'])
+
+forbidden_string.validate(['hello', 'world'])  // "[0]" contains an excluded value
+
+label_string.validate(['hello', 'world'])
+label_string.validate(['hello']) // "value" does not contain 1 required value(s)
+
+
+// array.length(limit)
+// Specifies the exact number of items in the array
+const length = Joi.array().length(5)
+length.validate([1,2,3,4,5])
+length.validate([1,2,3]) // "value" must contain 5 items
+
+
+// array.max(limit)
+const max = Joi.array().max(3)
+max.validate([1,2,3,4])  // "value" must contain less than or equal to 3 items
+max.validate([1,2,3])
+
+
+const min = Joi.array().min(3)
+min.validate([1,2,3])
+min.validate([1,2])  // "value" must contain at least 3 items
 ```

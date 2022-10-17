@@ -55,3 +55,22 @@ const get_index = (array: number[], target: number) => {
 }
 console.log(get_index([3, 2, 7, 10, 4, 15], 6))      // [1, 4]
 ```
+
+## 寻找两个正序数组的中位数
+
+  给定两个大小分别为 **m** 和 **n** 的正序(从小到大)数组 **nums1** 和 **nums2**, 请你找出并返回这两个正序数组的 **中位数**
+
+```ts
+// 第一种容易想到的方法 暴力破解, 将两个数组合并并根据数组长度为 奇数还是偶数 求出中位数
+const middle_number = (arr_1: number[], arr_2: number[]): number => {
+  const temp: number[] = [...arr_1, ...arr_2].sort((a, b) => a - b)
+  const is_even = temp.length % 2 === 0 ? true : false
+  if (is_even) {
+    const i = temp.length / 2
+    const [a, b] = temp.slice(i-1, i+1)
+    return (a + b) / 2
+  } else {
+    return temp[Math.floor(temp.length / 2)]
+  }
+}
+```

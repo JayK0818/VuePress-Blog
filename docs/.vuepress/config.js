@@ -154,6 +154,12 @@ const side = {
       children: [
         '/algorithm/chain-list/chain'
       ]
+    },
+    {
+      text: '字符串',
+      children: [
+        '/algorithm/string/string'
+      ]
     }
   ]
 }

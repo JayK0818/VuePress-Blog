@@ -88,3 +88,7 @@ const get_substring_length_5 = (string: string): number => {
   return max
 }
 ```
+
+## 最长回文子串
+
+  给定一个字符串 **s**, 找到s中最长的回文子串。

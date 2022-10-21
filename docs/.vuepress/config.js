@@ -144,21 +144,14 @@ const side = {
   ],
   algorithm: [
     {
-      text: '数组',
+      text: 'Leetcode',
       children: [
-        '/algorithm/array/top'
-      ]
-    },
-    {
-      text: '链表',
-      children: [
-        '/algorithm/chain-list/chain'
-      ]
-    },
-    {
-      text: '字符串',
-      children: [
-        '/algorithm/string/string'
+        '/algorithm/leetcode/two-sum',
+        '/algorithm/leetcode/add-two-number',
+        '/algorithm/leetcode/longest-substring-without-repeat',
+        '/algorithm/leetcode/middle-number-of-two-array',
+        '/algorithm/leetcode/longest-reverse-substring',
+        '/algorithm/leetcode/int-reverse'
       ]
     }
   ]

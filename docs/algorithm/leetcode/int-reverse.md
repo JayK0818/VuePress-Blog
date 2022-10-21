@@ -10,7 +10,43 @@ const reverse_number = (n): number => {
   const is_positive = n > 0
   const reverse = Math.abs(n).toString().split('').reverse().join('')
   const result = is_positive ? Number(reverse) : (0 - Number(reverse))
-  if (result >= Math.pow(2, 31) || result < (0 - Math.pow(2, 31))) return 0
+  if (result >= Math.pow(2, 31) || result < Math.pow(-2, 31)) return 0
+  return result
+}
+```
+
+**解法二**
+
+  将数字转换为字符串之后 根据当前字符串所在的 **位** 进行转换为相应的数字, 依次相加。
+
+```ts
+const reverse_number = (x: number): number => {
+  const is_positive = x > 0
+  const number_string = Math.abs(x).toString()
+  let sum: number = 0
+  for (let i = number_string.length - 1; i >= 0; i--) {
+    sum += Math.pow(10, i) * Number(number_string[i])
+  }
+  const result = is_positive ? sum : (0 - sum)
+  if (result >= Math.pow(2, 31) || result < Math.pow(-2, 31)) return 0
+  return result
+}
+```
+
+**解法三**
+  
+  利用数字每次取余 依次获取数字个位上的数字, 然后取余后 将该数 除10 取整, 再取余 获取十位的数。
+```ts
+const reverse_number = (x: number): number => {
+  let result = 0
+  const is_positive = x > 0
+  while(x !== 0) {
+    result = result * 10 + x % 10
+/*负数取余和正数取余 方式不一样. 也可以将数值先取绝对值, 最后再输出结果时 判断输入的是正数 还是负数处理
+*/
+    x = is_positive ? Math.floor(x / 10) : Math.ceil(x / 10)
+  }
+  if (result >= Math.pow(2, 31) || result < Math.pow(-2, 31)) return 0
   return result
 }
 ```

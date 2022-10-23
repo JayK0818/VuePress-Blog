@@ -138,7 +138,8 @@ const side = {
         '/back-end/util/commander',
         '/back-end/util/inquirer',
         '/back-end/util/joi',
-        '/back-end/util/nodemon'
+        '/back-end/util/nodemon',
+        '/back-end/util/formidable'
       ]
     }
   ],

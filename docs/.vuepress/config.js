@@ -152,7 +152,8 @@ const side = {
         '/algorithm/leetcode/longest-substring-without-repeat',
         '/algorithm/leetcode/middle-number-of-two-array',
         '/algorithm/leetcode/longest-reverse-substring',
-        '/algorithm/leetcode/int-reverse'
+        '/algorithm/leetcode/int-reverse',
+        '/algorithm/leetcode/string-to-number'
       ]
     }
   ]
@@ -220,7 +221,7 @@ module.exports = {
       { text: '后端',link:'/back-end/node/' },
       { text: 'Vue',link:'/vue/data-transfer/' },
       { text: 'React',link:'/react/basis/' },
-      { text: '算法', link: '/algorithm/array/top/'}
+      { text: '算法', link: '/algorithm/leetcode/two-sum/'}
     ],
     contributors: false,
     darkMode: false,

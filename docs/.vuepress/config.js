@@ -154,7 +154,8 @@ const side = {
         '/algorithm/leetcode/longest-reverse-substring',
         '/algorithm/leetcode/int-reverse',
         '/algorithm/leetcode/string-to-number',
-        '/algorithm/leetcode/plaindrome-number.md'
+        '/algorithm/leetcode/plaindrome-number',
+        '/algorithm/leetcode/water-container'
       ]
     }
   ]

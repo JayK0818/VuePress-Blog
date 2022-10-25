@@ -153,7 +153,8 @@ const side = {
         '/algorithm/leetcode/middle-number-of-two-array',
         '/algorithm/leetcode/longest-reverse-substring',
         '/algorithm/leetcode/int-reverse',
-        '/algorithm/leetcode/string-to-number'
+        '/algorithm/leetcode/string-to-number',
+        '/algorithm/leetcode/plaindrome-number.md'
       ]
     }
   ]

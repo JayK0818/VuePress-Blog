@@ -157,7 +157,9 @@ const side = {
         '/algorithm/leetcode/palindrome-number',
         '/algorithm/leetcode/water-container',
         '/algorithm/leetcode/number-to-roman',
-        '/algorithm/leetcode/roman-to-number'
+        '/algorithm/leetcode/roman-to-number',
+        '/algorithm/leetcode/longest-string-prefix',
+        '/algorithm/leetcode/three-number-sum'
       ]
     }
   ]

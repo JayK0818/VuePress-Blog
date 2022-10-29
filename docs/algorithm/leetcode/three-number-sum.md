@@ -15,6 +15,7 @@ nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0
 
   自己实现的 第一个版本, 三个数相加等于0的结果 有三种方式: 两个负数相加和一个正数, 两个正数相加和一个负数, 以及如果0的个数大于等于3的话。
 ```ts
+// 虽然通过了 但是耗时700多ms, 不是一个优质的算法
 const three_number_array = (array: number[]): Array<number[]> => {
   let temp: Array<number[]> = []
   const negative_array: number[] = array.filter(item => item < 0).sort((a, b) => a - b)
@@ -77,7 +78,8 @@ const three_number_array = (array: number[] = []) : Array<number[]> => {
   for (let i = 0, length = sort_list.length; i < length; i++) {
     const num = sort_list[i]
     if (num > 0) break
-    // 去重第一步, 如果此时 num为1, 则剩下的 数据中找到 和为-1的即可, 如果下一个数 还是1的话, 求的还是剩余数组中和为 -1
+    // 去重第一步, 如果此时 num为1, 则剩下的 数据中找到 和为-1的即可,
+    // 如果下一个数 还是1的话, 求的还是剩余数组中和为 -1
     if (i > 0 && sort_list[i-1] === sort_list[i]) continue;
     let start = i + 1
     let end = sort_list.length - 1

@@ -161,7 +161,8 @@ const side = {
         '/algorithm/leetcode/longest-string-prefix',
         '/algorithm/leetcode/three-number-sum',
         '/algorithm/leetcode/closest-three-number-sum',
-        '/algorithm/leetcode/phone-number-combine'
+        '/algorithm/leetcode/phone-number-combine',
+        '/algorithm/leetcode/four-number-sum'
       ]
     }
   ]

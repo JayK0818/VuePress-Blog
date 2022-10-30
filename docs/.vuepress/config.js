@@ -162,7 +162,8 @@ const side = {
         '/algorithm/leetcode/three-number-sum',
         '/algorithm/leetcode/closest-three-number-sum',
         '/algorithm/leetcode/phone-number-combine',
-        '/algorithm/leetcode/four-number-sum'
+        '/algorithm/leetcode/four-number-sum',
+        '/algorithm/leetcode/remove-nth-node-from-list'
       ]
     }
   ]

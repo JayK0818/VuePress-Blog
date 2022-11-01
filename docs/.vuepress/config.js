@@ -165,7 +165,8 @@ const side = {
         '/algorithm/leetcode/four-number-sum',
         '/algorithm/leetcode/remove-nth-node-from-list',
         '/algorithm/leetcode/valid-brackets',
-        '/algorithm/leetcode/create-brackets'
+        '/algorithm/leetcode/create-brackets',
+        '/algorithm/leetcode/remove-repeat-item'
         // '/algorithm/leetcode/combine-ascending-list'
       ]
     }

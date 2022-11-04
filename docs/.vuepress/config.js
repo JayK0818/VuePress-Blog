@@ -167,7 +167,9 @@ const side = {
         '/algorithm/leetcode/valid-brackets',
         '/algorithm/leetcode/create-brackets',
         '/algorithm/leetcode/remove-repeat-item',
-        '/algorithm/leetcode/remove-specified-element'
+        '/algorithm/leetcode/remove-specified-element',
+        '/algorithm/leetcode/first-match-string-index',
+        '/algorithm/leetcode/devide-two-number'
         // '/algorithm/leetcode/combine-ascending-list'
       ]
     }

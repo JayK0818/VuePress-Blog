@@ -169,7 +169,8 @@ const side = {
         '/algorithm/leetcode/remove-repeat-item',
         '/algorithm/leetcode/remove-specified-element',
         '/algorithm/leetcode/first-match-string-index',
-        '/algorithm/leetcode/devide-two-number'
+        '/algorithm/leetcode/devide-two-number',
+        '/algorithm/leetcode/substrings-with-concat'
         // '/algorithm/leetcode/combine-ascending-list'
       ]
     }

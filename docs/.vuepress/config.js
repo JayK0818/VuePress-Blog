@@ -170,7 +170,9 @@ const side = {
         '/algorithm/leetcode/remove-specified-element',
         '/algorithm/leetcode/first-match-string-index',
         '/algorithm/leetcode/devide-two-number',
-        '/algorithm/leetcode/substrings-with-concat'
+        '/algorithm/leetcode/substrings-with-concat',
+        '/algorithm/leetcode/array-arrangement',
+        '/algorithm/leetcode/longest-valid-brackets'
         // '/algorithm/leetcode/combine-ascending-list'
       ]
     }

@@ -83,16 +83,23 @@ const substring_concat_2 = (s: string, words: string[] = []): number[] => {
   for (let i = 0, length = s.length; i <= length - words_length; i += 1) {
     const map: {[key: string]: number} = {}
     let _flag = false
-    for (let j = i; j < i + words_length; j+= word_length) {
+    for (let j = i; j < i + words_length; j += word_length) {
       const substring = s.slice(j, word_length + j)
+      // 有字符串不存在 words_map 中, 无需比较 直接跳出循环即可
       if (!words_map[substring]) {
         _flag = true
+        break
       }
       if (!map[substring]) {
         map[substring] = 1
         continue
       }
       map[substring] += 1
+      // 如果当前单词出现的次数 大于 数组里单词出现的次数
+      if (map[substring] > words_map[substring]) {
+        _flag = true
+        break
+      }
     }
     if (_flag) continue
     let flag = true

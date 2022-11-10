@@ -48,6 +48,7 @@ const longest_valid_brackets = (s: string): number => {
   let max = 0
   for (let i = 0, length = s.length; i < length; i++) {
     count = 0
+    if (s.charAt(i) === ')') continue // 以 )开头 即使后面的括号数量一致 也是不合法的
     for (let j = i; j < s.length; j++) {
       if (s.charAt(j) === '(') {
         count += 1
@@ -63,6 +64,46 @@ const longest_valid_brackets = (s: string): number => {
           max = j - i + 1
         }
       }
+    }
+  }
+  return max
+}
+```
+
+**解法三**
+
+  在题解中看到另一种算法, 两个数组分别存储左括号 和 下标, 如果当前匹配的话清除左括号的下标, 最后没有被处理的下标 即为 不符合条件的。计算两个下标之间的间隔
+  (即有效括号的长度), 间隙最大的 为最长的!
+
+```ts
+const longest_valid_bracket = (s: string): number => {
+  const index_stack: number[] = [-1] // 左边界
+  const bracket_stack: string[] = []
+  for (let i = 0, length = s.length; i < length; i++) {
+    const bracket = s.charAt(i)
+    if (bracket === ')') {
+      if (bracket_stack.length) {
+        index_stack.pop()
+        bracket_stack.pop()
+      } else {
+        index_stack.push(i)
+      }
+    } else {
+      index_stack.push(i)
+      bracket_stack.push('(')
+    }
+  }
+  index_stack.push(s.length) // 有边界
+  let max = 0
+  for (let i = 0, length = index_stack.length; i < length - 1; i++) {
+    let diff = 0
+    if (i === 0) {
+      diff = index_stack[i + 1]
+    } else {
+      diff = index_stack[i + 1] - index_stack[i] - 1
+    }
+    if (diff > max) {
+      max = diff
     }
   }
   return max

@@ -69,3 +69,43 @@ const search_first_last_index = (nums: number[], target:number): number[] => {
   return result
 }
 ```
+
+**解法三**
+
+  此题要求使用 O(log n) 的算法计算。
+
+```ts
+const search_first_last_index = (nums: number[], target:number): number[] => {
+  const length = nums.length
+  if (length === 0) return [-1, -1]
+  // 查找左边界
+  const search_left = (nums: number[], target: number) => {
+    let left = 0, right = nums.length - 1
+    while (left < right) {
+      const middle = Math.floor((left + right) / 2)
+      if (nums[middle] >= target) {
+        right = middle
+      } else {
+        left = middle + 1
+      }
+    }
+    return nums[right] === target ? right : -1
+  }
+  // 查找右边界
+  const search_right = (nums: number[], target: number) => {
+    let left = 0, right = nums.length - 1
+    while (left < right) {
+      const middle = Math.floor((left + right + 1) / 2)
+      if (nums[middle] <= target) {
+        left = middle
+      } else {
+        right = middle - 1
+      }
+    }
+    return nums[left] === target ? left : -1
+  }
+  const left_index = search_left(nums, target)
+  const right_index = search_right(nums, target)
+  return [left_index, right_index]
+}
+```

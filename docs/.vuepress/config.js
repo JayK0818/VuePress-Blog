@@ -173,7 +173,8 @@ const side = {
         '/algorithm/leetcode/substrings-with-concat',
         '/algorithm/leetcode/array-arrangement',
         '/algorithm/leetcode/longest-valid-brackets',
-        '/algorithm/leetcode/search-first-last-index'
+        '/algorithm/leetcode/search-first-last-index',
+        '/algorithm/leetcode/search-insert-index'
         // '/algorithm/leetcode/combine-ascending-list'
       ]
     }

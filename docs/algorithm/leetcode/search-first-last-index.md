@@ -109,3 +109,49 @@ const search_first_last_index = (nums: number[], target:number): number[] => {
   return [left_index, right_index]
 }
 ```
+
+**解法四**
+
+  对上面的解法 做一个优化, 因为数组是从小到大排列的, 找到左侧target的下标时, 如果此时 值大于 它的前一个值, 那么就是我们要找的值了。
+  同理, 找右侧的下标时, 如果此时下标对应的 值 小于下一个值时, 说明已经找到右侧下标了。(注意判断一下边界条件)
+```ts
+const search_first_last_index = (nums: number[], target: number): number[] => {
+  const length = nums.length
+  const result: number[] = [-1, -1]
+  if (length === 0) return result
+  let start = 0, end = length - 1
+  while (start <= end) {
+    const middle = Math.floor((start + end) / 2)
+    if (nums[middle] === target) {
+      // 未到左边界时 它的值大于它 前一个值, 或者已经是第一个值了
+      if ((middle !== 0 && nums[middle] > nums[middle - 1]) || middle === 0) {
+        result[0] = middle
+        break
+      }
+      end = middle - 1
+    } else if (nums[middle] > target) {
+      end = middle - 1
+    } else {
+      start = middle + 1
+    }
+  }
+  start = 0
+  end = length - 1
+  while (start <= end) {
+    const middle = Math.floor((start + end) / 2)
+    if (nums[middle] === target) {
+      // 如果此时值 小于它的 后一个值  或者已经是最后一个值了
+      if ((middle !== length - 1 && nums[middle] < nums[middle+1]) || middle === length - 1) {
+        result[1] = middle
+        break
+      }
+      start = middle + 1
+    }else if (nums[middle] > target) {
+      end = middle - 1
+    } else {
+      start = middle + 1
+    }
+  }
+  return result
+}
+```

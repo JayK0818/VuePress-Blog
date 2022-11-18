@@ -67,6 +67,7 @@ module.exports = {
 }
 ```
 ### 资源模块
+
   资源模块(asset module)是一种模块类型, 它允许使用资源文件(字体,图标等), 而无需配置额外的loader.
 
 1. asset/resource:  发送一个单独的文件并导出URL.

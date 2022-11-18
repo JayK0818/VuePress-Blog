@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-2f3746b2","path":"/front-end/css/animation.html","title":"CSS\u52A8\u753B","lang":"zh-CN","frontmatter":{},"excerpt":"","headers":[{"level":2,"title":"Transition","slug":"transition","children":[]},{"level":2,"title":"Animation","slug":"animation","children":[]}],"git":{},"filePathRelative":"front-end/css/animation.md"}');export{t as data};

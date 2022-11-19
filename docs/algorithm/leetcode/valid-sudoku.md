@@ -24,6 +24,50 @@ board = [
 ]
 ```
 
-```ts
+  自己实现的一个版本 但是花了很多时间, 主要卡在 最后计算最后一个条件 *3 x 3* 的九宫格怎么保证数字不重复。思考了很久才找到下标和数组对应的关系。
 
+```ts
+const valid_sudoko = (board: string[][]): boolean => {
+  let _flag = true
+  // 先检测行, 判断每行是否有重复的数字, 存在重复则返回false
+  for (const item of board) {
+    const map: {[key: string]: boolean } = {}
+    for (let i = 0, length = item.length; i < length; i++) {
+      const number = item[i]
+      if (number === '.') continue
+      if (map[number]) {
+        return false
+      }
+      map[number] = true
+    }
+  }
+  // 检测列 是否存在重复的数字
+  for (let i = 0; i < 9; i++) {
+    const map: {[key: string]: boolean } = {}
+    for (const item of board) {
+      const number = item[i]
+      if (number === '.') continue
+      if (map[number]) {
+        return false
+      }
+      map[number] = true
+    }
+  }
+  //  检测每个 3 x 3 小宫格 (column 代表列)
+  for (let column = 0; column < 3; column++) {
+    let map: {[key: string]: boolean } = {}
+    for (let i = 0; i < 9; i++) {
+      if (i % 3 === 0) map = {} // (每 读取3行数据 清空 map)
+      for (let j = 0; j < 3; j++) {
+        const number = board[i][column * 3 + j]
+        if (number === '.') continue
+        if (map[number]) {
+          return false
+        }
+        map[number] = true
+      }
+    }
+  }
+  return _flag
+}
 ```

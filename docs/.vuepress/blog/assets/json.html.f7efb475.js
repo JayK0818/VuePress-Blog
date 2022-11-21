@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-1513c3e0","path":"/front-end/javascript/json.html","title":"JSON","lang":"zh-CN","frontmatter":{},"excerpt":"","headers":[{"level":2,"title":"JSON.stringify()","slug":"json-stringify","children":[]},{"level":2,"title":"JSON.parse()","slug":"json-parse","children":[]}],"git":{},"filePathRelative":"front-end/javascript/json.md"}');export{e as data};

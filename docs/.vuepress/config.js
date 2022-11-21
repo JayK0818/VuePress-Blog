@@ -175,7 +175,8 @@ const side = {
         '/algorithm/leetcode/longest-valid-brackets',
         '/algorithm/leetcode/search-first-last-index',
         '/algorithm/leetcode/search-insert-index',
-        '/algorithm/leetcode/valid-sudoku'
+        '/algorithm/leetcode/valid-sudoku',
+        '/algorithm/leetcode/resolve_sudoku'
         // '/algorithm/leetcode/combine-ascending-list'
       ]
     }

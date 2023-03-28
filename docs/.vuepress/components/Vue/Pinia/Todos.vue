@@ -1,8 +1,8 @@
 <template>
   <div class='todo-container'>
     <div class="header">
-      <input type="text" class='text-input' placeholder='what next to do' v-model.trim='todo'>
-      <n-button type='primary' @click.stop='submit'>submit</n-button>
+      <a-input type="text" class='text-input' placeholder='what next to do' v-model:value.trim='todo'/>
+      <a-button type='primary' @click.stop='submit'>submit</a-button>
     </div>
     <div class="filter">
       <span
@@ -17,7 +17,7 @@
       <ul>
         <li class="item" v-for='todo in store.filteredTodo' :key='todo.id'>
           <section style='flex:1;'>
-            <n-checkbox :checked='todo.completed' @click.stop='toggle_todo(todo.id)'/>
+            <a-checkbox :checked='todo.completed' @click.stop='toggle_todo(todo.id)'/>
             <span class='text' :class='{active: todo.completed}'>{{todo.text}}</span>
           </section>
           <span class='icon' @click.stop='delete_todo(todo.id)'>
@@ -30,86 +30,50 @@
   </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent, ref } from 'vue'
+<script lang='ts' setup>
+import { ref } from 'vue'
 import useTodoStore from '../../../store/todos.js'
 import { storeToRefs } from 'pinia'
-import { NButton, NCheckbox } from 'naive-ui'
 
 type Filter = 'All' | 'Finished' | 'Unfinished'
-export default defineComponent({
-  components: {
-    [NButton.name]: NButton,
-    [NCheckbox.name]: NCheckbox
-  },
-  setup() {
-    const todo = ref<string>('')
-    const store = useTodoStore()
-    const { filter } = storeToRefs(store)
-    const { addTodo, deleteTodo, toggleTodo, filterTodo } = store
-    const filters = ref<Filter []>(['All', 'Finished', 'Unfinished'])
-    function submit() {
-      if(!todo.value) {
-        window.alert('todo is required')
-        return
-      }
-      addTodo({
-        text: todo.value,
-        id: Date.now(),
-        completed: false
-      })
-      todo.value = ''
-    }
-    function delete_todo(id: number): void {
-      deleteTodo(id)
-    }
-    function toggle_todo(id: number): void {
-      toggleTodo(id)
-    }
-    function filter_todo(type: string): void {
-      filterTodo(type)
-    }
-    function reset() {
-      store.$reset()
-    }
-    return {
-      store,
-      todo,
-      filters,
-      filter,
-      submit,
-      delete_todo,
-      toggle_todo,
-      filter_todo,
-      reset
-    }
+const todo = ref<string>('')
+
+const store = useTodoStore()
+const { filter } = storeToRefs(store)
+const { addTodo, deleteTodo, toggleTodo, filterTodo } = store
+const filters = ref<Filter []>(['All', 'Finished', 'Unfinished'])
+function submit() {
+  if(!todo.value) {
+    window.alert('todo is required')
+    return
   }
-})
+  addTodo({
+    text: todo.value,
+    id: Date.now(),
+    completed: false
+  })
+  todo.value = ''
+}
+function delete_todo(id: number): void {
+  deleteTodo(id)
+}
+function toggle_todo(id: number): void {
+  toggleTodo(id)
+}
+function filter_todo(type: string): void {
+  filterTodo(type)
+}
+function reset() {
+  store.$reset()
+}
 </script>
 <style scoped lang='scss'>
 .todo-container{
   padding-top:10px;
 }
 .header{
+  display: flex;
   padding:5px 0;
-  .text-input{
-    outline:none;
-    border:1px solid #d9d9d9;
-    height:30px;
-    text-indent:8px;
-    width:500px;
-    font-size:16px;
-    transition:all .3s;
-    &::-webkit-input-placeholder{
-      color:rgba(0,0,0,.45);
-    }
-    &:hover{
-      border-color:#1890ff;
-    }
-  }
-  button{
-    vertical-align:bottom;
-  }
 }
 .filter{
   padding:5px 0;

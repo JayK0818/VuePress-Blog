@@ -14,23 +14,14 @@
   </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent, ref } from 'vue'
-export default defineComponent({
-  name: 'row-center',
-  setup () {
-    const index = ref(0)
-    const toggle = (number: number) => {
-      if(index.value === number) return
-      index.value = number
-    }
-    return {
-      index,
-      toggle,
-      colors: ['#f50', '#2db7f5', '#87d068', '#108ee9']
-    }
-  }
-})
+<script lang='ts' setup>
+import { ref } from 'vue'
+const index = ref(0)
+const toggle = (number: number) => {
+  if(index.value === number) return
+  index.value = number
+}
+const colors = ['#f50', '#2db7f5', '#87d068', '#108ee9']
 </script>
 <style lang="scss" scoped>
 .container{

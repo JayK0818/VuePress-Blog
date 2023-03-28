@@ -1,12 +1,12 @@
 <template>
   <div class='container'>
-    <n-button
+    <a-button
       @click.stop='toggle_move'
       type='primary' size='small'
       style='margin-bottom: 10px; width: 80px;'
       class='flex-1'
-    >{{paused ? 'run' : 'pause'}}</n-button>
-    <n-select
+    >{{paused ? 'run' : 'pause'}}</a-button>
+    <a-select
       class='flex-1 select'
       size='small'
       :options='direction_options_list'
@@ -21,59 +21,41 @@
   </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent, ref, computed } from 'vue'
-import { NButton, NSelect } from 'naive-ui'
+<script lang='ts' setup>
+import { ref, computed } from 'vue'
 interface SelectOption {
   label: string
   value: number
 }
-export default defineComponent({
-  name: 'css-animation',
-  components: {
-    [NButton.name]: NButton,
-    [NSelect.name]: NSelect
+const paused = ref<boolean>(false)
+const direction_options_list = ref<SelectOption[]>([
+  {
+    label: 'normal',
+    value: 1
   },
-  setup () {
-    const paused = ref<boolean>(false)
-    const direction_options_list = ref<SelectOption[]>([
-      {
-        label: 'normal',
-        value: 1
-      },
-      {
-        label: 'alternate',
-        value: 2
-      },
-      {
-        label: 'reverse',
-        value: 3
-      },
-      {
-        label: 'alternate_reverse',
-        value: 4
-      }
-    ])
-    const direction = ref<number>(1)
-    const toggle_move = () => {
-      paused.value = !paused.value
-    }
-    const computed_direction_class = computed(() => {
-      const d = direction_options_list.value.find(d => d.value === direction.value)
-      console.log(d)
-      if(d) {
-        return d.label
-      } else {
-        return 'normal'
-      }
-    })
-    return {
-      paused,
-      toggle_move,
-      direction_options_list,
-      direction,
-      computed_direction_class
-    }
+  {
+    label: 'alternate',
+    value: 2
+  },
+  {
+    label: 'reverse',
+    value: 3
+  },
+  {
+    label: 'alternate_reverse',
+    value: 4
+  }
+])
+const direction = ref<number>(1)
+const toggle_move = () => {
+  paused.value = !paused.value
+}
+const computed_direction_class = computed(() => {
+  const d = direction_options_list.value.find(d => d.value === direction.value)
+  if(d) {
+    return d.label
+  } else {
+    return 'normal'
   }
 })
 </script>

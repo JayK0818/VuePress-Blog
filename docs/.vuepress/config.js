@@ -1,6 +1,6 @@
 import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
 import { defaultTheme } from 'vuepress'
-import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import { viteBundler } from '@vuepress/bundler-vite'
 import Components from 'unplugin-vue-components/vite'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
@@ -91,9 +91,19 @@ export default {
     viteOptions: {
       plugins: [
         Components({
-          resolvers: [NaiveUiResolver()]
+          resolvers: [AntDesignVueResolver()]
         })
-      ]
+      ],
+      css: {
+        preprocessorOptions: {
+          less: {
+            modifyVars: {
+              'border-radius-base': 0
+            },
+            javascriptEnabled: true
+          }
+        }
+      }
     }
   })
 }

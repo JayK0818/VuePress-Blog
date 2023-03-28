@@ -4,15 +4,12 @@
   </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent, ref } from 'vue'
-export default defineComponent({
-  name:'Child',
-  props: {
-    count: {
-      type: Number,
-      required: true
-    }
+<script lang='ts' setup>
+import { ref } from 'vue'
+defineProps({
+  count: {
+    type: Number,
+    required: true
   }
 })
 </script>

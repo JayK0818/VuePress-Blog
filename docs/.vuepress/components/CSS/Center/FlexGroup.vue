@@ -21,22 +21,11 @@
     <div class="search-wrapper">
       <input type="text" class='search-input' placeholder='你见过最烂的代码...'>
     </div>
-    <n-button type='default' size='small'>登录</n-button>
-    <n-button type='primary' size='small'>加入知乎</n-button>
+    <a-button type='default' size='small'>登录</a-button>
+    <a-button type='primary' size='small'>加入知乎</a-button>
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-import { NButton } from 'naive-ui'
-
-export default defineComponent({
-  name: 'flex-group',
-  components: {
-    [NButton.name]: NButton
-  }
-})
-</script>
 <style lang="scss" scoped>
 .title{
   padding-bottom: 4px;

@@ -19,16 +19,8 @@
   </div>
 </template>
 
-<script lang='ts'>
-  import { defineComponent } from 'vue'
-  export default defineComponent({
-    name: 'float',
-    setup() {
-      return {
-        colors: ['#f50', '#2db7f5', '#87d068', '#108ee9']
-      }
-    }
-  })
+<script lang='ts' setup>
+const colors = ['#f50', '#2db7f5', '#87d068', '#108ee9']
 </script>
 
 <style lang='scss' scoped>

@@ -1,11 +1,11 @@
 <template>
   <div class="select-header">
-    <n-select
+    <a-select
       :options='select_options'
       class='select'
       v-model:value='justify'
     />
-    <n-select
+    <a-select
       class='select'
       :options='select_options'
       v-model:value='align'
@@ -29,72 +29,55 @@
   </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent, ref, computed } from 'vue'
-import { NSelect } from 'naive-ui'
-export default defineComponent({
-  name: 'grid-content',
-  components: {
-    [NSelect.name]: NSelect,
+<script lang='ts' setup>
+import { ref, computed } from 'vue'
+const colors = ['#f00', '#ff8c00', '#00b03b', '#0071c8', '#cc6cb1', '#fdd394', '#b5aa79', '#cae9a2', '#00c8f2']
+const justify = ref<number>(1)
+const align = ref<number>(1)
+const select_options = ref<SelectOption[]>([
+  {
+    value: 0,
+    label: '对齐方式',
+    disabled: true
   },
-  setup () {
-    const colors = ['#f00', '#ff8c00', '#00b03b', '#0071c8', '#cc6cb1', '#fdd394', '#b5aa79', '#cae9a2', '#00c8f2']
-    const justify = ref<number>(1)
-    const align = ref<number>(1)
-    const select_options = ref<SelectOption[]>([
-      {
-        value: 0,
-        label: '对齐方式',
-        disabled: true
-      },
-      {
-        label: 'start',
-        value: 1
-      },
-      {
-        label: 'center',
-        value: 2
-      },
-      {
-        label: 'end',
-        value: 3
-      },
-      {
-        label: 'space-between',
-        value: 4
-      },
-      {
-        label: 'space-around',
-        value: 5
-      },
-      {
-        label: 'space-evenly',
-        value: 6
-      }
-    ])
-    const justify_style = computed(() => {
-      const find_style = select_options.value.find(item => item.value === justify.value)
-      if(find_style) {
-        return {
-          justifyContent: find_style.label
-        }
-      }
-    })
-    const align_style = computed(() => {
-      const item_style = select_options.value.find(item => item.value === align.value)
-      if(item_style) {
-        return {
-          alignContent: item_style.label
-        }
-      }
-    })
+  {
+    label: 'start',
+    value: 1
+  },
+  {
+    label: 'center',
+    value: 2
+  },
+  {
+    label: 'end',
+    value: 3
+  },
+  {
+    label: 'space-between',
+    value: 4
+  },
+  {
+    label: 'space-around',
+    value: 5
+  },
+  {
+    label: 'space-evenly',
+    value: 6
+  }
+])
+const justify_style = computed(() => {
+  const find_style = select_options.value.find(item => item.value === justify.value)
+  if(find_style) {
     return {
-      select_options,
-      align,
-      justify,
-      colors,
-      justify_style,
-      align_style
+      justifyContent: find_style.label
+    }
+  }
+})
+const align_style = computed(() => {
+  const item_style = select_options.value.find(item => item.value === align.value)
+  if(item_style) {
+    return {
+      alignContent: item_style.label
     }
   }
 })

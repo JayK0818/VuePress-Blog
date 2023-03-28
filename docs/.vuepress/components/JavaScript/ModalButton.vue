@@ -1,7 +1,7 @@
 <template>
   <div>
-    <n-button type='primary' @click='open_dialog_1' size='small'>click me</n-button>
-    <n-button type='primary' @click='open_dialog_2' style='margin-left:10px;' size='small'>click me</n-button>
+    <a-button type='primary' @click='open_dialog_1' size='small'>click me</a-button>
+    <a-button type='primary' @click='open_dialog_2' style='margin-left:10px;' size='small'>click me</a-button>
   </div>
   <teleport to='body' v-if='visible'>
     <div class='wrapper'>
@@ -9,16 +9,15 @@
         <div class="header">这是一个弹窗</div>
         <div class="body">爱情来得很快,只是需要等待</div>
         <div class="footer">
-          <n-button type='error' @click='close_modal' size='small'>取消</n-button>
-          <n-button type='primary' style='margin-left:10px;' size='small'>确认</n-button>
+          <a-button type='error' @click='close_modal' size='small'>取消</a-button>
+          <a-button type='primary' style='margin-left:10px;' size='small'>确认</a-button>
         </div>
       </div>
     </div>
   </teleport>
 </template>
 
-<script lang='ts'>
-import { NButton } from 'naive-ui'
+<script lang='ts' setup>
 // --------判断页面是否有滚动条------
 function hasScrollbar() {
   return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight)
@@ -33,37 +32,25 @@ function getScrollBarWidth() {
   document.body.removeChild(div)
   return scrollBarWidth;
 }
-import { defineComponent, ref } from 'vue'
-export default defineComponent({
-  components: {
-    [NButton.name]: NButton
-  },
-  setup() {
-    const visible = ref<boolean>(false)
+import { ref } from 'vue'
+const visible = ref<boolean>(false)
 
-    const open_dialog_1 = ():void => {
-      visible.value = true
-    }
+const open_dialog_1 = ():void => {
+  visible.value = true
+}
 
-    const open_dialog_2 = (): void => {
-      if(hasScrollbar()){
-        const barwidth = getScrollBarWidth();
-        document.body.style.cssText = `width:calc(100% - ${barwidth}px);overflow:hidden;`
-      }
-      visible.value = true;
-    }
-
-    const close_modal = (): void => {
-      document.body.style.cssText = '';
-      visible.value = false;
-    }
-
-    return {
-      visible,open_dialog_1,
-      open_dialog_2, close_modal
-    }
+const open_dialog_2 = (): void => {
+  if(hasScrollbar()){
+    const barwidth = getScrollBarWidth();
+    document.body.style.cssText = `width:calc(100% - ${barwidth}px);overflow:hidden;`
   }
-})
+  visible.value = true;
+}
+
+const close_modal = (): void => {
+  document.body.style.cssText = '';
+  visible.value = false;
+}
 </script>
 <style lang='scss' scoped>
 .wrapper{

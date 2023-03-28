@@ -15,12 +15,6 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'center'
-})
-</script>
 <style lang="scss" scoped>
 .container{
   padding-bottom: 10px;

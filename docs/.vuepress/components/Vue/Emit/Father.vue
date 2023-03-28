@@ -3,25 +3,12 @@
   <child @increment='increment'/>
 </template>
 
-<script lang='ts'>
-import { defineComponent, ref } from 'vue'
+<script lang='ts' setup>
+import { ref } from 'vue'
 import Child from './Child.vue'
 
-export default defineComponent({
-  name: 'father',
-  components: {
-    [Child.name]: Child
-  },
-  setup () {
-    const count = ref<number>(1)
-    const increment = (payload): void => {
-      count.value = payload;
-    }
-    return {
-      count, increment
-    }
-  }
-})
+const count = ref<number>(1)
+const increment = (payload): void => {
+  count.value = payload;
+}
 </script>
-<style lang="scss" scoped>
-</style>

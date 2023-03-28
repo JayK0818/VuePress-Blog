@@ -1,24 +1,22 @@
 <template>
   <div>
     父组件: {{count}} - {{double}}
-    <n-button
+    <a-button
       @click.stop='increment'
       type='primary'
       size='small'
-    >click</n-button>
+    >click</a-button>
   </div>
   <child/>
 </template>
 
 <script lang='ts'>
 import { defineComponent, computed, provide, ref } from 'vue'
-import { NButton } from 'naive-ui'
 import Child from './Child.vue'
 
 export default defineComponent({
   name: 'ProvideFather',
   components: {
-    [NButton.name]: NButton,
     [Child.name]: Child
   },
   data() {
@@ -50,5 +48,3 @@ export default defineComponent({
   }
 })
 </script>
-<style lang="scss" scoped>
-</style>

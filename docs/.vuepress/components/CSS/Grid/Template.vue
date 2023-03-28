@@ -13,17 +13,8 @@
   </section>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'grid-template',
-  setup () {
-    const colors = ['#f00', '#ff8c00', '#00b03b', '#0071c8', '#cc6cb1', '#fdd394', '#b5aa79', '#cae9a2', '#00c8f2']
-    return {
-      colors
-    }
-  }
-})
+<script lang="ts" setup>
+const colors = ['#f00', '#ff8c00', '#00b03b', '#0071c8', '#cc6cb1', '#fdd394', '#b5aa79', '#cae9a2', '#00c8f2']
 </script>
 <style lang="scss" scoped>
 .section{

@@ -1,7 +1,7 @@
 <template>
   <div class="select-container">
-    <n-select class='select' :options='select_options' v-model:value='justify'/>
-    <n-select class='select' :options='select_options' v-model:value='align'/>
+    <a-select class='select' :options='select_options' v-model:value='justify'/>
+    <a-select class='select' :options='select_options' v-model:value='align'/>
   </div>
   <div class='container' :style='{
     ...align_style,
@@ -15,9 +15,8 @@
   </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent, ref, computed } from 'vue'
-import { NSelect } from 'naive-ui'
+<script lang='ts' setup>
+import { ref, computed } from 'vue'
 
 type SelectOption = {
   label: string
@@ -25,57 +24,41 @@ type SelectOption = {
   disabled?: boolean
 }
 
-export default defineComponent({
-  name: 'grid-items',
-  components: {
-    [NSelect.name]: NSelect,
+const colors = ['#f00', '#ff8c00', '#00b03b', '#0071c8', '#cc6cb1', '#fdd394', '#b5aa79', '#cae9a2', '#00c8f2']
+const justify = ref<number>(1)
+const align = ref<number>(1)
+const select_options = ref<SelectOption[]>([
+  {
+    value: 0,
+    label: '对齐方式',
+    disabled: true
   },
-  setup () {
-    const colors = ['#f00', '#ff8c00', '#00b03b', '#0071c8', '#cc6cb1', '#fdd394', '#b5aa79', '#cae9a2', '#00c8f2']
-    const justify = ref<number>(1)
-    const align = ref<number>(1)
-    const select_options = ref<SelectOption[]>([
-      {
-        value: 0,
-        label: '对齐方式',
-        disabled: true
-      },
-      {
-        label: 'start',
-        value: 1
-      },
-      {
-        label: 'center',
-        value: 2
-      },
-      {
-        label: 'end',
-        value: 3
-      }
-    ])
-    const justify_style = computed(() => {
-      const find_justify = select_options.value.find(item => item.value === justify.value)
-      if(find_justify) {
-        return {
-          justifyItems: find_justify.label
-        }
-      }
-    })
-    const align_style = computed(() => {
-      const find_align = select_options.value.find(item => item.value === align.value)
-      if(find_align) {
-        return {
-          alignItems: find_align.label
-        }
-      }
-    })
+  {
+    label: 'start',
+    value: 1
+  },
+  {
+    label: 'center',
+    value: 2
+  },
+  {
+    label: 'end',
+    value: 3
+  }
+])
+const justify_style = computed(() => {
+  const find_justify = select_options.value.find(item => item.value === justify.value)
+  if(find_justify) {
     return {
-      colors,
-      select_options,
-      justify,
-      align,
-      justify_style,
-      align_style
+      justifyItems: find_justify.label
+    }
+  }
+})
+const align_style = computed(() => {
+  const find_align = select_options.value.find(item => item.value === align.value)
+  if(find_align) {
+    return {
+      alignItems: find_align.label
     }
   }
 })

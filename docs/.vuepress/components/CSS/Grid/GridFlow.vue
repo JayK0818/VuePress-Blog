@@ -1,8 +1,8 @@
 <template>
   <div class="select-header">
-    <n-select :options='select_options' v-model:value='direction' class='select'/>
+    <a-select :options='select_options' v-model:value='direction' class='select'/>
     <span class="text">dense</span>
-    <n-checkbox v-model:checked='dense'/>
+    <a-checkbox v-model:checked='dense'/>
   </div>
   <div class='container'
     :style='{
@@ -21,52 +21,35 @@
   </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent, ref, computed } from 'vue'
-import { NSelect, NCheckbox } from 'naive-ui'
+<script lang='ts' setup>
+import { ref, computed } from 'vue'
 type SelectOption = {
   label: string;
   value: number
 }
-export default defineComponent({
-  name: 'grid-flow',
-  components: {
-    [NSelect.name]: NSelect,
-    [NCheckbox.name]: NCheckbox
+const colors = ref<string[]>(['#f00', '#ff8c00', '#00b03b', '#0071c8', '#cc6cb1'])
+const dense = ref<boolean>(false)
+const select_options = ref<SelectOption[]>([
+  {
+    label: 'row',
+    value: 1
   },
-  setup () {
-    const colors = ref<string[]>(['#f00', '#ff8c00', '#00b03b', '#0071c8', '#cc6cb1'])
-    const dense = ref<boolean>(false)
-    const select_options = ref<SelectOption[]>([
-      {
-        label: 'row',
-        value: 1
-      },
-      {
-        label: 'column',
-        value: 2
-      }
-    ])
-    const direction = ref<number>(1)
-    const computed_style = computed(() => {
-      const find_option = select_options.value.find(item => item.value === direction.value)
-      if(!find_option) return
-      if(dense.value) {
-        return {
-          'grid-auto-flow': `${find_option.label} dense`
-        }
-      } else {
-        return {
-          'grid-auto-flow': find_option.label
-        }
-      }
-    })
+  {
+    label: 'column',
+    value: 2
+  }
+])
+const direction = ref<number>(1)
+const computed_style = computed(() => {
+  const find_option = select_options.value.find(item => item.value === direction.value)
+  if(!find_option) return
+  if(dense.value) {
     return {
-      colors,
-      select_options,
-      direction,
-      dense,
-      computed_style
+      'grid-auto-flow': `${find_option.label} dense`
+    }
+  } else {
+    return {
+      'grid-auto-flow': find_option.label
     }
   }
 })

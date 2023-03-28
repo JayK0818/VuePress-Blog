@@ -1,18 +1,18 @@
 <template>
   <div class='container'>
-    <n-select :options='directions' v-model:value='direction' class='select'/>
+    <a-select :options='directions' v-model:value='direction' class='select'/>
     <div class="flex-container" :style='direction_style'>
       <div v-for='i in 3' class='item' :key='i'>{{i}}</div>
     </div>
   </div>
   <div class="container">
-    <n-select :options='justifys' v-model:value='justify' class='select'/>
+    <a-select :options='justifys' v-model:value='justify' class='select'/>
     <div class="flex-container" :style='justify_style'>
       <div v-for='i in 3' class='item' :key='i'>{{i}}</div>
     </div>
   </div>
   <div class="container">
-    <n-select :options='items' v-model:value='item' class='select'/>
+    <a-select :options='items' v-model:value='item' class='select'/>
     <div class="flex-container items-container" :style='item_style'>
       <div class="item item1">1</div>
       <div class="item item2">2</div>
@@ -21,120 +21,117 @@
   </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent, ref, computed } from 'vue'
-import { NSelect } from 'naive-ui'
+<script lang='ts' setup>
+import { ref, computed } from 'vue'
 
 interface SelectOption {
   label: string
   value: number
   disabled?: boolean
 }
-
-export default defineComponent({
-  components: {
-    [NSelect.name]: NSelect
+const direction = ref<number>(1)
+const directions = ref<SelectOption[]>([
+  {
+    label: 'Flex-Direction',
+    value: 0,
+    disabled: true
   },
+  {
+    label: 'row',
+    value: 1
+  },
+  {
+    label: 'row-reverse',
+    value: 2
+  },
+  {
+    label: 'column',
+    value: 3
+  },
+  {
+    label: 'column-reverse',
+    value: 4
+  }
+])
+const justify = ref<number>(1)
+const justifys = ref<Selection[]>([
+  {
+    label: 'Justify-Content',
+    value: 0,
+    disabled: true
+  },
+  {
+    value: 1,
+    label: 'flex-start'
+  },
+  {
+    value: 2,
+    label: 'flex-end'
+  },
+  {
+    value: 3,
+    label: 'center'
+  },
+  {
+    value: 4,
+    label: 'space-between'
+  },
+  {
+    value: 5,
+    label: 'space-around'
+  }
+])
+const items = ref<SelectOption[]>([
+  {
+    label: 'Align-Items',
+    value: 0,
+    disabled: true
+  },
+  {
+    label: 'flex-start',
+    value: 1
+  },
+  {
+    label: 'flex-end',
+    value: 2
+  },
+  {
+    label: 'center',
+    value: 3
+  },
+  {
+    label: 'stretch',
+    value: 4
+  }
+])
+const item = ref<number>(0)
+const direction_style = computed(() => {
+  const find_direction = directions.value.find(item => item.value === direction.value)
+  if(!find_direction) return null
+  return {
+    flexDirection: find_direction.label
+  }
+})
+
+const justify_style = computed(() => {
+  const find_justify = justifys.value.find(item => item.value === justify.value)
+  if(!find_justify) return null
+  return {
+    'justifyContent': find_justify.label
+  }
+})
+
+const item_style = computed(() => {
+  const find_item = items.value.find(s => s.value === item.value)
+  if(!find_item) return null
+  return {
+    'alignItems': find_item.label
+  }
+})
+
+/* export default defineComponent({
   setup () {
-    const direction = ref<number>(1)
-    const directions = ref<SelectOption[]>([
-      {
-        label: 'Flex-Direction',
-        value: 0,
-        disabled: true
-      },
-      {
-        label: 'row',
-        value: 1
-      },
-      {
-        label: 'row-reverse',
-        value: 2
-      },
-      {
-        label: 'column',
-        value: 3
-      },
-      {
-        label: 'column-reverse',
-        value: 4
-      }
-    ])
-    const justify = ref<number>(1)
-    const justifys = ref<Selection[]>([
-      {
-        label: 'Justify-Content',
-        value: 0,
-        disabled: true
-      },
-      {
-        value: 1,
-        label: 'flex-start'
-      },
-      {
-        value: 2,
-        label: 'flex-end'
-      },
-      {
-        value: 3,
-        label: 'center'
-      },
-      {
-        value: 4,
-        label: 'space-between'
-      },
-      {
-        value: 5,
-        label: 'space-around'
-      }
-    ])
-    const items = ref<SelectOption[]>([
-      {
-        label: 'Align-Items',
-        value: 0,
-        disabled: true
-      },
-      {
-        label: 'flex-start',
-        value: 1
-      },
-      {
-        label: 'flex-end',
-        value: 2
-      },
-      {
-        label: 'center',
-        value: 3
-      },
-      {
-        label: 'stretch',
-        value: 4
-      }
-    ])
-    const item = ref<number>(0)
-    const direction_style = computed(() => {
-      const find_direction = directions.value.find(item => item.value === direction.value)
-      if(!find_direction) return null
-      return {
-        flexDirection: find_direction.label
-      }
-    })
 
-    const justify_style = computed(() => {
-      const find_justify = justifys.value.find(item => item.value === justify.value)
-      if(!find_justify) return null
-      return {
-        'justifyContent': find_justify.label
-      }
-    })
-
-    const item_style = computed(() => {
-      const find_item = items.value.find(s => s.value === item.value)
-      if(!find_item) return null
-      return {
-        'alignItems': find_item.label
-      }
-    })
 
     return {
       direction, directions, direction_style,
@@ -142,7 +139,7 @@ export default defineComponent({
       items, item, item_style
     }
   }
-})
+}) */
 </script>
 <style lang="scss" scoped>
 .container{

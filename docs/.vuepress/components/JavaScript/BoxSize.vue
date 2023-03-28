@@ -7,28 +7,15 @@
   <n-button type='primary' size='small' @click.stop='getHeight("scrollHeight")'>Element.scrollHeight</n-button>
 </template>
 
-<script lang='ts'>
+<script lang='ts' setup>
 import { defineComponent, ref } from 'vue'
-import { NButton } from 'naive-ui'
+const box = ref<HTMLElement | null>(null)
 
-export default defineComponent({
-  name: 'box-size',
-  components: {
-    [NButton.name]: NButton
-  },
-  setup () {
-    const box = ref<HTMLElement | null>(null)
-
-    const getHeight = (type):void => {
-      if(!box.value) return
-      const height = box.value[type];
-      window.$message.success(`${type} - ${height}`)
-    }
-    return {
-      box, getHeight
-    }
-  }
-})
+const getHeight = (type):void => {
+  if(!box.value) return
+  const height = box.value[type];
+  window.$message.success(`${type} - ${height}`)
+}
 </script>
 <style lang="scss" scoped>
 .box{

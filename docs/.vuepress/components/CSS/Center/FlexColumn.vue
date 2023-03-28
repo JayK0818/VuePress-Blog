@@ -19,12 +19,6 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'flex-column',
-})
-</script>
 <style lang="scss" scoped>
 .container{
   padding: 5px 0;

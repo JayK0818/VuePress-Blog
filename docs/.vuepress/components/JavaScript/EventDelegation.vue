@@ -6,24 +6,16 @@
   </ul>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { defineComponent } from 'vue'
 import { createDiscreteApi } from 'naive-ui'
 
-export default defineComponent({
-  setup () {
-    const { message } = createDiscreteApi(['message'])
-    function get_player(event) {
-      const text = event.target.textContent;
-      const aLi = event.target.parentElement.children;
-      const index = Array.from(aLi).indexOf(event.target)
-      message.success(`${index} - ${text}`)
-    }
-    return {
-      get_player
-    }
-  }
-})
+function get_player(event) {
+  const text = event.target.textContent;
+  const aLi = event.target.parentElement.children;
+  const index = Array.from(aLi).indexOf(event.target)
+  window.$message.success(`${index} - ${text}`)
+}
 </script>
 <style lang="scss" scoped>
 ul{

@@ -1,18 +1,15 @@
 import { defineClientConfig } from '@vuepress/client'
 import { createPinia } from 'pinia'
-import { createDiscreteApi, create, NButton, NInput, NSelect, NCheckbox } from 'naive-ui'
+import { Button, Select, Checkbox, Input, message } from 'ant-design-vue'
+import 'ant-design-vue/es/message/style/css'
 const pinia = createPinia()
 
 export default defineClientConfig({
   enhance({app}) {
     app.config.unwrapInjectedRef = true
+    app.use(Button).use(Select).use(Checkbox).use(Input)
+    window.$message = message
     if(!__VUEPRESS_SSR__) {
-      const { message } = createDiscreteApi(['message'])
-      const naive = create({
-        components: [NButton, NInput, NSelect, NCheckbox]
-      })
-      app.use(naive)
-      window.$message = message
     }
     app.use(pinia)
   }

@@ -5,17 +5,14 @@
 	</div>
 </template>
 
-<script lang='ts'>
-import { defineComponent } from 'vue'
+<script lang='ts' setup>
+import { onBeforeUnmount } from 'vue'
 import StartingUp from './components/StartingUp.vue'
 import Bench from './components/Bench.vue'
-
-export default defineComponent({
-	name: "EventBus",
-	components: {
-		[StartingUp.name]: StartingUp,
-		[Bench.name]: Bench
-	}
+import bus from './bus.js'
+onBeforeUnmount(() => {
+	bus.off('bench')
+	bus.off('starting-up')
 })
 </script>
 

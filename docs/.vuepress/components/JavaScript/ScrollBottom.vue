@@ -24,35 +24,21 @@ laoreet nisi a odio ornare non congue turpis eleifend. Cum sociis natoque penati
 nascetur ridiculus mus. Cras vulputate libero sed arcu iaculis nec lobortis orci fermentum.
   </div>
   <div style='text-align:center;padding-top:5px;'>
-    <n-button type='primary' size='small' :disabled='!isBottom'>submit</n-button>
+    <a-button type='primary' size='small' :disabled='is_disabled'>submit</a-button>
   </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent, ref } from 'vue'
-import { NButton } from 'naive-ui'
+<script lang='ts' setup>
+import { ref } from 'vue'
 
-export default defineComponent({
-  name: 'scroll-bottom',
-  components: {
-    [NButton.name]: NButton
-  },
-  setup () {
-    const container = ref<HTMLDivElement | null>(null)
-    const isBottom = ref<boolean>(false)
+const container = ref<HTMLDivElement | null>(null)
+const is_disabled = ref<boolean>(true)
 
-    const scroll = (event): void => {
-      if(container.value.scrollHeight - event.target.scrollTop - container.value.clientHeight < 1) {
-        isBottom.value = true
-      }
-    }
-    return {
-      container,
-      scroll,
-      isBottom
-    }
+const scroll = (event): void => {
+  if(container.value.scrollHeight - event.target.scrollTop - container.value.clientHeight < 1) {
+    is_disabled.value = false
   }
-})
+}
 </script>
 <style lang="scss" scoped>
 .container{

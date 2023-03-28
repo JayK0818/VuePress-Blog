@@ -1,3 +1,6 @@
+/**
+ * @description 顶部导航栏
+*/
 const navbar = [
   { text: '首页', link: '/' },
   { text: '前端', link: '/front-end/javascript/bom' },
@@ -7,7 +10,9 @@ const navbar = [
   { text: '算法', link: '/algorithm/leetcode/two-sum/'}
 ]
 
-
+/**
+ * @description 侧导航栏
+*/
 const sidebar = {
   react: [
     {

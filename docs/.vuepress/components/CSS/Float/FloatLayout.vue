@@ -6,13 +6,6 @@
   </div>
 </template>
 
-<script lang='ts'>
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'float-layout'
-})
-</script>
-
 <style lang='scss' scoped>
 .float-layout-container{
   height: 200px;
@@ -35,8 +28,8 @@ export default defineComponent({
     background-color: orange;
   }
   .middle{
-    background-color: pink;
     width: auto;
+    background-color: pink;
     min-width:5rem;
     height: 100%;
   }

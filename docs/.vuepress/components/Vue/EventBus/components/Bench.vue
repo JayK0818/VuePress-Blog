@@ -11,30 +11,23 @@
 	</div>
 </template>
 
-<script>
-import { defineComponent, ref } from 'vue'
-import bus from './bus.js'
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue'
+import bus from '../bus.js'
 
-export default defineComponent({
-	name: "Bench",
-	created() {
-		bus.on('starting-up',({player}) => {
-			this.player_list.push(player)
-		})
-	},
-	setup() {
-		const player_list = ref(['杜兰特','贾巴尔','罗伯特森','韦德','斯托克顿'])
-		function click(p, i) {
-			player_list.value.splice(i,1)
-			bus.emit('bench',{
-				player:p
-			})
-		}
-		return {
-			player_list,
-			click
-		}
-	}
+const player_list = ref(['杜兰特','贾巴尔','罗伯特森','韦德','斯托克顿'])
+
+const click = (p, i) => {
+	player_list.value.splice(i,1)
+	bus.emit('bench',{
+		player:p
+	})
+}
+
+onMounted(() => {
+	bus.on('starting-up',({player}) => {
+		player_list.value.push(player)
+	})
 })
 </script>
 

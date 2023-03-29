@@ -98,8 +98,8 @@ const sidebar = {
         '/front-end/typescript/class',
         '/front-end/typescript/utility-type'
       ]
-    },
-    {
+    }
+/*     {
       text: '算法',
       collapsable: false,
       children: [
@@ -109,7 +109,7 @@ const sidebar = {
         '/front-end/algorithm/tree',
         '/front-end/algorithm/other'
       ]
-    }
+    } */
   ],
   node:[
     {

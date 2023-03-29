@@ -11,11 +11,7 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'float-text'
-})
+<script lang="ts" setup>
 </script>
 <style lang="scss" scoped>
 .container{

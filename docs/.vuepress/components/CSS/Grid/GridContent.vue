@@ -1,11 +1,11 @@
 <template>
   <div class="select-header">
-    <a-select
+    <n-select
       :options='select_options'
       class='select'
       v-model:value='justify'
     />
-    <a-select
+    <n-select
       class='select'
       :options='select_options'
       v-model:value='align'
@@ -31,9 +31,15 @@
 
 <script lang='ts' setup>
 import { ref, computed } from 'vue'
+interface SelectOption {
+  label: string
+  value: number
+  disabled?: boolean
+}
 const colors = ['#f00', '#ff8c00', '#00b03b', '#0071c8', '#cc6cb1', '#fdd394', '#b5aa79', '#cae9a2', '#00c8f2']
 const justify = ref<number>(1)
 const align = ref<number>(1)
+
 const select_options = ref<SelectOption[]>([
   {
     value: 0,

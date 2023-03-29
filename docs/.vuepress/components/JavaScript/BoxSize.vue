@@ -7,8 +7,8 @@
   <n-button type='primary' size='small' @click.stop='getHeight("scrollHeight")'>Element.scrollHeight</n-button>
 </template>
 
-<script lang='ts' setup>
-import { defineComponent, ref } from 'vue'
+<script setup>
+import { ref } from 'vue'
 const box = ref<HTMLElement | null>(null)
 
 const getHeight = (type):void => {

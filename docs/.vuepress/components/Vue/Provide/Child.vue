@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script>
 import { defineComponent, inject } from 'vue'
 export default defineComponent({
   name: 'child',

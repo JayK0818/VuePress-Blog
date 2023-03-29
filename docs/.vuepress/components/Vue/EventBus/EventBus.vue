@@ -12,7 +12,7 @@ import Bench from './components/Bench.vue'
 import bus from './bus.js'
 onBeforeUnmount(() => {
 	bus.off('bench')
-	bus.off('starting-up')
+	bus.off('starting_up')
 })
 </script>
 

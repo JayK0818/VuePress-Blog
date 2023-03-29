@@ -13,10 +13,10 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
-import bus from '../bus.js'
+import bus from '../bus'
 const player_list = ref(['詹姆斯','奥尼尔','乔丹','科比','库里'])
 const click = (p,i) => {
-	bus.emit('starting-up', {
+	bus.emit('starting_up', {
 		player:p
 	})
 	player_list.value.splice(i, 1)

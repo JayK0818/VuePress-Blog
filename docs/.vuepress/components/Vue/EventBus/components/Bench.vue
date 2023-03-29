@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-import bus from '../bus.js'
+import bus from '../bus'
 
 const player_list = ref(['杜兰特','贾巴尔','罗伯特森','韦德','斯托克顿'])
 
@@ -25,7 +25,7 @@ const click = (p, i) => {
 }
 
 onMounted(() => {
-	bus.on('starting-up',({player}) => {
+	bus.on('starting_up',({player}) => {
 		player_list.value.push(player)
 	})
 })

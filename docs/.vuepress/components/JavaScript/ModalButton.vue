@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a-button type='primary' @click='open_dialog_1' size='small'>click me</a-button>
-    <a-button type='primary' @click='open_dialog_2' style='margin-left:10px;' size='small'>click me</a-button>
+    <n-button type='primary' @click='open_dialog_1' size='small'>click me</n-button>
+    <n-button type='primary' @click='open_dialog_2' style='margin-left:10px;' size='small'>click me</n-button>
   </div>
   <teleport to='body' v-if='visible'>
     <div class='wrapper'>
@@ -9,8 +9,8 @@
         <div class="header">这是一个弹窗</div>
         <div class="body">爱情来得很快,只是需要等待</div>
         <div class="footer">
-          <a-button type='error' @click='close_modal' size='small'>取消</a-button>
-          <a-button type='primary' style='margin-left:10px;' size='small'>确认</a-button>
+          <n-button type='error' @click='close_modal' size='small'>取消</n-button>
+          <n-button type='primary' style='margin-left:10px;' size='small'>确认</n-button>
         </div>
       </div>
     </div>
@@ -18,6 +18,7 @@
 </template>
 
 <script lang='ts' setup>
+import { ref } from 'vue'
 // --------判断页面是否有滚动条------
 function hasScrollbar() {
   return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight)
@@ -32,7 +33,6 @@ function getScrollBarWidth() {
   document.body.removeChild(div)
   return scrollBarWidth;
 }
-import { ref } from 'vue'
 const visible = ref<boolean>(false)
 
 const open_dialog_1 = ():void => {

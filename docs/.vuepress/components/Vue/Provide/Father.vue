@@ -1,11 +1,11 @@
 <template>
   <div>
     父组件: {{count}} - {{double}}
-    <a-button
+    <n-button
       @click.stop='increment'
       type='primary'
       size='small'
-    >click</a-button>
+    >click</n-button>
   </div>
   <child/>
 </template>

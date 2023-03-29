@@ -1,18 +1,18 @@
 <template>
   <div class='container'>
-    <a-select :options='directions' v-model:value='direction' class='select'/>
+    <n-select :options='directions' v-model:value='direction' class='select'/>
     <div class="flex-container" :style='direction_style'>
       <div v-for='i in 3' class='item' :key='i'>{{i}}</div>
     </div>
   </div>
   <div class="container">
-    <a-select :options='justifys' v-model:value='justify' class='select'/>
+    <n-select :options='justifys' v-model:value='justify' class='select'/>
     <div class="flex-container" :style='justify_style'>
       <div v-for='i in 3' class='item' :key='i'>{{i}}</div>
     </div>
   </div>
   <div class="container">
-    <a-select :options='items' v-model:value='item' class='select'/>
+    <n-select :options='items' v-model:value='item' class='select'/>
     <div class="flex-container items-container" :style='item_style'>
       <div class="item item1">1</div>
       <div class="item item2">2</div>
@@ -54,7 +54,7 @@ const directions = ref<SelectOption[]>([
   }
 ])
 const justify = ref<number>(1)
-const justifys = ref<Selection[]>([
+const justifys = ref<SelectOption[]>([
   {
     label: 'Justify-Content',
     value: 0,
@@ -105,19 +105,22 @@ const items = ref<SelectOption[]>([
   }
 ])
 const item = ref<number>(0)
+
 const direction_style = computed(() => {
-  const find_direction = directions.value.find(item => item.value === direction.value)
-  if(!find_direction) return null
-  return {
-    flexDirection: find_direction.label
+  const find_style = directions.value.find(item => item.value === direction.value)
+  if (find_style) {
+    return {
+      flexDirection: find_style.label
+    }
   }
 })
 
 const justify_style = computed(() => {
-  const find_justify = justifys.value.find(item => item.value === justify.value)
-  if(!find_justify) return null
-  return {
-    'justifyContent': find_justify.label
+  const find_style = justifys.value.find(item => item.value === justify.value)
+  if(find_style) {
+    return {
+      justifyContent: find_style.label
+    }
   }
 })
 
@@ -128,18 +131,6 @@ const item_style = computed(() => {
     'alignItems': find_item.label
   }
 })
-
-/* export default defineComponent({
-  setup () {
-
-
-    return {
-      direction, directions, direction_style,
-      justifys, justify, justify_style,
-      items, item, item_style
-    }
-  }
-}) */
 </script>
 <style lang="scss" scoped>
 .container{

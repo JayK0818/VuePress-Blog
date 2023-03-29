@@ -11,15 +11,15 @@
     :ref='setBoxRef'
     >{{item.label}}</div>
   </div>
-  <a-button type='primary' @click='handle_transition' size='small' style='margin-bottom: 10px;'>click</a-button>
+  <n-button type='primary' @click='handle_transition' size='small' style='margin-bottom: 10px;'>click</n-button>
   <div>下面的案例来自MDN, 鼠标放到div上 多个属性发生变化。</div>
   <div class="animation-container"></div>
 </template>
 
 <script lang='ts' setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-const refList = ref<HTMLElement>([])
-const box_list = ref<{label: string, value: value, color: string }[]>([
+const refList = ref<HTMLElement[]>([])
+const box_list = ref<{label: string, value: number, color: string }[]>([
   {
     label: 'linear',
     value: 1,

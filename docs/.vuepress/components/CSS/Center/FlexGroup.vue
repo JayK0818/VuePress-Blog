@@ -21,8 +21,8 @@
     <div class="search-wrapper">
       <input type="text" class='search-input' placeholder='你见过最烂的代码...'>
     </div>
-    <a-button type='default' size='small'>登录</a-button>
-    <a-button type='primary' size='small'>加入知乎</a-button>
+    <n-button type='default' size='small'>登录</n-button>
+    <n-button type='primary' size='small'>加入知乎</n-button>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
 import { defaultTheme } from 'vuepress'
-import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 import { viteBundler } from '@vuepress/bundler-vite'
 import Components from 'unplugin-vue-components/vite'
 import { shikiPlugin } from '@vuepress/plugin-shiki'
@@ -17,15 +17,12 @@ function resolve(dirname,directory,filename){
 }
 
 export default {
-  locales: {
-    lang: 'zh-CN',
-    title: '牧童的博客',
-    description:'Vuepress,JavaScript,Node.js,React.js,Vue.js,前端开发',
-    head:[
-      ['link', {rel:'icon',href:'/code.png'}]
-    ],
-    base: process.env.NODE_ENV === 'development' ? '/' : '/blog/',
-  },
+  lang: 'zh-CN',
+  title: '牧童的博客',
+  description: 'Vuepress,JavaScript,Node.js,React.js,Vue.js,前端开发',
+  head:[
+    ['link', { rel: 'icon', href:'/code.png' } ]
+  ],
   plugins: [
     shikiPlugin({
       theme: 'monokai'
@@ -34,15 +31,10 @@ export default {
       components: {
         JavaScriptAttribute:resolve('JavaScript','Attribute'),
         JavaScriptInsertBefore:resolve('JavaScript','InsertBefore'),
-        JavaScriptDebounce: resolve('JavaScript', 'Debounce'),
-        ReactThrottleDelay:resolve('React','ThrottleDelay'),
-        ReactThrottleImmediate: resolve('React','ThrottleImmediate'),
         JavaScriptModalButton: resolve('JavaScript', 'ModalButton'),
         JavaScriptEvent: resolve('JavaScript', 'Event'),
         JavaScriptEventDelegation: resolve('JavaScript', 'EventDelegation'),
         VueEventBus: resolve('Vue', 'EventBus', 'EventBus'),
-        PiniaState: resolve('Vue', 'Pinia', 'State'),
-        PiniaTodo: resolve('Vue', 'Pinia', 'Todos'),
         VueHome: resolve('Vue', 'Home', 'index'),
         JavaScriptBoxSize: resolve('JavaScript', 'BoxSize'),
         JavaScriptScrollBottom: resolve('JavaScript', 'ScrollBottom'),
@@ -91,7 +83,7 @@ export default {
     viteOptions: {
       plugins: [
         Components({
-          resolvers: [AntDesignVueResolver()]
+          resolvers: [NaiveUiResolver()]
         })
       ],
       css: {

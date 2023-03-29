@@ -1,12 +1,12 @@
 <template>
   <div class='container'>
-    <a-button
+    <n-button
       @click.stop='toggle_move'
       type='primary' size='small'
       style='margin-bottom: 10px; width: 80px;'
       class='flex-1'
-    >{{paused ? 'run' : 'pause'}}</a-button>
-    <a-select
+    >{{paused ? 'run' : 'pause'}}</n-button>
+    <n-select
       class='flex-1 select'
       size='small'
       :options='direction_options_list'

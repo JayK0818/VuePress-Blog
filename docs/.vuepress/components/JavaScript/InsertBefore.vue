@@ -14,7 +14,7 @@
 </template>
 
 <script lang='ts' setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 const parent = ref<null | HTMLOListElement>(null)
 const player = ref<string []>(['paul','wade','bosh'])
 

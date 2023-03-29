@@ -24,7 +24,7 @@ laoreet nisi a odio ornare non congue turpis eleifend. Cum sociis natoque penati
 nascetur ridiculus mus. Cras vulputate libero sed arcu iaculis nec lobortis orci fermentum.
   </div>
   <div style='text-align:center;padding-top:5px;'>
-    <a-button type='primary' size='small' :disabled='is_disabled'>submit</a-button>
+    <n-button type='primary' size='small' :disabled='is_disabled'>submit</n-button>
   </div>
 </template>
 

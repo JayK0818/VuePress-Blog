@@ -1,8 +1,8 @@
 <template>
   <div class="select-header">
-    <a-select :options='select_options' v-model:value='direction' class='select'/>
+    <n-select :options='select_options' v-model:value='direction' class='select'/>
     <span class="text">dense</span>
-    <a-checkbox v-model:checked='dense'/>
+    <n-checkbox v-model:checked='dense'/>
   </div>
   <div class='container'
     :style='{

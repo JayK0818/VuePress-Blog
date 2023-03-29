@@ -2,12 +2,12 @@
   <div>
     子组件:
     {{count}}
-    <a-button type='primary' size='small' @click.stop='add'>click</a-button>
+    <n-button type='primary' size='small' @click.stop='add'>click</n-button>
   </div>
 </template>
 
 <script lang='ts' setup>
-import { defineComponent, ref } from 'vue'
+import { ref } from 'vue'
 const emit = defineEmits(['increment'])
 
 const count = ref<number>(1)

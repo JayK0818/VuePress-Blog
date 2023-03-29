@@ -1,5 +1,5 @@
 <template>
-  <div>父组件: {{count}} <a-button @click.stop='add' type='primary' size='small'>click</a-button></div>
+  <div>父组件: {{count}} <n-button @click.stop='add' type='primary' size='small'>click</n-button></div>
   <child :count='count'/>
 </template>
 

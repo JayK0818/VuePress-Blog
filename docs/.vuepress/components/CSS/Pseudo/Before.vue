@@ -6,11 +6,7 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'before',
-})
+<script lang="ts" setup>
 </script>
 <style lang="scss" scoped>
 .container {

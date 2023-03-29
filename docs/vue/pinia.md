@@ -29,51 +29,6 @@ new Vue({
 })
 ```
 
-## 一个简单的Demo
-
-<ClientOnly>
-  <Pinia-State/>
-</ClientOnly>
-
-下面是主要的实现代码
-```js
-// store/counter.js
-import { defineStore } from 'pinia'
-const useCounterStore = defineStore('counter', {
-  state () {
-    return {
-      count: 0
-    }
-  },
-  getters: {
-    double: state => state.count * 2
-  },
-  actions: {
-    increment () {
-      this.count += 1
-    },
-    decrement () {
-      this.count -= 1
-    }
-  }
-})
-export default useCounterStore
-
-// counter.vue
-import useCounterStore from '@/store/counter.js'
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'state',
-  setup() {
-    const counter = useCounterStore()
-    return {
-      // you can return the whole store instance to use it in the template
-      // counter.count / counter.increment / counter.decrement
-      counter
-    }
-  }
-})
-```
 :::tip
 Note that store is an object wrapped with reactive, meaning there is no need to write .value
 after getters but, like props in setup, We cannot destructure it.
@@ -357,8 +312,3 @@ export default defineStore('main', {
   }
 }
 ```
-## Pinia Todos Demo
-
-<ClientOnly>
-  <Pinia-Todo/>
-</ClientOnly>

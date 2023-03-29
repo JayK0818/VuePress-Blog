@@ -6,10 +6,7 @@
   </ul>
 </template>
 
-<script lang="ts" setup>
-import { defineComponent } from 'vue'
-import { createDiscreteApi } from 'naive-ui'
-
+<script setup>
 function get_player(event) {
   const text = event.target.textContent;
   const aLi = event.target.parentElement.children;

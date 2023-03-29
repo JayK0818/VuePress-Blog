@@ -1,7 +1,7 @@
 <template>
   <div class="select-container">
-    <a-select class='select' :options='select_options' v-model:value='justify'/>
-    <a-select class='select' :options='select_options' v-model:value='align'/>
+    <n-select class='select' :options='select_options' v-model:value='justify'/>
+    <n-select class='select' :options='select_options' v-model:value='align'/>
   </div>
   <div class='container' :style='{
     ...align_style,

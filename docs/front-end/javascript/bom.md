@@ -132,6 +132,7 @@ document.addEventListener("visibilitychange", function() {
 
   媒体查询以(resolution: 1dppx) 或者(resolution:2dppx) 设置不同分辨率下的样式。
 ```css
+/* 移动端一像素边框的 一种处理方式 */
 @media screen and (min-resolution:2dppx) {
   .border-bottom-1px {
     content: '';
@@ -142,6 +143,24 @@ document.addEventListener("visibilitychange", function() {
   }
 }
 ```
+  canvas 可能在视网膜屏幕上显示得太模糊, 使用window.devicePixelRatio 确定应添加多少额外的像素密度以使图像更清晰。
+  下面是mdn的一个例子。
+```js
+const canvas = document.querySelector('canvas')
+const ctx = canvas.getContext('2d')
+
+const size = 200
+canvas.style.width = `${size}px`
+canvas.style.height = `${size}px`
+
+const scale = window.devicePixelRatio
+canvas.width = Math.floor(size * scale)
+canvas.height = Math.floor(size * scale)
+
+ctx.scale(scale, scale)
+```
+[Window.devicePixelRatio](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/devicePixelRatio)
+
 ## window.open
 
   window.open() 方法用于打开一个新的浏览器窗口或者查找一个已经命名的窗口。
@@ -337,8 +356,17 @@ const urgent = get_browser()
 // 一个检测浏览器的第三方库 ua-parser-js
 ```
 ```js
-console.log(window.navigator.onLine)  //检测是否有网络(true/false)
+window.navigator.onLine //检测是否有网络(true/false)
 
+window.addEventListener('online', () => {
+  console.log('online', window.navigator.onLine)  // online true
+})
+
+window.addEventListener('offline', () => {
+  console.log('offline', window.navigator.onLine) // offline false
+})
+```
+```js
 // navigator.clipboard 
 /*
 Clipboard API Navigator接口添加了只读属性clipboard. 可以实现剪贴,复制,粘贴的功能

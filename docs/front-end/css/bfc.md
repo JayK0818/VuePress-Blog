@@ -23,6 +23,8 @@
 5. 元素的margin-left与其包含块的border-left相接触
 6. BFC是独立容器，容器内部元素不会影响容器外部元素
 
+[MDN-BFC](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context)
+
   外边距重叠
 
 1. 块的上外边距和下外边距有时合并为单个边距, 其大小为单个边距的最大值, 这种行为称为外边距折叠。

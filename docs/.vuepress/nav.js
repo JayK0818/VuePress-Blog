@@ -176,7 +176,10 @@ const sidebar = {
         '/algorithm/leetcode/search-first-last-index',
         '/algorithm/leetcode/search-insert-index',
         '/algorithm/leetcode/valid-sudoku',
-        '/algorithm/leetcode/resolve_sudoku'
+        '/algorithm/leetcode/array-middle-index',
+        '/algorithm/leetcode/combine-array-range',
+        '/algorithm/leetcode/matrix-rotate'
+        // '/algorithm/leetcode/resolve_sudoku'
         // '/algorithm/leetcode/combine-ascending-list'
       ]
     }

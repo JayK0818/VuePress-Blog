@@ -53,3 +53,25 @@ const longest_common_prefix_2 = (strs: string[]): string => {
   return result
 }
 ```
+
+**解法三**
+
+  使用一下Set数据结构, 每次将每个字符串的 字串添加进 set, 如果set的长度为1, 则表明此时 字串都是相同的, 直到第一个长度不为1时终止循环。(因为此刻出现了内容不同的子字符串)
+```ts
+const longest_common_prefix = (strs: string[]): string => {
+  let result = ''
+  const min_string_length = Math.min(...strs.map(string => string.length))
+  for (let i = 0; i <= min_string_length; i++) {
+    const set = new Set()
+    strs.forEach(str => {
+      set.add(str.substring(0, i))
+    })
+    if (Array.from(set).length !== 1) {
+      break
+    } else {
+      result = strs[0].substring(0, i)
+    }
+  }
+  return result
+}
+```

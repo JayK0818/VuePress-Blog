@@ -13,6 +13,81 @@ const matrix = [[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]
 
 **解法一**
 
-```ts
+  此题需要搞清楚数组旋转之后, 当前的下标 和 旋转后的 之间的对应关系。
 
+```ts
+// 设置一个 4 * 4的数组旋转 下标对应的关系(左边为当前数字下标,右边为旋转之后的下标)
+/***
+ * 0 0 ------> 0 3
+ * 0 1 ------> 1 3
+ * 0 2 ------> 2 3
+ * 0 3 ------> 3 3
+ * 
+ * 
+ * 1 0 -----> 0 2
+ * 1 1 -----> 1 2
+ * 1 2 -----> 2 2
+ * 1 3 -----> 3 2
+ * 
+ * 2 0 -----> 0 1
+ * 2 1 -----> 1 1
+ * 2 2 -----> 2 1
+ * 2 3 -----> 3 1
+ * 
+ * 3 0 ----> 0 0
+ * 3 1 ----> 1 0
+ * 3 2 ----> 2 0
+ * 3 3 ----> 3 0
+*/
+
+// 这是一个3 * 3的数组旋转下标对应的关系
+/**
+ * 0 0 -----> 0 2
+ * 0 1 -----> 1 2
+ * 0 2 -----> 2 2
+ * 
+ * 1 0 -----> 0 1
+ * 1 1 -----> 1 1
+ * 1 2 -----> 2 1
+ * 
+ * 2 0 -----> 0 0
+ * 2 1 -----> 1 0
+ * 2 2 -----> 2 0
+*/
+
+const rotate = (matrix: number[][]):void => {
+  // 先保存一份数组每个数字所在的下标
+  const map: {[key: string]: number } = {}
+  matrix.forEach((m, i) => {
+    m.forEach((number, j) => {
+      map[`${i}-${j}`] = number
+    })
+  })
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix.length; j++) {
+      matrix[j][matrix.length - i - 1] = map[`${i}-${j}`]
+    }
+  }
+}
+```
+
+**解法二**
+
+  从题解里看到一种解法, 顺时针旋转二维数组 实际是 先将数组进行上下翻转 然后再对角线 调换数据。利用这个思路实现如下版本
+```ts
+const rotate = (matrix: number[][]):void => {
+  // 先将数组上下进行翻转
+  const length = Math.floor(matrix.length / 2)
+  for (let i = 0; i < length; i++) {
+    const idx = matrix.length - i - 1
+    const p = matrix[i]
+    matrix[i] = matrix[idx]
+    matrix[idx] = p
+  }
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < i; j++) {
+      [matrix[i][j], matrix[j][i]] = [matrix[j][i], matrix[i][j]]
+    }
+  }
+}
 ```

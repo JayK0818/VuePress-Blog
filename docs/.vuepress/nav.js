@@ -178,7 +178,8 @@ const sidebar = {
         '/algorithm/leetcode/valid-sudoku',
         '/algorithm/leetcode/array-middle-index',
         '/algorithm/leetcode/combine-array-range',
-        '/algorithm/leetcode/matrix-rotate'
+        '/algorithm/leetcode/matrix-rotate',
+        '/algorithm/leetcode/zero-matrix'
         // '/algorithm/leetcode/resolve_sudoku'
         // '/algorithm/leetcode/combine-ascending-list'
       ]

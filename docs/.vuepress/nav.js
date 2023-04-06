@@ -179,7 +179,8 @@ const sidebar = {
         '/algorithm/leetcode/array-middle-index',
         '/algorithm/leetcode/combine-array-range',
         '/algorithm/leetcode/matrix-rotate',
-        '/algorithm/leetcode/zero-matrix'
+        '/algorithm/leetcode/zero-matrix',
+        '/algorithm/leetcode/reverse-string-word'
         // '/algorithm/leetcode/resolve_sudoku'
         // '/algorithm/leetcode/combine-ascending-list'
       ]

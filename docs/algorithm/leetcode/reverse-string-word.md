@@ -29,3 +29,19 @@ const reverse_words = (s: string): string => {
   return s.trim().split(/\s+/).map(item => item.trim()).reverse().join(' ')
 }
 ```
+
+**解法三**
+
+  利用双指针算法, 首位两个指针 交换当前位置的 字符串, 然后首位指针分别向中间靠拢 直到相遇
+
+```ts
+const reverse_words = (s: string): string => {
+  const array = s.trim().split(/\s+/)
+  let i = 0
+  let j = array.length - 1
+  while (i < j) {
+    [array[i], array[j]] = [array[j], array[i]]
+  }
+  return array.join(' ')
+}
+```

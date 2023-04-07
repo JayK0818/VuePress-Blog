@@ -65,3 +65,38 @@ const get_index = (array: number[], target: number) => {
 }
 console.log(get_index([3, 2, 7, 10, 4, 15], 6))      // [1, 4]
 ```
+
+# 两数之和 II - 输入有序数组
+
+  给你一个下标从 **1** 开始的整数数组 **numbers**, 该数组已按 **非递减顺序排序**, 请你从数组中找出满足相加之和 等于目标 **target** 的两个数。
+  如果这两个数分别是 *numbers[m]* 和 *numbers[n]*, 则 **1 <= m < n < numbers.length**。以长度为2的整数数组 **[m, n]** 的形式返回这两个
+  整数的下标 **m** 和 **n**。
+```js
+const numbers = [2,7,11,15], target = 9
+// 输出 [1, 2]
+
+const numbers = numbers = [2,3,4], target = 6
+// 输出 [1, 3]
+```
+
+  和上面的题差不多, 区别是下标从1开始, 并且输入的数组是有序的。除了可以用上面的解法, 还可以使用双指针解法。
+  
+```ts
+const tow_sum = (numbers: number[], target: number): number[] => {
+  let i = 0
+  let j = numbers.length - 1
+  const temp = []
+  while (i < j) {
+    const sum = numbers[i] + numbers[j]
+    if (sum === target) {
+      temp.push(i+1, j+1)
+      break
+    } else if (sum > target) {
+      j -= 1
+    } else {
+      i += 1
+    }
+  }
+  return temp
+}
+```

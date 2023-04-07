@@ -147,7 +147,7 @@ const sidebar = {
     {
       text: 'Leetcode',
       children: [
-        '/algorithm/leetcode/two-sum',
+        '/algorithm/leetcode/two-number-sum',
         '/algorithm/leetcode/add-two-number',
         '/algorithm/leetcode/longest-substring-without-repeat',
         '/algorithm/leetcode/middle-number-of-two-array',
@@ -180,7 +180,9 @@ const sidebar = {
         '/algorithm/leetcode/combine-array-range',
         '/algorithm/leetcode/matrix-rotate',
         '/algorithm/leetcode/zero-matrix',
-        '/algorithm/leetcode/reverse-string-word'
+        '/algorithm/leetcode/reverse-string-word',
+        '/algorithm/leetcode/implement-strStr',
+        '/algorithm/leetcode/array-split'
         // '/algorithm/leetcode/resolve_sudoku'
         // '/algorithm/leetcode/combine-ascending-list'
       ]

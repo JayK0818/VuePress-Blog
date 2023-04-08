@@ -8,7 +8,7 @@ import { ref } from 'vue'
 import Child from './Child.vue'
 
 const count = ref<number>(1)
-const increment = (payload): void => {
-  count.value = payload;
+const increment = (payload: number): void => {
+  count.value = payload
 }
 </script>

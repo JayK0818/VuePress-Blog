@@ -1,17 +1,22 @@
 <template>
   <div class='container'>
-    <div v-for='item in box_list'
-    :class='{
-      box: true,
-      ["box-"+item.value]: true
-    }'
-    :style='{
-      backgroundColor: item.color
-    }'
-    :ref='setBoxRef'
+    <div
+      v-for='item in box_list'
+      :key="item.value"
+      :class='{
+        box: true,
+        ["box-"+item.value]: true
+      }'
+      :style='{
+        backgroundColor: item.color
+      }'
+      :ref='setBoxRef'
     >{{item.label}}</div>
   </div>
-  <n-button type='primary' @click='handle_transition' size='small' style='margin-bottom: 10px;'>click</n-button>
+  <n-button
+    type='primary' @click='handle_transition'
+    ize='small' style='margin-bottom: 10px;'
+  >click</n-button>
   <div>下面的案例来自MDN, 鼠标放到div上 多个属性发生变化。</div>
   <div class="animation-container"></div>
 </template>
@@ -51,7 +56,7 @@ const box_list = ref<{label: string, value: number, color: string }[]>([
     color: 'seagreen'
   }
 ])
-const setBoxRef = (element) => {
+const setBoxRef = (element: any) => {
   if (element) {
     refList.value.push(element)
   }
@@ -61,8 +66,8 @@ const handle_transition = () => {
     box.classList.add('start')
   })
 }
-const listen_animation = (event) => {
-  event.target.classList.remove('start')
+const listen_animation = (event: Event) => {
+  (event.target as HTMLElement).classList.remove('start')
 }
 onMounted(() => {
   refList.value.forEach(item => {

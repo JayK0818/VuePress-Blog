@@ -20,18 +20,17 @@
 <script lang='ts' setup>
 import { ref } from 'vue'
 // --------判断页面是否有滚动条------
-function hasScrollbar() {
+function has_scrollbar() {
   return document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight)
 }
 
-// --------获取滚动条的宽度 --------
-function getScrollBarWidth() {
+const get_scroll_bar_width = ():number => {
   const div = document.createElement('div')
   div.style.cssText = 'position:absolute;top:-9999999px;width:100px;height:100px;overflow:scroll;'
   document.body.appendChild(div)
-  const scrollBarWidth = div.offsetWidth - div.clientWidth;
+  const scroll_bar_width = div.offsetWidth - div.clientWidth;
   document.body.removeChild(div)
-  return scrollBarWidth;
+  return scroll_bar_width
 }
 const visible = ref<boolean>(false)
 
@@ -40,15 +39,15 @@ const open_dialog_1 = ():void => {
 }
 
 const open_dialog_2 = (): void => {
-  if(hasScrollbar()){
-    const barwidth = getScrollBarWidth();
-    document.body.style.cssText = `width:calc(100% - ${barwidth}px);overflow:hidden;`
+  if(has_scrollbar()){
+    const width = get_scroll_bar_width()
+    document.body.style.cssText = `width:calc(100% - ${width}px);overflow:hidden;`
   }
   visible.value = true;
 }
 
 const close_modal = (): void => {
-  document.body.style.cssText = '';
+  document.body.style.cssText = ''
   visible.value = false;
 }
 </script>

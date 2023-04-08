@@ -1,12 +1,20 @@
 <template>
   <section class='section'>
     <div class='container example-container'>
-      <div class="item" v-for='i in 9' :style='{
+      <div
+        class="item"
+        v-for='i in 9'
+        :key="i"
+        :style='{
         background: colors[i-1]
       }'>{{i}}</div>
     </div>
     <div class="container merge-container">
-      <div class="item" v-for='i in 5' :class='"item-"+i' :style='{
+      <div
+        class="item"
+        :key="i"
+        v-for='i in 5'
+        :class='"item-"+i' :style='{
         background: colors[i-1]
       }'>{{i}}</div>
     </div>

@@ -8,8 +8,6 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-</script>
 <style lang="scss" scoped>
 .text{
   color: rgba(0, 0, 0, .85);

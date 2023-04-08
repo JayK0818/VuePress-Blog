@@ -22,7 +22,7 @@
 </template>
 
 <script lang='ts' setup>
-import { ref, computed } from 'vue'
+import { ref, computed, StyleValue } from 'vue'
 
 interface SelectOption {
   label: string
@@ -105,30 +105,25 @@ const items = ref<SelectOption[]>([
   }
 ])
 const item = ref<number>(0)
-
-const direction_style = computed(() => {
+// @ts-ignore
+const direction_style = computed<StyleValue>(() => {
   const find_style = directions.value.find(item => item.value === direction.value)
-  if (find_style) {
-    return {
-      flexDirection: find_style.label
-    }
-  }
-})
-
-const justify_style = computed(() => {
-  const find_style = justifys.value.find(item => item.value === justify.value)
-  if(find_style) {
-    return {
-      justifyContent: find_style.label
-    }
-  }
-})
-
-const item_style = computed(() => {
-  const find_item = items.value.find(s => s.value === item.value)
-  if(!find_item) return null
   return {
-    'alignItems': find_item.label
+    flexDirection: (find_style as SelectOption).label
+  }
+})
+
+const justify_style = computed<StyleValue>(() => {
+  const find_style = justifys.value.find(item => item.value === justify.value)
+  return {
+    justifyContent: (find_style as SelectOption).label
+  }
+})
+
+const item_style = computed<StyleValue>(() => {
+  const find_item = items.value.find(s => s.value === item.value)
+  return {
+    alignItems: (find_item as SelectOption).label
   }
 })
 </script>

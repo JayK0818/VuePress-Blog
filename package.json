@@ -20,6 +20,6 @@
   "dependencies": {
     "mitt": "^3.0.0",
     "naive-ui": "^2.34.3",
-    "pinia": "^2.0.33"
+    "pinia": "^2.0.34"
   }
 }

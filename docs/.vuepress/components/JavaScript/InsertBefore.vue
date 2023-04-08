@@ -1,9 +1,9 @@
 <template>
   <div class='insert-before-container'>
     <div class="button-container">
-      <a-button type='primary' size='small' @click.stop='insert_target'>插入到指定位置</a-button>
-      <a-button type='primary' size='small' @click.stop='insert_null'>参考节点为null</a-button>
-      <a-button type='primary' size='small' @click.stop='insert_document_fragment'>插入节点为DocumentFragment</a-button>
+      <n-button type='primary' size='small' @click.stop='insert_target'>插入到指定位置</n-button>
+      <n-button type='primary' size='small' @click.stop='insert_null'>参考节点为null</n-button>
+      <n-button type='primary' size='small' @click.stop='insert_document_fragment'>插入节点为DocumentFragment</n-button>
     </div>
     <ol ref='parent'>
       <li>kyrie</li>
@@ -21,14 +21,14 @@ const player = ref<string []>(['paul','wade','bosh'])
 const insert_target = ():void => {
   const li = document.createElement('li')
   li.textContent = 'lebron'
-  const reference_element = parent.value.children[player.value.length-1];
-  parent.value.insertBefore(li, reference_element)
+  const reference_element = (parent.value as HTMLElement).children[player.value.length-1];
+  (parent.value as HTMLElement).insertBefore(li, reference_element)
 }
 
 const insert_null = ():void => {
   const li = document.createElement('li')
-  li.textContent = 'lebron'
-  parent.value.insertBefore(li,null)
+  li.textContent = 'lebron';
+  (parent.value as HTMLElement).insertBefore(li,null)
 }
 
 function insert_document_fragment(): void {
@@ -38,8 +38,7 @@ function insert_document_fragment(): void {
     li.textContent = player.value[i];
     fragment.appendChild(li)
   }
-  const reference_element = parent.value.children[player.value.length-1];
-  parent.value.insertBefore(fragment, null)
+  (parent.value as HTMLElement).insertBefore(fragment, null)
 }
 </script>
 

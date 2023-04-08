@@ -7,7 +7,7 @@ const navbar = [
   { text: '后端', link: '/back-end/node' },
   { text: 'Vue', link: '/vue/data-transfer' },
   { text: 'React', link: '/react/basis' },
-  { text: '算法', link: '/algorithm/leetcode/two-sum'}
+  { text: '算法', link: '/algorithm/leetcode/two-number-sum'}
 ]
 
 /**

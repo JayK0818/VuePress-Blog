@@ -31,11 +31,11 @@ nascetur ridiculus mus. Cras vulputate libero sed arcu iaculis nec lobortis orci
 <script lang='ts' setup>
 import { ref } from 'vue'
 
-const container = ref<HTMLDivElement | null>(null)
+const container = ref<HTMLElement | null>(null)
 const is_disabled = ref<boolean>(true)
 
-const scroll = (event): void => {
-  if(container.value.scrollHeight - event.target.scrollTop - container.value.clientHeight < 1) {
+const scroll = (event: Event): void => {
+  if((container.value as HTMLElement).scrollHeight - (event.target as HTMLElement).scrollTop - (container.value as HTMLElement).clientHeight < 1) {
     is_disabled.value = false
   }
 }

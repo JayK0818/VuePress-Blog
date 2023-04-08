@@ -17,7 +17,7 @@ import bus from '../bus'
 
 const player_list = ref(['杜兰特','贾巴尔','罗伯特森','韦德','斯托克顿'])
 
-const click = (p, i) => {
+const click = (p: string, i: number) => {
 	player_list.value.splice(i,1)
 	bus.emit('bench',{
 		player:p

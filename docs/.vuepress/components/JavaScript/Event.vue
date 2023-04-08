@@ -22,12 +22,12 @@
 <script setup lang="ts">
 import { ref, onMounted, nextTick, onUnmounted } from 'vue'
 
-const box_1 = ref(null)
-const box_2 = ref(null)
-const box_3 = ref(null)
-const box_4 = ref(null)
-const box_5 = ref(null)
-const box_6 = ref(null)
+const box_1 = ref<null | HTMLElement>(null)
+const box_2 = ref<null | HTMLElement>(null)
+const box_3 = ref<null | HTMLElement>(null)
+const box_4 = ref<null | HTMLElement>(null)
+const box_5 = ref<null | HTMLElement>(null)
+const box_6 = ref<null | HTMLElement>(null)
 
 function listener_1() {
   window.$message.success('box1...')
@@ -40,26 +40,25 @@ function listener_3(){
 }
 onMounted(() => {
   nextTick(() => {
-    box_1.value.addEventListener('click', listener_1, true)
-    box_2.value.addEventListener('click', listener_2, true)
-    box_3.value.addEventListener('click', listener_3, true)
+    (box_1.value as HTMLElement).addEventListener('click', listener_1, true);
+    (box_2.value as HTMLElement).addEventListener('click', listener_2, true);
+    (box_3.value as HTMLElement).addEventListener('click', listener_3, true);
 
-    box_4.value.addEventListener('click', listener_1, false)
-    box_5.value.addEventListener('click', listener_2, false)
-    box_6.value.addEventListener('click', listener_3, false)
+    (box_4.value as HTMLElement).addEventListener('click', listener_1, false);
+    (box_5.value as HTMLElement).addEventListener('click', listener_2, false);
+    (box_6.value as HTMLElement).addEventListener('click', listener_3, false);
   })
 })
 
 onUnmounted(() => {
   nextTick(() => {
-    if(!box_1.value) return
-    box_1.value.removeEventListener('click', listener_1, true)
-    box_2.value.removeEventListener('click', listener_2, true)
-    box_3.value.removeEventListener('click', listener_3, true)
+    (box_2.value as HTMLElement).removeEventListener('click', listener_2, true);
+    (box_1.value as HTMLElement).removeEventListener('click', listener_1, true);
+    (box_3.value as HTMLElement).removeEventListener('click', listener_3, true);
 
-    box_4.value.removeEventListener('click', listener_1, false)
-    box_5.value.removeEventListener('click', listener_2, false)
-    box_6.value.removeEventListener('click', listener_3, false)
+    (box_4.value as HTMLElement).removeEventListener('click', listener_1, false);
+    (box_5.value as HTMLElement).removeEventListener('click', listener_2, false);
+    (box_6.value as HTMLElement).removeEventListener('click', listener_3, false);
   })
 })
 </script>

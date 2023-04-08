@@ -8,8 +8,8 @@
 
 <script setup>
 function get_player(event) {
-  const text = event.target.textContent;
-  const aLi = event.target.parentElement.children;
+  const text = event.target.textContent
+  const aLi = event.target.parentElement.children
   const index = Array.from(aLi).indexOf(event.target)
   window.$message.success(`${index} - ${text}`)
 }

@@ -3,17 +3,27 @@
     <div class="left">
       <div class="title">未清除浮动</div>
       <div class="content">
-        <div class="item" v-for='item in 4' :style='{
-          background: colors[item-1]
-        }'></div>
+        <div
+          class="item"
+          v-for='item in 4'
+          :style='{
+            background: colors[item-1]
+          }'
+          :key="item"
+        ></div>
       </div>
     </div>
     <div class="right">
       <div class="title">已清除浮动</div>
       <div class="content clearfix">
-        <div class="item" v-for='item in 4' :style='{
-          background: colors[item-1]
-        }'></div>
+        <div
+          class="item"
+          v-for='item in 4'
+          :style='{
+            background: colors[item-1]
+          }'
+          :key="item"
+        ></div>
       </div>
     </div>
   </div>

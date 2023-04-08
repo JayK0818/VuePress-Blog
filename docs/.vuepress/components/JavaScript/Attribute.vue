@@ -15,6 +15,6 @@ import { ref } from 'vue'
 const div = ref<HTMLElement | null>(null)
 const attributes = ref<Array<{ name: string; value: string }>>([])
 const get_attribute = () => {
-  attributes.value = div.value.attributes as unknown as Array<{name: string; value: string}>
+  attributes.value = (div.value as HTMLElement).attributes as unknown as Array<{name: string; value: string}>
 }
 </script>

@@ -9,11 +9,14 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+
+type ElementSizeType = 'clientHeight' | 'offsetHeight' | 'scrollHeight'
+
 const box = ref<HTMLElement | null>(null)
 
-const getHeight = (type):void => {
+const getHeight = (type: ElementSizeType):void => {
   if(!box.value) return
-  const height = box.value[type];
+  const height = (box.value as HTMLElement)[type];
   (window as any).$message.success(`${type} - ${height}`)
 }
 </script>

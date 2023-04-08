@@ -15,7 +15,7 @@
 import { onMounted, ref } from 'vue'
 import bus from '../bus'
 const player_list = ref(['詹姆斯','奥尼尔','乔丹','科比','库里'])
-const click = (p,i) => {
+const click = (p: string, i: number) => {
 	bus.emit('starting_up', {
 		player:p
 	})

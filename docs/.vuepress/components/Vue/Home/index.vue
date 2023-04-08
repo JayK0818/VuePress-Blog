@@ -3,7 +3,7 @@
 </template>
 
 <script lang='ts' setup>
-import { defineComponent, ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 
 function paddingLeftZero(s: number | string): string {

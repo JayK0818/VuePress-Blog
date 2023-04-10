@@ -59,34 +59,24 @@ const remove_specified_element = (nums: number[], val: number): number => {
 ```ts
 const remove_specified_element = (nums: number[], val: number): number => {
   let start = 0
-  let right = nums.length - 1
-  if (right < 0) return 0
-  while (start < right) {
-    // 如果数组最后一个数字也是要清除的数字, 此时移动右指针
-    if (nums[start] === val) {
-      while (nums[right] === val) {
-        right -= 1
-        if (right <= start) break
-      }
-      // 如果右指针 一直移动到了 start位置 跳出循环。
-      if (start === right) break
-      const a = nums[start]
-      nums[start] = nums[right]
-      nums[right] = a
-      right -= 1
+  let end = numbers.length
+  // 此处end 使用 numbers.length 而不是 numbers.length - 1
+  // 如果使用length - 1, 这种情况无法通过. [3,2,2,3]  3
+  while (start < end) {
+    if (numbers[start] === val) {
+      numbers[start] = numbers[end-1]
+      end -= 1 
     } else {
       start += 1
     }
   }
-  // 可能移动left 正好移动到了一个 要清除的位置
-  // [2, 3, 3], 3 (考虑这种情况)
-  return nums[start] === val ? start : start + 1
+  return start
 }
 ```
 
 **解法四**
 
-  利用双指针, 一个快指针和一个慢指针, 快指针如果和指定要移除的值相等, 则一直向后移动, 否则慢指针向后移动一位, 并将快指针下标对应的值 赋值到慢指针的位置。
+  同样利用双指针, 一个快指针和一个慢指针, 快指针如果和指定要移除的值相等, 则一直向后移动, 否则慢指针向后移动一位, 并将快指针下标对应的值 赋值到慢指针的位置。
 
 ```ts
 function remove_specified_element(nums: number[], val: number): number {

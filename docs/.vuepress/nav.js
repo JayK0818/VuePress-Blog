@@ -3,46 +3,57 @@
 */
 const navbar = [
   { text: '首页', link: '/' },
-  { text: '前端', link: '/front-end/javascript/bom' },
-  { text: '后端', link: '/back-end/node' },
-  { text: 'Vue', link: '/vue/data-transfer' },
-  { text: 'React', link: '/react/basis' },
-  { text: '算法', link: '/algorithm/leetcode/two-number-sum'}
+  {
+    text: '前端',
+    link: '/front-end/',
+    children: [
+      {
+        text: 'CSS',
+        link: '/front-end/css/box'
+      },
+      {
+        text: 'JavaScript',
+        link: '/front-end/javascript/bom'
+      },
+      {
+        text: 'Vue',
+        link: '/front-end/vue/data-transfer'
+      },
+      {
+        text: 'TypeScript',
+        link: '/front-end/typescript/types'
+      },
+      {
+        text: 'React',
+        link: '/front-end/react/basis'
+      }
+    ]
+  },
+  {
+    text: '后端',
+    link: '/back-end/',
+    children: [
+      {
+        text: 'Node及框架',
+        link: '/back-end/node'
+      },
+      {
+        text: '数据库',
+        link: '/back-end/database/mongosh'
+      },
+      {
+        text: 'Util',
+        link: '/back-end/util/tapable'
+      }
+    ]
+  },
+  { text: '算法', link: '/algorithm/two-number-sum' }
 ]
 
 /**
  * @description 侧导航栏
 */
 const sidebar = {
-  react: [
-    {
-      text: 'React',
-      children: [
-        '/react/basis',
-        '/react/hook',
-        '/react/create-react-app',
-        '/react/react-router-dom',
-        '/react/redux',
-        '/react/react-redux',
-        '/react/redux-toolkit',
-        '/react/mobx'
-      ]
-    }
-  ],
-  vue:[
-    {
-      text:'Vue.js',
-      children: [
-        '/vue/data-transfer',
-        '/vue/migration',
-        '/vue/pinia'
-      ]
-    },
-    {
-      text: '打包工具',
-      children: ['/vue/webpack']
-    }
-  ],
   front_end: [
     {
       text: 'CSS',
@@ -88,7 +99,7 @@ const sidebar = {
     },
     {
       text: 'TypeScript',
-      collapsable: false,
+      collapsable: true,
       children: [
         '/front-end/typescript/types',
         '/front-end/typescript/function',
@@ -98,18 +109,30 @@ const sidebar = {
         '/front-end/typescript/class',
         '/front-end/typescript/utility-type'
       ]
-    }
-/*     {
-      text: '算法',
-      collapsable: false,
+    },
+    {
+      text: 'Vue',
+      collapsable: true,
       children: [
-        '/front-end/algorithm/array',
-        '/front-end/algorithm/string',
-        '/front-end/algorithm/list',
-        '/front-end/algorithm/tree',
-        '/front-end/algorithm/other'
+        '/front-end/vue/data-transfer',
+        '/front-end/vue/migration',
+        '/front-end/vue/pinia',
+        '/front-end/vue/webpack'
       ]
-    } */
+    },
+    {
+      text: 'React',
+      children: [
+        '/front-end/react/basis',
+        '/front-end/react/hook',
+        '/front-end/react/create-react-app',
+        '/front-end/react/react-router-dom',
+        '/front-end/react/redux',
+        '/front-end/react/react-redux',
+        '/front-end/react/redux-toolkit',
+        '/front-end/react/mobx'
+      ]
+    }
   ],
   node:[
     {
@@ -144,49 +167,42 @@ const sidebar = {
     }
   ],
   algorithm: [
-    {
-      text: 'Leetcode',
-      children: [
-        '/algorithm/leetcode/two-number-sum',
-        '/algorithm/leetcode/add-two-number',
-        '/algorithm/leetcode/longest-substring-without-repeat',
-        '/algorithm/leetcode/middle-number-of-two-array',
-        '/algorithm/leetcode/longest-reverse-substring',
-        '/algorithm/leetcode/int-reverse',
-        '/algorithm/leetcode/string-to-number',
-        '/algorithm/leetcode/palindrome-number',
-        '/algorithm/leetcode/water-container',
-        '/algorithm/leetcode/number-to-roman',
-        '/algorithm/leetcode/roman-to-number',
-        '/algorithm/leetcode/longest-string-prefix',
-        '/algorithm/leetcode/three-number-sum',
-        '/algorithm/leetcode/closest-three-number-sum',
-        '/algorithm/leetcode/phone-number-combine',
-        '/algorithm/leetcode/four-number-sum',
-        '/algorithm/leetcode/remove-nth-node-from-list',
-        '/algorithm/leetcode/valid-brackets',
-        '/algorithm/leetcode/create-brackets',
-        '/algorithm/leetcode/remove-repeat-item',
-        '/algorithm/leetcode/remove-specified-element',
-        '/algorithm/leetcode/first-match-string-index',
-        '/algorithm/leetcode/devide-two-number',
-        '/algorithm/leetcode/substrings-with-concat',
-        '/algorithm/leetcode/array-arrangement',
-        '/algorithm/leetcode/longest-valid-brackets',
-        '/algorithm/leetcode/search-first-last-index',
-        '/algorithm/leetcode/search-insert-index',
-        '/algorithm/leetcode/valid-sudoku',
-        '/algorithm/leetcode/array-middle-index',
-        '/algorithm/leetcode/combine-array-range',
-        '/algorithm/leetcode/matrix-rotate',
-        '/algorithm/leetcode/zero-matrix',
-        '/algorithm/leetcode/reverse-string-word',
-        '/algorithm/leetcode/implement-strStr',
-        '/algorithm/leetcode/array-split'
-        // '/algorithm/leetcode/resolve_sudoku'
-        // '/algorithm/leetcode/combine-ascending-list'
-      ]
-    }
+    '/algorithm/two-number-sum',
+    '/algorithm/add-two-number',
+    '/algorithm/longest-substring-without-repeat',
+    '/algorithm/middle-number-of-two-array',
+    '/algorithm/longest-reverse-substring',
+    '/algorithm/int-reverse',
+    '/algorithm/string-to-number',
+    '/algorithm/palindrome-number',
+    '/algorithm/water-container',
+    '/algorithm/number-to-roman',
+    '/algorithm/roman-to-number',
+    '/algorithm/longest-string-prefix',
+    '/algorithm/three-number-sum',
+    '/algorithm/closest-three-number-sum',
+    '/algorithm/phone-number-combine',
+    '/algorithm/four-number-sum',
+    '/algorithm/remove-nth-node-from-list',
+    '/algorithm/valid-brackets',
+    '/algorithm/create-brackets',
+    '/algorithm/remove-repeat-item',
+    '/algorithm/remove-specified-element',
+    '/algorithm/first-match-string-index',
+    '/algorithm/devide-two-number',
+    '/algorithm/substrings-with-concat',
+    '/algorithm/array-arrangement',
+    '/algorithm/longest-valid-brackets',
+    '/algorithm/search-first-last-index',
+    '/algorithm/search-insert-index',
+    '/algorithm/valid-sudoku',
+    '/algorithm/array-middle-index',
+    '/algorithm/combine-array-range',
+    '/algorithm/matrix-rotate',
+    '/algorithm/zero-matrix',
+    '/algorithm/reverse-string-word',
+    '/algorithm/implement-strStr',
+    '/algorithm/array-split'
   ]
 }
 

@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick, onUnmounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 
 const box_1 = ref<null | HTMLElement>(null)
 const box_2 = ref<null | HTMLElement>(null)
@@ -50,17 +50,6 @@ onMounted(() => {
   })
 })
 
-onUnmounted(() => {
-  nextTick(() => {
-    (box_2.value as HTMLElement).removeEventListener('click', listener_2, true);
-    (box_1.value as HTMLElement).removeEventListener('click', listener_1, true);
-    (box_3.value as HTMLElement).removeEventListener('click', listener_3, true);
-
-    (box_4.value as HTMLElement).removeEventListener('click', listener_1, false);
-    (box_5.value as HTMLElement).removeEventListener('click', listener_2, false);
-    (box_6.value as HTMLElement).removeEventListener('click', listener_3, false);
-  })
-})
 </script>
 <style lang="scss" scoped>
 .container{

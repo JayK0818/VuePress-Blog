@@ -68,13 +68,11 @@ export default {
     navbar,
     contributors: false,
     darkMode: false,
-    logo:null,
+    logo: null,
     sidebar:{
       collapsable: true,
-      '/react/': sidebar.react,
       '/front-end/': sidebar.front_end,
       '/back-end/': sidebar.node,
-      '/vue/': sidebar.vue,
       '/algorithm/': sidebar.algorithm
     },
     topBanner: false
@@ -85,17 +83,7 @@ export default {
         Components({
           resolvers: [NaiveUiResolver()]
         })
-      ],
-      css: {
-        preprocessorOptions: {
-          less: {
-            modifyVars: {
-              'border-radius-base': 0
-            },
-            javascriptEnabled: true
-          }
-        }
-      }
+      ]
     }
   })
 }

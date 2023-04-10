@@ -51,7 +51,7 @@ const draw_text = () => {
   ctx.fillText('What next to do ?', window_width.value/2, window_height.value/2 + 100)
 }
 const click = () => {
-  router.push('/front-end/javascript/bom')
+  router.push('/front-end/css/box')
 }
 onBeforeUnmount(() => {
   if(timer.value) clearInterval(timer.value)

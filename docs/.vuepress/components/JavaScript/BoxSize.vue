@@ -17,7 +17,7 @@ const box = ref<HTMLElement | null>(null)
 const getHeight = (type: ElementSizeType):void => {
   if(!box.value) return
   const height = (box.value as HTMLElement)[type];
-  (window as any).$message.success(`${type} - ${height}`)
+  window.$message.success(`${type} - ${height}`)
 }
 </script>
 <style lang="scss" scoped>

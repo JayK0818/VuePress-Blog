@@ -83,3 +83,21 @@ const remove_specified_element = (nums: number[], val: number): number => {
   return nums[start] === val ? start : start + 1
 }
 ```
+
+**解法四**
+
+  利用双指针, 一个快指针和一个慢指针, 快指针如果和指定要移除的值相等, 则一直向后移动, 否则慢指针向后移动一位, 并将快指针下标对应的值 赋值到慢指针的位置。
+
+```ts
+function remove_specified_element(nums: number[], val: number): number {
+  let slow = 0
+  for (let fast = 0, length = nums.length; fast < length; fast++) {
+    if (nums[fast] !== val) {
+      nums[slow] = nums[fast]
+      // 慢指针先移动一步, 然后快指针去找到 和移除的值不相等的数 将他赋值过来。
+      slow += 1
+    }
+  }
+  return slow
+}
+```

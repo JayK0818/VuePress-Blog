@@ -3,7 +3,7 @@
   <child :count='count'/>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { ref } from 'vue'
 import Child from './Child.vue'
 

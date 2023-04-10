@@ -6,11 +6,11 @@
   </ul>
 </template>
 
-<script setup>
-function get_player(event) {
-  const text = event.target.textContent
-  const aLi = event.target.parentElement.children
-  const index = Array.from(aLi).indexOf(event.target)
+<script setup lang="ts">
+function get_player(event: Event) {
+  const text = (event.target as HTMLElement).textContent;
+  const aLi = ((event.target as HTMLElement).parentElement as HTMLElement).children
+  const index = Array.from(aLi).indexOf(event.target as HTMLElement)
   window.$message.success(`${index} - ${text}`)
 }
 </script>

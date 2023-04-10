@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { ref } from 'vue'
 const div = ref<HTMLElement | null>(null)
 const attributes = ref<Array<{ name: string; value: string }>>([])

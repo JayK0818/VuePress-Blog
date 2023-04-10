@@ -10,7 +10,7 @@
   <child/>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { defineComponent, computed, provide, ref } from 'vue'
 import Child from './Child.vue'
 

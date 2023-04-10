@@ -14,7 +14,7 @@
   </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { ref } from 'vue'
 const index = ref(0)
 const toggle = (number: number) => {

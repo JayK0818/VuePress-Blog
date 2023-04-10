@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script lang='ts' setup>
+<script lang="ts" setup>
 import { ref, computed, StyleValue } from 'vue'
 
 interface SelectOption {

@@ -202,7 +202,9 @@ const sidebar = {
     '/algorithm/zero-matrix',
     '/algorithm/reverse-string-word',
     '/algorithm/implement-strStr',
-    '/algorithm/array-split'
+    '/algorithm/array-split',
+    '/algorithm/max-consecutive-ones',
+    '/algorithm/min-sub-array-length'
   ]
 }
 

@@ -29,7 +29,9 @@
 上下外边距的设置 对不可替换的 内联元素无效, 如span i 等。 外边距控制等是外部空出等空间, 而padding操作元素
 内部空出等空间。
 
-margin 可以设置为负数, 但是padding不可以
+margin 可以设置为负数, 但是padding不可以. margin-top 和 margin-left设置负值, 元素分别向上 和 向左移动。
+margin-bottom 和 margin-right 设置负数, 自身元素不受影响。 margin-right设置负数, 右侧元素左移动, margin-bottom设置负数,
+下方元素向上移动。
 :::
 
 ## padding
@@ -56,7 +58,7 @@ margin 可以设置为负数, 但是padding不可以
 ```css
 .box {
   border: 1px solid #e8e8e8;
-  border-style: solid
+  border-style: solid;
   border-color: red;
   border-width: 1px;
 }
@@ -107,3 +109,60 @@ margin 可以设置为负数, 但是padding不可以
   background: #263849;
 }
 ```
+## line-height
+
+  line-height 属性用于设置多行元素的空间量。对于块级元素,它指定元素行盒(line boxes)的最小高度。对于非替代的inline元素, 它用于计算行盒的高度。(该行内元素的行高实际没有变, 效果类似于padding。)
+
+```css
+.line-height-text {
+  /* 取决于浏览器 */
+  line-height: normal;
+  /* 1.5 乘以 字体大小的值 */
+  line-height: 1.5;
+  line-height: 24px;
+  /* 如果自己设置了font-size, 就是该font-size的2倍行高, 如果自己没有设置字体大小,则使用父级设置了字体大小的2倍 */
+  line-height: 2em;
+  /* 自身字体大小的百分比 */
+  line-height: 30%;
+}
+```
+  推荐在设置 line-height时使用无单位数值。
+
+**一道题**
+
+  下面的文本 hello 和 world 之间的距离。
+```html
+<style>
+  p {
+    font-size: 16px;
+    line-height: 1;
+    margin-top: 10px;
+    margin-bottom: 15px;
+  }
+</style>
+
+<p class="hello-text">HELLO</p>
+<p></p>
+<p></p>
+<p></p>
+<p class="world-text">WORLD</p>
+```
+  答案是: 15px; margin-top 和 margin-bottom 会发生重叠, 没有内容的p标签没有高度margin也会发生重叠.最后 *hello* 和 *text*
+  之间只会有 margin 较大的 那个间距!
+
+**空的块元素**
+
+  当一个块元素上边界**margin-top** 直接贴到元素下边界**margin-bottom**时也会发生边距坍塌。这种情况会发生一个块元素完全没有设定边框*border*, 内边距*padding*, 高度*height* 最小高度*min-height*, 最大高度*max-height*。
+
+```html
+<style>
+p {margin: 0; }
+div {margin-top: 13px; margin-bottom: 87px;}
+</style>
+
+<p>下边界范围是 87 ...</p>
+<div></div>
+<p>... 上边界范围是 87</p>
+```
+
+[外边距坍塌](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)

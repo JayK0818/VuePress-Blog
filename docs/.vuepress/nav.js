@@ -204,7 +204,8 @@ const sidebar = {
     '/algorithm/implement-strStr',
     '/algorithm/array-split',
     '/algorithm/max-consecutive-ones',
-    '/algorithm/min-sub-array-length'
+    '/algorithm/min-sub-array-length',
+    '/algorithm/yang-hui-triangle'
   ]
 }
 

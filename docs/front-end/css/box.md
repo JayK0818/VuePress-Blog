@@ -128,7 +128,26 @@ margin-bottom 和 margin-right 设置负数, 自身元素不受影响。 margin-
 ```
   推荐在设置 line-height时使用无单位数值。
 
-**一道题**
+**line-height继承**
+
+```html
+<style>
+body {
+  font-size: 20px;
+  line-height: 200%;
+}
+.text {
+  font-size: 16px;
+}
+</style>  
+
+<body>
+  <div class='text'>Hello World</div>
+</body>
+```
+  类名为**text**的div元素 行高为 40px;
+
+**一道CSS题**
 
   下面的文本 hello 和 world 之间的距离。
 ```html

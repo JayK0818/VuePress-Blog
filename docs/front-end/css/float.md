@@ -33,6 +33,7 @@
 </ClientOnly>
 
   计算BFC高度的时候, 浮动的元素也参与计算,也可以给父元素设置 overflow 属性使父元素形成一个独立的BFC。
+  
 ## 三栏布局
 
   两侧宽度固定, 中间自适应。
@@ -47,15 +48,18 @@
     clear: both;
   }
   .left{
+    float:left;
     width:100px;
     background-color:orange;
   }
   .right{
+    float: right;
     width: 120px;
     background-color: green;
   }
   .middle{
-    width: auto;
+    padding-left: 100px;
+    padding-right: 120px;
     background-color : blue;
   }
   .left,.right,.middle{

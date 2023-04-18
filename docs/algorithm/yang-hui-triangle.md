@@ -100,3 +100,44 @@ const triangle = (num: number): number[][] => {
   return array
 }
 ```
+
+## 杨辉三角 II
+
+  对上面的题的一个引申。
+  给定一个非负索引 **rowIndex**, 返回 *[杨辉三角]* 的第 **rowIndex** 行。
+
+```ts
+// 输入 rowIndex = 3
+[1, 3, 3, 1]
+
+// 输入 rowIndex = 0
+[1]
+```
+
+**解法一**
+
+  使用while循环依次生成 每个下标 对应的 数组, 最后返回该位置数组即可！
+
+```ts
+const triangle = (num: number): number[] => {
+  const array: number[][] = [[1], [1, 1]]
+  if (num <= 1) {
+    return array[num]
+  }
+  let i = 2
+  while (i <= num) {
+    const prev_item = array[i - 1]
+    const temp: number[] = []
+    for (let j = 0; j <= i; j++) {
+      if (j === 0 || j === i) {
+        temp.push(1)
+      } else {
+        temp.push(prev_item[j-1] + prev_item[j])
+      }
+    }
+    array.push(temp)
+    i += 1
+  }
+  return array[num]
+}
+```

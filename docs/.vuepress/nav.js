@@ -205,7 +205,9 @@ const sidebar = {
     '/algorithm/array-split',
     '/algorithm/max-consecutive-ones',
     '/algorithm/min-sub-array-length',
-    '/algorithm/yang-hui-triangle'
+    '/algorithm/yang-hui-triangle',
+    '/algorithm/reverse-letter-of-word-in-string',
+    '/algorithm/minimum-value-in-rotate-array'
   ]
 }
 

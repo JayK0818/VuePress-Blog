@@ -141,3 +141,25 @@ const triangle = (num: number): number[] => {
   return array[num]
 }
 ```
+
+**解法二**
+
+  以下是一个更好的算法。
+
+```ts
+const triangle = (num: number):number => {
+  // 先生成当前长度的数据, 每个位置初始赋值为1
+  const result:number[] = []
+  for (let i = 0; i <= num; i++) {
+    result[i] = 1
+  }
+  if (num <= 1) return result
+  for (let i = 1; i < num; i++) {
+    // 每次从后往前原地修改数据(这个是关键点)
+    for (let j = i; j > 0; j--) {
+      result[j] = result[j-1] + result[j]
+    }
+  }
+  return result
+}
+```

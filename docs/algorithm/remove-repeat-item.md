@@ -105,6 +105,17 @@ const remove_repeat_item = (nums: number[]): number => {
   }
   nums.length = slow + 1
   return slow + 1
+
+  // 使用for循环
+  let slow = 0
+  for(let i = 0, length = nums.length; i < length; i++) {
+    if (nums[i] === nums[slow]) {
+      continue
+    }
+    slow += 1
+    nums[slow] = nums[i]
+  }
+  return slow + 1
 }
 ```
 

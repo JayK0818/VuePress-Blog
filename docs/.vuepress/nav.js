@@ -207,7 +207,8 @@ const sidebar = {
     '/algorithm/min-sub-array-length',
     '/algorithm/yang-hui-triangle',
     '/algorithm/reverse-letter-of-word-in-string',
-    '/algorithm/minimum-value-in-rotate-array'
+    '/algorithm/minimum-value-in-rotate-array',
+    '/algorithm/remove-array-zero-item'
   ]
 }
 

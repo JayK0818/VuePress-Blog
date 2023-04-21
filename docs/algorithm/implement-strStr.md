@@ -58,3 +58,9 @@ const strStr = (haystack: string, needle: string): number => {
   return index
 }
 ```
+
+**解法三**
+
+  KMP算法是一种改进的字符串匹配算法, KMP算法的核心是利用匹配失败后的信息, 尽量减少模式串与主串的匹配次数以快速匹配的目的。
+
+[力扣选修-KMP](https://leetcode.cn/leetbook/read/array-and-string/cpoo6/)

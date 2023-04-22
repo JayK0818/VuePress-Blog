@@ -99,6 +99,24 @@ divElement.textContent = `<h1>我是新插入的html</h1>`; // 直接插入标�
   <JavaScript-InsertBefore/>
 </ClientOnly>
 
+## childNodes
+
+  Node.childNodes包含指定的子节点集合,该集合为即时更新的集合(live collection).
+```js
+const nodeList = elementNodeReference.childNodes
+```
+  包含文本节点,注释节点,各种元素节点(p,div)等
+
+## firstChild/lastChild
+
+  返回元素的第一个/最后一个字节点, 如果没有的话返回null
+
+## parentNode/parentElement
+
+  Node.parentNode 返回指定的节点在DOM树中的父节点。可能是一个(element节点),也可能是一个(Document)节点 或者 （DocumentFragment)节点。 
+
+  Node.parentElement 返回当前节点的父元素节点,如果该元素没有父节点,或者父节点不是一个DOM元素,则返回null.
+
 ## NodeList
 
   NodeList对象是节点的集合。通常是由属性, 如Node.childNodes 和 方法 document.querySelectorAll返回的。
@@ -321,3 +339,5 @@ console.log(inherit_node(document.createTextNode('hello')))
 console.log(inherit_node(document))
 // ['HTMLDocument', 'Document', 'Node', 'EventTarget', 'Object']
 ```
+
+[MDN-Node](https://developer.mozilla.org/zh-CN/docs/Web/API/Node)

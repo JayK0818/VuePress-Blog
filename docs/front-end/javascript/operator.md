@@ -2,7 +2,34 @@
 
   在JavaScript中的强制类型转换总是返回标量基本类型值。如字符串,数值和布尔值,不会返回对象和函数。
 
-## ToString
+## typeof
+
+```js
+const type_array = [ 123, '123', true, null, undefined, NaN, Infinity, [], {},
+  new Set(), new Map(), () => {}, /\d+/, new Date() ]
+
+for (const type of type_array) {
+  console.log(typeof type)
+  /***
+   * number
+   * string
+   * boolean
+   * object
+   * undefined
+   * number
+   * number
+   * object
+   * object
+   * object
+   * object
+   * function
+   * object
+   * object
+   */
+}
+```
+
+## toString
 
   将非字符串到字符串的强制类型转换。基本类型的字符串化规则为:
 1. null ---> 'null'
@@ -67,7 +94,7 @@ console.log(+user)      // 30
 console.log(`${user}`)  // kyrie
 ```
 
-## ToNumber
+## toNumber
 
 1. true      ---> 1
 2. false     ---> 0
@@ -151,7 +178,7 @@ console.log({} + []) // 0
 // 上面将 {} 当成一个语句, 在执行的时候 就是+[], 效果和{}; + [] 一样
 ```
 
-## ToBoolean
+## toBoolean
 
   以下类型强制转化为布尔值时是false
 1. undefined
@@ -167,6 +194,7 @@ const c = new String('123')
 
 console.log(Boolean(a && b && c)) // true  (因为它们都是包装对象)
 ```
+
 ## 按位运算符
 
 1. 按位非运算符(~) 大致等同于 ~x ===> -(x+1)

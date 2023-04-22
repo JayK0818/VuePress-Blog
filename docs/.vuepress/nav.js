@@ -84,7 +84,19 @@ const sidebar = {
         '/front-end/javascript/operator',
         '/front-end/javascript/high-order-function',
         '/front-end/javascript/promise',
-        '/front-end/javascript/javascript-new-features',
+        {
+          text: 'ECMAScript语法',
+          children: [
+            '/front-end/javascript/ecmascript/es2015.md',
+            '/front-end/javascript/ecmascript/es2016.md',
+            '/front-end/javascript/ecmascript/es2017.md',
+            '/front-end/javascript/ecmascript/es2018.md',
+            '/front-end/javascript/ecmascript/es2019.md',
+            '/front-end/javascript/ecmascript/es2020.md',
+            '/front-end/javascript/ecmascript/es2021.md',
+            '/front-end/javascript/ecmascript/es2022.md',
+          ]
+        },
         '/front-end/javascript/concept',
         '/front-end/javascript/value-copy',
         '/front-end/javascript/json',

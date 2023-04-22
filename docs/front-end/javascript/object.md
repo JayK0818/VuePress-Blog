@@ -159,8 +159,8 @@ const object_5 = Object.seal({player:'curry'})  // false
   可以通过使用toString() 方法来获取每个对象的类型。返回内部属性[[Class]]的值
 ```js
 const toString = Object.prototype.toString
-toString.call(new Date); // [object Date]
-toString.call(new String); // [object String]
+toString.call(new Date()); // [object Date]
+toString.call(new String()); // [object String]
 toString.call(Math); // [object Math]
 
 //Since JavaScript 1.8.5

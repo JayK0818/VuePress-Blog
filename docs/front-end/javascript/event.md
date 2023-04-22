@@ -248,7 +248,7 @@ immediate_button.addEventListener('click', function() {
 ```
 ## CustomEvent
 
-  使用CustomEvent 可以创建自定义事件。
+  使用CustomEvent 可以创建自定义事件。 此接口从父接口 Event 继承属性。
 ```js
 const event = new CustomEvent(type, {
   detail: null,  // default null

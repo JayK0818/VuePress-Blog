@@ -2,7 +2,9 @@
 
 ## Element.attributes
 
-  Element.attributes 属性返回该元素所有属性节点的一个实时集合.该集合是一个NamedNodeMap对象。
+  Element.attributes 属性返回该元素所有属性节点的一个实时集合.该集合是一个NamedNodeMap对象。不是Array,没有**Array**的方法。 可以使用
+  *for...of*枚举一个元素的所有属性
+
 ```html
 <div class='name' id='hello' data-id='123' style='color:red;'></div>
 
@@ -48,11 +50,51 @@ for(const [key,value] of Object.entries(attribute.attributes)){
 遍历attributes对象,每个attribute也是一个对象, 可以通过attribute.name 和 attribute.value 属性获取属性名和值.
 :::
 
+## Element.children
+
+  Element.children 是一个只读属性,返回一个Node的子*elements*, 是一个动态更新的 HTMLCollection。
+```js
+const children = nodeReference.children
+for (let i = 0; i < children.length; i++) {
+  console.log(children[i])
+  // 对nodeReference进行操作和更新,都会立即更新children的值
+}
+```
+
+## Element.classList
+
+  Element.classList是一个只读属性,返回一个元素**class**属性的动态 DOMTokenList**集合。相比将 *element.className*作为空格分隔
+  的字符串来使用, *classList*是一种更方便的访问元素的类别。
+
+1. add()
+2. remove()
+3. replace()
+4. toggle()
+
+```js
+element.classList.add('hello')
+element.classList.add('world')
+console.log(element.classList)
+// DOMTokenList(2) ['hello', 'world', value: 'hello world']
+
+element.classList.toggle('text')  //因为之前没有text类名
+// ['hello', 'world', 'text', value: 'hello world text']
+
+element.classList.toggle('text')
+// DOMTokenList(2) ['hello', 'world', value: 'hello world']
+
+element.classList.replace('foo', 'bar') // 将类名foo 替换为 bar
+
+element.className // 'hello world'
+```
+
+[MDN-Element.classList](https://developer.mozilla.org/zh-CN/docs/Web/API/DOMTokenList/replace)
+
 ## Element.hasAttribute()
 
   hasAttribute 返回一个布尔值，指示该元素是否包含有指定的属性（attribute）。
 
-## Element.clientWidth/Element.clientHeight
+## Element.clientWidth / Element.clientHeight
 
   内联元素以及没有CSS样式的元素的clientWidth属性值为0. Element.clientWidth属性表示元素的内部宽度。该属性包括
   内边距padding,但不包括边框border,外边距margin和垂直滚动条.
@@ -62,6 +104,25 @@ for(const [key,value] of Object.entries(attribute.attributes)){
   Element.clientWidth是一个只读属性。
 
   如果包含滚动条, clientHeight可以通过CSS height + CSS padding - 水平滚动条的高度来计算。
+
+## Element.clientLeft / Element.clientTop
+
+  Element.clientTop: 一个元素顶部边框的宽度。不包括顶部外边距或内边距。*clientTop*是只读的。
+  Element.clientLeft: 表示一个元素的左边框的宽度, *clientLeft* 不包括左外边距和左内边距。该属性是只读的
+
+:::danger
+如果只设置了边框宽度,没有设置边框样式,则返回0
+```css
+.box {
+  border-top-width: 10px;
+  border-left-width: 20px;
+}
+```
+```js
+box.clientLeft  // 0
+box.clientTop   // 0
+```
+:::
 
 ## Element.offsetParent
 
@@ -89,6 +150,7 @@ offsetParent为最近的table table cell 或根元素。当元素的display设�
   Element.scrollHeight 是一个只读属性, 返回一个元素内容高度的度量。包含由于溢出导致的视图中不可见的内容。
   (包含元素的padding,但不包含元素的border和margin)。
   同样, 该属性也会对值进行取整。
+
 :::tip
 该属性值会被四舍五入为一个整数。如果你需要一个小数值，可使用 element.getBoundingClientRect()。
 :::
@@ -248,4 +310,4 @@ observer_button.addEventListener('click', () => {
 observer.disconnect();
 ```
 
-  [MDN-MutationObserver]('https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver')
+[MDN-MutationObserver]('https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver')

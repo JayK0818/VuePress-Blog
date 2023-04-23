@@ -37,3 +37,24 @@ const remove_zero = (nums: number[]):void => {
   }
 }
 ```
+
+**解法二**
+
+  利用双指针, 将不为0的数都往前移动, 然后将慢指针后的数据都重置为0
+
+```ts
+const move_zero = (nums: number[]):void => {
+  let slow = 0
+  const length = nums.length
+  for (let i = 0; i < length; i++) {
+    if (nums[i] !== 0) {
+      nums[slow] = nums[i]
+      slow += 1
+    }
+  }
+  while (slow < length) {
+    nums[slow] = 0
+    slow += 1
+  }
+}
+```

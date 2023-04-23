@@ -220,7 +220,16 @@ const sidebar = {
     '/algorithm/yang-hui-triangle',
     '/algorithm/reverse-letter-of-word-in-string',
     '/algorithm/minimum-value-in-rotate-array',
-    '/algorithm/remove-array-zero-item'
+    '/algorithm/remove-array-zero-item',
+    // 二分查找相关题目
+    {
+      text: '二分查找',
+      children: [
+        '/algorithm/binary-search/concept',
+        '/algorithm/binary-search/find-target-index',
+        '/algorithm/binary-search/find-smallest-letter-bigger-than-target'
+      ]
+    }
   ]
 }
 

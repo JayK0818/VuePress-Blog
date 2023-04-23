@@ -21,17 +21,18 @@ const xhr = new XMLHttpRequest()
 | 3 | 下载中； responseText 属性已经包含部分数据。      |
 | 4 | 下载操作已完成。      |
 
-  **XMLHttpRequest.response**: 返回响应的正文。返回类型包括ArrayBuffer/Blob/Document...
+1. **XMLHttpRequest.response**: 返回响应的正文。返回类型包括ArrayBuffer/Blob/Document...
 :::tip
 取值类型取决于responseType的值, 可以设置responseType的值, 需要在open()初始化请求之后调用,并且要在调用send()
 发送请求之前
 :::
 
-  **XMLHttpRequest.responseType**: 用于指定响应中包含的数据类型。
+2. **XMLHttpRequest.responseType**: 用于指定响应中包含的数据类型。
     arraybuffer/blob/json/text
-  **XMLHttpRequest.timeout**: 代表一个请求在被自动终止前所消耗的毫秒数,默认值为0。意味着没有超时！
+3. **XMLHttpRequest.timeout**: 代表一个请求在被自动终止前所消耗的毫秒数,默认值为0。意味着没有超时！
 
-  **XMLHttpRequest.upload**: 返回一个XMLHttpRequestUpload对象，用来表示上传的进度。
+4. **XMLHttpRequest.upload**: 返回一个XMLHttpRequestUpload对象，用来表示上传的进度。
+
 ## 事件
 
 | 事件        | 描述           |
@@ -46,11 +47,10 @@ const xhr = new XMLHttpRequest()
 
 ## 方法
 
-  **XMLHttpRequest.abort()**            终止发送的请求
+1. **XMLHttpRequest.abort()**            终止发送的请求
+2. **XMLHttpRequest.open()**             初始化一个请求,该方法只能在JavaScript中使用
+3. **XMLHttpRequest.send()**             发送请求
 
-  **XMLHttpRequest.open()**             初始化一个请求,该方法只能在JavaScript中使用
-
-  **XMLHttpRequest.send()**             发送请求
 :::tip
   如果请求方法是GET或者HEAD,则应将请求主体设置为null
 :::

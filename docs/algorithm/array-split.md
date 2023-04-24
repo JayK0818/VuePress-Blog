@@ -21,7 +21,7 @@ const nums = [6,2,6,5,1,2]
 
 **解法一**
 
-  将数组从小到大排序, 没两个数一组, 使用Math.min()方法取最小的那个数 并求和
+  将数组从小到大排序, 每两个数一组, 使用Math.min()方法取最小的那个数 并求和
 ```ts
 const array_pair_sum = (nums: number[]): number => {
   const numbers = nums.slice().sort((a, b) => a - b)

@@ -58,3 +58,25 @@ const move_zero = (nums: number[]):void => {
   }
 }
 ```
+
+**解法三**
+
+```ts
+const move_zero = (nums: number[]): void => {
+  let i, j = -1
+  for(i = 0; i < array.length; i++) {
+    // 指向第一个0
+    if(array[i] === 0 && j < 0) {
+      j = i
+    }
+    if(array[i] !== 0 && j >= 0) {
+      if(array[j] === 0) {
+        const n = array[i]
+        array[i] = array[j]
+        array[j] = n
+      }
+      j++
+    }
+  }
+}
+```

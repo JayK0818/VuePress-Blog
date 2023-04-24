@@ -227,7 +227,10 @@ const sidebar = {
       children: [
         '/algorithm/binary-search/concept',
         '/algorithm/binary-search/find-target-index',
-        '/algorithm/binary-search/find-smallest-letter-bigger-than-target'
+        '/algorithm/binary-search/find-smallest-letter-bigger-than-target',
+        '/algorithm/binary-search/negative-number-count-in-grid',
+        '/algorithm/binary-search/find-first-last-index',
+        '/algorithm/binary-search/square-root-of-number'
       ]
     }
   ]

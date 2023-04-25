@@ -219,7 +219,6 @@ const sidebar = {
     '/algorithm/min-sub-array-length',
     '/algorithm/yang-hui-triangle',
     '/algorithm/reverse-letter-of-word-in-string',
-    '/algorithm/minimum-value-in-rotate-array',
     '/algorithm/remove-array-zero-item',
     // 二分查找相关题目
     {
@@ -230,7 +229,8 @@ const sidebar = {
         '/algorithm/binary-search/find-smallest-letter-bigger-than-target',
         '/algorithm/binary-search/negative-number-count-in-grid',
         '/algorithm/binary-search/find-first-last-index',
-        '/algorithm/binary-search/square-root-of-number'
+        '/algorithm/binary-search/square-root-of-number',
+        '/algorithm/binary-search/minimum-value-in-rotate-array',
       ]
     }
   ]

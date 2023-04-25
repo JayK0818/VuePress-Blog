@@ -56,3 +56,25 @@ const find_min = (nums: number[]) => {
   return nums[end]
 }
 ```
+
+# 寻找旋转排序数组中的最小值 II
+
+  在上题的基础之上, 数组中元素可能会重复。它原来是一个升序排列的数组, 请找出并返回数组中的 **最小元素**。
+
+```ts
+const find_min = (nums: number[]): number => {
+  let start = 0
+  let right = nums.length - 1
+  while (start < right) {
+    const mid = Math.floor((start + right) / 2)
+    if (nums[mid] < nums[right]) {
+      right = mid
+    } else if (nums[mid] > nums[right]) {
+      start = mid + 1
+    } else {
+      right -= 1
+    }
+  }
+  return right
+}
+```

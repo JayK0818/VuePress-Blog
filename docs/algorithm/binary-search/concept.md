@@ -27,3 +27,16 @@ const binary_search = (nums: number[], target: number) => {
 }
 ```
   模板一是二分查找最基础和最基本的形式。
+
+- 初始条件: **left = 0, right = length - 1**
+- 终止: **left > right**
+- 向左查找: **right = mid - 1**
+- 向右查找: **left = mid + 1**
+
+## 模板二
+
+  模板二十二分查找的高级模板, 它用于需要访问数组中 当前索引及其直接右邻居索引的元素或条件。
+- 初始条件: **left = 0, right = length**
+- 终止: **left === right**
+- 向左查找: **right = mid**
+- 向右查找: **left = mid + 1**

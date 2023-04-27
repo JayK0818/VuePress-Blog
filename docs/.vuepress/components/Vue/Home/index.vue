@@ -79,7 +79,7 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', listen_resize, false)
 })
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .canvas{
   position: fixed;
   left: 0;

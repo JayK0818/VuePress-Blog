@@ -126,6 +126,14 @@ document.addEventListener("visibilitychange", function() {
   }
 });
 ```
+## window.load
+
+  load事件在整个页面及其所有以来资源如样式表和图片都完成加载时触发。它与**DOMContentLoaded** 不同,后者只要页面DOM加载完成就触发,
+  无需等待依赖资源的加载。
+:::tip
+所有以 *load* 命名的事件都不会传递到 *window*上。要在 *window* 上捕获 *load* 事件, 相关的 *load* 事件必须直接绑定到 *window* 上。
+:::
+
 ## window.devicePixelRatio
 
   window接口的devicePixelRatio返回当前设备的物理分辨率和CSS像素分辨率之比。

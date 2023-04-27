@@ -30,8 +30,17 @@ import ParentLayout from '@vuepress/theme-default/layouts/Layout.vue'
     }
   }
   i {
+    font-style: normal;
     padding:0 10px;
     color: rgba(0, 0, 0,.4);
+  }
+}
+html.dark {
+  .page-footer {
+    color: rgba(255, 255, 255, .75);
+  }
+  i {
+    color: rgba(255, 255, 255, .75);
   }
 }
 </style>

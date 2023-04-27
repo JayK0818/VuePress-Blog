@@ -230,7 +230,7 @@ const sidebar = {
         '/algorithm/binary-search/negative-number-count-in-grid',
         '/algorithm/binary-search/find-first-last-index',
         '/algorithm/binary-search/square-root-of-number',
-        '/algorithm/binary-search/minimum-value-in-rotate-array',
+        '/algorithm/binary-search/rotate-array',
         '/algorithm/binary-search/guess-number',
         '/algorithm/binary-search/first-bad-version'
       ]

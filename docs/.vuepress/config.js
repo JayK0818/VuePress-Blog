@@ -19,7 +19,7 @@ function resolve(dirname,directory,filename){
 export default {
   lang: 'zh-CN',
   title: '牧童的博客',
-  description: 'Vuepress,JavaScript,Node.js,React.js,Vue.js,前端开发',
+  description: 'Vuepress,JavaScript,Node.js,React.js,Vue.js,Mongodb,Nest,Koa,Express前端开发',
   head:[
     ['link', { rel: 'icon', href:'/code.png' } ]
   ],

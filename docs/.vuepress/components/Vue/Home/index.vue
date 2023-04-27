@@ -17,11 +17,16 @@ const router = useRouter()
 onMounted(() => {
   const width = window.innerWidth
   const height = window.innerHeight
+  const rate = window.devicePixelRatio
   if(!canvas.value) return
-  canvas.value.width = width
-  canvas.value.height = height
+  canvas.value.width = Math.round(width * rate)
+  canvas.value.height = Math.round(height * rate)
+  canvas.value.style.width = `${width}px`
+  canvas.value.style.height = `${height}px`
   window_width.value = width
   window_height.value = height
+  const ctx = canvas.value.getContext('2d')
+  ctx?.scale(rate, rate)
   timer.value = window.setInterval(() => {
     draw_text()
   }, 1000)
@@ -40,14 +45,14 @@ const draw_text = () => {
   if(!ctx) return
   ctx.clearRect(0, 0, canvas.value.width, canvas.value.height)
   const date_string = get_date_string()
-  ctx.font = "24px serif"
+  ctx.font = "1.6rem serif"
   ctx.fillStyle = '#fff'
   ctx.textAlign = 'center'
-  ctx.fillText(date_string, window_width.value/2, window_height.value/2- 10)
-  ctx.font = '32px serif';
+  ctx.fillText(date_string, window_width.value/2, window_height.value/2- 20)
+  ctx.font = '1.6rem serif';
   const time_string = get_time_string()
   ctx.fillText(time_string, window_width.value/2, window_height.value/2 + 40)
-  ctx.font = '48px serif';
+  ctx.font = '2.4rem serif';
   ctx.fillText('What next to do ?', window_width.value/2, window_height.value/2 + 100)
 }
 const click = () => {

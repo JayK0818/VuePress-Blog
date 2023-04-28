@@ -232,7 +232,9 @@ const sidebar = {
         '/algorithm/binary-search/square-root-of-number',
         '/algorithm/binary-search/rotate-array',
         '/algorithm/binary-search/guess-number',
-        '/algorithm/binary-search/first-bad-version'
+        '/algorithm/binary-search/first-bad-version',
+        '/algorithm/binary-search/find-max-value',
+        '/algorithm/binary-search/implement-pow'
       ]
     }
   ]

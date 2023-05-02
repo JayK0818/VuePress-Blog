@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import Todo from './components/Todo.vue'
-import { ref } from 'vue'
+import { ref, onBeforeUnmount } from 'vue'
 import bus from './utils/bus'
 
 const life_cycles = ref<string[]>([])
@@ -26,6 +26,12 @@ const toggle = () => {
   bus.emit('clear')
   visible.value = !visible.value
 }
+
+onBeforeUnmount(() => {
+  bus.off('update')
+  bus.off('clear')
+})
+
 </script>
 
 <style lang="scss" scoped>

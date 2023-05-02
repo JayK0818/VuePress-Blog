@@ -1,21 +1,30 @@
 <template>
-  <ParentLayout>
-    <template #page-bottom>
-      <div class="page-footer">
-        <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">浙ICP备20001796号-1</a>
-        <div style="padding-top: 8px;">
-          <span>Powred by <a href="https://v2.vuepress.vuejs.org/zh/" target="_blank">VuePress v2.0.0</a></span>
-          <i>|</i>
-          <span><a href="https://www.naiveui.com/zh-CN/os-theme" target="_blank">Naive UI v2.34.3</a></span>
+  <n-config-provider :theme-overrides="themeOverrides">
+    <ParentLayout>
+      <template #page-bottom>
+        <div class="page-footer">
+          <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">浙ICP备20001796号-1</a>
+          <div style="padding-top: 8px;">
+            <span>Powred by <a href="https://v2.vuepress.vuejs.org/zh/" target="_blank">VuePress v2.0.0</a></span>
+            <i>|</i>
+            <span><a href="https://www.naiveui.com/zh-CN/os-theme" target="_blank">Naive UI v2.34.3</a></span>
+          </div>
         </div>
-      </div>
-    </template>
-  </ParentLayout>
+      </template>
+    </ParentLayout>
+  </n-config-provider>
 </template>
 
 <script lang="ts" setup>
 // @ts-ignore
 import ParentLayout from '@vuepress/theme-default/layouts/Layout.vue'
+import { NConfigProvider, GlobalThemeOverrides } from 'naive-ui'
+
+const themeOverrides:GlobalThemeOverrides = {
+  common: {
+    "borderRadius": "0"
+  }
+}
 </script>
 
 <style lang="scss" scoped>

@@ -13,7 +13,6 @@ import TodoList from './TodoList.vue'
 import type { TodoProps } from '../interface/todo-interface.ts'
 import bus from '../utils/bus'
 
-
 export default defineComponent({
   data() {
     return {

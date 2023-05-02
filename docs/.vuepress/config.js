@@ -41,6 +41,7 @@ export default {
         VuePropFather: resolve('Vue', 'Prop', 'Father'),
         VueEmitFather: resolve('Vue', 'Emit', 'Father'),
         VueProvideFather: resolve('Vue', 'Provide', 'Father'),
+        VueLifeCycle: resolve('Vue', 'LifeCycle', 'index'),
         CssFloat: resolve('CSS', 'Float','Float'),
         CssFloatLayout: resolve('CSS', 'Float' ,'FloatLayout'),
         CssFloatText: resolve('CSS', 'Float', 'FloatText'),

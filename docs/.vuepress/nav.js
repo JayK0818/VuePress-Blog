@@ -127,6 +127,7 @@ const sidebar = {
       collapsable: true,
       children: [
         '/front-end/vue/data-transfer',
+        '/front-end/vue/lifecycle',
         '/front-end/vue/migration',
         '/front-end/vue/pinia',
         '/front-end/vue/webpack'

@@ -12,6 +12,7 @@
 
 <script lang="ts">
 import { defineComponent, computed, provide, ref } from 'vue'
+// @ts-ignore
 import Child from './Child.vue'
 
 export default defineComponent({

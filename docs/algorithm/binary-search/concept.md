@@ -44,7 +44,7 @@ const binary_search = (nums: number[], target: number) => {
 ## 模板三
 
   用于搜索需要访问当前索引及其在数组中的直接左右邻居索引的元素或条件。
-- 初始条件 **left = 0, right = leggth - 1**
+- 初始条件 **left = 0, right = length - 1**
 - 终止: **left + 1 === right**
 - 向左查找 **right = mid**
 - 向右查找 **left = mid**

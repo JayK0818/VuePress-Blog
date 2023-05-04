@@ -236,7 +236,8 @@ const sidebar = {
         '/algorithm/binary-search/first-bad-version',
         '/algorithm/binary-search/find-max-value',
         '/algorithm/binary-search/implement-pow',
-        '/algorithm/binary-search/valid-sqrt-number'
+        '/algorithm/binary-search/valid-sqrt-number',
+        '/algorithm/binary-search/closest-the-number-of-array'
       ]
     }
   ]

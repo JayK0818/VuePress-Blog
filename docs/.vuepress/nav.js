@@ -239,6 +239,12 @@ const sidebar = {
         '/algorithm/binary-search/valid-sqrt-number',
         '/algorithm/binary-search/closest-the-number-of-array'
       ]
+    },
+    {
+      text: '哈希表',
+      children: [
+        '/algorithm/hash/has-repeat-item'
+      ]
     }
   ]
 }

@@ -243,7 +243,10 @@ const sidebar = {
     {
       text: '哈希表',
       children: [
-        '/algorithm/hash/has-repeat-item'
+        '/algorithm/hash/has-repeat-item',
+        '/algorithm/hash/appear-once-in-array',
+        '/algorithm/hash/happy-number',
+        '/algorithm/hash/is-isomorphism-string'
       ]
     }
   ]

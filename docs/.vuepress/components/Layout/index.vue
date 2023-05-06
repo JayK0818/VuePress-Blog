@@ -18,7 +18,8 @@
 <script lang="ts" setup>
 // @ts-ignore
 import ParentLayout from '@vuepress/theme-default/layouts/Layout.vue'
-import { NConfigProvider, GlobalThemeOverrides } from 'naive-ui'
+import type { GlobalThemeOverrides } from 'naive-ui'
+import { NConfigProvider } from 'naive-ui'
 
 const themeOverrides:GlobalThemeOverrides = {
   common: {

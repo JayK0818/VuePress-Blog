@@ -206,7 +206,6 @@ const sidebar = {
     '/algorithm/substrings-with-concat',
     '/algorithm/array-arrangement',
     '/algorithm/longest-valid-brackets',
-    '/algorithm/search-first-last-index',
     '/algorithm/search-insert-index',
     '/algorithm/valid-sudoku',
     '/algorithm/array-middle-index',
@@ -246,7 +245,11 @@ const sidebar = {
         '/algorithm/hash/has-repeat-item',
         '/algorithm/hash/appear-once-in-array',
         '/algorithm/hash/happy-number',
-        '/algorithm/hash/is-isomorphism-string'
+        '/algorithm/hash/is-isomorphism-string',
+        '/algorithm/hash/min-index-sum-of-two-array',
+        '/algorithm/hash/first-unique-character-in-string',
+        '/algorithm/hash/intersection-of-two-array',
+        '/algorithm/hash/group-anagram'
       ]
     }
   ]

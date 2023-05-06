@@ -104,3 +104,28 @@ const find_first_last_position = (nums: number[], target: number): number[] => {
   return [start_idx, end_idx]
 }
 ```
+
+**解法三**
+
+  利用两次for循环 分别从 头部 和 尾部开始遍历, 找到值 等于 target 的 记录下标 并跳出循环。
+
+```ts
+const search_first_last_index = (nums: number[], target:number): number[] => {
+  const result: number[] = [-1, -1]
+  const length = nums.length
+  if (length === 0) return result
+  for (let i = 0; i < length; i++) {
+    if (nums[i] === target) {
+      result[0] = i;
+      break 
+    }
+  }
+  for (let i = length - 1; i >=0; i--) {
+    if (nums[i] === target) {
+      result[1] = i
+      break
+    }
+  }
+  return result
+}
+```

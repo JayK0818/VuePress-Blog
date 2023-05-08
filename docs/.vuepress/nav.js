@@ -258,6 +258,12 @@ const sidebar = {
       children: [
         '/algorithm/tree/concept'
       ]
+    },
+    {
+      text: '队列&栈',
+      children: [
+        '/algorithm/queue-stack/circle-queue'
+      ]
     }
   ]
 }

@@ -249,7 +249,14 @@ const sidebar = {
         '/algorithm/hash/min-index-sum-of-two-array',
         '/algorithm/hash/first-unique-character-in-string',
         '/algorithm/hash/intersection-of-two-array',
-        '/algorithm/hash/group-anagram'
+        '/algorithm/hash/group-anagram',
+        '/algorithm/hash/top-k-frequent-number'
+      ]
+    },
+    {
+      text: '二叉树',
+      children: [
+        '/algorithm/tree/concept'
       ]
     }
   ]

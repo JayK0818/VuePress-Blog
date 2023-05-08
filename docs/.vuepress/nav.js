@@ -47,7 +47,7 @@ const navbar = [
       }
     ]
   },
-  { text: '算法', link: '/algorithm/two-number-sum' }
+  { text: '算法', link: '/algorithm/longest-substring-without-repeat' }
 ]
 
 /**
@@ -180,9 +180,7 @@ const sidebar = {
     }
   ],
   algorithm: [
-    '/algorithm/add-two-number',
     '/algorithm/longest-substring-without-repeat',
-    '/algorithm/middle-number-of-two-array',
     '/algorithm/longest-reverse-substring',
     '/algorithm/int-reverse',
     '/algorithm/string-to-number',
@@ -198,32 +196,34 @@ const sidebar = {
     '/algorithm/substrings-with-concat',
     '/algorithm/array-arrangement',
     '/algorithm/longest-valid-brackets',
-    '/algorithm/valid-sudoku',
     '/algorithm/matrix-rotate',
     '/algorithm/zero-matrix',
     '/algorithm/reverse-string-word',
     '/algorithm/implement-strStr',
     '/algorithm/max-consecutive-ones',
     '/algorithm/min-sub-array-length',
-    '/algorithm/yang-hui-triangle',
     '/algorithm/reverse-letter-of-word-in-string',
     // 二分查找相关题目
     {
       text: '数组',
       children: [
-        '/algorithm/two-number-sum',
-        '/algorithm/combine-array-range',
-        '/algorithm/four-number-sum',
-        '/algorithm/water-container',
-        '/algorithm/three-number-sum',
-        '/algorithm/closest-three-number-sum',
-        '/algorithm/longest-string-prefix',
-        '/algorithm/search-insert-index',
-        '/algorithm/array-middle-index',
-        '/algorithm/remove-repeat-item',
-        '/algorithm/remove-array-zero-item',
-        '/algorithm/array-split',
-        '/algorithm/remove-specified-element'
+       '/algorithm/array/add-two-number',
+        '/algorithm/array/two-number-sum',
+        '/algorithm/array/combine-array-range',
+        '/algorithm/array/four-number-sum',
+        '/algorithm/array/water-container',
+        '/algorithm/array/three-number-sum',
+        '/algorithm/array/closest-three-number-sum',
+        '/algorithm/array/longest-string-prefix',
+        '/algorithm/array/search-insert-index',
+        '/algorithm/array/array-middle-index',
+        '/algorithm/array/remove-repeat-item',
+        '/algorithm/array/remove-array-zero-item',
+        '/algorithm/array/array-split',
+        '/algorithm/array/middle-number-of-two-array',
+        '/algorithm/array/remove-specified-element',
+        '/algorithm/array/yang-hui-triangle',
+        '/algorithm/array/valid-sudoku',
       ]
     },
     {

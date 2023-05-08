@@ -100,8 +100,8 @@ const triangle = (num: number): number[][] => {
   return array
 }
 ```
-
-## 杨辉三角 II
+å
+# 杨辉三角 II
 
   对上面的题的一个引申。
   给定一个非负索引 **rowIndex**, 返回 *[杨辉三角]* 的第 **rowIndex** 行。

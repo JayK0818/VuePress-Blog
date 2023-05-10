@@ -68,3 +68,46 @@ class CircularQueue {
   }
 }
 ```
+
+# 用栈实现队列
+
+  请你仅使用两个栈实现 先入先出队列。队列应该支持一般队列支持的所有操作 (push, pop, peek, empty)。
+
+- push(x) 将元素 *x* 推到队列的末尾
+- pop()   从队列的开头移除并返回元素
+- peek()  返回队列开头的元素
+- empty() 如果队列为空 返回 *true*, 否则 返回 *false*
+
+```ts
+class MyQueue {
+  public queue:any[] = []
+  public stack:any[] = []
+  constructor() {
+    this.queue = []
+    this.stack = []
+  }
+  push(x: number): void {
+    this.queue.push(x)
+  }
+  pop(): number {
+    if (!this.stack.length) {
+      // 将队列中的数据倒序 排列到栈中, 从栈中返回最后一个数据 即为 最开始进入队列中的数据
+      for (let i = this.queue.length - 1; i >= 0; i--) {
+        this.stack.push(this.queue[i])
+      }
+      this.queue = []
+    }
+    return this.stack.pop()
+  }
+  peek(): number {
+    // 如果此时栈中有数据, 返回它最后一个数据, 否则返回队列中第一个数据
+    if (this.stack.length) {
+      return this.stack[this.stack.length-1]
+    }
+    return this.queue[0]
+  }
+  empty(): boolean {
+    return this.stack.length === 0 && this.queue.length === 0
+  }
+}
+```

@@ -189,7 +189,6 @@ const sidebar = {
     '/algorithm/roman-to-number',
     '/algorithm/phone-number-combine',
     '/algorithm/remove-nth-node-from-list',
-    '/algorithm/valid-brackets',
     '/algorithm/create-brackets',
     '/algorithm/first-match-string-index',
     '/algorithm/devide-two-number',
@@ -267,7 +266,11 @@ const sidebar = {
     {
       text: '队列&栈',
       children: [
-        '/algorithm/queue-stack/circle-queue'
+        '/algorithm/queue-stack/circle-queue',
+        '/algorithm/queue-stack/valid-brackets',
+        '/algorithm/queue-stack/temperature-every-day',
+        '/algorithm/queue-stack/evaluate-reverse-polish-expression',
+        // '/algorithm/queue-stack/square-number'
       ]
     }
   ]

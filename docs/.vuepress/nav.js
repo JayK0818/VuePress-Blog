@@ -72,7 +72,7 @@ const sidebar = {
     },
     {
       text: 'JavaScript',
-      collapsable: false,
+      collapsable: true,
       children: [
         '/front-end/javascript/bom',
         '/front-end/javascript/event',
@@ -106,7 +106,7 @@ const sidebar = {
         '/front-end/javascript/element',
         '/front-end/javascript/web-component',
         '/front-end/javascript/object',
-        '/front-end/javascript/sort'
+        // '/front-end/javascript/sort'
       ]
     },
     {
@@ -144,6 +144,12 @@ const sidebar = {
         '/front-end/react/react-redux',
         '/front-end/react/redux-toolkit',
         '/front-end/react/mobx'
+      ]
+    },
+    {
+      text: 'HTTP',
+      children: [
+        '/front-end/http/concept'
       ]
     }
   ],
@@ -270,6 +276,7 @@ const sidebar = {
         '/algorithm/queue-stack/valid-brackets',
         '/algorithm/queue-stack/temperature-every-day',
         '/algorithm/queue-stack/evaluate-reverse-polish-expression',
+        '/algorithm/queue-stack/decode-string'
         // '/algorithm/queue-stack/square-number'
       ]
     }

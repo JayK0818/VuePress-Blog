@@ -114,6 +114,18 @@ http.createServer(function(req, res) {
   console.log('app listening at port 3000')
 })
 ```
+  HTTP重定向不是定义重定向的唯一方法, 还有两个:
+1. 借助HTML的 &lt;meta&gt; 元素的HTML重定向机制
+2. 借助 **DOM** 的 JavaScript 重定向机制。
+
+```html
+<head>
+  <meta http-equiv="Refresh" content="0; URL=http://example.com/" />
+</head>
+```
+```js
+window.location = 'https://example.com/'
+```
 
 - 400 **Bad Request** 请求报文中存在语法错误。
 - 401 **Unauthorized** 缺乏目标资源要求的身份验证凭证

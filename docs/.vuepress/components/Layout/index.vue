@@ -1,5 +1,5 @@
 <template>
-  <n-config-provider :theme-overrides="themeOverrides">
+  <!-- <n-config-provider :theme-overrides="themeOverrides"> -->
     <ParentLayout>
       <template #page-bottom>
         <div class="page-footer">
@@ -12,14 +12,14 @@
         </div>
       </template>
     </ParentLayout>
-  </n-config-provider>
+  <!-- </n-config-provider> -->
 </template>
 
 <script lang="ts" setup>
 // @ts-ignore
 import ParentLayout from '@vuepress/theme-default/layouts/Layout.vue'
 import type { GlobalThemeOverrides } from 'naive-ui'
-import { NConfigProvider } from 'naive-ui'
+// import { NConfigProvider } from 'naive-ui'
 
 const themeOverrides:GlobalThemeOverrides = {
   common: {

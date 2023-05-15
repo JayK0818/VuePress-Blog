@@ -26,6 +26,10 @@ const navbar = [
       {
         text: 'React',
         link: '/front-end/react/basis'
+      },
+      {
+        text: 'HTTP',
+        link: '/front-end/http/concept'
       }
     ]
   },
@@ -149,7 +153,8 @@ const sidebar = {
     {
       text: 'HTTP',
       children: [
-        '/front-end/http/concept'
+        '/front-end/http/concept',
+        '/front-end/http/cache-control'
       ]
     }
   ],

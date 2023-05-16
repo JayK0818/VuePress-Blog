@@ -147,7 +147,7 @@ const sidebar = {
         '/front-end/react/redux',
         '/front-end/react/react-redux',
         '/front-end/react/redux-toolkit',
-        '/front-end/react/mobx'
+        // '/front-end/react/mobx'
       ]
     },
     {

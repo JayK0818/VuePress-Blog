@@ -33,7 +33,7 @@
 - 连接可以复用，节省了多次打开 TCP 连接加载网页文档资源的时间.在HTTP/1.1中, 所有的连接默认都是持久连接。
 - 增加管线化技术，允许在第一个应答被完全发送之前就发送第二个请求，以降低通信延迟。
 - 引入额外的缓存控制机制
-- 支持响应分块
+- 支持响应分块(chunked: 数据以一系列分块的方式进行发送。)
 - 引入内容协商机制，包括语言、编码、类型等。并允许客户端和服务器之间约定以最合适的内容进行交换
 - 凭借 **Host** 标头，能够使不同域名配置在同一个 IP 地址的服务器上
 
@@ -74,6 +74,49 @@
 - compress (UNIX系统的标准压缩)
 - deflate (zlib)
 - identity (不进行编码)
+
+## HTTP首部字段
+
+- Accept  告知服务器 客户端 可以处理的内容类型, 这种内容类型用 **MIME类型** 来表示。使用 **Content-Type** 通知客户端它的选择
+  MIME 类型是一种标准用来表示文档、文件或字节流的性质和格式。type/subtype
+
+- Date    创建报文的日期
+- Accept-Charset  客户端可以处理的字符集类型。服务端使用 **Content-Type** 通知客户端它的选择。
+- Accept-Encoding 客户端可以处理的内容编码方式 - 通常是某种压缩方法 **Content-Encoding** 中通知客户端该选择.
+
+```js
+if (req.url === '/main.js') {
+  const buffer = fs.readFileSync('./main.js')
+  const gzip = zlib.gzipSync(buffer)
+  res.writeHead(200, {
+    'Content-Type': 'text/javascript',
+    'Content-Encoding': 'gzip', // 告知前端压缩的方式, 前端会将压缩的内容解码
+    // 压缩后 传输的内容从 5.2k ----> 减少到321B
+  })
+  res.end(gzip)
+}
+```
+- Content-Length  实体主体的大小
+- Content-Type    实体媒体类型
+- Location        客户端重定向至指定的URI
+- Connection      1. 控制不再转发给代理的首部字段 / 2. 管理持久连接
+- Transfer-Encoding 报文主体采用的编码方式
+- Host            请求头指明了请求将要发送到的服务器主机名和端口号。**Host**首部字段在 *HTTP/1.1* 规范内是唯一一个必须被包含在请求内的首部字段。
+- Referer         当前请求页面的来源页面的地址。referer 实际上是 **referrer** 误拼写。
+- Etag            资源的特定版本的标识符。可以将资源以字符串形式做唯一性标识的方式。
+
+[Etag 强检测与弱检测](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Conditional_requests#%E9%AA%8C%E8%AF%81%E5%99%A8)
+
+:::tip
+避免'空中碰撞'。在 **Etag** 和 **If-Match** 头部的帮助下，可以检测到 **空中碰撞** 的编辑冲突。例如, 当编辑 MDN时, 当前的内容 wiki 内容被散列, 
+并在响应中放入 Etag
+```js
+{
+  ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
+}
+```
+将更改保存到 wiki 页面时, POST 请求将包含有 ETag 值的 **If-Match** 头来检查是否为最新版本。如果哈希值不匹配, 则意味着文档已经被编辑。
+:::
 
 ## HTTP状态码
 

@@ -73,3 +73,9 @@ http.createServer(function(req, res) {
   阻止在没有重新验证的情况下重用响应。
 
   如果不希望将响应存储在任何缓存中, 使用 **no-store**。
+
+## Vary
+
+  区分响应的本质是URL, 首部字段 **Vary** 可对缓存进行控制。
+
+[Cache-Control/Vary](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching#vary_%E5%93%8D%E5%BA%94)

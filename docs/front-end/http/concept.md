@@ -96,7 +96,21 @@ if (req.url === '/main.js') {
   res.end(gzip)
 }
 ```
-- Content-Length  实体主体的大小
+- Content-Length  实体主体的大小 (对实体主体进行内容编码传输时, 不能再使用Content-Length)首部字段
+```js
+const app = http.createServer(function(req, res) {
+  if (req.url === '/main.js') {
+    const buffer = fs.readFileSync('./main.js')
+    const gzip = zlib.gzipSync(buffer)
+    res.writeHead(200, {
+      'Content-Type': 'text/javascript',
+      'Content-Encoding': 'gzip',
+      'Content-Length': 20  // R_CONTENT_LENGTH_MISMATCH 200 (OK) 压缩的时候 使用Content-Length 会报错
+    })
+    res.end(gzip)
+  }
+})
+```
 - Content-Type    实体媒体类型
 - Location        客户端重定向至指定的URI
 - Connection      1. 控制不再转发给代理的首部字段 / 2. 管理持久连接
@@ -117,6 +131,12 @@ if (req.url === '/main.js') {
 ```
 将更改保存到 wiki 页面时, POST 请求将包含有 ETag 值的 **If-Match** 头来检查是否为最新版本。如果哈希值不匹配, 则意味着文档已经被编辑。
 :::
+
+  HTTP首部字段是可以自动扩展的。在WEB服务器和浏览器的应用上, 会出现各种非标准的首部字段。
+
+- X-Frame-Options 响应首部, 用于控制网站内容在其他Web网站的Frame标签内的显示问题。
+  1. DENY         拒绝
+  2. SAMEORIGIN   同源域名下的页面
 
 ## HTTP状态码
 

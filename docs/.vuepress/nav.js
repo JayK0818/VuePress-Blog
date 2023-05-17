@@ -154,7 +154,8 @@ const sidebar = {
       text: 'HTTP',
       children: [
         '/front-end/http/concept',
-        '/front-end/http/cache-control'
+        '/front-end/http/cache-control',
+        '/front-end/http/cookie'
       ]
     }
   ],

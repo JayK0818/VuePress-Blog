@@ -28,6 +28,10 @@ const navbar = [
         link: '/front-end/react/basis'
       },
       {
+        text: 'Webpack',
+        link: '/front-end/webpack/getting-start'
+      },
+      {
         text: 'HTTP',
         link: '/front-end/http/concept'
       }
@@ -133,8 +137,7 @@ const sidebar = {
         '/front-end/vue/data-transfer',
         '/front-end/vue/lifecycle',
         '/front-end/vue/migration',
-        '/front-end/vue/pinia',
-        '/front-end/vue/webpack'
+        '/front-end/vue/pinia'
       ]
     },
     {
@@ -147,7 +150,15 @@ const sidebar = {
         '/front-end/react/redux',
         '/front-end/react/react-redux',
         '/front-end/react/redux-toolkit',
-        // '/front-end/react/mobx'
+      ]
+    },
+    {
+      text: 'Webpack',
+      children: [
+        '/front-end/webpack/getting-start',
+        '/front-end/webpack/loader',
+        '/front-end/webpack/plugin',
+        '/front-end/webpack/environment'
       ]
     },
     {

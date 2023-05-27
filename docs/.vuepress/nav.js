@@ -167,7 +167,8 @@ const sidebar = {
         '/front-end/http/concept',
         '/front-end/http/cache-control',
         '/front-end/http/cookie',
-        '/front-end/http/cors'
+        '/front-end/http/cors',
+        '/front-end/http/csp'
       ]
     }
   ],

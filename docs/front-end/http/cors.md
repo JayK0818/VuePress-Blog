@@ -4,9 +4,16 @@
   出于安全性, 浏览器限制脚本内发起的跨源HTTP请求。
   跨源资源共享标准新增了一组**HTTP标头**字段,允许服务器声明哪些源站通过浏览器有权访问哪些资源。
 
+  **CORS** 请求只能用于 HTTP 或 HTTPS URL方案。
+
 ## Access-Control-Allow-Origin
 
   允许跨站访问的请求源。但是当响应的附带身份凭证的请求时, 服务端必须明确 **Access-Control-Allow-Origin** 的值 不能使用通配符 * 。
+
+  如果响应包含多个 **Access-Control-Allow-Origin** 标头, 也会发生此错误。确保响应中只有一个这样的标头,并且它只能包含一个单独的源。
+:::danger
+Response to preflight request doesn't pass access control check: The 'Access-Control-Allow-Origin' header contains multiple values 'http://192.168.0.141:5600,http://192.168.0.141:5500', but only one is allowed.
+:::
 
 ```js
 // 简单的 server

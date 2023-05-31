@@ -1,8 +1,8 @@
 <template>
   <canvas ref="canvas" class="canvas" @click='click'></canvas>
-<!--   <div class="footer">
+  <div class="footer">
     <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">浙ICP备20001796号-1</a>
-  </div> -->
+  </div>
 </template>
 
 <script lang='ts' setup>
@@ -20,6 +20,7 @@ const window_height = ref<number>(0)
 const router = useRouter()
 
 onMounted(() => {
+  document.title = '牧童的博客 - 我的随笔'
   set_canvas_size()
   timer.value = window.setInterval(() => {
     draw_text()

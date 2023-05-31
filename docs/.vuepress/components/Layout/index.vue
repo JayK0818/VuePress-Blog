@@ -19,8 +19,9 @@
 // @ts-ignore
 import ParentLayout from '@vuepress/theme-default/layouts/Layout.vue'
 import type { GlobalThemeOverrides } from 'naive-ui'
-// import { NConfigProvider } from 'naive-ui'
-
+import Naive from 'naive-ui'
+// @ts-ignore
+const { NConfigProvider } = Naive
 const themeOverrides:GlobalThemeOverrides = {
   common: {
     "borderRadius": "0"

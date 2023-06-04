@@ -133,6 +133,7 @@ const nodeList = elementNodeReference.childNodes
 <script>
   const nodeList = document.querySelector('#node-list')
   const childNodes = nodeList.childNodes
+  const text = document.querySelectorAll('#node-list .text')
 
   button.addEventListener('click', function() {
     const span = document.createElement('span')

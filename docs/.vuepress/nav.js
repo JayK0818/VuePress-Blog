@@ -114,7 +114,6 @@ const sidebar = {
         '/front-end/javascript/element',
         '/front-end/javascript/web-component',
         '/front-end/javascript/object',
-        // '/front-end/javascript/sort'
       ]
     },
     {
@@ -145,8 +144,9 @@ const sidebar = {
       children: [
         '/front-end/react/basis',
         '/front-end/react/hook',
+        '/front-end/react/hoc',
         '/front-end/react/create-react-app',
-        '/front-end/react/react-router-dom',
+        // '/front-end/react/react-router-dom',
         '/front-end/react/redux',
         '/front-end/react/react-redux',
         '/front-end/react/redux-toolkit',

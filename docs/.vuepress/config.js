@@ -25,7 +25,7 @@ export default {
   ],
   plugins: [
     shikiPlugin({
-      theme: 'monokai'
+      theme: 'Monokai'
     }),
     registerComponentsPlugin({
       components: {

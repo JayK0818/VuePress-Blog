@@ -352,3 +352,116 @@ function compose() {
   }
 }
 ```
+
+## Redux性能优化
+
+  使用函数式编程 对reducer做一层拦截, 判断每个reducer的执行时间, 如果某个reducer执行时间特别长, 那么可以查看代码是否有逻辑对其进行优化。
+```js
+// 传递给createStore中的reducers是一个对象, 对 对象进行遍历即可
+const logShowReducers = (reducers) => {
+  Object.keys(reducers).forEach(name => {
+    const originalReducer = reducers[name]
+    // 每个reducer接受state和action
+    reducers[name] = (state, action) => {
+      const start = Date.now()
+      const result = originalReducer(state, action)
+      console.log(`time-diff ${Date.now() - start}`)
+      return result
+    }
+  })
+  return combineReducers(reducers)
+}
+const store = createStore(logShowReducers)
+```
+
+**1**
+  每个组件只获取当前组件需要的数据。如果返回整个state, 那么当其他组件更新store数据时, 获取整个store数据的组件也会重新渲染。
+```jsx
+const store = createStore(combineReducers({
+  counter: counterReducer,
+  todos: todoReducer
+}))
+
+// todoApp
+const todoApp = () => {
+  const store = useSelector(state => stete)
+  return (
+    <ul>{store.todos.map(todo => (<li>{todo.text}</li>))}</ul>
+  )
+}
+// todoApp组件在 counter组件更新时也会更新, 即使todos数据未更新。
+```
+
+**2**
+  有时会存在需要获取store数据中的派生状态, 比如获取数据的id。每次调用map函数都会返回一个新数组, 此时组件会重新更新。
+```jsx
+const todoApp = () => {
+  const todoList = useSelector(state => state.todos)
+  // 此时每次在counter组件更新时 也会更新当前组件
+  const ids = useSelector(state => state.todos.map(todo => todo.id))
+  return (
+    <>
+    {/*  */}
+    </>
+  )
+}
+```
+
+  可以使用第三方库reselect, 将结果缓存, 如果结果未更新则返回缓存的数据。该缓存函数可以传入多个input, 每个input返回的参数 依次传递给 最后一个output 函数作为参数。
+```jsx
+const getTodoList = (
+  state => state.todos,
+  todos => todo.map(todo => todo.id)
+)
+const todoApp = () => {
+  const todoList = useSelector(state => state.todos)
+  const ids = useSelector(getTodoList)
+    return (
+    <>
+    {/*  */}
+    </>
+  )
+}
+```
+  A library for creating memoized 'selector' function. Commonly used with Redux, but usable with any plain JS immutable data as well.
+
+**Basic Usage**
+
+Reselect exports a createSelector API, which generates memoized selector functions. createSelector accepts one or more "input" selectors, which extract values from arguments, and an "output" selector that receives the extracted values and should return a derived value. If the generated selector is called multiple times, the output will only be recalculated when the extracted values have changed
+
+[npm-reselect](https://www.npmjs.com/package/reselect)
+
+**3**
+
+  每次更新store的时候, 所有的reducer都会执行判断 action.type, 因为reducer是一个纯函数, 可以通过函数式编程 对 reducer做一层拦截。如果不是更新当前reducer则无需执行当前纯函数的逻辑。
+```js
+// counter中的action 都有counter 前缀
+const counterReducer = (state = 0, action) => {
+  console.log('counter执行了吗')
+  const { type, payload } = action
+  switch (type) {
+    case 'counter/increment':
+      return state + payload
+    case 'counter/decrement':
+      return state - payload
+    default:
+      return state
+  }
+}
+
+// 拦截reducer 判断当前reducer 能不能执行
+const specialActions = (reducer, prefix, defaultState) => {
+  return (state, action) => {
+    if (action.type.match(prefix)) {
+      return reducer(state, action)
+    }
+    // 返回一个默认值, 因为action不匹配 没有走到reducer
+    return defaultState
+  }
+}
+
+const store = createStore(combineReducers({
+  car: shopCarReducer,
+  counter: specialActions(counterReducer, 'counter', 0)
+}))
+```

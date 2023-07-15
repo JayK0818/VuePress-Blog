@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-5ff3527d","path":"/algorithm/array/water-container.html","title":"盛最多水的容器","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/array/water-container.md"}');export{a as data};

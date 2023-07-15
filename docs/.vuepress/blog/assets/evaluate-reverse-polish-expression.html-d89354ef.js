@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-00572348","path":"/algorithm/queue-stack/evaluate-reverse-polish-expression.html","title":"逆波兰表达式求值","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/queue-stack/evaluate-reverse-polish-expression.md"}');export{e as data};

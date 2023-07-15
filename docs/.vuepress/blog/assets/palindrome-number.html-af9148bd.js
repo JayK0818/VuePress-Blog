@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-d237a816","path":"/algorithm/palindrome-number.html","title":"回文数","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/palindrome-number.md"}');export{t as data};

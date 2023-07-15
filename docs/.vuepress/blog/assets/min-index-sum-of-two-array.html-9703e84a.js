@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-06439c17","path":"/algorithm/hash/min-index-sum-of-two-array.html","title":"两个列表的最小索引和","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/hash/min-index-sum-of-two-array.md"}');export{a as data};

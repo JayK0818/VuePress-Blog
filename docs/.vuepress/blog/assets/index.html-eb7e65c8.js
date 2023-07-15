@@ -1,0 +1,1 @@
+import{_ as c}from"./framework-c27b6911.js";import{r as e,o as _,c as l,a as n,w as r}from"./app-ec006255.js";const s={};function a(m,i){const o=e("Vue-Home"),t=e("ClientOnly");return _(),l("div",null,[n(t,null,{default:r(()=>[n(o)]),_:1})])}const d=c(s,[["render",a],["__file","index.html.vue"]]);export{d as default};

@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-9def80c8","path":"/algorithm/array/array-middle-index.html","title":"寻找数组的中心索引","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/array/array-middle-index.md"}');export{a as data};

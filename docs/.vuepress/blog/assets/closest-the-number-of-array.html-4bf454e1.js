@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-bdc18f14","path":"/algorithm/binary-search/closest-the-number-of-array.html","title":"找到K个最接近的元素","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/binary-search/closest-the-number-of-array.md"}');export{a as data};

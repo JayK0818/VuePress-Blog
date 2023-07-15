@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-13a12ff0","path":"/algorithm/binary-search/valid-sqrt-number.html","title":"有效的完全平方数","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/binary-search/valid-sqrt-number.md"}');export{a as data};

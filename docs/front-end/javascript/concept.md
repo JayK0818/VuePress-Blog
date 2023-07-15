@@ -189,7 +189,7 @@ end
 
 ### 引用计数
 
-  另一种不太常见的垃圾收集策略 叫做 引用计数(reference counting).
+  另一种不太常见的垃圾收集策略 叫做 引用计数(reference counting).引用计数的含义是跟踪记录每个值被引用的次数。当某个值引用次数为0时,说明没有办法再访问这个值了, 因此就可以将其占用的内存回收回来。
   引用计数有一个问题, 就是无法回收循环引用的对象。
 
 ```js
@@ -201,6 +201,7 @@ function count_fn(){
 }
 ```
   在采用引用计数的垃圾回收策略中,当函数执行完毕后, object1和object2将继续存在,因为它们的引用次数永远不会是0。
+
 ### 标记清除
 
   JavaScript中最常用的垃圾收集方式就是 标记清除。
@@ -251,5 +252,14 @@ function fn() {
     if(this.timer) clearTimeout(this.timer)
   }
 }
-```
 
+// 解除引用适用于大多数全局变量和全局对象的属性。局部变量会在它们离开执行环境时自动被解除引用
+const createPerson = (name) => {
+  const localPerson = { name }
+  return localPerson
+}
+let globalPerson = createPerson('kyrie')
+
+// 手动解除
+globalPerson = null
+```

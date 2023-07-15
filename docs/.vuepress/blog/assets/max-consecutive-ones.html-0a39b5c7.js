@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-53cddce7","path":"/algorithm/max-consecutive-ones.html","title":"最大连续1的个数","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/max-consecutive-ones.md"}');export{e as data};

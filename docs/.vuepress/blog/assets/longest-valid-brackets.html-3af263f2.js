@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-6de02521","path":"/algorithm/longest-valid-brackets.html","title":"最长有效括号","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/longest-valid-brackets.md"}');export{t as data};

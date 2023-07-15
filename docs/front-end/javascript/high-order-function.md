@@ -218,6 +218,104 @@ Function.length 指明函数的行参个数, 不包括rest参数
 (function foo(a){}).length      // 1
 (function foo(a,...b){}).length // 1
 ```
+```js
+const schedule = [
+  { number: 1, stop: '深圳', arrival: null, departure: {hour: 14, minute: 48} },
+  { number: 2, stop: '惠州', arrival: {hour: 16, minute: 8}, departure: { hour: 16, minute: 14 } },
+  { number: 3, stop: '赣州', arrival: {hour: 20, minute: 29}, departure: { hour: 20, minute: 32} },
+  { number: 4, stop: '吉安', arrival: {hour: 22, minute: 23}, departure: { hour: 22, minute: 26 } },
+  { number: 5, stop: '南昌', arrival: {hour: 0, minute: 40 }, departure: { hour: 1, minute: 3} },
+  { number: 6, stop: '阜阳', arrival: {hour: 5, minute: 58}, departure: { hour: 6, minute: 5 }},
+  { number: 7, stop: '北京西', arrival: {hour: 13, minute: 17}, departure: null }
+]
+const getAttr = (attr) => (obj) => obj[attr]
+const getStop = getAttr('stop')
+const getDeparture = getAttr('departure')
+
+console.log(schedule.map(getStop), schedule.map(getDeparture))
+// 相当于  schedule.map(item => item.stop) 、schedule.map(item => item.departure
+/**
+ * [ '深圳', '惠州', '赣州', '吉安', '南昌' ]
+ * [ { hour: 14, minute: 48 }, { hour: 16, minute: 8 }, { hour: 20, minute: 29 },
+    { hour: 22, minute: 23 }, { hour: 0, minute: 40 } ]
+*/
+
+// 将单个条件函数组合起来
+const both = (con1, con2) => (...args) => !con1(...args) && !con2(...args)
+const either = (con1, con2) => (...args) => con1(...args) || con2(...args)
+
+const isOriginStop = (stop) => stop.arrival === null
+const isTerminalStop = (stop) => stop.departure === null
+
+const isOriginalOrTerminal = either(isOriginStop, isTerminalStop)
+const isBothMiddleStop = both(isOriginStop, isTerminalStop)
+
+console.log('起点或终点:', schedule.filter(isOriginalOrTerminal))
+/**
+ * [ { number: 1, stop: '深圳', arrival: null, departure: { hour: 14, minute: 48 } },
+     { number: 7, stop: '北京西', arrival: { hour: 13, minute: 17 }, departure: null }]
+*/
+console.log('起点:', schedule.filter(isOriginStop))
+//  [ { number: 1, stop: '深圳', arrival: null, departure: { hour: 14, minute: 48 } } ]
+console.log('终点:', schedule.filter(isTerminalStop))
+// [ { number: 7, stop: '北京西', arrival: { hour: 13, minute: 17 }, departure: null } ]
+console.log('中间停靠点:', schedule.filter(isBothMiddleStop))
+```
+```js
+// 检测函数参数类型
+const checkTypes = (fn, ...types) => {
+  return (...args) => {
+    const received = args.map(arg => Object.prototype.toString.call(arg).slice(8, -1).toLowerCase())
+    if (!received.every(t => types.includes(t))) {
+      throw new Error(`Expected argument for ${types.join(', ')}, But got ${received.join(', ')}`)
+    }
+    return fn(...args)
+  }
+}
+
+const sum = (a, b) => a + b
+const add = (a, b) => a + b
+
+const checkSumType = checkTypes(sum, 'number', 'number')
+console.log(checkSumType(1, 5)) // 6
+console.log(checkSumType(2, 5)) // 7
+```
+```js
+// 函数科里化改变参数行为
+const vals = [1, 2, 10, 21]
+const unCurry = (fn) => {
+  return function (arg) {
+    return fn(arg)
+  }
+}
+const myParseInt = unCurry(Number.parseInt)
+console.info(vals.map(myParseInt))  // [ 1, 2, 10, 21 ]
+
+const nested_array = [[1, 2], [3, 4, 5], [6]]
+// 下标, 当前数组项 数组本身全部传递给了concat 方法
+console.info(nested_array.reduce(Array.prototype.concat.bind([]), []))
+// 相当于
+console.log(nested_array.reduce((prev, next, index, array) => {
+  return prev.concat(next, index, array)
+}, []))
+/**
+ * [
+      1,           2,
+      0,           [ 1, 2 ],
+      [ 3, 4, 5 ], [ 6 ],
+      3,           4,
+      5,           1,
+      [ 1, 2 ],    [ 3, 4, 5 ],
+      [ 6 ],       6,
+      2,           [ 1, 2 ],
+      [ 3, 4, 5 ], [ 6 ]
+    ]
+ * 
+*/
+const concat_flat = (fn) => (a, b) => fn(a, b)
+console.log(nested_array.reduce(concat_flat(Array.prototype.concat.bind([])), [])) // [1, 2, 3, 4, 5, 6]
+```
+
 ## Compose Function
 
   函数柯里化很容易写出洋葱型代码 如 f(g(h(v)),而组合函数可以让我们把细粒度的函数重新组合生成一个新的函数并完成参数的传递.
@@ -263,3 +361,74 @@ const last = compose(first,reverse)
 last([1,2,3,4,5]) // 5
 ```
 
+## 数组高阶函数
+
+```js
+// forEach
+Array.prototype._forEach = function(fn) {
+  const list = this
+  for (let i = 0, length = list.length; i < length; i++) {
+    const item = list[i]
+    fn(item, i, list)
+  }
+}
+
+// every
+Array.prototype._every = function(fn) {
+  const list = this
+  let result = true
+  for (let i = 0, length = list.length; i < length; i++) {
+    const item = list[i]
+    result = fn(item)
+    if (!result) break
+  }
+  return result
+}
+
+// some
+Array.prototype._some = function(fn) {
+  const list = this
+  let result = false
+  for (const item of list) {
+    result = fn(item)
+    if (result) break
+  }
+  return result
+}
+
+// map
+Array.prototype._map = function (fn) {
+  const array = this
+  const list = []
+  for (let i = 0, length = array.length; i < length; i++) {
+    const item = array[i]
+    const result = fn(item, i, array)
+    list.push(result)
+  }
+  return list
+}
+
+// filter
+Array.prototype._filter = function(fn) {
+  const array = this
+  const list = []
+  for (let i = 0, length = array.length; i < length; i++) {
+    const item = array[i]
+    const result = fn(item, i, array)
+    result && list.push(item)
+  }
+  return list
+}
+
+// reduce
+Array.prototype._reduce = function(callback, initialValue) {
+  const array = this
+  let accumlator = initialValue === undefined ? array[0] : initialValue
+  const start = initialValue === undefined ? 1 : 0
+  for (let i = start, length = array.length; i < length; i++) {
+    const item = array[i]
+    accumlator = callback(accumlator, item, i, array)
+  }
+  return accumlator
+}
+```

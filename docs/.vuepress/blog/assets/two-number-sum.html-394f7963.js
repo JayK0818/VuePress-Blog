@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-e5969bfc","path":"/algorithm/array/two-number-sum.html","title":"两数之和","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/array/two-number-sum.md"}');export{t as data};

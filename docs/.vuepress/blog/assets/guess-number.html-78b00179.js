@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-4c856934","path":"/algorithm/binary-search/guess-number.html","title":"猜数大小","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/binary-search/guess-number.md"}');export{e as data};

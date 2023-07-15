@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-3b32bb88","path":"/algorithm/queue-stack/square-number.html","title":"完全平方数","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/queue-stack/square-number.md"}');export{e as data};

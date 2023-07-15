@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-40f15922","path":"/algorithm/array/remove-array-zero-item.html","title":"移动零","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/array/remove-array-zero-item.md"}');export{a as data};

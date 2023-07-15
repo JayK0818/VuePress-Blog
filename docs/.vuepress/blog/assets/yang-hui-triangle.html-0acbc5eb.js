@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-10327b03","path":"/algorithm/array/yang-hui-triangle.html","title":"杨辉三角","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/array/yang-hui-triangle.md"}');export{a as data};

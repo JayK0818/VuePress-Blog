@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-90230d2a","path":"/algorithm/matrix-rotate.html","title":"矩阵旋转","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/matrix-rotate.md"}');export{t as data};

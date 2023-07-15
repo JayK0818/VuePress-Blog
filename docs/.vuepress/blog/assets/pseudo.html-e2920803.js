@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-20bbcc1e","path":"/front-end/css/pseudo.html","title":"伪元素与伪类","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"伪类","slug":"伪类","link":"#伪类","children":[]},{"level":2,"title":"伪元素","slug":"伪元素","link":"#伪元素","children":[]}],"git":{},"filePathRelative":"front-end/css/pseudo.md"}');export{e as data};

@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-17f0ebae","path":"/algorithm/int-reverse.html","title":"整数反转","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/int-reverse.md"}');export{e as data};

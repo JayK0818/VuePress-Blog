@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-f332daa2","path":"/algorithm/longest-reverse-substring.html","title":"最长回文子串","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/longest-reverse-substring.md"}');export{t as data};

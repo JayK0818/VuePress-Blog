@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-20832486","path":"/algorithm/array/longest-string-prefix.html","title":"最长公共前缀","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/array/longest-string-prefix.md"}');export{t as data};

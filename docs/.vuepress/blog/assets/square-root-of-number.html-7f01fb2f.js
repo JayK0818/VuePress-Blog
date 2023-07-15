@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-37716bae","path":"/algorithm/binary-search/square-root-of-number.html","title":"x的平方根","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/binary-search/square-root-of-number.md"}');export{a as data};

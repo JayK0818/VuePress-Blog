@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-3d2665a5","path":"/algorithm/first-match-string-index.html","title":"字符串中第一个匹配项的下标","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/first-match-string-index.md"}');export{t as data};

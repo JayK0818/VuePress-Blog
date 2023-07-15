@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-3da607e7","path":"/front-end/css/center.html","title":"水平垂直居中","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"文本居中","slug":"文本居中","link":"#文本居中","children":[]},{"level":2,"title":"块元素居中","slug":"块元素居中","link":"#块元素居中","children":[]}],"git":{},"filePathRelative":"front-end/css/center.md"}');export{e as data};

@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-6cddaa09","path":"/algorithm/tree/concept.html","title":"概念","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"树的遍历","slug":"树的遍历","link":"#树的遍历","children":[]}],"git":{},"filePathRelative":"algorithm/tree/concept.md"}');export{t as data};

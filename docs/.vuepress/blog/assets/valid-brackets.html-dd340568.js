@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-577102be","path":"/algorithm/queue-stack/valid-brackets.html","title":"有效的括号","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/queue-stack/valid-brackets.md"}');export{t as data};

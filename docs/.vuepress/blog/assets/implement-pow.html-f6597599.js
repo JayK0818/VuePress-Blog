@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-4b5a2582","path":"/algorithm/binary-search/implement-pow.html","title":"Math.Pow(x, n)","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/binary-search/implement-pow.md"}');export{t as data};

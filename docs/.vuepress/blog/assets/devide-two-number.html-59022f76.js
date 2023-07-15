@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-430d1270","path":"/algorithm/devide-two-number.html","title":"两数相除","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/devide-two-number.md"}');export{t as data};

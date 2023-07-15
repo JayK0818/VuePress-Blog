@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-24b7f528","path":"/algorithm/zero-matrix.html","title":"零矩阵","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/zero-matrix.md"}');export{t as data};

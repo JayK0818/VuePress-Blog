@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-56b36c8f","path":"/front-end/http/csp.html","title":"CSP","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"Content-Security-Policy","slug":"content-security-policy","link":"#content-security-policy","children":[]}],"git":{},"filePathRelative":"front-end/http/csp.md"}');export{t as data};

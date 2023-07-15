@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-2008359c","path":"/algorithm/array-arrangement.html","title":"下一个排列","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/array-arrangement.md"}');export{a as data};

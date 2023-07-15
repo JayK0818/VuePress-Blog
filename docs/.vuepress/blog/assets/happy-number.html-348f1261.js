@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-743b319b","path":"/algorithm/hash/happy-number.html","title":"快乐数","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/hash/happy-number.md"}');export{a as data};

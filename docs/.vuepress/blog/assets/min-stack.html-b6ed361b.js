@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-2407ff68","path":"/algorithm/queue-stack/min-stack.html","title":"最小栈","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/queue-stack/min-stack.md"}');export{t as data};

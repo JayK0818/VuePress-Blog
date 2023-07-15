@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-7af2d882","path":"/algorithm/combine-ascending-list.html","title":"合并两个有序链表","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/combine-ascending-list.md"}');export{t as data};

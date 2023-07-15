@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-031d71fe","path":"/algorithm/binary-search/find-first-last-index.html","title":"查找元素的第一个和最后一个位置","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/binary-search/find-first-last-index.md"}');export{t as data};

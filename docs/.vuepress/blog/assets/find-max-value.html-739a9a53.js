@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-cf08e65e","path":"/algorithm/binary-search/find-max-value.html","title":"寻找峰值","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/binary-search/find-max-value.md"}');export{a as data};

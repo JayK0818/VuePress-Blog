@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-518a3536","path":"/algorithm/implement-strStr.html","title":"实现 strStr()","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/implement-strStr.md"}');export{t as data};

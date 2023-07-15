@@ -1,1 +1,0 @@
-const a=JSON.parse('{"key":"v-008a0b7a","path":"/algorithm/binary-search/find-target-index.html","title":"寻找目标元素下标","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/binary-search/find-target-index.md"}');export{a as data};

@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-db626a94","path":"/algorithm/create-brackets.html","title":"括号生成","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"algorithm/create-brackets.md"}');export{t as data};
